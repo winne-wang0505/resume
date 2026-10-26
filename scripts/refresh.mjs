@@ -12,7 +12,7 @@ const preferences = {
 };
 if (!process.env.BRAVE_SEARCH_API_KEY) {
   console.error(
-    "Missing BRAVE_SEARCH_API_KEY. Existing index preserved; no notification sent.",
+    "Missing BRAVE_SEARCH_API_KEY. Existing index preserved; live discovery unavailable.",
   );
   process.exit(1);
 }

@@ -88,3 +88,11 @@ GitHub Pages 只有静态文件，没有 Node API。在线网站的“实时检�
 ## 验证
 
 `npm test` 覆盖高匹配、缺失信息、年龄性别不参与、不同币种、资格门槛、截止日期、URL 安全、关键词最小化、来源过滤、重复去除、搜索失败及部分失败。`npm run build` 输出静态网站。真实搜索、GitHub Pages 与手机安装必须在凭据、平台权限和目标设备具备后单独验收。
+
+## 界面预览
+
+桌面与手机尺寸截图来自本地浏览器验证，不代表线上已发布。
+
+![桌面界面](docs/screenshots/desktop.png)
+
+[手机界面截图](docs/screenshots/mobile.png)

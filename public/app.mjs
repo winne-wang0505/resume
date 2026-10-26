@@ -268,7 +268,7 @@ function renderBrief() {
     dateStyle: "full",
   }).format(new Date());
   $("#briefSummary").textContent = rows.length
-    ? `今日整理 ${rows.length} 个真实来源机会。信息不足的岗位请先核实原公告，避免盲目投递。`
+    ? `今日整理 ${rows.length} 个来源招聘线索。信息不足的岗位请先核实原公告，避免盲目投递。`
     : "暂无真实岗位索引。请配置实时搜索，或等待后台更新。演示岗位不计入每日推荐。";
   $("#briefList").innerHTML = rows
     .map(
@@ -299,7 +299,7 @@ function setData(data) {
   $("#dataStatus").textContent =
     data.mode === "demo"
       ? "当前为明确标注的演示数据，尚未连接实时岗位源。"
-      : `真实来源索引 · 更新于 ${data.updatedAt ? new Date(data.updatedAt).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }) : "未知"} · 请核验原公告与截止日期`;
+      : `招聘来源链接（未核验在招） · 更新于 ${data.updatedAt ? new Date(data.updatedAt).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }) : "未知"} · 请核验原公告与截止日期`;
   render();
 }
 $("#refresh").onclick = async () => {

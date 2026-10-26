@@ -246,6 +246,9 @@
               </div>
             </details>
             <button class="primary" type="submit">保存档案并更新分析 ↗</button>
+            <button type="button" id="deleteDataMobile" class="text-button">
+              清除本机个人数据
+            </button>
           </form>
         </section>
         <section id="preferences" class="view" hidden>
@@ -372,8 +375,8 @@
                 运行；需要配置搜索服务凭据。
               </p>
               <p>
-                仅在应用内展示每日简报，不发送邮件。未配置搜索凭据时不会产生真实的新岗位。离线关闭的
-                PWA 不保证后台运行。
+                仅在应用内展示每日简报，不发送邮件。未配置搜索凭据时不会产生真实的新岗位。关闭应用后，PWA
+                不会持续执行后台任务。
               </p>
               <button id="export" class="outline">
                 导出偏好配置（不含个人经历）
