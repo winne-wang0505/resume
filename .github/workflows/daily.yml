@@ -1,7 +1,7 @@
 name: Daily job discovery
 on:
   schedule:
-    - cron: '0 0 * * *' # 08:00 Asia/Shanghai; GitHub scheduling can be delayed.
+    - cron: "0 0 * * *" # 08:00 Asia/Shanghai; GitHub scheduling can be delayed.
   workflow_dispatch:
 permissions:
   contents: write
@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Refresh source links and optionally send private daily email
+      - name: Refresh public job discovery index
         run: npm run jobs:refresh
         env:
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
@@ -24,10 +24,6 @@ jobs:
           JOB_CITY: ${{ vars.JOB_CITY }}
           JOB_REGION: ${{ vars.JOB_REGION }}
           JOB_EXCLUDE: ${{ vars.JOB_EXCLUDE }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          DAILY_RECIPIENT: ${{ secrets.DAILY_RECIPIENT }}
-          PRIVATE_MATCH_CONFIG: ${{ secrets.PRIVATE_MATCH_CONFIG }}
-          MAIL_FROM: ${{ vars.MAIL_FROM }}
       - name: Save public job index
         run: |
           git config user.name 'github-actions[bot]'

@@ -1,13 +1,399 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#235b47"><meta name="description" content="职向：面向中国内地与香港的求职规划、岗位匹配和每日推荐助手"><title>职向 · Career Compass</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg"><link rel="stylesheet" href="./style.css"></head><body>
-<div class="layout"><aside><a class="brand" href="#"><img src="./icon.svg" alt="">职向 <small>CAREER COMPASS</small></a><div class="workspace">你的职业规划工作台</div><nav aria-label="主导航"><button class="nav active" data-view="discover">◈ <span>发现机会</span></button><button class="nav" data-view="profile">▤ <span>个人档案</span></button><button class="nav" data-view="preferences">⚑ <span>求职偏好</span></button><button class="nav" data-view="saved">♡ <span>投递计划</span><b id="savedCount">0</b></button><button class="nav" data-view="daily">◷ <span>每日简报</span></button></nav><div class="sidebar-bottom"><div class="privacy-dot">● 数据由你掌控</div><p>个人档案仅保存在当前设备。<br>公开岗位索引不包含你的简历。</p><button id="install" class="outline" hidden>安装到手机／电脑</button><button id="deleteData" class="text-button">清除本机个人数据</button></div></aside>
-<main><header><div><span class="eyebrow">YOUR NEXT CHAPTER</span><h1 id="pageTitle">发现下一站，找到适合你的机会。</h1></div><div class="header-right"><span id="today"></span><span class="avatar" aria-label="个人档案">你</span></div></header>
-<section id="discover" class="view"><div class="hero"><div><span class="pill">职业规划 · 从了解自己开始</span><h2>让每一次投递，<br>都更有方向。</h2><p>连接内地与香港的职业机会。看清要求、评估差距，<br class="desktop">把时间花在值得争取的岗位上。</p><button class="light-button" id="completeProfile">完善个人档案 <span>↗</span></button></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="compass">✦</div><div class="art-label">你的能力 <span>→</span> 新的可能</div><span class="star">✧</span></div></div>
-<div class="stats"><div><span>可浏览机会</span><strong id="statTotal">—</strong><small>内地与香港</small></div><div><span>优先考虑</span><strong id="statPriority">—</strong><small>性价比 ≥ 75 分</small></div><div><span>已加入计划</span><strong id="statSaved">0</strong><small>按你的节奏推进</small></div><div><span>档案完整度</span><strong id="statProfile">0%</strong><small>信息越完整，建议越具体</small></div></div>
-<div class="section-heading"><div><h2>为你探索的机会 <span class="tiny">OPPORTUNITIES</span></h2><p id="dataStatus" role="status">正在读取岗位索引…</p></div><button id="refresh" class="outline">↻ 检索最新岗位</button></div>
-<div class="filters"><div class="segmented" id="regionTabs"><button class="selected" data-region="全部">全部地区</button><button data-region="内地">中国内地</button><button data-region="香港">中国香港</button></div><label class="search"><span>⌕</span><input id="search" type="search" placeholder="搜索职位、公司、技能" aria-label="搜索职位"></label><select id="category" aria-label="企业性质"><option value="全部">全部机构类型</option><option>央国企</option><option>外企</option><option>私企</option><option>公务员／公共机构</option><option>事业单位／高校</option><option>非营利组织</option><option>待核实</option></select><select id="sort" aria-label="排序"><option value="value">投递性价比优先</option><option value="match">匹配度优先</option><option value="new">最近发现优先</option></select></div>
-<div class="results-layout"><div id="jobList" class="job-list"></div><section class="insight-panel"><div class="coach-icon">✦</div><span class="eyebrow">CAREER MENTOR</span><h3>好的机会，<br>始于清晰的选择。</h3><p id="coachText">先填写技能与经验，职向会为你梳理岗位要求、能力差距和投递优先级。</p><div class="line"></div><h4>读懂三个分数</h4><p><b>匹配度</b> · 与已公开岗位要求的契合程度</p><p><b>竞争准备度</b> · 当前经历与材料的准备水平，并非候选人排名</p><p><b>投递性价比</b> · 匹配、准备度与预计投入时间的综合参考</p><small>分数不是录用概率。未知要求不会按满足处理，薪资仅在币种一致时比较。</small></section></div></section>
-<section id="profile" class="view" hidden><div class="section-heading"><div><h2>每段经历，都有它的价值。</h2><p>档案只保存在当前浏览器；请在共享设备使用后清除。</p></div></div><form id="profileForm" class="form-card"><div class="form-grid"><label>称呼<input name="name" placeholder="如何称呼你"></label><label>最高学历<select name="degree"><option>本科</option><option>硕士</option><option>博士</option><option>专科</option><option>高中</option></select></label><label>专业<input name="major" placeholder="如：金融学、计算机科学"></label><label>毕业年份<input name="graduation" type="number" min="1950" max="2100" placeholder="2026"></label><label>工作年限<input name="years" type="number" min="0" max="60" step="0.5" value="0" required></label><label>当前所在城市<input name="city" placeholder="如：上海"></label><label>香港工作许可<select name="workAuth"><option>待确认</option><option>已具有香港工作资格</option><option>需要雇主签证支持</option><option>不考虑香港</option></select></label><label>语言能力<input name="languages" placeholder="如：普通话、粤语、英语 IELTS 7"></label><label class="wide">技能标签（用逗号分隔）<input name="skills" placeholder="如：Excel，SQL，数据分析，英语"></label><label class="wide">工作／实习／项目经历<textarea name="experience" rows="4" placeholder="描述职责、结果与可量化成果，不要填写身份证号等信息"></textarea></label><label class="wide">获奖、证书及代表成果<textarea name="achievements" rows="3" placeholder="如：资格证书、竞赛奖项、作品集成果"></textarea></label><label>可到岗日期<input name="available" type="date"></label><label>作品集链接<input name="portfolio" type="url" placeholder="https://…"></label></div><details><summary>选填背景信息（不参与评分）</summary><p>年龄与性别无需填写，不用于推荐排序。特定公告的法定资格条件请自行核实。</p><div class="form-grid"><label>年龄<input name="age" type="number" min="16" max="100"></label><label>性别<select name="gender"><option>不提供</option><option>女</option><option>男</option><option>自我描述／其他</option></select></label></div></details><button class="primary" type="submit">保存档案并更新分析 ↗</button></form></section>
-<section id="preferences" class="view" hidden><div class="section-heading"><div><h2>理想的工作，由你定义。</h2><p>用于推荐排序与检索；未知的岗位条件会提示进一步核实。</p></div></div><form id="prefsForm" class="form-card"><div class="form-grid"><label>目标地区<select name="region"><option>全部</option><option>内地</option><option>香港</option></select></label><label>目标城市<input name="city" placeholder="如：上海、深圳、香港"></label><label>目标岗位<input name="role" placeholder="如：产品运营、商业分析" required></label><label>机构类型<select name="category"><option>全部</option><option>央国企</option><option>外企</option><option>私企</option><option>公务员／公共机构</option><option>事业单位／高校</option><option>非营利组织</option></select></label><label>期望最低月薪<input name="salary" type="number" min="0" step="500" value="10000"></label><label>薪资币种<select name="currency"><option value="CNY">人民币 CNY</option><option value="HKD">港币 HKD</option></select></label><label>工作方式<select name="mode"><option>不限</option><option>现场办公</option><option>混合办公</option><option>远程办公</option></select></label><label>用工类型<select name="employment"><option>全职</option><option>实习</option><option>兼职</option><option>合同制</option><option>不限</option></select></label><label>工作时间偏好<input name="hours" placeholder="如：双休、不接受夜班"></label><label>期望专业要求<input name="majorReq" placeholder="如：接受专业不限岗位"></label><label class="wide">希望从事的工作内容<textarea name="content" rows="3" placeholder="如：数据分析、用户研究、教育项目"></textarea></label><label class="wide">不接受的条件／关键词<input name="exclude" placeholder="如：销售，夜班（检索结果将按关键词排除）"></label></div><p class="form-note">工作时间、用工类型与专业偏好会加入检索关键词；原公告未披露的信息不能保证满足。</p><label class="check"><input name="searchConsent" type="checkbox">允许实时检索时向搜索服务发送岗位、地区和偏好关键词（不会发送姓名、年龄、性别或完整经历）</label><button class="primary" type="submit">保存求职偏好 ↗</button></form></section>
-<section id="saved" class="view" hidden><div class="section-heading"><div><h2>把机会，变成下一步行动。</h2><p>收藏岗位并记录投递进度。演示岗位不可真实投递。</p></div></div><div id="savedList" class="job-list"></div></section>
-<section id="daily" class="view" hidden><div class="section-heading"><div><h2>每天一点，更接近下一站。</h2><p>根据当前档案和最新索引生成每日推荐。</p></div></div><div class="brief-grid"><div class="form-card"><span class="eyebrow">DAILY BRIEF</span><h2 id="briefDate"></h2><p id="briefSummary"></p><div id="briefList"></div><button class="primary" id="generateBrief">更新今日简报</button></div><div class="form-card"><h3>推送与数据连接</h3><p id="connectionStatus">正在检查服务…</p><p>GitHub Pages 是静态网站。后台定时检索与邮件推送通过 GitHub Actions 运行；需要配置搜索及邮件服务凭据。</p><p>没有配置凭据时，仅生成本机应用内简报，不会发送邮件。离线关闭的 PWA 不保证后台运行。</p><button id="export" class="outline">导出偏好配置（不含个人经历）</button><p class="form-note">导出文件可用于私有服务的每日推送配置。请勿把个人档案或邮箱提交到公开仓库。</p></div></div></section>
-<footer>职向 CAREER COMPASS <span>以信息做判断，以行动走向下一站。</span></footer></main></div><dialog id="detail"><button id="closeDetail" class="close" aria-label="关闭详情">×</button><div id="detailBody"></div></dialog><div id="toast" role="status" aria-live="polite"></div><script type="module" src="./app.mjs"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#235b47" />
+    <meta
+      name="description"
+      content="职向：面向中国内地与香港的求职规划、岗位匹配和每日推荐助手"
+    />
+    <title>职向 · Career Compass</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside>
+        <a class="brand" href="#"
+          ><img src="./icon.svg" alt="" />职向 <small>CAREER COMPASS</small></a
+        >
+        <div class="workspace">你的职业规划工作台</div>
+        <nav aria-label="主导航">
+          <button class="nav active" data-view="discover">
+            ◈ <span>发现机会</span></button
+          ><button class="nav" data-view="profile">
+            ▤ <span>个人档案</span></button
+          ><button class="nav" data-view="preferences">
+            ⚑ <span>求职偏好</span></button
+          ><button class="nav" data-view="saved">
+            ♡ <span>投递计划</span><b id="savedCount">0</b></button
+          ><button class="nav" data-view="daily">
+            ◷ <span>每日简报</span>
+          </button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="privacy-dot">● 数据由你掌控</div>
+          <p>个人档案仅保存在当前设备。<br />公开岗位索引不包含你的简历。</p>
+          <button id="install" class="outline" hidden>安装到手机／电脑</button
+          ><button id="deleteData" class="text-button">清除本机个人数据</button>
+        </div>
+      </aside>
+      <main>
+        <header>
+          <div>
+            <span class="eyebrow">YOUR NEXT CHAPTER</span>
+            <h1 id="pageTitle">发现下一站，找到适合你的机会。</h1>
+          </div>
+          <div class="header-right">
+            <span id="today"></span
+            ><span class="avatar" aria-label="个人档案">你</span>
+          </div>
+        </header>
+        <section id="discover" class="view">
+          <div class="hero">
+            <div>
+              <span class="pill">职业规划 · 从了解自己开始</span>
+              <h2>让每一次投递，<br />都更有方向。</h2>
+              <p>
+                连接内地与香港的职业机会。看清要求、评估差距，<br
+                  class="desktop"
+                />把时间花在值得争取的岗位上。
+              </p>
+              <button class="light-button" id="completeProfile">
+                完善个人档案 <span>↗</span>
+              </button>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="compass">✦</div>
+              <div class="art-label">你的能力 <span>→</span> 新的可能</div>
+              <span class="star">✧</span>
+            </div>
+          </div>
+          <div class="stats">
+            <div>
+              <span>可浏览机会</span><strong id="statTotal">—</strong
+              ><small>内地与香港</small>
+            </div>
+            <div>
+              <span>优先考虑</span><strong id="statPriority">—</strong
+              ><small>性价比 ≥ 75 分</small>
+            </div>
+            <div>
+              <span>已加入计划</span><strong id="statSaved">0</strong
+              ><small>按你的节奏推进</small>
+            </div>
+            <div>
+              <span>档案完整度</span><strong id="statProfile">0%</strong
+              ><small>信息越完整，建议越具体</small>
+            </div>
+          </div>
+          <div class="section-heading">
+            <div>
+              <h2>为你探索的机会 <span class="tiny">OPPORTUNITIES</span></h2>
+              <p id="dataStatus" role="status">正在读取岗位索引…</p>
+            </div>
+            <button id="refresh" class="outline">↻ 检索最新岗位</button>
+          </div>
+          <div class="filters">
+            <div class="segmented" id="regionTabs">
+              <button class="selected" data-region="全部">全部地区</button
+              ><button data-region="内地">中国内地</button
+              ><button data-region="香港">中国香港</button>
+            </div>
+            <label class="search"
+              ><span>⌕</span
+              ><input
+                id="search"
+                type="search"
+                placeholder="搜索职位、公司、技能"
+                aria-label="搜索职位" /></label
+            ><select id="category" aria-label="企业性质">
+              <option value="全部">全部机构类型</option>
+              <option>央国企</option>
+              <option>外企</option>
+              <option>私企</option>
+              <option>公务员／公共机构</option>
+              <option>事业单位／高校</option>
+              <option>非营利组织</option>
+              <option>待核实</option></select
+            ><select id="sort" aria-label="排序">
+              <option value="value">投递性价比优先</option>
+              <option value="match">匹配度优先</option>
+              <option value="new">最近发现优先</option>
+            </select>
+          </div>
+          <div class="results-layout">
+            <div id="jobList" class="job-list"></div>
+            <section class="insight-panel">
+              <div class="coach-icon">✦</div>
+              <span class="eyebrow">CAREER MENTOR</span>
+              <h3>好的机会，<br />始于清晰的选择。</h3>
+              <p id="coachText">
+                先填写技能与经验，职向会为你梳理岗位要求、能力差距和投递优先级。
+              </p>
+              <div class="line"></div>
+              <h4>读懂三个分数</h4>
+              <p><b>匹配度</b> · 与已公开岗位要求的契合程度</p>
+              <p>
+                <b>竞争准备度</b> · 当前经历与材料的准备水平，并非候选人排名
+              </p>
+              <p><b>投递性价比</b> · 匹配、准备度与预计投入时间的综合参考</p>
+              <small
+                >分数不是录用概率。未知要求不会按满足处理，薪资仅在币种一致时比较。</small
+              >
+            </section>
+          </div>
+        </section>
+        <section id="profile" class="view" hidden>
+          <div class="section-heading">
+            <div>
+              <h2>每段经历，都有它的价值。</h2>
+              <p>档案只保存在当前浏览器；请在共享设备使用后清除。</p>
+            </div>
+          </div>
+          <form id="profileForm" class="form-card">
+            <div class="form-grid">
+              <label>称呼<input name="name" placeholder="如何称呼你" /></label
+              ><label
+                >最高学历<select name="degree">
+                  <option>本科</option>
+                  <option>硕士</option>
+                  <option>博士</option>
+                  <option>专科</option>
+                  <option>高中</option>
+                </select></label
+              ><label
+                >专业<input
+                  name="major"
+                  placeholder="如：金融学、计算机科学" /></label
+              ><label
+                >毕业年份<input
+                  name="graduation"
+                  type="number"
+                  min="1950"
+                  max="2100"
+                  placeholder="2026" /></label
+              ><label
+                >工作年限<input
+                  name="years"
+                  type="number"
+                  min="0"
+                  max="60"
+                  step="0.5"
+                  value="0"
+                  required /></label
+              ><label
+                >当前所在城市<input name="city" placeholder="如：上海" /></label
+              ><label
+                >香港工作许可<select name="workAuth">
+                  <option>待确认</option>
+                  <option>已具有香港工作资格</option>
+                  <option>需要雇主签证支持</option>
+                  <option>不考虑香港</option>
+                </select></label
+              ><label
+                >语言能力<input
+                  name="languages"
+                  placeholder="如：普通话、粤语、英语 IELTS 7" /></label
+              ><label class="wide"
+                >技能标签（用逗号分隔）<input
+                  name="skills"
+                  placeholder="如：Excel，SQL，数据分析，英语" /></label
+              ><label class="wide"
+                >工作／实习／项目经历<textarea
+                  name="experience"
+                  rows="4"
+                  placeholder="描述职责、结果与可量化成果，不要填写身份证号等信息"
+                ></textarea></label
+              ><label class="wide"
+                >获奖、证书及代表成果<textarea
+                  name="achievements"
+                  rows="3"
+                  placeholder="如：资格证书、竞赛奖项、作品集成果"
+                ></textarea></label
+              ><label>可到岗日期<input name="available" type="date" /></label
+              ><label
+                >作品集链接<input
+                  name="portfolio"
+                  type="url"
+                  placeholder="https://…"
+              /></label>
+            </div>
+            <details>
+              <summary>选填背景信息（不参与评分）</summary>
+              <p>
+                年龄与性别无需填写，不用于推荐排序。特定公告的法定资格条件请自行核实。
+              </p>
+              <div class="form-grid">
+                <label
+                  >年龄<input
+                    name="age"
+                    type="number"
+                    min="16"
+                    max="100" /></label
+                ><label
+                  >性别<select name="gender">
+                    <option>不提供</option>
+                    <option>女</option>
+                    <option>男</option>
+                    <option>自我描述／其他</option>
+                  </select></label
+                >
+              </div>
+            </details>
+            <button class="primary" type="submit">保存档案并更新分析 ↗</button>
+          </form>
+        </section>
+        <section id="preferences" class="view" hidden>
+          <div class="section-heading">
+            <div>
+              <h2>理想的工作，由你定义。</h2>
+              <p>用于推荐排序与检索；未知的岗位条件会提示进一步核实。</p>
+            </div>
+          </div>
+          <form id="prefsForm" class="form-card">
+            <div class="form-grid">
+              <label
+                >目标地区<select name="region">
+                  <option>全部</option>
+                  <option>内地</option>
+                  <option>香港</option>
+                </select></label
+              ><label
+                >目标城市<input
+                  name="city"
+                  placeholder="如：上海、深圳、香港" /></label
+              ><label
+                >目标岗位<input
+                  name="role"
+                  placeholder="如：产品运营、商业分析"
+                  required /></label
+              ><label
+                >机构类型<select name="category">
+                  <option>全部</option>
+                  <option>央国企</option>
+                  <option>外企</option>
+                  <option>私企</option>
+                  <option>公务员／公共机构</option>
+                  <option>事业单位／高校</option>
+                  <option>非营利组织</option>
+                </select></label
+              ><label
+                >期望最低月薪<input
+                  name="salary"
+                  type="number"
+                  min="0"
+                  step="500"
+                  value="10000" /></label
+              ><label
+                >薪资币种<select name="currency">
+                  <option value="CNY">人民币 CNY</option>
+                  <option value="HKD">港币 HKD</option>
+                </select></label
+              ><label
+                >工作方式<select name="mode">
+                  <option>不限</option>
+                  <option>现场办公</option>
+                  <option>混合办公</option>
+                  <option>远程办公</option>
+                </select></label
+              ><label
+                >用工类型<select name="employment">
+                  <option>全职</option>
+                  <option>实习</option>
+                  <option>兼职</option>
+                  <option>合同制</option>
+                  <option>不限</option>
+                </select></label
+              ><label
+                >工作时间偏好<input
+                  name="hours"
+                  placeholder="如：双休、不接受夜班" /></label
+              ><label
+                >期望专业要求<input
+                  name="majorReq"
+                  placeholder="如：接受专业不限岗位" /></label
+              ><label class="wide"
+                >希望从事的工作内容<textarea
+                  name="content"
+                  rows="3"
+                  placeholder="如：数据分析、用户研究、教育项目"
+                ></textarea></label
+              ><label class="wide"
+                >不接受的条件／关键词<input
+                  name="exclude"
+                  placeholder="如：销售，夜班（检索结果将按关键词排除）"
+              /></label>
+            </div>
+            <p class="form-note">
+              工作时间、用工类型与专业偏好会加入检索关键词；原公告未披露的信息不能保证满足。
+            </p>
+            <label class="check"
+              ><input
+                name="searchConsent"
+                type="checkbox"
+              />允许实时检索时向搜索服务发送岗位、地区、技能、专业和偏好关键词（不会发送姓名、年龄、性别或完整经历）</label
+            ><button class="primary" type="submit">保存求职偏好 ↗</button>
+          </form>
+        </section>
+        <section id="saved" class="view" hidden>
+          <div class="section-heading">
+            <div>
+              <h2>把机会，变成下一步行动。</h2>
+              <p>收藏岗位并记录投递进度。演示岗位不可真实投递。</p>
+            </div>
+          </div>
+          <div id="savedList" class="job-list"></div>
+        </section>
+        <section id="daily" class="view" hidden>
+          <div class="section-heading">
+            <div>
+              <h2>每天一点，更接近下一站。</h2>
+              <p>根据当前档案和最新索引生成每日推荐。</p>
+            </div>
+          </div>
+          <div class="brief-grid">
+            <div class="form-card">
+              <span class="eyebrow">DAILY BRIEF</span>
+              <h2 id="briefDate"></h2>
+              <p id="briefSummary"></p>
+              <div id="briefList"></div>
+              <button class="primary" id="generateBrief">更新今日简报</button>
+            </div>
+            <div class="form-card">
+              <h3>推送与数据连接</h3>
+              <p id="connectionStatus">正在检查服务…</p>
+              <p>
+                GitHub Pages 是静态网站。后台定时检索通过 GitHub Actions
+                运行；需要配置搜索服务凭据。
+              </p>
+              <p>
+                仅在应用内展示每日简报，不发送邮件。未配置搜索凭据时不会产生真实的新岗位。离线关闭的
+                PWA 不保证后台运行。
+              </p>
+              <button id="export" class="outline">
+                导出偏好配置（不含个人经历）
+              </button>
+              <p class="form-note">
+                导出文件可用于私有服务的每日推送配置。请勿把个人档案或邮箱提交到公开仓库。
+              </p>
+            </div>
+          </div>
+        </section>
+        <footer>
+          职向 CAREER COMPASS <span>以信息做判断，以行动走向下一站。</span>
+        </footer>
+      </main>
+    </div>
+    <dialog id="detail">
+      <button id="closeDetail" class="close" aria-label="关闭详情">×</button>
+      <div id="detailBody"></div>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>
