@@ -1,0 +1,56 @@
+name: Daily job discovery
+on:
+  schedule:
+    - cron: '0 0 * * *' # 08:00 Asia/Shanghai; GitHub scheduling can be delayed.
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: daily-jobs
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Refresh source links and optionally send private daily email
+        run: npm run jobs:refresh
+        env:
+          BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+          JOB_ROLE: ${{ vars.JOB_ROLE }}
+          JOB_CITY: ${{ vars.JOB_CITY }}
+          JOB_REGION: ${{ vars.JOB_REGION }}
+          JOB_EXCLUDE: ${{ vars.JOB_EXCLUDE }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DAILY_RECIPIENT: ${{ secrets.DAILY_RECIPIENT }}
+          PRIVATE_MATCH_CONFIG: ${{ secrets.PRIVATE_MATCH_CONFIG }}
+          MAIL_FROM: ${{ vars.MAIL_FROM }}
+      - name: Save public job index
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/data/jobs.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore: refresh public job discovery index'
+            git push
+          fi
+      # GITHUB_TOKEN pushes do not trigger another workflow; explicitly build and deploy the refreshed site.
+      - run: npm test && npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
