@@ -46,7 +46,7 @@ test("provider response filters unknown sources, duplicates, exclusions and HTML
   });
   const r = await searchJobs(
     { role: "分析", region: "香港", exclude: "销售" },
-    { key: "test-key", fetcher },
+    { key: "test-key", fetcher, enrich: false },
   );
   assert.equal(r.jobs.length, 1);
   assert.equal(r.jobs[0].title, "分析师");
@@ -69,6 +69,7 @@ test("one-region failure is disclosed as partial refresh", async () => {
     { role: "分析" },
     {
       key: "test",
+      enrich: false,
       fetcher: async () =>
         ++n === 1
           ? { ok: false, status: 429 }

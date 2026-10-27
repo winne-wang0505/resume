@@ -23,6 +23,9 @@ jobs:
         with:
           path: dist
   deploy:
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
     if: github.event_name != 'pull_request'
     needs: build
     permissions:

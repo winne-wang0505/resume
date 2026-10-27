@@ -6,17 +6,81 @@ export const degreeRank = {
   硕士: 4,
   博士: 5,
 };
-export function evaluate(profile, prefs, job) {
-  const skills = profile.skills
+export function roleAlignment(role, title) {
+  if (!String(role || "").trim()) return null;
+  const aliases = [
+    ["数据分析", "數據分析", "data analyst", "data analysis"],
+    ["商业分析", "商業分析", "业务分析", "業務分析", "business analyst"],
+    ["产品运营", "產品運營", "产品营运", "product operations"],
+    [
+      "软件开发",
+      "軟件開發",
+      "软件工程师",
+      "軟件工程師",
+      "software engineer",
+      "software developer",
+    ],
+    ["金融", "finance", "financial"],
+    ["会计", "會計", "accountant", "accounting"],
+    ["市场营销", "市場營銷", "marketing"],
+    ["人力资源", "人力資源", "human resources", "hr"],
+  ];
+  const norm = (s) =>
+    String(s || "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
+  const t = norm(title),
+    terms = String(role)
+      .split(/[,，、;；\n]/)
+      .map(norm)
+      .filter(Boolean);
+  return terms.some(
+    (term) =>
+      t.includes(term) ||
+      aliases.some(
+        (group) =>
+          group.some(
+            (a) =>
+              norm(a) === term ||
+              (term.endsWith("师") && term.slice(0, -1) === norm(a)),
+          ) && group.some((a) => t.includes(norm(a))),
+      ),
+  );
+}
+export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
+  const skills = String(profile.skills || "")
     .split(/[,，、\n]/)
     .map((x) => x.trim().toLowerCase())
     .filter(Boolean);
-  const required = job.skills || [];
-  const matched = required.filter((x) =>
-    skills.some(
-      (s) => s.includes(x.toLowerCase()) || x.toLowerCase().includes(s),
-    ),
+  const required = (job.skills || []).filter(
+    (x) => typeof x === "string" && x.trim(),
   );
+  const skillAliases = {
+    english: "英语",
+    英語: "英语",
+    cantonese: "粤语",
+    粵語: "粤语",
+    mandarin: "普通话",
+    普通話: "普通话",
+    數據分析: "数据分析",
+  };
+  const normalSkill = (s) => skillAliases[s.toLowerCase()] || s.toLowerCase();
+  const normalized = skills.map(normalSkill);
+  const matched = required.filter((x) => {
+    const target = normalSkill(x);
+    return normalized.some((s) => {
+      if (s === target) return true;
+      if (/^[a-z0-9 .+#-]+$/.test(target)) {
+        const escaped = target.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        return new RegExp(
+          "(?:^|[^a-z0-9])" + escaped + "(?:$|[^a-z0-9])",
+          "i",
+        ).test(s);
+      }
+      return target.length >= 2 && s.includes(target);
+    });
+  });
   const missing = required.filter((x) => !matched.includes(x));
   const evidence = [];
   const blockers = [];
@@ -77,11 +141,41 @@ export function evaluate(profile, prefs, job) {
       5,
       `工作方式：${job.mode}`,
     );
+  const roleAligned = roleAlignment(prefs.role, job.title);
+  if (roleAligned !== null)
+    add(
+      "岗位方向",
+      roleAligned ? 100 : 20,
+      15,
+      roleAligned
+        ? "职位名称与目标岗位关键词相符"
+        : "职位名称尚未与目标岗位关键词对应，请核实职责",
+    );
   const total = dims.reduce((s, d) => s + d.weight, 0);
-  const match = total
-    ? Math.round(dims.reduce((s, d) => s + d.value * d.weight, 0) / total)
-    : null;
-  const confidence = Math.min(100, Math.round(total));
+  const coreWeight = dims
+    .filter((d) => ["技能", "学历", "经验"].includes(d.name))
+    .reduce((s, d) => s + d.weight, 0);
+  const personalKnown = Boolean(
+    String(profile.skills || "").trim() ||
+    String(profile.experience || "").trim() ||
+    String(profile.major || "").trim(),
+  );
+  const scoreReason =
+    job.verification === "search-result"
+      ? "尚未取得岗位详情，搜索摘要不用于评分"
+      : !personalKnown
+        ? "请先补充技能、专业或经历"
+        : coreWeight < 15 || total < 35
+          ? "已披露的任职要求不足，暂不生成分数"
+          : null;
+  const match =
+    !scoreReason && total
+      ? Math.round(dims.reduce((s, d) => s + d.value * d.weight, 0) / total)
+      : null;
+  const confidence = Math.min(
+    100,
+    Math.round((total / (roleAligned === null ? 100 : 115)) * 100),
+  );
   // Readiness estimates preparedness against published requirements, never applicant ranking.
   const readiness =
     match === null
@@ -92,8 +186,8 @@ export function evaluate(profile, prefs, job) {
             100,
             Math.round(
               match * 0.85 +
-                (profile.achievements.trim() ? 10 : 0) +
-                (profile.experience.trim() ? 5 : 0),
+                (String(profile.achievements || "").trim() ? 10 : 0) +
+                (String(profile.experience || "").trim() ? 5 : 0),
             ),
           ),
         );
@@ -113,10 +207,19 @@ export function evaluate(profile, prefs, job) {
             ),
           ),
         );
+  const rawDeadline = job.deadline;
+  const deadlineAt = rawDeadline
+    ? rawDeadline.includes("T")
+      ? Date.parse(rawDeadline)
+      : Date.parse(rawDeadline + "T23:59:59+08:00")
+    : NaN;
   const expired =
-    job.deadline && new Date(job.deadline + "T23:59:59+08:00") < new Date();
+    job.status === "closed" ||
+    (Number.isFinite(deadlineAt) && deadlineAt < now.getTime());
   return {
     match,
+    scoreReason,
+    roleAligned,
     readiness,
     value,
     confidence,
@@ -128,14 +231,16 @@ export function evaluate(profile, prefs, job) {
     advice: expired
       ? "已截止，寻找同类岗位"
       : match === null
-        ? "信息不足：先查看原始招聘公告"
-        : blockers.length
-          ? "先核实硬性门槛，再决定是否投入时间"
-          : value >= 75
-            ? "优先投递：定制简历并准备岗位案例"
-            : value >= 50
-              ? "选择性投递：补足缺失技能后再申请"
-              : "低优先级：建议调整方向或先补齐能力",
+        ? scoreReason || "信息不足：先查看原始招聘公告"
+        : roleAligned === false
+          ? "岗位方向尚未对应：先核实职责，暂不列为优先推荐"
+          : blockers.length
+            ? "先核实硬性门槛，再决定是否投入时间"
+            : value >= 75
+              ? "优先投递：定制简历并准备岗位案例"
+              : value >= 50
+                ? "选择性投递：补足缺失技能后再申请"
+                : "低优先级：建议调整方向或先补齐能力",
   };
 }
 export function safeURL(value) {

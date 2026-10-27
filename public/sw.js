@@ -1,4 +1,4 @@
-const CACHE = "career-shell-v1";
+const CACHE = "career-shell-v2";
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
@@ -9,6 +9,7 @@ self.addEventListener("install", (event) => {
           "./style.css",
           "./app.mjs",
           "./src/match.mjs",
+          "./src/brief.mjs",
           "./icon.svg",
         ]),
       ),

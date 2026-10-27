@@ -72,3 +72,12 @@ test("external links reject executable and local schemes", () => {
   assert.equal(safeURL("file:///etc/passwd"), null);
   assert.equal(safeURL("https://www.gov.hk/"), "https://www.gov.hk/");
 });
+
+test("short skill names and language aliases do not create false matches", () => {
+  const r = evaluate({ ...p, skills: "JavaScript，Power BI，English" }, prefs, {
+    ...job,
+    skills: ["Java", "R", "英语"],
+  });
+  assert.deepEqual(r.missing, ["Java", "R"]);
+  assert.match(r.evidence[0], /1\/3/);
+});

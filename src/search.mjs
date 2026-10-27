@@ -1,24 +1,6 @@
 import { createHash } from "node:crypto";
-const sources = {
-  内地: [
-    "zhaopin.com",
-    "liepin.com",
-    "51job.com",
-    "iguopin.com",
-    "sasac.gov.cn",
-    "mohrss.gov.cn",
-    "scs.gov.cn",
-    "gov.cn",
-  ],
-  香港: [
-    "hk.jobsdb.com",
-    "ctgoodjobs.hk",
-    "jobs.gov.hk",
-    "csb.gov.hk",
-    "careers.gov.hk",
-    "hk.indeed.com",
-  ],
-};
+import { sources, sourceURL } from "./sources.mjs";
+import { enrichIndex } from "./pipeline.mjs";
 export function normalizePreferences(p = {}) {
   const clean = (x) =>
     typeof x === "string"
@@ -44,7 +26,7 @@ export function normalizePreferences(p = {}) {
 }
 export function buildQuery(p, region) {
   const extra = [
-    p.city,
+    region === "香港" ? (p.city === "香港" ? p.city : "") : p.city,
     p.skills,
     p.major,
     p.category !== "全部" ? p.category : "",
@@ -56,24 +38,16 @@ export function buildQuery(p, region) {
   ]
     .filter(Boolean)
     .join(" ");
-  return `${p.role} ${extra} ${region === "香港" ? "香港 招聘 vacancy" : "招聘 职位"} (${sources[region].map((x) => "site:" + x).join(" OR ")})`;
-}
-function sourceHost(raw, region) {
-  try {
-    const u = new URL(raw);
-    if (u.protocol !== "https:") return null;
-    return sources[region].find(
-      (d) => u.hostname === d || u.hostname.endsWith("." + d),
-    )
-      ? u
-      : null;
-  } catch {
-    return null;
-  }
+  return `${p.role} ${extra} ${region === "香港" ? "香港 招聘 vacancy" : "招聘 职位"} (${sources[region].map((x) => "site:" + x).join(" OR ")}) -inurl:company-jobs -inurl:/zhaopin/ -inurl:HRNews -inurl:q-`;
 }
 export async function searchJobs(
   preferences,
-  { key = process.env.BRAVE_SEARCH_API_KEY, fetcher = fetch } = {},
+  {
+    key = process.env.BRAVE_SEARCH_API_KEY,
+    fetcher = fetch,
+    enrich = true,
+    detailFetcher,
+  } = {},
 ) {
   const p = normalizePreferences(preferences);
   if (!p.role) throw new Error("请填写目标岗位");
@@ -103,7 +77,7 @@ export async function searchJobs(
       if (!res.ok) throw new Error(`搜索服务响应 ${res.status}`);
       const data = await res.json();
       for (const item of data.web?.results || []) {
-        const u = sourceHost(item.url, region);
+        const u = sourceURL(item.url, region);
         if (!u) continue;
         const plain = (s) =>
           String(s || "")
@@ -151,7 +125,14 @@ export async function searchJobs(
     e.status = 502;
     throw e;
   }
-  return {
+  const result = {
+    searchPreferences: {
+      role: p.role,
+      region: p.region,
+      city: p.city,
+      category: p.category,
+      exclude: p.exclude,
+    },
     updatedAt: new Date().toISOString(),
     mode: "search",
     jobs,
@@ -159,4 +140,5 @@ export async function searchJobs(
     notice:
       "搜索结果为近一个月收录的招聘线索，可能包含汇总页或已结束岗位；非经核验的在招职位，发布时间、要求与薪资需以原公告为准。",
   };
+  return enrich ? enrichIndex(result, { detailFetcher }) : result;
 }

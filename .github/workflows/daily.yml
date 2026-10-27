@@ -37,6 +37,9 @@ jobs:
         with:
           path: dist
   deploy:
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
     needs: refresh
     runs-on: ubuntu-latest
     permissions:

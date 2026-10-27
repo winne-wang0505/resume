@@ -30,5 +30,16 @@ await writeFile(
   JSON.stringify(result, null, 2) + "\n",
 );
 console.log(
-  `Indexed ${result.jobs.length} search leads; not verified active vacancies.`,
+  `Processed ${result.stats.discovered} sources: ${result.jobs.length} detailed jobs, ${result.leads.length} pending, ${result.excluded.length} excluded.`,
 );
+
+if (process.env.GITHUB_STEP_SUMMARY) {
+  const { appendFile } = await import("node:fs/promises");
+  await appendFile(
+    process.env.GITHUB_STEP_SUMMARY,
+    `## 岗位处理结果\n- 来源链接：${result.stats.discovered}\n- 已获得具体详情：${result.jobs.length}\n- 待核实：${result.leads.length}\n- 已过滤：${result.excluded.length}\n\n${result.leads
+      .slice(0, 10)
+      .map((j) => `- ${j.source}: ${j.detailFailure}`)
+      .join("\n")}\n`,
+  );
+}

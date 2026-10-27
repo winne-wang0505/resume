@@ -1,0 +1,54 @@
+name: Upgrade existing job details
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - src/details.mjs
+      - src/sources.mjs
+      - src/pipeline.mjs
+      - scripts/enrich-existing.mjs
+      - .github/workflows/enrich.yml
+permissions:
+  contents: write
+concurrency:
+  group: daily-jobs
+  cancel-in-progress: false
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+      - name: Read and classify current public source pages
+        run: node scripts/enrich-existing.mjs
+      - name: Save enriched index safely
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          node scripts/save-index.mjs
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: enrich
+    runs-on: ubuntu-latest
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

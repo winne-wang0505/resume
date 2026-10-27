@@ -98,6 +98,17 @@
             </div>
             <button id="refresh" class="outline">↻ 检索最新岗位</button>
           </div>
+          <div
+            class="quality-tabs"
+            id="qualityTabs"
+            aria-label="岗位信息完整度"
+          >
+            <button class="selected" data-quality="detailed">
+              具体岗位 <b id="detailCount">0</b></button
+            ><button data-quality="pending">
+              待核实线索 <b id="pendingCount">0</b>
+            </button>
+          </div>
           <div class="filters">
             <div class="segmented" id="regionTabs">
               <button class="selected" data-region="全部">全部地区</button
@@ -359,31 +370,62 @@
               <p>根据当前档案和最新索引生成每日推荐。</p>
             </div>
           </div>
+          <div id="briefMetrics" class="brief-metrics"></div>
           <div class="brief-grid">
             <div class="form-card">
-              <span class="eyebrow">DAILY BRIEF</span>
+              <span class="eyebrow">DAILY BRIEF · 有依据的投递决策</span>
               <h2 id="briefDate"></h2>
-              <p id="briefSummary"></p>
+              <p id="briefSummary" role="status"></p>
               <div id="briefList"></div>
-              <button class="primary" id="generateBrief">更新今日简报</button>
-            </div>
-            <div class="form-card">
-              <h3>推送与数据连接</h3>
-              <p id="connectionStatus">正在检查服务…</p>
-              <p>
-                GitHub Pages 是静态网站。后台定时检索通过 GitHub Actions
-                运行；需要配置搜索服务凭据。
-              </p>
-              <p>
-                仅在应用内展示每日简报，不发送邮件。未配置搜索凭据时不会产生真实的新岗位。关闭应用后，PWA
-                不会持续执行后台任务。
-              </p>
-              <button id="export" class="outline">
-                导出偏好配置（不含个人经历）
+              <details id="pendingSection" class="pending-section">
+                <summary id="pendingTitle">待核实线索</summary>
+                <p class="form-note">
+                  这些页面尚未提供足够要求，或尚未与目标岗位对应，不纳入优先投递。查看原因后再决定是否核实。
+                </p>
+                <div id="pendingList"></div>
+              </details>
+              <details id="excludedSection">
+                <summary id="excludedTitle">已过滤的页面</summary>
+                <div id="excludedList"></div>
+              </details>
+              <button class="primary" id="generateBrief">
+                按当前档案重新分析
               </button>
-              <p class="form-note">
-                导出文件可用于私有服务的每日推送配置。请勿把个人档案或邮箱提交到公开仓库。
-              </p>
+            </div>
+            <div class="brief-sidebar">
+              <section class="form-card">
+                <span class="eyebrow">YOUR NEXT STEPS</span>
+                <h3>今天的行动清单</h3>
+                <ol id="dailyTasks"></ol>
+                <p class="form-note">
+                  分数是已公开要求的准备参考，不代表候选人排名或录用概率。
+                </p>
+              </section>
+              <section class="form-card">
+                <h3>数据更新状态</h3>
+                <p id="dataFreshness"></p>
+                <p class="form-note">
+                  公告未披露截止日期时，不能确认仍在招。投递前请打开原公告核实。
+                </p>
+                <details class="connection-details">
+                  <summary>查看更新方式与配置</summary>
+                  <p id="connectionStatus">正在检查服务…</p>
+                  <p>
+                    每天通过 GitHub Actions
+                    更新公开岗位索引；网页根据本机档案生成个人分析。网页偏好不会自动修改后台检索范围。
+                  </p>
+                  <p>
+                    仅应用内日报，不发送邮件。关闭应用不影响 GitHub
+                    定时任务；即时搜索是单独的可选后台功能。
+                  </p>
+                  <button id="export" class="outline">
+                    导出偏好配置（不含个人经历）
+                  </button>
+                  <p class="form-note">
+                    无需为查看日报导出配置。不要把个人档案或凭据提交到公开仓库。
+                  </p>
+                </details>
+              </section>
             </div>
           </div>
         </section>
