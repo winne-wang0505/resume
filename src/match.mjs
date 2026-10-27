@@ -6,7 +6,7 @@ export const degreeRank = {
   硕士: 4,
   博士: 5,
 };
-export function roleAlignment(role, title) {
+export function roleAlignment(role, title, description = "") {
   if (!String(role || "").trim()) return null;
   const aliases = [
     ["数据分析", "數據分析", "data analyst", "data analysis"],
@@ -54,6 +54,12 @@ export function roleAlignment(role, title) {
   return terms.some(
     (term) =>
       contains(t, term) ||
+      (/金融|finance|financial/i.test(term) &&
+        /证券研究|證券研究|投研|投资研究|投資研究|金融|财务|財務|equity research|investment|financial|banking/i.test(
+          String(description).split(
+            /任职|任職|requirements|qualifications/i,
+          )[0],
+        )) ||
       aliases.some(
         (group) =>
           group.some(
@@ -163,15 +169,15 @@ export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
       5,
       `工作方式：${job.mode}`,
     );
-  const roleAligned = roleAlignment(prefs.role, job.title);
+  const roleAligned = roleAlignment(prefs.role, job.title, job.description);
   if (roleAligned !== null)
     add(
       "岗位方向",
       roleAligned ? 100 : 20,
       15,
       roleAligned
-        ? "职位名称与目标岗位关键词相符"
-        : "职位名称尚未与目标岗位关键词对应，请核实职责",
+        ? "职位名称或主要职责与目标方向关键词相符"
+        : "职位名称及主要职责尚未与目标方向关键词对应，请核实",
     );
   const total = dims.reduce((s, d) => s + d.weight, 0);
   const coreWeight = dims
@@ -213,6 +219,18 @@ export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
             ),
           ),
         );
+  const unverifiedRequirements = [];
+  if (job.graduationYears?.length) {
+    const year = Number(profile.graduation);
+    if (!year)
+      unverifiedRequirements.push(
+        `岗位面向 ${job.graduationYears.join("、")} 届，请补充毕业年份并核实资格`,
+      );
+    else if (!job.graduationYears.includes(year))
+      blockers.push(
+        `毕业届别不符：岗位面向 ${job.graduationYears.join("、")} 届，你填写 ${year} 年`,
+      );
+  }
   const cost = job.applyMinutes || 30;
   const value =
     match === null
@@ -241,6 +259,7 @@ export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
   return {
     match,
     scoreReason,
+    unverifiedRequirements,
     roleAligned,
     readiness,
     value,
@@ -258,13 +277,15 @@ export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
           ? "岗位方向尚未对应：先核实职责，暂不列为优先推荐"
           : blockers.length
             ? "先核实硬性门槛，再决定是否投入时间"
-            : confidence < 50
-              ? "已知要求较少：先补齐原公告信息，再决定是否投递"
-              : value >= 75
-                ? "优先投递：定制简历并准备岗位案例"
-                : value >= 50
-                  ? "选择性投递：补足缺失技能后再申请"
-                  : "低优先级：建议调整方向或先补齐能力",
+            : unverifiedRequirements.length
+              ? "先核实毕业届别等资格要求，再决定是否投递"
+              : confidence < 50
+                ? "已知要求较少：先补齐原公告信息，再决定是否投递"
+                : value >= 75
+                  ? "优先投递：定制简历并准备岗位案例"
+                  : value >= 50
+                    ? "选择性投递：补足缺失技能后再申请"
+                    : "低优先级：建议调整方向或先补齐能力",
   };
 }
 export function safeURL(value) {

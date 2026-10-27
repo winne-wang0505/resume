@@ -97,3 +97,34 @@ test("AI keyword uses word boundaries and slash-separated role choices work", ()
     true,
   );
 });
+
+test("finance direction can match explicitly published research duties with a generic title", () => {
+  const r = evaluate(
+    p,
+    { ...prefs, role: "金融" },
+    {
+      ...job,
+      title: "分析师助理",
+      description:
+        "职责描述：参与证券研究所的行业研究与报告撰写。任职要求：硕士。",
+    },
+  );
+  assert.equal(r.roleAligned, true);
+});
+test("graduation cohort is a distinct qualification, never inferred from age", () => {
+  const j = { ...job, title: "分析师", graduationYears: [2027] };
+  assert.ok(
+    evaluate({ ...p, graduation: "2026" }, prefs, j).blockers.some((s) =>
+      s.includes("毕业届别"),
+    ),
+  );
+  assert.equal(
+    evaluate({ ...p, graduation: "" }, prefs, j).unverifiedRequirements.length,
+    1,
+  );
+  assert.equal(
+    evaluate({ ...p, graduation: "2027" }, prefs, j).unverifiedRequirements
+      .length,
+    0,
+  );
+});

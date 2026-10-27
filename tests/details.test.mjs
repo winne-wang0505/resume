@@ -299,3 +299,25 @@ test("certificate failures remain blockers with an actionable reason", async () 
   assert.match(r.reason, /TLS/);
   assert.equal(r.ok, false);
 });
+
+test("Chinese closing dates, explicit soft-skill requirements and graduation cohort are retained", () => {
+  const p = {
+    "@type": "JobPosting",
+    title: "分析师助理岗（2027届）",
+    hiringOrganization: { name: "测试证券公司" },
+    educationRequirements: "硕士",
+    description:
+      "职责描述：参与证券研究所行业日报和周报撰写，维护基础数据跟踪和分析，并协助研究团队整理会议记录及研究报告。\n任职资格：\n1、硕士研究生及以上学历，金融相关专业优先；\n2、具备较强的逻辑思维能力、沟通表达能力，文字功底扎实；\n3、有 Java 行业实习经验者优先。\n截止日期：2026年10月31日",
+  };
+  const j = extractDetail(
+    '<script type="application/ld+json">' + JSON.stringify(p) + "</script>",
+    { ...lead, region: "内地" },
+    { now },
+  ).job;
+  assert.equal(j.deadline, "2026-10-31");
+  assert.deepEqual(j.graduationYears, [2027]);
+  assert.ok(j.skills.includes("逻辑思维"));
+  assert.ok(j.skills.includes("沟通表达"));
+  assert.ok(!j.skills.includes("Java"));
+  assert.equal(j.fieldEvidence.degree.field, "educationRequirements");
+});

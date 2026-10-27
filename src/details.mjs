@@ -136,6 +136,15 @@ function explicitRequirements(text) {
   const skills = [];
   const skillQuotes = [];
   const dictionary = [
+    "逻辑思维",
+    "邏輯思維",
+    "沟通表达",
+    "溝通表達",
+    "文字功底",
+    "抗压能力",
+    "抗壓能力",
+    "报告撰写",
+    "報告撰寫",
     "SQL",
     "Excel",
     "Python",
@@ -167,6 +176,13 @@ function explicitRequirements(text) {
     const section = requirements[1].split(
       /(?:福利待遇|薪酬福利|我们提供|我們提供|how to apply|apply now|benefits|about us)/i,
     )[0];
+    const mandatorySection = section
+      .split("\n")
+      .filter(
+        (line) =>
+          !/优先|優先|preferred|nice to have|加分|advantage/i.test(line),
+      )
+      .join("\n");
     for (const skill of dictionary) {
       const re = /^[\w .]+$/.test(skill)
         ? new RegExp(
@@ -174,11 +190,14 @@ function explicitRequirements(text) {
             "i",
           )
         : new RegExp(skill);
-      const m = re.exec(section);
+      const m = re.exec(mandatorySection);
       if (m) {
         skills.push(skill);
         skillQuotes.push(
-          section.slice(Math.max(0, m.index - 40), m.index + skill.length + 65),
+          mandatorySection.slice(
+            Math.max(0, m.index - 40),
+            m.index + skill.length + 65,
+          ),
         );
       }
     }
@@ -365,6 +384,12 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
     );
     Object.assign(values, combined.values);
     Object.assign(evidence, combined.evidence);
+    if (education && values.degree)
+      evidence.degree = {
+        method: "schema.org/JobPosting",
+        field: "educationRequirements",
+        quote: education.slice(0, 500),
+      };
     if (p.experienceRequirements?.monthsOfExperience !== undefined) {
       const n = Number(p.experienceRequirements.monthsOfExperience);
       if (Number.isFinite(n) && n >= 0)
@@ -379,7 +404,9 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
       );
       if (years) set("experience", Number(years[1]), "experienceRequirements");
       else if (
-        /不限|不要求|no experience required/i.test(p.experienceRequirements)
+        /不限|不要求|无经验|無經驗|应届|應屆|在校生|no experience required|fresh graduate/i.test(
+          p.experienceRequirements,
+        )
       )
         set("experience", 0, "experienceRequirements");
     }
@@ -495,6 +522,33 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
     description.length < 80
   )
     return { ok: false, reason: "职位详情缺少明确名称、公司或完整描述" };
+  if (!values.deadline) {
+    const chinese = description.match(
+      /(?:截止日期|截止时间|截止時間|截止申请日期|截止申請日期)[：:\s]*(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日/,
+    );
+    const iso = description.match(
+      /(?:截止日期|截止时间|截止時間|closing date)[：:\s]*(\d{4})[-/](\d{1,2})[-/](\d{1,2})/i,
+    );
+    const m = chinese || iso;
+    if (m) {
+      const value = dateOnly(
+        `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}`,
+      );
+      if (value) {
+        values.deadline = value;
+        evidence.deadline = { method: "description-text", quote: m[0] };
+      }
+    }
+  }
+  const cohortText = [values.title, description].join("\n");
+  const cohorts = [...cohortText.matchAll(/(20\d{2})\s*[届屆]/g)];
+  if (cohorts.length) {
+    values.graduationYears = [...new Set(cohorts.map((m) => Number(m[1])))];
+    evidence.graduationYears = {
+      method: "title-and-description",
+      quote: cohorts.map((m) => m[0]).join("、"),
+    };
+  }
   if (!values.salaryMin) {
     const s = textSalary(description, lead.region);
     if (s) {

@@ -71,7 +71,10 @@ export function buildBrief(data, profile, prefs, { now = new Date() } = {}) {
       "为重点岗位补充技能证据或学习计划：" + missing.join("、") + "。",
     );
   const top = ready.find(
-    (x) => !x.result.blockers.length && x.result.value >= 50,
+    (x) =>
+      !x.result.blockers.length &&
+      !x.result.unverifiedRequirements.length &&
+      x.result.value >= 50,
   );
   if (top)
     tasks.push(`为「${top.job.title}」准备一份定制简历和可量化成果案例。`);
