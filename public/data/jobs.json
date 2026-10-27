@@ -2,7 +2,7 @@
   "schemaVersion": 3,
   "searchUsage": {
     "day": "2026-10-27",
-    "requests": 18,
+    "requests": 24,
     "limit": 24
   },
   "coverage": {
@@ -11,9 +11,9 @@
     "regions": 2,
     "pagesLimit": 2,
     "plannedFirstPages": 18,
-    "requestsThisRun": 18,
-    "dailyRemaining": 6,
-    "partial": false,
+    "requestsThisRun": 6,
+    "dailyRemaining": 0,
+    "partial": true,
     "paginationRequests": 0,
     "queryLog": [
       {
@@ -25,9 +25,9 @@
           "GradConnection 香港",
           "联合利华招聘"
         ],
-        "results": 8,
-        "unseenResults": 8,
-        "newLinks": 8
+        "results": 6,
+        "unseenResults": 6,
+        "newLinks": 6
       },
       {
         "role": "数据分析",
@@ -93,168 +93,12 @@
         "results": 0,
         "unseenResults": 0,
         "newLinks": 0
-      },
-      {
-        "role": "AI",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "CTgoodjobs",
-          "GradConnection 香港",
-          "港铁招聘"
-        ],
-        "results": 14,
-        "unseenResults": 14,
-        "newLinks": 14
-      },
-      {
-        "role": "产品",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "国家公务员局",
-          "腾讯校招",
-          "字节跳动招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "产品",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "香港公务员招聘",
-          "GradConnection 香港",
-          "华为招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "算法",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "前程无忧",
-          "实习僧",
-          "百度人才"
-        ],
-        "results": 1,
-        "unseenResults": 1,
-        "newLinks": 1
-      },
-      {
-        "role": "算法",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "JobsDB 香港",
-          "GradConnection 香港",
-          "汇丰招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "开发",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "国聘",
-          "腾讯校招",
-          "宝洁招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "开发",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "CTgoodjobs",
-          "GradConnection 香港",
-          "普华永道招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "BOSS直聘",
-          "实习僧",
-          "渣打招聘"
-        ],
-        "results": 1,
-        "unseenResults": 1,
-        "newLinks": 1
-      },
-      {
-        "role": "运营",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "Indeed 香港",
-          "GradConnection 香港",
-          "港铁招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "金融",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "国家公务员局",
-          "腾讯校招",
-          "德勤招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "金融",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "香港公务员招聘",
-          "GradConnection 香港",
-          "安永招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "快消",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "猎聘",
-          "实习僧",
-          "联合利华招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-27T15:10:33.399Z",
+  "updatedAt": "2026-10-27T15:20:18.960Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -366,6 +210,66 @@
   ],
   "leads": [
     {
+      "id": "50e19d74b3d7d188ee",
+      "title": "Stellenanzeige Marketing Intern (d/f/m) bei Unilever",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "快消",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Start your internship in June for a 6-month period in the Marketing Home Care department, based in Warsaw, Poland. It offers a unique opportunity to gain insight into working in the dynamic FMCG industry.",
+      "source": "careers.unilever.com",
+      "sourceLabel": "联合利华招聘",
+      "sourceType": "企业官网",
+      "url": "https://careers.unilever.com/de/stellenbeschreibung/warschau/marketing-intern-d-f-m/34155/95005403984",
+      "discoveredAt": "2026-10-27T15:20:18.960Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源返回 HTTP 404",
+      "detailAttemptedAt": "2026-10-27T15:20:18.960Z"
+    },
+    {
+      "id": "cab184a8d18209f06d",
+      "title": "Commercial Junior Finance Manager at Unilever",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "快消",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Solid understanding of P&amp;L and experience with month-end close and forecasting processes; FMCG experience is an advantage.",
+      "source": "careers.unilever.com",
+      "sourceLabel": "联合利华招聘",
+      "sourceType": "企业官网",
+      "url": "https://careers.unilever.com/en/job/varsova/commercial-junior-finance-manager/34155/96210467632",
+      "discoveredAt": "2026-10-27T15:20:18.960Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源返回 HTTP 404",
+      "detailAttemptedAt": "2026-10-27T15:20:18.960Z"
+    },
+    {
+      "id": "dfc1fa2675534b5779",
+      "title": "字节跳动——大模型安全策略实习生",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "大模型",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "正在加载中",
+      "source": "www.zhipin.com",
+      "sourceLabel": "BOSS直聘",
+      "sourceType": "招聘平台",
+      "url": "https://www.zhipin.com/job_detail/f2debe5c113e6a4a031z3Ny1ElpY.html",
+      "discoveredAt": "2026-10-27T15:20:18.960Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "detailAttemptedAt": "2026-10-27T15:20:18.960Z"
+    },
+    {
       "id": "0f397d3554e33fa090",
       "title": "UK&I Graduate Scheme (UFLP) in Human Resources",
       "company": null,
@@ -383,7 +287,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "1a59b8d4474138b6dd",
@@ -403,7 +308,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "200180506ccf1f0e6f",
@@ -423,7 +329,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "24a0353300efaaba52",
@@ -443,7 +350,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "25b03455f6dea766de",
@@ -463,7 +371,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "3b664f97b06de5a70c",
@@ -483,7 +392,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "4ee1c9fa60ecacbb35",
@@ -503,27 +413,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
-    },
-    {
-      "id": "50e19d74b3d7d188ee",
-      "title": "Stellenanzeige Marketing Intern (d/f/m) bei Unilever",
-      "company": null,
-      "region": "香港",
-      "searchGroup": "快消",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Start your internship in June for a 6-month period in the Marketing Home Care department, based in Warsaw, Poland. It offers a unique opportunity to gain insight into working in the dynamic FMCG industry.",
-      "source": "careers.unilever.com",
-      "sourceLabel": "联合利华招聘",
-      "sourceType": "企业官网",
-      "url": "https://careers.unilever.com/de/stellenbeschreibung/warschau/marketing-intern-d-f-m/34155/95005403984",
-      "discoveredAt": "2026-10-27T15:10:33.399Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "来源返回 HTTP 404",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "587fdeaef8e3f9ceed",
@@ -543,7 +434,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "5a99a8ac31fac49af4",
@@ -563,7 +455,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "5baa53c5bc057e7d40",
@@ -583,7 +476,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "65e09fff873ce8d600",
@@ -603,7 +497,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "6acaeef756fc78e33f",
@@ -623,7 +518,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "7ad8e48337b933f157",
@@ -643,7 +539,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "a29d0c0ea0f597da11",
@@ -663,7 +560,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "b5c1fb704c72ab763b",
@@ -683,7 +581,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "bb4d256c98151bd3d1",
@@ -703,27 +602,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
-    },
-    {
-      "id": "cab184a8d18209f06d",
-      "title": "Commercial Junior Finance Manager at Unilever",
-      "company": null,
-      "region": "香港",
-      "searchGroup": "快消",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Solid understanding of P&amp;L and experience with month-end close and forecasting processes; FMCG experience is an advantage.",
-      "source": "careers.unilever.com",
-      "sourceLabel": "联合利华招聘",
-      "sourceType": "企业官网",
-      "url": "https://careers.unilever.com/en/job/varsova/commercial-junior-finance-manager/34155/96210467632",
-      "discoveredAt": "2026-10-27T15:10:33.399Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "来源返回 HTTP 404",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "d07a90501a82b54316",
@@ -743,7 +623,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "ef85e36d56f65ca836",
@@ -763,7 +644,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     },
     {
       "id": "fea22362557f1730f2",
@@ -783,14 +665,15 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源返回 HTTP 404",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z"
+      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
+      "retained": true
     }
   ],
   "excluded": [
     {
-      "id": "bd6a55159624a3a9a1",
-      "title": "Internship '27: Field Sales & Trade Marketing",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-field-sales-and-trade-marketing/34155/101567837264",
+      "id": "d7a47d17eeeaf82d03",
+      "title": "Internship '27: - Customer Development - Customer Service & Sales Support",
+      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-customer-development-customer-service-and-sales-support/34155/101567837280",
       "reason": "公告工作国家不在内地／香港范围"
     },
     {
@@ -800,15 +683,15 @@
       "reason": "公告工作国家不在内地／香港范围"
     },
     {
-      "id": "d7a47d17eeeaf82d03",
-      "title": "Internship '27: - Customer Development - Customer Service & Sales Support",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-customer-development-customer-service-and-sales-support/34155/101567837280",
-      "reason": "公告工作国家不在内地／香港范围"
-    },
-    {
       "id": "f92b864e01f4b0030c",
       "title": "Internship '27: Customer Development - Trade Marketing",
       "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-customer-development-trade-marketing/34155/101567837200",
+      "reason": "公告工作国家不在内地／香港范围"
+    },
+    {
+      "id": "bd6a55159624a3a9a1",
+      "title": "Internship '27: Field Sales & Trade Marketing",
+      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-field-sales-and-trade-marketing/34155/101567837264",
       "reason": "公告工作国家不在内地／香港范围"
     }
   ],
@@ -822,13 +705,15 @@
     "experienceLevel": "应届生/在校生",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-10-27T15:10:33.399Z",
-  "warnings": [],
+  "searchUpdatedAt": "2026-10-27T15:20:18.960Z",
+  "warnings": [
+    "当日搜索预算已用完，保留已获得结果及仍可参考的历史岗位；次日自动恢复。"
+  ],
   "stats": {
-    "discovered": 25,
-    "detailAttempts": 25,
+    "discovered": 7,
+    "detailAttempts": 7,
     "detailSuccess": 0,
-    "pending": 21,
+    "pending": 22,
     "excluded": 4,
     "activePool": 1,
     "historyRetained": 1,
