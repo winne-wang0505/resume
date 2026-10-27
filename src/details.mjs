@@ -1,6 +1,6 @@
 import { lookup } from "node:dns/promises";
 import { setTimeout as delay } from "node:timers/promises";
-import { sourceURL, classifyLink } from "./sources.mjs";
+import { sourceURL, classifyLink, identifySource } from "./sources.mjs";
 
 export function plainText(html = "") {
   return String(html)
@@ -361,6 +361,11 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
   const p = postings[0];
   const evidence = {};
   const values = {};
+  const publisher = identifySource(lead.url, lead.region);
+  const brand =
+    publisher?.type === "企业官网"
+      ? publisher.name.replace(/招聘$|人才$/g, "")
+      : null;
   const set = (key, value, field) => {
     if (value !== null && value !== undefined && value !== "") {
       values[key] = value;
@@ -383,6 +388,14 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
       clean(p.hiringOrganization?.name),
       "hiringOrganization.name",
     );
+    if (!values.company && brand) {
+      values.company = brand + "（官网品牌，招聘主体待核实）";
+      evidence.company = {
+        method: "official-publisher",
+        field: "source-domain",
+        quote: new URL(lead.url).hostname,
+      };
+    }
     description = clean(p.description);
     const location = [p.jobLocation]
       .flat()
@@ -500,9 +513,14 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
             /(?:^|\n)\s*(?:Department|Bureau|部門|部门)[：:\s]*([^\n]{2,120})/i,
           )
         : null);
+    const concrete =
+      classifyLink(lead).kind === "detail" ||
+      /job (?:id|number)|requisition (?:id|number)|职位编号|職位編號|岗位编号|崗位編號/i.test(
+        text,
+      );
     if (
       !title ||
-      !employer ||
+      (!employer && !(brand && concrete)) ||
       !/(?:岗位职责|崗位職責|工作职责|工作職責|工作内容|工作內容|responsibilities|duties)/i.test(
         text,
       ) ||
@@ -515,9 +533,17 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
         reason: "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
       };
     values.title = title;
-    values.company = clean(employer[1]);
+    values.company = employer
+      ? clean(employer[1])
+      : brand + "（官网品牌，招聘主体待核实）";
     evidence.title = { method, quote: title };
-    evidence.company = { method, quote: employer[0] };
+    evidence.company = employer
+      ? { method, quote: employer[0] }
+      : {
+          method: "official-publisher",
+          field: "source-domain",
+          quote: new URL(lead.url).hostname,
+        };
     const start = text.search(
       /(?:岗位职责|崗位職責|工作职责|工作職責|工作内容|工作內容|任职要求|任職要求|入职条件|入職條件|entry requirements|responsibilities|duties|qualifications)/i,
     );
@@ -525,13 +551,23 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
     const parsed = explicitRequirements(description);
     Object.assign(values, parsed.values);
     Object.assign(evidence, parsed.evidence);
-    const city = text.match(
-      /(?:工作地点|工作地點|工作地区|工作地區|job location)[：:\s]*([^\n]{2,100})/i,
+    const bodyStart = text.indexOf(title);
+    const topText = text.slice(
+      Math.max(0, bodyStart),
+      Math.max(0, bodyStart) + 2500,
+    );
+    const city = topText.match(
+      /(?:工作地点|工作地點|工作地区|工作地區|job location|location)[：:\s]*([^\n]{2,100})/i,
     );
     if (city) {
       values.city = clean(city[1]);
       evidence.city = { method, quote: city[0] };
     }
+    if (brand && !values.city && !employer)
+      return {
+        ok: false,
+        reason: "企业官网品牌已识别，但未取得该职位明确工作地点，需核实",
+      };
     const end = text.match(
       /(?:截止日期|截止时间|截止時間|closing date)[：:\s]*(\d{4}[-/]\d{1,2}[-/]\d{1,2})/i,
     );
@@ -590,6 +626,11 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
       quote: cohorts.map((m) => m[0]).join("、"),
     };
   }
+  if (brand && !values.city && !values.countries?.length)
+    return {
+      ok: false,
+      reason: "企业官网职位未披露可识别的工作国家或城市，需核实",
+    };
   if (!values.salaryMin) {
     const s = textSalary(description, lead.region);
     if (s) {

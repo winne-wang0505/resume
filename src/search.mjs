@@ -104,8 +104,20 @@ export function buildQuery(
   const cities = (p.cities || splitTerms(p.city))
     .filter((x) => (region === "香港" ? /香港/.test(x) : !/香港/.test(x)))
     .slice(0, 3);
+  const names = {
+    香港: ["Hong Kong"],
+    上海: ["上海", "Shanghai"],
+    杭州: ["杭州", "Hangzhou"],
+    深圳: ["深圳", "Shenzhen"],
+    北京: ["北京", "Beijing"],
+  };
+  const cityTerms = cities.flatMap((city) => names[city] || [city]);
   const location =
-    cities.length > 1 ? `(${cities.map(safe).join(" OR ")})` : cities[0] || "";
+    cityTerms.length > 1
+      ? `(${cityTerms.map((x) => '"' + safe(x) + '"').join(" OR ")})`
+      : cityTerms[0]
+        ? '"' + safe(cityTerms[0]) + '"'
+        : "";
   const selected = querySources(
     region,
     batch,

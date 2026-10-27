@@ -122,6 +122,6 @@ test("ordinary multiple-city preferences use OR rather than an impossible combin
   });
   assert.equal(p.roles.length, 2);
   const q = buildQuery(p, "内地");
-  assert.ok(q.includes("(上海 OR 杭州)"));
+  assert.ok(q.includes("上海") && q.includes("杭州") && q.includes(" OR "));
   assert.ok(!q.includes("香港"));
 });

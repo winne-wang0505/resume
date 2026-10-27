@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Validate code before using search quota
+        run: npm test
       - name: Refresh public job discovery index
         run: npm run jobs:refresh
         env:

@@ -363,3 +363,30 @@ test("explicit Hong Kong SAR and mainland country aliases are not mistaken for f
   ).job;
   assert.deepEqual(cn.countries, ["CN"]);
 });
+
+test("official employer fallback labels the publisher brand instead of inventing a hiring legal entity", () => {
+  const html =
+    "<html><h1>Graduate Data Analyst</h1><p>Location: Hong Kong</p><h2>Responsibilities</h2><p>Develop analytical reports, maintain business dashboards, review data quality and communicate findings across the product and finance teams.</p><h2>Requirements</h2><p>Bachelor degree. Proficient in SQL and Python. 0 years of work experience required.</p></html>";
+  const j = extractDetail(
+    html,
+    {
+      ...lead,
+      url: "https://careers.unilever.com/job/hong-kong/graduate-data-analyst/123/456",
+    },
+    { now },
+  ).job;
+  assert.ok(j.company.includes("官网品牌"));
+  assert.equal(j.city, "Hong Kong");
+  assert.equal(j.fieldEvidence.company.method, "official-publisher");
+  assert.equal(
+    extractDetail(
+      html.replace("<p>Location: Hong Kong</p>", ""),
+      {
+        ...lead,
+        url: "https://careers.unilever.com/job/hong-kong/graduate-data-analyst/123/456",
+      },
+      { now },
+    ).ok,
+    false,
+  );
+});
