@@ -231,3 +231,36 @@ test("explicit employment type is respected when the source discloses it", async
   assert.equal(r.jobs.length, 0);
   assert.match(r.excluded[0].reason, /用工类型/);
 });
+
+test("detail budget balances employer/campus/platform channels instead of always reading one provider", async () => {
+  const input = {
+    jobs: ["内地", "香港"].flatMap((region, r) =>
+      ["企业官网", "招聘平台"].flatMap((sourceType, t) =>
+        [1, 2].map((i) => ({
+          ...lead,
+          id: `${r}-${t}-${i}`,
+          region,
+          sourceType,
+          searchGroup: "分析",
+          url:
+            region === "内地"
+              ? `https://www.liepin.com/job/${r}${t}${i}.shtml`
+              : `https://hk.jobsdb.com/job/${r}${t}${i}`,
+        })),
+      ),
+    ),
+  };
+  const types = [],
+    regions = [];
+  await enrichIndex(input, {
+    now,
+    maxDetails: 4,
+    detailFetcher: async (j) => {
+      types.push(j.sourceType);
+      regions.push(j.region);
+      return { ok: false, reason: "blocked" };
+    },
+  });
+  assert.equal(new Set(types).size, 2);
+  assert.equal(new Set(regions).size, 2);
+});

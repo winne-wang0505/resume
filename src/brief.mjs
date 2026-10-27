@@ -63,6 +63,10 @@ export function buildBrief(data, profile, prefs, { now = new Date() } = {}) {
     tasks.push(
       "本轮没有足够信息的匹配岗位，不必为凑投递数量而申请；先核查待核实线索。",
     );
+  if (ready.some((x) => x.job.retained))
+    tasks.push(
+      "历史保留岗位请先打开雇主原公告核实在招状态，再投入简历准备时间。",
+    );
   const missing = [
     ...new Set(ready.slice(0, 3).flatMap((x) => x.result.missing)),
   ].slice(0, 4);
@@ -74,6 +78,7 @@ export function buildBrief(data, profile, prefs, { now = new Date() } = {}) {
     (x) =>
       !x.result.blockers.length &&
       !x.result.unverifiedRequirements.length &&
+      !x.job.recheckPending &&
       x.result.value >= 50,
   );
   if (top)

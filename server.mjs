@@ -64,7 +64,11 @@ export const server = http.createServer(async (req, res) => {
     if (!["GET", "HEAD"].includes(req.method))
       return json(res, 405, { error: "Method not allowed" });
     const decoded = decodeURIComponent(url.pathname);
-    const isModule = ["/src/match.mjs", "/src/brief.mjs"].includes(decoded);
+    const isModule = [
+      "/src/match.mjs",
+      "/src/brief.mjs",
+      "/src/sources.mjs",
+    ].includes(decoded);
     const base = path.join(root, isModule ? "src" : "public");
     const file = isModule
       ? path.join(base, path.basename(decoded))

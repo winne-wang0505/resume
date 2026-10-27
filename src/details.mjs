@@ -1,6 +1,6 @@
 import { lookup } from "node:dns/promises";
 import { setTimeout as delay } from "node:timers/promises";
-import { sourceURL } from "./sources.mjs";
+import { sourceURL, classifyLink } from "./sources.mjs";
 
 export function plainText(html = "") {
   return String(html)
@@ -41,6 +41,31 @@ function jobObjects(value, out = []) {
   for (const k of ["@graph", "mainEntity", "itemListElement", "item"])
     if (value[k]) jobObjects(value[k], out);
   return out;
+}
+function countryCode(value) {
+  const text = String(value || "").trim();
+  if (/^(?:HK|HKG)$/i.test(text) || /hong[ -]?kong|香港/i.test(text))
+    return "HK";
+  const normalized = text.toLowerCase().replace(/[\s,.'’_-]/g, "");
+  if (
+    [
+      "cn",
+      "chn",
+      "china",
+      "mainlandchina",
+      "chinamainland",
+      "peoplesrepublicofchina",
+      "prchina",
+      "中国",
+      "中國",
+      "中国大陆",
+      "中國大陸",
+      "中国内地",
+      "中國內地",
+    ].includes(normalized)
+  )
+    return "CN";
+  return text.toUpperCase();
 }
 export function structuredPostings(html) {
   const result = [];
@@ -364,6 +389,22 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
       .filter(Boolean)
       .map((l) => l.address)
       .filter(Boolean);
+    const countries = [
+      ...new Set(
+        location
+          .map((a) =>
+            typeof a === "object"
+              ? typeof a.addressCountry === "object"
+                ? a.addressCountry?.name
+                : a.addressCountry
+              : null,
+          )
+          .filter(Boolean)
+          .map(countryCode),
+      ),
+    ];
+    if (countries.length)
+      set("countries", countries, "jobLocation.address.addressCountry");
     const cities = location.map((a) =>
       typeof a === "string"
         ? clean(a)
@@ -605,6 +646,8 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
       id: lead.id,
       url: lead.url,
       source: lead.source,
+      sourceLabel: lead.sourceLabel,
+      sourceType: lead.sourceType,
       region: lead.region,
       discoveredAt: lead.discoveredAt,
       searchGroup: lead.searchGroup,
@@ -797,6 +840,40 @@ export function createDetailFetcher({
       if (!robotsAllowed(rules, u.href))
         return { ok: false, reason: "来源 robots.txt 不允许自动读取此路径" };
       const result = await request(u.href, lead.region);
+      if (lead.discoveryOnly) {
+        const links = [];
+        for (const match of result.body.matchAll(
+          /<a\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a\s*>/gi,
+        )) {
+          let target;
+          try {
+            target = sourceURL(
+              new URL(match[1].replace(/&amp;/gi, "&"), result.url).href,
+              lead.region,
+            );
+          } catch {
+            continue;
+          }
+          if (
+            !target ||
+            links.some((x) => x.url === target.href) ||
+            target.href === result.url
+          )
+            continue;
+          const candidate = {
+            url: target.href,
+            title: plainText(match[2]).slice(0, 180) || "职位详情",
+            region: lead.region,
+          };
+          if (classifyLink(candidate).kind === "detail") links.push(candidate);
+          if (links.length >= 8) break;
+        }
+        return {
+          ok: false,
+          reason: "已作为公开岗位发现入口，不作为单一职位评分",
+          discoveredLinks: links,
+        };
+      }
       return extractDetail(result.body, { ...lead, url: result.url });
     } catch (e) {
       const code = e.cause?.code || e.code || "";

@@ -3,7 +3,9 @@ import { enrichIndex } from "../src/pipeline.mjs";
 const old = JSON.parse(await readFile("public/data/jobs.json", "utf8"));
 if (old.mode === "demo")
   throw Error("No real source index is available to enrich");
-const result = await enrichIndex(old);
+const enriched = await enrichIndex(old);
+const { retainHistory } = await import("../src/history.mjs");
+const result = await retainHistory(enriched, old, { recheckLimit: 0 });
 await writeFile(
   "public/data/jobs.json",
   JSON.stringify(result, null, 2) + "\n",

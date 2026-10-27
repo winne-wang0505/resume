@@ -70,7 +70,7 @@ test("one-region failure is disclosed as partial refresh", async () => {
     {
       key: "test",
       enrich: false,
-      fetcher: async () =>
+      fetcher: async (url) =>
         ++n === 1
           ? { ok: false, status: 429 }
           : {
@@ -78,7 +78,13 @@ test("one-region failure is disclosed as partial refresh", async () => {
               json: async () => ({
                 web: {
                   results: [
-                    { title: "分析", url: "https://hk.jobsdb.com/job/1" },
+                    {
+                      title: "分析",
+                      url:
+                        new URL(url).searchParams.get("country") === "HK"
+                          ? "https://hk.jobsdb.com/job/1"
+                          : "https://www.liepin.com/job/1.shtml",
+                    },
                   ],
                 },
               }),

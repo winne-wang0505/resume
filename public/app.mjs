@@ -1,5 +1,6 @@
 import { evaluate, safeURL } from "./src/match.mjs";
 import { buildBrief } from "./src/brief.mjs";
+import { sourceCatalog } from "./src/sources.mjs";
 const $ = (s) => document.querySelector(s),
   $$ = (s) => [...document.querySelectorAll(s)];
 const esc = (s) =>
@@ -197,7 +198,7 @@ function card({ job: j, result: r }, isSaved = false) {
   const money = j.salaryMin
     ? `${j.salaryMin.toLocaleString()}–${j.salaryMax.toLocaleString()} <small>${esc(j.currency)}/月</small>`
     : "薪资待核实";
-  return `<article class="job-card"><div class="job-top"><div class="company-icon">${esc(j.company?.slice(0, 1) || "职")}</div><div class="job-info"><h3>${esc(j.title)}</h3><p>${esc(j.company || "雇主待核实")} · ${esc(j.category || "待核实")}</p></div><div class="salary">${money}</div></div><div class="job-tags"><span class="tag">${esc(j.city || j.region)}</span><span class="tag">${esc(j.degree || "学历待核实")}</span><span class="tag">${Number.isFinite(j.experience) ? j.experience + " 年经验" : "经验待核实"}</span><span class="tag ${j.demo ? "demo" : ""}">${j.demo ? "演示 · 非真实招聘" : esc(j.source || "来源待核实")}</span>${r.expired ? '<span class="tag demo">已截止</span>' : ""}</div>${j.detailFailure ? `<p class="card-reason">待核实：${esc(j.detailFailure)}</p>` : !j.demo ? `<p class="card-reason">${esc(r.advice)} · 信息覆盖度 ${r.confidence}%</p>` : ""}<div class="job-bottom"><span class="score"><b>${score(r.match)}</b>匹配度</span><span class="score"><b>${score(r.readiness)}</b>准备度</span><span class="score"><b>${score(r.value)}</b>性价比</span><div class="card-actions">${isSaved ? `<select class="status-select" data-status="${esc(j.id)}" aria-label="投递状态">${["待评估", "准备中", "已投递", "面试中", "已结束"].map((s) => `<option ${saved[j.id]?.status === s ? "selected" : ""}>${s}</option>`).join("")}</select>` : ""}<button class="save-btn" data-save="${esc(j.id)}" aria-label="${saved[j.id] ? "取消收藏" : "收藏岗位"}">${saved[j.id] ? "♥" : "♡"}</button><button class="detail-btn" data-detail="${esc(j.id)}">查看分析 ↗</button></div></div></article>`;
+  return `<article class="job-card"><div class="job-top"><div class="company-icon">${esc(j.company?.slice(0, 1) || "职")}</div><div class="job-info"><h3>${esc(j.title)}</h3><p>${esc(j.company || "雇主待核实")} · ${esc(j.category || "待核实")}</p></div><div class="salary">${money}</div></div><div class="job-tags"><span class="tag">${esc(j.city || j.region)}</span><span class="tag">${esc(j.degree || "学历待核实")}</span><span class="tag">${Number.isFinite(j.experience) ? j.experience + " 年经验" : "经验待核实"}</span><span class="tag ${j.demo ? "demo" : ""}">${j.demo ? "演示 · 非真实招聘" : esc(j.source || "来源待核实")}</span>${j.sourceType ? `<span class="tag">${esc(j.sourceType)}</span>` : ""}${j.retained ? '<span class="tag history-tag">历史保留 · 需核实</span>' : ""}${r.expired ? '<span class="tag demo">已截止</span>' : ""}</div>${j.detailFailure ? `<p class="card-reason">待核实：${esc(j.detailFailure)}</p>` : !j.demo ? `<p class="card-reason">${esc(r.advice)} · 信息覆盖度 ${r.confidence}%</p>` : ""}<div class="job-bottom"><span class="score"><b>${score(r.match)}</b>匹配度</span><span class="score"><b>${score(r.readiness)}</b>准备度</span><span class="score"><b>${score(r.value)}</b>性价比</span><div class="card-actions">${isSaved ? `<select class="status-select" data-status="${esc(j.id)}" aria-label="投递状态">${["待评估", "准备中", "已投递", "面试中", "已结束"].map((s) => `<option ${saved[j.id]?.status === s ? "selected" : ""}>${s}</option>`).join("")}</select>` : ""}<button class="save-btn" data-save="${esc(j.id)}" aria-label="${saved[j.id] ? "取消收藏" : "收藏岗位"}">${saved[j.id] ? "♥" : "♡"}</button><button class="detail-btn" data-detail="${esc(j.id)}">查看分析 ↗</button></div></div></article>`;
 }
 function bindCards(root) {
   root.querySelectorAll("[data-save]").forEach(
@@ -254,6 +255,7 @@ function render() {
       x.result.roleAligned !== false &&
       !x.result.blockers.length &&
       !x.result.unverifiedRequirements.length &&
+      !x.job.recheckPending &&
       x.result.value >= 75,
   ).length;
   $("#statSaved").textContent = $("#savedCount").textContent =
@@ -294,6 +296,7 @@ function showDetail(j) {
   const proof = Object.entries(j.fieldEvidence || {});
   const labels = {
     graduationYears: "毕业届别",
+    countries: "工作国家／地区",
     title: "职位",
     company: "雇主",
     city: "地点",
@@ -327,9 +330,10 @@ function renderBrief() {
     dateStyle: "full",
   }).format(new Date());
   $("#briefSummary").textContent =
-    `本轮 ${brief.ready.length} 个岗位可评估，${brief.pending.length} 条线索待核实，已过滤 ${brief.excludedCount} 个汇总、资讯或已截止页面。${brief.stale ? " 索引超过 48 小时，请先核实有效性。" : ""}`;
+    `当前 ${brief.ready.length} 个岗位可评估（历史保留 ${brief.ready.filter((x) => x.job.retained).length} 个），${brief.pending.length} 条线索待核实，已过滤 ${brief.excludedCount} 个汇总、资讯、不符合条件或已截止页面。${brief.stale ? " 索引超过 48 小时，请先核实有效性。" : ""}`;
   $("#briefMetrics").innerHTML = [
     ["可评估岗位", brief.ready.length],
+    ["历史保留", brief.ready.filter((x) => x.job.retained).length],
     ["待核实线索", brief.pending.length],
     ["已过滤页面", brief.excludedCount],
   ]
@@ -344,7 +348,7 @@ function renderBrief() {
           const salary = j.salaryMin
             ? `${j.salaryMin.toLocaleString()}–${j.salaryMax.toLocaleString()} ${esc(j.currency)}/月`
             : "薪资未披露";
-          return `<article class="recommendation"><div class="recommendation-top"><span class="rank">${String(i + 1).padStart(2, "0")}</span><div><h3>${esc(j.title)}</h3><p>${esc(j.company)} · ${esc(j.city || j.region)}</p></div><span class="recommendation-salary">${salary}</span></div><div class="brief-score-row"><span><b>${score(r.match)}</b> 匹配度</span><span><b>${score(r.readiness)}</b> 准备度</span><span><b>${score(r.value)}</b> 性价比</span><small>信息覆盖 ${r.confidence}%</small></div><p class="recommendation-reason">${esc(r.advice)}</p><p class="form-note">${esc(r.evidence.slice(0, 3).join("；"))}</p>${[...r.blockers, ...r.unverifiedRequirements].length ? `<p class="card-reason warning">需核实：${esc([...r.blockers, ...r.unverifiedRequirements].join("；"))}</p>` : ""}<div class="brief-apply"><span class="form-note">截止：${esc(deadlineLabel(j.deadline))} · 来源：${esc(j.source)}</span><button class="detail-btn" data-detail="${esc(j.id)}">查看分析 ↗</button>${url ? `<a class="primary detail-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">查看原公告 ↗</a>` : ""}<button class="save-btn" data-save="${esc(j.id)}" aria-label="收藏岗位">${saved[j.id] ? "♥" : "♡"}</button></div></article>`;
+          return `<article class="recommendation"><div class="recommendation-top"><span class="rank">${String(i + 1).padStart(2, "0")}</span><div><h3>${esc(j.title)}</h3><p>${esc(j.company)} · ${esc(j.city || j.region)}</p><span class="tag ${j.retained ? "history-tag" : ""}">${j.retained ? "历史保留 · 先核实" : "本轮发现"}</span>${j.sourceType ? `<span class="tag">${esc(j.sourceType)}</span>` : ""}</div><span class="recommendation-salary">${salary}</span></div><div class="brief-score-row"><span><b>${score(r.match)}</b> 匹配度</span><span><b>${score(r.readiness)}</b> 准备度</span><span><b>${score(r.value)}</b> 性价比</span><small>信息覆盖 ${r.confidence}%</small></div><p class="recommendation-reason">${esc(j.retained ? (j.retentionReason || "历史岗位：投递前请复核原公告") + "；" + r.advice : r.advice)}</p><p class="form-note">${esc(r.evidence.slice(0, 3).join("；"))}</p>${[...r.blockers, ...r.unverifiedRequirements].length ? `<p class="card-reason warning">需核实：${esc([...r.blockers, ...r.unverifiedRequirements].join("；"))}</p>` : ""}<div class="brief-apply"><span class="form-note">截止：${esc(deadlineLabel(j.deadline))} · 来源：${esc(j.sourceLabel || j.source)}${j.retained ? " · 最近读取：" + esc(updatedLabel(j.detailFetchedAt)) : ""}</span><button class="detail-btn" data-detail="${esc(j.id)}">查看分析 ↗</button>${url ? `<a class="primary detail-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">查看原公告 ↗</a>` : ""}<button class="save-btn" data-save="${esc(j.id)}" aria-label="收藏岗位">${saved[j.id] ? "♥" : "♡"}</button></div></article>`;
         })
         .join("")
     : '<div class="empty">本轮暂无足够信息的匹配岗位。<br>已将受访问限制或要求不完整的来源放入下方待核实区，不用低质量页面凑推荐。</div>';
@@ -377,6 +381,28 @@ function renderBrief() {
     $("#dataFreshness").textContent +=
       ` 本轮后台范围：${p.role || "未记录"} · ${p.region || "全部"} · ${p.city || "不限城市"}。`;
   }
+  const coverage = dataInfo.coverage,
+    usage = dataInfo.searchUsage;
+  $("#coverageStatus").textContent = coverage
+    ? `本轮按 ${coverage.roleDirections} 个方向检索，搜索 ${coverage.requestsThisRun} 次，翻页 ${coverage.paginationRequests} 次。${usage ? "当日累计 " + usage.requests + "/" + usage.limit + " 次，剩余 " + Math.max(0, usage.limit - usage.requests) + " 次。" : ""}${coverage.partial ? " 部分查询未完成，已保留可参考的历史岗位。" : ""}`
+    : "等待新策略运行后显示查询和翻页统计。";
+  $("#sourceCatalog").innerHTML = [
+    "招聘平台",
+    "校招／实习",
+    "企业官网",
+    "公共部门",
+  ]
+    .map(
+      (type) =>
+        `<h4>${esc(type)}</h4><ul class="source-list">${sourceCatalog
+          .filter((s) => s.type === type)
+          .map(
+            (s) =>
+              `<li><a href="https://${esc(s.host)}/" target="_blank" rel="noopener noreferrer">${esc(s.name)} ↗</a><small>${esc(s.regions.join("／"))}</small></li>`,
+          )
+          .join("")}</ul>`,
+    )
+    .join("");
   if (dataInfo.searchPreferences?.legacyInput)
     $("#dataFreshness").textContent +=
       " 已自动拆分 JOB_ROLE 中合并填写的配置；建议后续分别保存变量。";

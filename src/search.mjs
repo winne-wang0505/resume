@@ -1,5 +1,14 @@
 import { createHash } from "node:crypto";
-import { sourceURL } from "./sources.mjs";
+import {
+  sourceURL,
+  identifySource,
+  querySources,
+  sourceCatalog,
+  classifyLink,
+} from "./sources.mjs";
+import { createDetailFetcher } from "./details.mjs";
+import { retainHistory } from "./history.mjs";
+import { deadlineTime } from "./eligibility.mjs";
 import { enrichIndex } from "./pipeline.mjs";
 import { setTimeout as delay } from "node:timers/promises";
 const splitTerms = (value) =>
@@ -67,7 +76,7 @@ export function normalizePreferences(p = {}) {
 export function buildQuery(
   p,
   region,
-  roles = (p.roles || [p.role]).slice(0, 3),
+  roles = (p.roles || [p.role]).slice(0, 1),
   batch = 0,
 ) {
   const aliases = {
@@ -97,37 +106,25 @@ export function buildQuery(
     .slice(0, 3);
   const location =
     cities.length > 1 ? `(${cities.map(safe).join(" OR ")})` : cities[0] || "";
-  const pools =
-    region === "香港"
-      ? [
-          [
-            "hk.jobsdb.com/job/",
-            "jobs.ctgoodjobs.hk/job/",
-            "csboa1.csb.gov.hk/csboa/jve/",
-          ],
-          ["hk.jobsdb.com/job/", "hk.indeed.com/viewjob", "jobs.gov.hk"],
-          [
-            "jobs.ctgoodjobs.hk/job/",
-            "careers.gov.hk",
-            "csboa1.csb.gov.hk/csboa/jve/",
-          ],
-        ]
-      : [
-          ["jobs.zhaopin.com", "liepin.com/job/", "iguopin.com/job/"],
-          ["jobs.51job.com", "liepin.com/a/", "scs.gov.cn"],
-          ["liepin.com/job/", "mohrss.gov.cn", "sasac.gov.cn"],
-        ];
-  const source = `(${pools[batch % pools.length].map((x) => "site:" + x).join(" OR ")})`;
+  const selected = querySources(
+    region,
+    batch,
+    p.sourceDay || 0,
+    roles[0] || p.role,
+  );
+  const source = `(${selected.map((x) => "site:" + (x.search || x.host)).join(" OR ")})`;
   const entry = /应届|應屆|fresh|graduate|entry/i.test(p.experienceLevel || "")
     ? region === "香港"
-      ? '(graduate OR "entry level")'
-      : "(应届 OR 校招)"
+      ? "(graduate OR internship OR junior)"
+      : "(应届 OR 校招 OR 实习)"
     : "";
   const exclude = splitTerms(p.exclude)
     .slice(0, 4)
     .map((x) => '-"' + safe(x) + '"')
     .join(" ");
-  const primary = `${role} ${location} ${entry} ${source} ${exclude}`;
+  let primary = `${role} ${source}`;
+  for (const part of [location, entry, exclude])
+    if (part && primary.length + part.length + 1 <= 340) primary += " " + part;
   // Keep within search-provider query limits; user input is always treated as keywords.
   const extra = [
     p.employment && p.employment !== "不限" ? p.employment : "",
@@ -143,17 +140,32 @@ export function buildQuery(
     .slice(0, Math.max(0, 350 - primary.length));
   return (primary + " " + extra).trim();
 }
+const chinaDay = (now) =>
+  new Date(now.getTime() + 8 * 3600000).toISOString().slice(0, 10);
+const bounded = (value, fallback, min, max) =>
+  Number.isFinite(Number(value)) && String(value) !== ""
+    ? Math.max(min, Math.min(max, Math.floor(Number(value))))
+    : fallback;
 export async function searchJobs(
   preferences,
   {
     key = process.env.BRAVE_SEARCH_API_KEY,
     fetcher = fetch,
     enrich = true,
-    detailFetcher,
+    detailFetcher = createDetailFetcher(),
+    previousIndex = {},
+    dailyBudget = process.env.JOB_SEARCH_BUDGET || 24,
+    maxPages = process.env.JOB_SEARCH_PAGES || 2,
+    maxDetails = process.env.JOB_DETAIL_LIMIT || 36,
+    now = new Date(),
+    requestInterval = 1100,
+    maxSearchMs = 120000,
   } = {},
 ) {
   const p = normalizePreferences(preferences);
-  if (!p.role) throw new Error("请填写目标岗位");
+  const started = Date.now();
+  let authBlocked = false;
+  if (!p.role) throw Error("请填写目标岗位");
   if (!key) {
     const e = new Error(
       "实时岗位检索尚未配置：请在后台安全设置 BRAVE_SEARCH_API_KEY",
@@ -161,85 +173,170 @@ export async function searchJobs(
     e.status = 503;
     throw e;
   }
-  const jobs = [];
-  const errors = [];
+  const day = chinaDay(now),
+    ordinal = Math.floor(Date.parse(day + "T00:00:00Z") / 86400000);
+  p.sourceDay = ordinal;
+  const limit = bounded(dailyBudget, 24, 1, 100),
+    pages = bounded(maxPages, 2, 1, 3),
+    detailLimit = bounded(maxDetails, 36, 1, 100);
+  let used =
+    previousIndex.searchUsage?.day === day
+      ? bounded(previousIndex.searchUsage.requests, 0, 0, 10000)
+      : 0;
   const plans = [];
-  for (let start = 0; start < p.roles.length; start += 3)
-    for (const region of p.region === "全部" ? ["内地", "香港"] : [p.region])
-      plans.push({
-        region,
-        roles: p.roles.slice(start, start + 3),
-        batch: start / 3,
-      });
-  for (const [queryIndex, plan] of plans.entries()) {
-    const { region, roles, batch } = plan;
-    if (queryIndex) await delay(1100);
+  const regions = p.region === "全部" ? ["内地", "香港"] : [p.region];
+  for (let i = 0; i < p.roles.length; i++)
+    for (const region of regions)
+      plans.push({ region, role: p.roles[i], roleIndex: i, offset: 0 });
+  // If a smaller configured budget cannot cover all directions, rotate the start daily.
+  const rotation = ordinal % plans.length;
+  plans.push(...plans.splice(0, rotation));
+  const seenResults = new Map();
+  const jobs = [],
+    errors = [],
+    queryLog = [],
+    deferred = [];
+  let calls = 0,
+    successes = 0;
+  async function run(plan) {
+    if (used >= limit) return null;
+    if (calls && requestInterval) await delay(requestInterval);
+    const { region, role, roleIndex, offset } = plan;
+    const selected = querySources(region, roleIndex, ordinal, role);
     const url = new URL("https://api.search.brave.com/res/v1/web/search");
     url.search = new URLSearchParams({
-      q: buildQuery(p, region, roles, batch),
+      q: buildQuery(p, region, [role], roleIndex),
       count: "20",
-      freshness: "pm",
+      offset: String(offset),
+      freshness: "py",
       country: region === "香港" ? "HK" : "CN",
       search_lang: region === "香港" ? "zh-hant" : "zh-hans",
     });
+    used++;
+    calls++;
+    const event = {
+      role,
+      region,
+      page: offset + 1,
+      sources: selected.map((s) => s.name),
+      results: 0,
+      unseenResults: 0,
+      newLinks: 0,
+    };
+    queryLog.push(event);
     try {
       const res = await fetcher(url, {
         headers: { Accept: "application/json", "X-Subscription-Token": key },
         signal: AbortSignal.timeout(20000),
       });
-      if (!res.ok) throw new Error(`搜索服务响应 ${res.status}`);
-      const data = await res.json();
-      for (const item of data.web?.results || []) {
+      if (!res.ok) {
+        if ([401, 403].includes(res.status)) authBlocked = true;
+        throw Error("搜索服务响应 " + res.status);
+      }
+      const data = await res.json(),
+        results = data.web?.results || [];
+      successes++;
+      event.results = results.length;
+      for (const item of results) {
+        const seenKey = region + "|" + role;
+        if (!seenResults.has(seenKey)) seenResults.set(seenKey, new Set());
+        const rawIdentity =
+          sourceURL(item.url, region)?.href || String(item.url || "");
+        if (rawIdentity && !seenResults.get(seenKey).has(rawIdentity)) {
+          event.unseenResults++;
+          seenResults.get(seenKey).add(rawIdentity);
+        }
+
         const u = sourceURL(item.url, region);
         if (!u) continue;
-        const plain = (s) =>
-          String(s || "")
+        const plain = (value) =>
+          String(value || "")
             .replace(/<[^>]*>/g, "")
             .slice(0, 2000);
-        const title = plain(item.title);
-        const desc = plain(item.description);
-        const exclusions = p.exclude
-          .split(/[,，、/]/)
-          .map((s) => s.trim())
-          .filter(Boolean);
+        const title = plain(item.title),
+          description = plain(item.description);
         if (
-          exclusions.some((w) =>
-            (title + " " + desc).toLowerCase().includes(w.toLowerCase()),
+          splitTerms(p.exclude).some((w) =>
+            (title + " " + description).toLowerCase().includes(w.toLowerCase()),
           )
         )
           continue;
-        const id = createHash("sha256")
-          .update(u.href)
-          .digest("hex")
-          .slice(0, 18);
-        if (jobs.some((j) => j.id === id)) continue;
+        if (jobs.some((j) => j.url === u.href)) continue;
+        const source = identifySource(u.href, region);
         jobs.push({
-          id,
+          id: createHash("sha256").update(u.href).digest("hex").slice(0, 18),
           title,
           company: null,
           region,
-          searchGroup: roles.join("、"),
+          searchGroup: role,
           category: "待核实",
           city: null,
           skills: [],
-          description: desc,
+          description,
           source: u.hostname,
+          sourceLabel: source?.name || u.hostname,
+          sourceType: source?.type || "公共来源",
           url: u.href,
-          discoveredAt: new Date().toISOString(),
+          discoveredAt: now.toISOString(),
           verification: "search-result",
           demo: false,
         });
+        event.newLinks++;
       }
+      const more = data.query?.more_results_available;
+      return offset + 1 < pages &&
+        (more === true || (more === undefined && results.length >= 20)) &&
+        event.unseenResults > 0
+        ? { ...plan, offset: offset + 1 }
+        : null;
     } catch (e) {
-      errors.push(`${region}：${e.message}`);
+      event.error = e.message;
+      errors.push(`${region}／${role}／第 ${offset + 1} 页：${e.message}`);
+      return null;
     }
   }
-  if (!jobs.length && errors.length) {
+  for (const plan of plans) {
+    if (used >= limit || authBlocked || Date.now() - started >= maxSearchMs)
+      break;
+    const next = await run(plan);
+    if (next) deferred.push(next);
+  }
+  if (deferred.length) {
+    const rotate = ordinal % deferred.length;
+    deferred.push(...deferred.splice(0, rotate));
+  }
+  while (
+    deferred.length &&
+    used < limit &&
+    !authBlocked &&
+    Date.now() - started < maxSearchMs
+  ) {
+    const next = await run(deferred.shift());
+    if (next) deferred.push(next);
+  }
+  const timeLimited = Date.now() - started >= maxSearchMs;
+  if (timeLimited)
+    errors.push(
+      "本轮搜索达到时间上限，保留已取得结果及历史岗位，未完成方向留待下一轮。",
+    );
+  if (calls && !successes) {
     const e = new Error(errors.join("；"));
     e.status = 502;
     throw e;
   }
+  if (used >= limit)
+    errors.push(
+      "当日搜索预算已用完，保留已获得结果及仍可参考的历史岗位；次日自动恢复。",
+    );
   const result = {
+    schemaVersion: 3,
+    updatedAt: now.toISOString(),
+    mode: "search",
+    jobs,
+    warnings: errors,
+    searchUpdatedAt: calls
+      ? now.toISOString()
+      : previousIndex.searchUpdatedAt || previousIndex.updatedAt || null,
     searchPreferences: {
       role: p.role,
       region: p.region,
@@ -250,12 +347,93 @@ export async function searchJobs(
       experienceLevel: p.experienceLevel,
       legacyInput: p.legacyInput,
     },
-    updatedAt: new Date().toISOString(),
-    mode: "search",
-    jobs,
-    warnings: errors,
+    searchUsage: { day, requests: used, limit },
+    coverage: {
+      configuredSources: sourceCatalog.length,
+      roleDirections: p.roles.length,
+      regions: regions.length,
+      pagesLimit: pages,
+      plannedFirstPages: plans.length,
+      requestsThisRun: calls,
+      dailyRemaining: Math.max(0, limit - used),
+      partial:
+        successes < calls ||
+        timeLimited ||
+        queryLog.filter((q) => q.page === 1).length < plans.length,
+      paginationRequests: queryLog.filter((q) => q.page > 1).length,
+      queryLog,
+    },
     notice:
-      "搜索结果为近一个月收录的招聘线索，可能包含汇总页或已结束岗位；非经核验的在招职位，发布时间、要求与薪资需以原公告为准。",
+      "不同方向独立检索；索引时间不等于公告发布时间。新岗位与历史保留分别标注，实际有效性以雇主原公告为准。",
   };
-  return enrich ? enrichIndex(result, { detailFetcher }) : result;
+  if (!enrich) return result;
+  let discoveryPages = 0,
+    discoveredChildren = 0;
+  for (const parent of jobs
+    .filter(
+      (j) =>
+        ["企业官网", "校招／实习"].includes(j.sourceType) &&
+        /首页|汇总/.test(classifyLink(j).reason || ""),
+    )
+    .slice(0, 4)) {
+    discoveryPages++;
+    const discovered = await detailFetcher({ ...parent, discoveryOnly: true });
+    for (const child of discovered.discoveredLinks || []) {
+      const target = sourceURL(child.url, child.region);
+      if (!target || jobs.some((j) => j.url === target.href)) continue;
+      const source = identifySource(target.href, child.region);
+      jobs.push({
+        ...child,
+        id: createHash("sha256").update(target.href).digest("hex").slice(0, 18),
+        url: target.href,
+        source: target.hostname,
+        sourceLabel: source?.name || target.hostname,
+        sourceType: source?.type || "公共来源",
+        searchGroup: parent.searchGroup,
+        skills: [],
+        company: null,
+        category: "待核实",
+        description: "由公开招聘入口发现，等待详情读取",
+        discoveredAt: now.toISOString(),
+        verification: "search-result",
+        demo: false,
+      });
+      discoveredChildren++;
+    }
+  }
+  result.coverage.discoveryPages = discoveryPages;
+  result.coverage.discoveredChildren = discoveredChildren;
+  const cached = new Map(
+    (previousIndex.jobs || []).map((j) => [
+      sourceURL(j.url, j.region)?.href,
+      j,
+    ]),
+  );
+  const enriched = await enrichIndex(result, {
+    detailFetcher,
+    maxDetails: detailLimit,
+    now,
+    cacheResolver: (lead) => {
+      const old = cached.get(lead.url);
+      const age = now.getTime() - Date.parse(old?.detailFetchedAt || "");
+      if (
+        !old ||
+        old.status === "closed" ||
+        !Number.isFinite(age) ||
+        age < 0 ||
+        age >= 86400000 ||
+        (Number.isFinite(deadlineTime(old)) &&
+          deadlineTime(old) < now.getTime())
+      )
+        return null;
+      return {
+        ...old,
+        sourceLabel: lead.sourceLabel,
+        sourceType: lead.sourceType,
+        searchGroup: lead.searchGroup,
+        cacheUsed: true,
+      };
+    },
+  });
+  return retainHistory(enriched, previousIndex, { detailFetcher, now });
 }

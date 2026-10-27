@@ -1,12 +1,14 @@
-import { classifyLink } from "./sources.mjs";
+import { classifyLink, identifySource } from "./sources.mjs";
 import { createDetailFetcher } from "./details.mjs";
+import { eligibilityIssue, normalizedMarket } from "./eligibility.mjs";
 
 export async function enrichIndex(
   input,
   {
     detailFetcher = createDetailFetcher(),
-    maxDetails = 20,
+    maxDetails = 36,
     now = new Date(),
+    cacheResolver = () => null,
   } = {},
 ) {
   const candidates = [...(input.jobs || []), ...(input.leads || [])].filter(
@@ -14,13 +16,18 @@ export async function enrichIndex(
   );
   const seen = new Set(),
     queue = [],
-    excluded = [],
+    excluded = [...(input.excluded || [])],
     leads = [],
     jobs = [];
   for (const candidate of candidates) {
     if (!candidate.url || seen.has(candidate.url)) continue;
     seen.add(candidate.url);
     const j = { ...candidate };
+    const source = identifySource(j.url, j.region);
+    if (source) {
+      j.sourceType = source.type;
+      j.sourceLabel = source.name;
+    }
     delete j.detailFailure;
     const classification = classifyLink(j);
     if (classification.kind === "excluded") {
@@ -32,18 +39,45 @@ export async function enrichIndex(
       });
       continue;
     }
+    const earlyIssue = eligibilityIssue(j, input.searchPreferences || {}, {
+      now,
+      titleOnly: true,
+    });
+    if (earlyIssue) {
+      excluded.push({
+        id: j.id,
+        title: j.title,
+        url: j.url,
+        reason: earlyIssue,
+      });
+      continue;
+    }
     queue.push(j);
   }
   const buckets = new Map();
   for (const job of queue) {
     const key = job.region + ":" + (job.searchGroup || "default");
-    if (!buckets.has(key)) buckets.set(key, []);
-    buckets.get(key).push(job);
+    if (!buckets.has(key)) buckets.set(key, new Map());
+    const channels = buckets.get(key),
+      channel = job.sourceType || "公共来源";
+    if (!channels.has(channel)) channels.set(channel, []);
+    channels.get(channel).push(job);
   }
+  const groups = [...buckets.values()].map((channels, i) => ({
+    channels: [...channels.values()],
+    cursor: (Math.floor(now.getTime() / 86400000) + i) % channels.size,
+  }));
   const balanced = [];
-  while ([...buckets.values()].some((v) => v.length))
-    for (const values of buckets.values())
-      if (values.length) balanced.push(values.shift());
+  while (groups.some((g) => g.channels.some((q) => q.length)))
+    for (const group of groups) {
+      for (let count = 0; count < group.channels.length; count++) {
+        const q = group.channels[group.cursor++ % group.channels.length];
+        if (q.length) {
+          balanced.push(q.shift());
+          break;
+        }
+      }
+    }
   queue.splice(0, queue.length, ...balanced);
   let index = 0,
     attempted = 0;
@@ -51,7 +85,8 @@ export async function enrichIndex(
     while (index < queue.length) {
       const n = index++,
         lead = queue[n];
-      if (n >= maxDetails) {
+      const cached = cacheResolver(lead);
+      if (!cached && attempted >= maxDetails) {
         leads.push({
           ...lead,
           verification: "search-result",
@@ -59,10 +94,12 @@ export async function enrichIndex(
         });
         continue;
       }
-      attempted++;
       let result;
+      if (!cached) attempted++;
       try {
-        result = await detailFetcher(lead);
+        result = cached
+          ? { ok: true, job: { ...cached } }
+          : await detailFetcher(lead);
       } catch {
         result = { ok: false, reason: "来源读取失败" };
       }
@@ -77,48 +114,16 @@ export async function enrichIndex(
           });
           continue;
         }
-        const prefs = input.searchPreferences || {};
-        const exclude = String(prefs.exclude || "")
-          .split(/[,，、/;；\n]/)
-          .map((x) => x.trim().toLowerCase())
-          .filter(Boolean);
-        const body = [job.title, job.company, job.description]
-          .join(" ")
-          .toLowerCase();
-        const hit = exclude.find((word) => body.includes(word));
-        const entry = /应届|應屆|fresh|graduate|entry/i.test(
-          prefs.experienceLevel || "",
-        );
-        if (
-          hit ||
-          (entry && Number.isFinite(job.experience) && job.experience > 0)
-        ) {
+        job.region = normalizedMarket(job);
+        const issue = eligibilityIssue(job, input.searchPreferences || {}, {
+          now,
+        });
+        if (issue) {
           excluded.push({
             id: job.id,
             title: job.title,
             url: job.url,
-            reason: hit
-              ? "包含排除关键词：" + hit
-              : "明确要求 " + job.experience + " 年经验，不符合应届条件",
-          });
-          continue;
-        }
-        if (
-          prefs.employment &&
-          prefs.employment !== "不限" &&
-          job.employment &&
-          job.employment !== prefs.employment
-        ) {
-          excluded.push({
-            id: job.id,
-            title: job.title,
-            url: job.url,
-            reason:
-              "用工类型 " +
-              job.employment +
-              " 不符合 " +
-              prefs.employment +
-              " 偏好",
+            reason: issue,
           });
           continue;
         }
@@ -136,7 +141,9 @@ export async function enrichIndex(
   jobs.sort((a, b) => a.id.localeCompare(b.id));
   leads.sort((a, b) => a.id.localeCompare(b.id));
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
+    searchUsage: input.searchUsage || null,
+    coverage: input.coverage || null,
     updatedAt: now.toISOString(),
     mode: "enriched",
     jobs,
@@ -146,7 +153,10 @@ export async function enrichIndex(
     searchUpdatedAt: input.searchUpdatedAt || input.updatedAt || null,
     warnings: input.warnings || [],
     stats: {
-      discovered: seen.size,
+      discovered: new Set([
+        ...seen,
+        ...(input.excluded || []).map((j) => j.url),
+      ]).size,
       detailAttempts: attempted,
       detailSuccess: jobs.length,
       pending: leads.length,

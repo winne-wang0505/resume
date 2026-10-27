@@ -16,6 +16,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,6 +34,9 @@ jobs:
           JOB_EXCLUDE: ${{ vars.JOB_EXCLUDE }}
           JOB_EMPLOYMENT: ${{ vars.JOB_EMPLOYMENT }}
           JOB_EXPERIENCE: ${{ vars.JOB_EXPERIENCE }}
+          JOB_SEARCH_BUDGET: ${{ vars.JOB_SEARCH_BUDGET }}
+          JOB_SEARCH_PAGES: ${{ vars.JOB_SEARCH_PAGES }}
+          JOB_DETAIL_LIMIT: ${{ vars.JOB_DETAIL_LIMIT }}
       - name: Save public job index
         run: |
           git config user.name 'github-actions[bot]'

@@ -321,3 +321,45 @@ test("Chinese closing dates, explicit soft-skill requirements and graduation coh
   assert.ok(!j.skills.includes("Java"));
   assert.equal(j.fieldEvidence.degree.field, "educationRequirements");
 });
+
+test("public campus entry pages discover bounded approved job links without scoring the listing", async () => {
+  const html =
+    '<html><h1>校园招聘</h1><a href="/jobdesc.html?postId=1">分析实习生</a><a href="https://evil.invalid/job/1">其他</a><a href="javascript:alert(1)">bad</a><a href="/jobdesc.html?postId=1">重复</a></html>';
+  const f = async (u) =>
+    new Response(String(u).endsWith("robots.txt") ? "" : html, {
+      headers: { "content-type": "text/html" },
+    });
+  const r = await createDetailFetcher({ fetcher: f, resolver })({
+    id: "portal",
+    url: "https://careers.tencent.com/",
+    region: "内地",
+    discoveryOnly: true,
+  });
+  assert.equal(r.ok, false);
+  assert.equal(r.discoveredLinks.length, 1);
+  assert.equal(
+    r.discoveredLinks[0].url,
+    "https://careers.tencent.com/jobdesc.html?postId=1",
+  );
+});
+
+test("explicit Hong Kong SAR and mainland country aliases are not mistaken for foreign positions", () => {
+  const hk = extractDetail(
+    fixture.replace(
+      '"addressCountry":"HK"',
+      '"addressCountry":"Hong Kong SAR China"',
+    ),
+    lead,
+    { now },
+  ).job;
+  assert.deepEqual(hk.countries, ["HK"]);
+  const cn = extractDetail(
+    fixture.replace(
+      '"addressCountry":"HK"',
+      '"addressCountry":"People’s Republic of China"',
+    ),
+    { ...lead, region: "内地" },
+    { now },
+  ).job;
+  assert.deepEqual(cn.countries, ["CN"]);
+});
