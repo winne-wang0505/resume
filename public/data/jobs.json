@@ -98,7 +98,7 @@
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-27T15:24:02.096Z",
+  "updatedAt": "2026-10-27T15:28:40.689Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -205,14 +205,14 @@
           "quote": "2027届"
         }
       },
-      "detailFetchedAt": "2026-10-27T15:24:03.408Z",
+      "detailFetchedAt": "2026-10-27T15:28:41.814Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
       "missingFields": [],
       "detailMethod": "structured",
       "firstSeenAt": "2026-10-27T13:39:20.978Z",
-      "lastSeenAt": "2026-10-27T15:24:06.186Z",
+      "lastSeenAt": "2026-10-27T15:28:43.088Z",
       "retained": false
     }
   ],
@@ -234,9 +234,8 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
       "extractionNotes": {
         "title": "UFLP in Human Resources",
         "headings": [
@@ -253,8 +252,9 @@
           "What Can Unilever offer YOU ?",
           "What support will you receive?"
         ],
-        "publicTextExcerpt": "UFLP in Human Resources\n\nAs we receive a high volume of applications, please make sure to read the job description below carefully and apply for the ONE function you are most interested in. Only your first application will be considered.\n\nAbout Unilever\n\nUnilever is one of the world's leading FMCG companies, home to iconic brands including Dove, Vaseline, TRESemm&eacute;, Lynx, Persil, Domestos, Surf, Radox, Sure and Liquid I.V. Through products used by millions of people every day, we help improve health, wellbeing, confidence and care around the world.\n\nEstablished over 100 years ago, Unilever has a proud heritage of innovation and a long-standing belief that great brands, great people and responsible business go hand in hand.\n\nToday, we are transforming into a faster, more focused growth company centred on Beauty & Wellbeing, Personal Care and Home Care. Through world-class brands, cutting-edge science and technology, digital innovation and AI-enabled capabilities, we are building unmissably superior products and experiences for consumers around the world.\n\nA career at Unilever offers the opportunity to work at global scale while helping shape the future of some of the world's most recognised brands. Our people are at the heart of everything we do, bringing curiosity, creativity and passion to solve real business challenges and make a meaningful impact every day.\n\n What do we look for? \n\nWe are looking for future HR leaders who are motivated by a passion for people and are trusted partners in the business to get things done. We need people who can drive performance by using data and insight to inform decision-making and continually think of new ways of doing things, fuelled by their dissatisfaction with the status quo. Whilst people skills are critical for the Unilever Futures Programme in HR, there are no specific qualifications necessary.  We need HR people who are mindful and responsive to contexts and audiences, inspired to develop colleagues and the capabilities required for our winning business.  \n\nThe role of HR in Unilever as a core strategic business area means we look for people with enthusiasm, an interest in how businesses operate, and the bravery to offer creative insights and execute change. People who can build relationships, collaborate with others, have a data-driven mindset, and possess strong influencing and negotiation abilities. Business challenges are always changing and evolving so remaining constantly curious and keen to learn, d"
-      }
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "1a59b8d4474138b6dd",
@@ -273,7 +273,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -294,7 +294,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -315,14 +315,12 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
       "extractionNotes": {
-        "title": "",
-        "headings": [],
-        "publicTextExcerpt": "请稍候 - BOSS直聘 B O S S 正在加载中...\n\n&copy; copyright BOSS直聘 京ICP备14013441号-5"
-      }
+        "pageKind": "verification-or-dynamic-shell"
+      },
+      "detailFailure": "来源返回安全验证或动态加载页面，未绕过访问限制"
     },
     {
       "id": "25b03455f6dea766de",
@@ -341,7 +339,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -362,14 +360,12 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
       "extractionNotes": {
-        "title": "",
-        "headings": [],
-        "publicTextExcerpt": "请稍候 - BOSS直聘 B O S S 正在加载中...\n\n&copy; copyright BOSS直聘 京ICP备14013441号-5"
-      }
+        "pageKind": "verification-or-dynamic-shell"
+      },
+      "detailFailure": "来源返回安全验证或动态加载页面，未绕过访问限制"
     },
     {
       "id": "4ee1c9fa60ecacbb35",
@@ -388,7 +384,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -409,7 +405,7 @@
       "discoveredAt": "2026-10-27T15:20:18.960Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "detailFailure": "来源返回 HTTP 404"
     },
     {
@@ -429,35 +425,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
-    },
-    {
-      "id": "5a99a8ac31fac49af4",
-      "title": "【保利（武汉）物业管理有限公司招聘_武汉招聘信息】-前程无忧官方招聘网站",
-      "company": null,
-      "region": "内地",
-      "searchGroup": "算法",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "考研初试不是很理想，如何备战校招？把最好的留在最后，前程无忧举办2023典范雇主颁奖盛典不吃那套的年轻人理想工作，真不是找到的为什么自身很优秀，却没有面试邀约？校招故事丨新传双非硕士的快手大厂实习经验分享今年职场三大变化值得关注，前程无忧揭晓2023年度中国典范雇主榜应届生必看丨被资深HR夸奖的简历是怎样撰写的拼命“卷”上岸，就脱离苦海了？找工作，必须是一种双向奔赴无用的互联网高级名词创新35岁危机，真的存在吗？",
-      "source": "jobs.51job.com",
-      "sourceLabel": "前程无忧",
-      "sourceType": "招聘平台",
-      "url": "https://jobs.51job.com/all/coVDMAZFEwUmhVMQVgVzUAPA.html",
-      "discoveredAt": "2026-10-27T15:10:33.399Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
-      "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "extractionNotes": {
-        "title": "",
-        "headings": [],
-        "publicTextExcerpt": "为了更好的访问体验，请进行验证\n\nappkey: \"CF_APP_WAF\", // 应用标识var AC_Opt = {userUserId: requestInfo.userUserId TraceID: ac11000117931146460367068e00a4\n--> var requestInfo = {\"data\":\"\",\"region\":\"cn\",\"sceneId\":\"19x5u7lo\",\"token\":\"bcd94ae34d7d18ba4d159b11efefc579\",\"traceid\":\"ac11000117931146460367068e00a4\",\"type\":\"GET\",\"userId\":\"HpadJlQnz2zSKcSmjXBaqQvjYUvP4jMJIk/ZwGNDNiM=\",\"userUserId\":\"FJ2gUMan73YzuCZ6GxCmxKRp8QxBgcNhaIqzpo9VgL0=\"};"
-      }
     },
     {
       "id": "5baa53c5bc057e7d40",
@@ -476,7 +446,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -497,7 +467,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -518,7 +488,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -539,9 +509,8 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
       "extractionNotes": {
         "title": "",
         "headings": [
@@ -557,8 +526,9 @@
           "Refer a candidate",
           ""
         ],
-        "publicTextExcerpt": "Careers at MTR\nGo to the main content section.\n\n| My Account Options\n\n| Sign In\n\nThis service is set to disconnect automatically after {0} minutes of inactivity. Your session will end in {1} minutes.\nClick OK to reset the timer to {0} minutes.\n\nYou have been signed out.\nThis service is set to sign out after {0} minutes of inactivity.\n\nJob Search\n\nMy Jobpage\n\nAll Jobs\nMy Submissions\n|\nMy Job Cart\n|\nMy Saved Searches\n|\n\nBeginning of the main content section. Return to the home page\nPrintable Format\n\nReturn to previous position on page\n\nWork Location(s)\n:\n\nJob\n:\nDivision\n:\nSchedule\n:\nJob Posting\n:\nClosing Date\n:\nJob Number:\n\nRefer a friend for this job\nRefer a friend\nRefer a candidate\nSubmit a candidate's profile"
-      }
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "a29d0c0ea0f597da11",
@@ -577,7 +547,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -598,7 +568,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -619,7 +589,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -640,7 +610,7 @@
       "discoveredAt": "2026-10-27T15:20:18.960Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "detailFailure": "来源返回 HTTP 404"
     },
     {
@@ -660,7 +630,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -681,13 +651,11 @@
       "discoveredAt": "2026-10-27T15:20:18.960Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "extractionNotes": {
-        "title": "",
-        "headings": [],
-        "publicTextExcerpt": "请稍候 - BOSS直聘 B O S S 正在加载中...\n\n&copy; copyright BOSS直聘 京ICP备14013441号-5"
-      }
+        "pageKind": "verification-or-dynamic-shell"
+      },
+      "detailFailure": "来源返回安全验证或动态加载页面，未绕过访问限制"
     },
     {
       "id": "ef85e36d56f65ca836",
@@ -706,7 +674,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -727,7 +695,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 404"
     }
@@ -756,6 +724,12 @@
       "title": "Internship '27: Field Sales & Trade Marketing",
       "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-field-sales-and-trade-marketing/34155/101567837264",
       "reason": "公告工作国家不在内地／香港范围"
+    },
+    {
+      "id": "5a99a8ac31fac49af4",
+      "title": "【保利（武汉）物业管理有限公司招聘_武汉招聘信息】-前程无忧官方招聘网站",
+      "url": "https://jobs.51job.com/all/coVDMAZFEwUmhVMQVgVzUAPA.html",
+      "reason": "企业招聘汇总页，不是单一岗位"
     }
   ],
   "searchPreferences": {
@@ -774,10 +748,10 @@
   ],
   "stats": {
     "discovered": 27,
-    "detailAttempts": 23,
+    "detailAttempts": 22,
     "detailSuccess": 1,
-    "pending": 22,
-    "excluded": 4,
+    "pending": 21,
+    "excluded": 5,
     "activePool": 1,
     "historyRetained": 0,
     "historyRechecked": 0,
