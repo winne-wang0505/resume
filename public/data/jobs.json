@@ -1,8 +1,9 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-10-27T13:25:40.512Z",
+  "updatedAt": "2026-10-27T13:29:31.873Z",
   "mode": "enriched",
-  "jobs": [
+  "jobs": [],
+  "leads": [
     {
       "id": "061245dd1dd31ef151",
       "url": "https://www.liepin.com/a/78457425.shtml",
@@ -75,14 +76,33 @@
         }
       },
       "detailFetchedAt": "2026-10-27T13:25:42.906Z",
-      "verification": "structured-detail",
+      "verification": "search-result",
       "status": "open-unconfirmed",
       "assessable": true,
       "missingFields": [
         "experience",
         "deadline"
       ],
-      "detailMethod": "structured"
+      "detailMethod": "structured",
+      "detailFailure": "fetch failed",
+      "detailAttemptedAt": "2026-10-27T13:29:31.873Z"
+    },
+    {
+      "id": "74763f48c9466fe0da",
+      "title": "【上海 大宗供应链方向商业化负责人（AI大模型公司）招聘】-千帆策略(北京)管理咨询有限公司上海招聘信息-猎聘",
+      "company": null,
+      "region": "内地",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "大宗供应链方向商业化负责人（AI大模型公司） 50-80k·15薪 · 上海 10年以上 本科 招1人 9月28日更新 · 聊一聊 · 收藏 · 微信分享扫码 · 郭先生 14小时前在线 已认证 · 招聘负责人 · 千帆策略(北京)管理咨询有限公司 · 职位介绍 ...",
+      "source": "www.liepin.com",
+      "url": "https://www.liepin.com/job/1985895077.shtml",
+      "discoveredAt": "2026-10-27T13:03:38.151Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailAttemptedAt": "2026-10-27T13:29:31.873Z",
+      "detailFailure": "fetch failed"
     },
     {
       "id": "9d015b26442e387e4a",
@@ -150,14 +170,50 @@
         }
       },
       "detailFetchedAt": "2026-10-27T13:25:42.404Z",
-      "verification": "structured-detail",
+      "verification": "search-result",
       "status": "open-unconfirmed",
       "assessable": true,
       "missingFields": [
         "experience",
         "deadline"
       ],
-      "detailMethod": "structured"
+      "detailMethod": "structured",
+      "detailFailure": "fetch failed",
+      "detailAttemptedAt": "2026-10-27T13:29:31.873Z"
+    },
+    {
+      "id": "bb884ffbab5f396f36",
+      "title": "【上海 销售总监招聘】-云钠科技上海招聘信息-猎聘",
+      "company": null,
+      "region": "内地",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "销售总监 20-30k · 上海-浦东新区 5年以上 本科 招1人 90天前更新 · 聊一聊 · 收藏 · 微信分享扫码 · 鲍先生 1天前在线 已认证 · 首席执行官CEO/总裁/总经理 · 云钠科技 · 职位介绍 · 有全面的企业数字化知识和经验 ...",
+      "source": "www.liepin.com",
+      "url": "https://www.liepin.com/job/1968607013.shtml",
+      "discoveredAt": "2026-10-27T13:03:38.151Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailAttemptedAt": "2026-10-27T13:29:31.873Z",
+      "detailFailure": "fetch failed"
+    },
+    {
+      "id": "c9f5652172cd8f0bd5",
+      "title": "Government Vacancies Advertising & Enquiry System",
+      "company": null,
+      "region": "香港",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "We cannot provide a description for this page right now",
+      "source": "csboa1.csb.gov.hk",
+      "url": "https://csboa1.csb.gov.hk/csboa/jve/JVE_003_text.action?jobid=50354&languageType=1",
+      "discoveredAt": "2026-10-27T13:03:38.271Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailAttemptedAt": "2026-10-27T13:29:31.873Z",
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "cff37ae5d284f1d654",
@@ -220,7 +276,7 @@
         }
       },
       "detailFetchedAt": "2026-10-27T13:25:42.525Z",
-      "verification": "structured-detail",
+      "verification": "search-result",
       "status": "open-unconfirmed",
       "assessable": false,
       "missingFields": [
@@ -228,60 +284,9 @@
         "experience",
         "deadline"
       ],
-      "detailMethod": "structured"
-    }
-  ],
-  "leads": [
-    {
-      "id": "74763f48c9466fe0da",
-      "title": "【上海 大宗供应链方向商业化负责人（AI大模型公司）招聘】-千帆策略(北京)管理咨询有限公司上海招聘信息-猎聘",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "大宗供应链方向商业化负责人（AI大模型公司） 50-80k·15薪 · 上海 10年以上 本科 招1人 9月28日更新 · 聊一聊 · 收藏 · 微信分享扫码 · 郭先生 14小时前在线 已认证 · 招聘负责人 · 千帆策略(北京)管理咨询有限公司 · 职位介绍 ...",
-      "source": "www.liepin.com",
-      "url": "https://www.liepin.com/job/1985895077.shtml",
-      "discoveredAt": "2026-10-27T13:03:38.151Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T13:25:40.512Z"
-    },
-    {
-      "id": "bb884ffbab5f396f36",
-      "title": "【上海 销售总监招聘】-云钠科技上海招聘信息-猎聘",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "销售总监 20-30k · 上海-浦东新区 5年以上 本科 招1人 90天前更新 · 聊一聊 · 收藏 · 微信分享扫码 · 鲍先生 1天前在线 已认证 · 首席执行官CEO/总裁/总经理 · 云钠科技 · 职位介绍 · 有全面的企业数字化知识和经验 ...",
-      "source": "www.liepin.com",
-      "url": "https://www.liepin.com/job/1968607013.shtml",
-      "discoveredAt": "2026-10-27T13:03:38.151Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "职位详情缺少明确名称、公司或完整描述",
-      "detailAttemptedAt": "2026-10-27T13:25:40.512Z"
-    },
-    {
-      "id": "c9f5652172cd8f0bd5",
-      "title": "Government Vacancies Advertising & Enquiry System",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "We cannot provide a description for this page right now",
-      "source": "csboa1.csb.gov.hk",
-      "url": "https://csboa1.csb.gov.hk/csboa/jve/JVE_003_text.action?jobid=50354&languageType=1",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T13:25:40.512Z"
+      "detailMethod": "structured",
+      "detailFailure": "fetch failed",
+      "detailAttemptedAt": "2026-10-27T13:29:31.873Z"
     },
     {
       "id": "e6c101de868eb84a3b",
@@ -297,165 +302,20 @@
       "discoveredAt": "2026-10-27T13:03:38.271Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T13:25:40.512Z"
+      "detailAttemptedAt": "2026-10-27T13:29:31.873Z",
+      "detailFailure": "来源返回 HTTP 405"
     }
   ],
-  "excluded": [
-    {
-      "id": "3a076ff7582281a65b",
-      "title": "分布式数据库专家招聘 - 智联招聘",
-      "url": "https://www.zhaopin.com/zhaopin/809acac6b86845fbabf98831381e8719/",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "00c21e6b950b3ef149",
-      "title": "中国市场人才市场招聘数据分析招聘信息 - 智联招聘",
-      "url": "https://www.zhaopin.com/zhaopin/76065326de6440f49bf371d7dead098c/",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "baec431a72050e24fe",
-      "title": "数据分析师毕业生招聘信息 - 智联招聘",
-      "url": "https://www.zhaopin.com/zhaopin/36feef16c7ce49d08393672f153ed357/",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "0fad30daa475f1df9e",
-      "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
-      "url": "https://www.liepin.com/company-jobs/9777887/",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "27301161928b4370a2",
-      "title": "嘉定区招聘来啦→126家企业、429个岗位、招聘1312人",
-      "url": "https://www.shanghai.gov.cn/nw17239/20261020/9fe6f22b673848b0893b264f35ecf127.html",
-      "reason": "招聘活动、资讯或汇总页"
-    },
-    {
-      "id": "245a28dacf9894182c",
-      "title": "【上海KA大客户销售招聘网_2026年上海KA大客户销售招聘信息】-上海猎聘-第2页",
-      "url": "https://www.liepin.com/city-sh/zpkadakehuxiaoshou03/pn1/",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "24d23ef862a578d4b3",
-      "title": "中华人民共和国国民经济和社会发展 第十五个五年规划纲要 2026 年3 月",
-      "url": "https://www.ndrc.gov.cn/fggz/fzzlgh/gjfzgh/202603/U020260317369114704096.pdf",
-      "reason": "附件或非网页内容，暂不解析"
-    },
-    {
-      "id": "07f93da2b4770f2e97",
-      "title": "香港全職兼職搵工及招聘平台 | 最新職位空缺 | CTgoodjobs",
-      "url": "https://www.ctgoodjobs.hk/zh",
-      "reason": "招聘平台首页"
-    },
-    {
-      "id": "d048da306e60084dec",
-      "title": "招聘 Jobs in Hong Kong - Oct 2026 | Jobsdb",
-      "url": "https://hk.jobsdb.com/%E6%8B%9B%E8%81%98-jobs",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "845fb0ee5ed379d70c",
-      "title": "兼職 Jobs in Hong Kong - Oct 2026 | Jobsdb",
-      "url": "https://hk.jobsdb.com/%E5%85%BC%E8%81%B7-jobs",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "e6e4cf840a05e9cfdc",
-      "title": "75+ 兼職, 臨時工 Jobs, Employment October 17, 2026| Indeed",
-      "url": "https://hk.indeed.com/q-%E5%85%BC%E8%81%B7,-%E8%87%A8%E6%99%82%E5%B7%A5-jobs.html",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "e1edca1ef13dd777b5",
-      "title": "26,000+ Hong Kong Jobs, Employment May 21, 2026| Indeed",
-      "url": "https://hk.indeed.com/q-hong-kong-jobs.html",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "254e575cd961d2183f",
-      "title": "HK01 Company Limited Jobs in Hong Kong - Oct 2026 | Jobsdb",
-      "url": "https://hk.jobsdb.com/HK01-Company-Limited-jobs",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "be4a1ad381e891946c",
-      "title": "營運Jobs in 香港- May 2026",
-      "url": "https://hk.jobsdb.com/%E7%87%9F%E9%81%8B-jobs",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "25ffaba364f081348c",
-      "title": "25+ 香港 代表有限公司 Jobs, Employment in Choi Hung, Kowloon October 20, 2026| Indeed",
-      "url": "https://hk.indeed.com/q-%E9%A6%99%E6%B8%AF-%E4%BB%A3%E8%A1%A8%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-l-choi-hung,-kowloon-jobs.html",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "a2f4448f8bce0546d7",
-      "title": "【勞工處招聘會2026(十月更新)】飲食、零售、建造、保安等最新職位空缺一覽表(內附勞工處招聘會10大常見問題)",
-      "url": "https://civilservice.ctgoodjobs.hk/article/46107/%E5%8B%9E%E5%B7%A5%E8%99%95%E6%8B%9B%E8%81%98%E6%9C%832026-%E9%A3%B2%E9%A3%9F%E9%9B%B6%E5%94%AE%E5%BB%BA%E9%80%A0%E4%BF%9D%E5%AE%89-%E6%9C%80%E6%96%B0%E8%81%B7%E4%BD%8D%E7%A9%BA%E7%BC%BA-%E6%8B%9B%E8%81%9810%E5%A4%A7%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C-%E6%90%B5%E5%B7%A5",
-      "reason": "招聘活动、资讯或汇总页"
-    },
-    {
-      "id": "38780ad31b950fb353",
-      "title": "100+ Hong Kong Warehouse Jobs, Employment May 13, 2026| Indeed",
-      "url": "https://hk.indeed.com/q-hong-kong-warehouse-jobs.html",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "a829c7f431832023a6",
-      "title": "觀塘區牛頭角的僱員再培訓職位- 10 月2026 - Jobsdb Hong Kong",
-      "url": "https://hk.jobsdb.com/zh/%E5%83%B1%E5%93%A1%E5%86%8D%E5%9F%B9%E8%A8%93-jobs/in-%E8%A7%80%E5%A1%98%E5%8D%80-%E7%89%9B%E9%A0%AD%E8%A7%92",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "d047651387d93c8035",
-      "title": "九龍城區 啟德 的 Qa 職位 - 10 月 2026 | Jobsdb",
-      "url": "https://hk.jobsdb.com/zh/qa-jobs/in-Kai-Tak-Kowloon-City-District",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "c6685ee2a29154bd68",
-      "title": "75+ 註冊中醫師 Jobs, Employment October 26, 2026| Indeed",
-      "url": "https://hk.indeed.com/q-%E8%A8%BB%E5%86%8A%E4%B8%AD%E9%86%AB%E5%B8%AB-jobs.html",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "3243c648e86881c8b2",
-      "title": "100+ 兼職中醫 Jobs, Employment October 26, 2026| Indeed",
-      "url": "https://hk.indeed.com/q-%E5%85%BC%E8%81%B7%E4%B8%AD%E9%86%AB-jobs.html",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "39e303c801b954f86c",
-      "title": "【空姐入行2026】周圍飛又有人工收！月薪可達$2萬 一文睇晒身高/學歷/語文能力要求（附最新招聘資訊)",
-      "url": "https://cthr.ctgoodjobs.hk/HRNews/%E7%A9%BA%E5%A7%90%E5%85%A5%E8%A1%8C-%E4%BA%BA%E5%B7%A5-%E8%BA%AB%E9%AB%98-%E5%AD%B8%E6%AD%B7-%E8%AA%9E%E6%96%87%E8%83%BD%E5%8A%9B%E8%A6%81%E6%B1%82/43984",
-      "reason": "招聘活动、资讯或汇总页"
-    },
-    {
-      "id": "a382e46aaed7dc5962",
-      "title": "25+ 兼職辦公室清潔員 Jobs, Employment in Yuen Long District, New Territories October 17, 2026| Indeed",
-      "url": "https://hk.indeed.com/q-%E5%85%BC%E8%81%B7%E8%BE%A6%E5%85%AC%E5%AE%A4%E6%B8%85%E6%BD%94%E5%93%A1-l-yuen-long-district,-new-territories-jobs.html",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "4bab202def067be3ed",
-      "title": "25+ Cafe Assistant Jobs, Employment in Wan Chai, Hong Kong Island October 6, 2026| Indeed",
-      "url": "https://hk.indeed.com/q-cafe-assistant-l-wan-chai,-hong-kong-island-jobs.html",
-      "reason": "搜索结果或岗位汇总页"
-    }
-  ],
+  "excluded": [],
   "searchPreferences": null,
   "searchUpdatedAt": "2026-10-27T13:03:38.271Z",
   "warnings": [],
   "stats": {
-    "discovered": 31,
+    "discovered": 7,
     "detailAttempts": 7,
-    "detailSuccess": 3,
-    "pending": 4,
-    "excluded": 24
+    "detailSuccess": 0,
+    "pending": 7,
+    "excluded": 0
   },
   "notice": "详情字段取自公开招聘页或 JobPosting 元数据，每个已提取要求附有来源证据；仍需在投递前核实在招状态、工作许可和所有门槛。未提取到的信息不会推测。"
 }
