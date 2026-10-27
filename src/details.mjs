@@ -915,7 +915,27 @@ export function createDetailFetcher({
           discoveredLinks: links,
         };
       }
-      return extractDetail(result.body, { ...lead, url: result.url });
+      const extracted = extractDetail(result.body, {
+        ...lead,
+        url: result.url,
+      });
+      if (!extracted.ok) {
+        const visible = plainText(result.body),
+          heading = plainText(
+            result.body.match(/<h1\b[^>]*>([\s\S]*?)<\/h1\s*>/i)?.[1] || "",
+          );
+        const start = heading ? Math.max(0, visible.indexOf(heading)) : 0;
+        extracted.extractionNotes = {
+          title: heading,
+          headings: [
+            ...result.body.matchAll(/<h[23]\b[^>]*>([\s\S]*?)<\/h[23]\s*>/gi),
+          ]
+            .slice(0, 12)
+            .map((m) => plainText(m[1]).slice(0, 120)),
+          publicTextExcerpt: visible.slice(start, start + 2500),
+        };
+      }
+      return extracted;
     } catch (e) {
       const code = e.cause?.code || e.code || "";
       const reason =

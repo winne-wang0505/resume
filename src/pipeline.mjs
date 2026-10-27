@@ -133,6 +133,7 @@ export async function enrichIndex(
           ...lead,
           verification: "search-result",
           detailFailure: result.reason,
+          extractionNotes: result.extractionNotes,
           detailAttemptedAt: now.toISOString(),
         });
     }
