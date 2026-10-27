@@ -81,3 +81,19 @@ test("short skill names and language aliases do not create false matches", () =>
   assert.deepEqual(r.missing, ["Java", "R"]);
   assert.match(r.evidence[0], /1\/3/);
 });
+
+test("AI keyword uses word boundaries and slash-separated role choices work", () => {
+  assert.equal(
+    evaluate(p, { ...prefs, role: "AI" }, { ...job, title: "Retail Manager" })
+      .roleAligned,
+    false,
+  );
+  assert.equal(
+    evaluate(
+      p,
+      { ...prefs, role: "AI/产品" },
+      { ...job, title: "Product Manager" },
+    ).roleAligned,
+    true,
+  );
+});

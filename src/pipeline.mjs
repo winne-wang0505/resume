@@ -34,6 +34,17 @@ export async function enrichIndex(
     }
     queue.push(j);
   }
+  const buckets = new Map();
+  for (const job of queue) {
+    const key = job.region + ":" + (job.searchGroup || "default");
+    if (!buckets.has(key)) buckets.set(key, []);
+    buckets.get(key).push(job);
+  }
+  const balanced = [];
+  while ([...buckets.values()].some((v) => v.length))
+    for (const values of buckets.values())
+      if (values.length) balanced.push(values.shift());
+  queue.splice(0, queue.length, ...balanced);
   let index = 0,
     attempted = 0;
   async function worker() {
@@ -63,6 +74,51 @@ export async function enrichIndex(
             title: job.title,
             url: job.url,
             reason: "公告已截止或页面明确关闭",
+          });
+          continue;
+        }
+        const prefs = input.searchPreferences || {};
+        const exclude = String(prefs.exclude || "")
+          .split(/[,，、/;；\n]/)
+          .map((x) => x.trim().toLowerCase())
+          .filter(Boolean);
+        const body = [job.title, job.company, job.description]
+          .join(" ")
+          .toLowerCase();
+        const hit = exclude.find((word) => body.includes(word));
+        const entry = /应届|應屆|fresh|graduate|entry/i.test(
+          prefs.experienceLevel || "",
+        );
+        if (
+          hit ||
+          (entry && Number.isFinite(job.experience) && job.experience > 0)
+        ) {
+          excluded.push({
+            id: job.id,
+            title: job.title,
+            url: job.url,
+            reason: hit
+              ? "包含排除关键词：" + hit
+              : "明确要求 " + job.experience + " 年经验，不符合应届条件",
+          });
+          continue;
+        }
+        if (
+          prefs.employment &&
+          prefs.employment !== "不限" &&
+          job.employment &&
+          job.employment !== prefs.employment
+        ) {
+          excluded.push({
+            id: job.id,
+            title: job.title,
+            url: job.url,
+            reason:
+              "用工类型 " +
+              job.employment +
+              " 不符合 " +
+              prefs.employment +
+              " 偏好",
           });
           continue;
         }

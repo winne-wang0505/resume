@@ -375,6 +375,9 @@ function renderBrief() {
     $("#dataFreshness").textContent +=
       ` 本轮后台范围：${p.role || "未记录"} · ${p.region || "全部"} · ${p.city || "不限城市"}。`;
   }
+  if (dataInfo.searchPreferences?.legacyInput)
+    $("#dataFreshness").textContent +=
+      " 已自动拆分 JOB_ROLE 中合并填写的配置；建议后续分别保存变量。";
 }
 $("#generateBrief").onclick = () => {
   renderBrief();

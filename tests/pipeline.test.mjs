@@ -167,3 +167,67 @@ test("brief is not truncated to five arbitrary search results and warns when sta
   assert.equal(r.stale, true);
   assert.match(r.tasks[0], /48/);
 });
+
+test("a degree and attractive salary alone do not produce a high-confidence recommendation", () => {
+  const sparse = { ...detailed, skills: [], experience: undefined };
+  assert.equal(evaluate(profile, prefs, sparse).match, null);
+});
+
+test("detail quota is shared across regions and role batches", async () => {
+  const input = {
+    jobs: [
+      ...Array.from({ length: 4 }, (_, i) => ({
+        ...lead,
+        id: "cn" + i,
+        region: "内地",
+        url: "https://www.liepin.com/job/" + (100 + i) + ".shtml",
+        searchGroup: "分析",
+      })),
+      ...Array.from({ length: 4 }, (_, i) => ({
+        ...lead,
+        id: "hk" + i,
+        url: "https://hk.jobsdb.com/job/" + (100 + i),
+        searchGroup: "分析",
+      })),
+    ],
+  };
+  const read = [];
+  await enrichIndex(input, {
+    now,
+    maxDetails: 2,
+    detailFetcher: async (j) => {
+      read.push(j.region);
+      return { ok: false, reason: "blocked" };
+    },
+  });
+  assert.deepEqual(read.sort(), ["内地", "香港"]);
+});
+test("entry-level search does not promote positions explicitly requiring senior experience", async () => {
+  const r = await enrichIndex(
+    { jobs: [lead], searchPreferences: { experienceLevel: "应届" } },
+    {
+      now,
+      detailFetcher: async () => ({
+        ok: true,
+        job: { ...detailed, experience: 5 },
+      }),
+    },
+  );
+  assert.equal(r.jobs.length, 0);
+  assert.match(r.excluded[0].reason, /应届/);
+});
+
+test("explicit employment type is respected when the source discloses it", async () => {
+  const r = await enrichIndex(
+    { jobs: [lead], searchPreferences: { employment: "全职" } },
+    {
+      now,
+      detailFetcher: async () => ({
+        ok: true,
+        job: { ...detailed, employment: "兼职" },
+      }),
+    },
+  );
+  assert.equal(r.jobs.length, 0);
+  assert.match(r.excluded[0].reason, /用工类型/);
+});

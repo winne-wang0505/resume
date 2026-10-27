@@ -1,4 +1,5 @@
 import { lookup } from "node:dns/promises";
+import { setTimeout as delay } from "node:timers/promises";
 import { sourceURL } from "./sources.mjs";
 
 export function plainText(html = "") {
@@ -552,6 +553,7 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
       source: lead.source,
       region: lead.region,
       discoveredAt: lead.discoveredAt,
+      searchGroup: lead.searchGroup,
       demo: false,
       ...values,
       description,
@@ -648,15 +650,33 @@ export function createDetailFetcher({
       const addresses = await resolver(url.hostname, { all: true });
       if (!addresses.length || addresses.some((a) => !publicAddress(a.address)))
         throw Error("拒绝访问非公网地址");
-      const res = await fetcher(url, {
-        redirect: "manual",
-        headers: {
-          "User-Agent":
-            "CareerCompassBot/1.0 (+https://github.com/winne-wang0505/resume)",
-          Accept: "text/html,application/xhtml+xml,text/plain;q=0.8",
-        },
-        signal: AbortSignal.timeout(timeout),
-      });
+      let res;
+      for (let retry = 0; retry < 2; retry++) {
+        try {
+          res = await fetcher(url, {
+            redirect: "manual",
+            headers: {
+              "User-Agent":
+                "CareerCompassBot/1.0 (+https://github.com/winne-wang0505/resume)",
+              Accept: "text/html,application/xhtml+xml,text/plain;q=0.8",
+            },
+            signal: AbortSignal.timeout(timeout),
+          });
+          break;
+        } catch (error) {
+          if (
+            retry === 0 &&
+            /^(?:ECONNRESET|ETIMEDOUT|UND_ERR_SOCKET|EAI_AGAIN)$/.test(
+              error.cause?.code || error.code || "",
+            )
+          ) {
+            await delay(750);
+            continue;
+          }
+          throw error;
+        }
+      }
+
       if ([301, 302, 303, 307, 308].includes(res.status)) {
         await res.body?.cancel?.();
         url = sourceURL(new URL(res.headers.get("location"), url).href, region);
@@ -725,10 +745,20 @@ export function createDetailFetcher({
       const result = await request(u.href, lead.region);
       return extractDetail(result.body, { ...lead, url: result.url });
     } catch (e) {
-      return {
-        ok: false,
-        reason: e.name === "TimeoutError" ? "来源访问超时" : e.message,
-      };
+      const code = e.cause?.code || e.code || "";
+      const reason =
+        e.name === "TimeoutError" || /TIMEOUT|ETIMEDOUT/.test(code)
+          ? "来源访问超时"
+          : /CERT|TLS/.test(code)
+            ? "来源 TLS 证书无法验证，保持安全校验，暂不读取"
+            : /ENOTFOUND|EAI_AGAIN/.test(code)
+              ? "来源域名暂时无法解析"
+              : /ECONNRESET|UND_ERR_SOCKET/.test(code)
+                ? "来源连接中断，稍后可重新核实"
+                : e.message === "fetch failed"
+                  ? "来源网络连接失败（不是搜索密钥错误）"
+                  : e.message;
+      return { ok: false, reason };
     }
   };
 }

@@ -270,3 +270,32 @@ test("schema experience string is read as published requirements", () => {
     .replace("2年以上相关工作经验", "相关业务能力");
   assert.equal(extractDetail(html, lead, { now }).job.experience, 5);
 });
+
+test("transient network reset is retried once without changing identity or TLS settings", async () => {
+  let n = 0;
+  const f = async (u, opts) => {
+    n++;
+    assert.equal(opts.redirect, "manual");
+    if (n === 1)
+      throw new TypeError("fetch failed", { cause: { code: "ECONNRESET" } });
+    return String(u).endsWith("robots.txt")
+      ? new Response("", { headers: { "content-type": "text/plain" } })
+      : new Response(fixture, { headers: { "content-type": "text/html" } });
+  };
+  const r = await createDetailFetcher({ fetcher: f, resolver })(lead);
+  assert.equal(r.ok, true);
+  assert.equal(n, 3);
+});
+test("certificate failures remain blockers with an actionable reason", async () => {
+  let n = 0;
+  const f = async () => {
+    n++;
+    throw new TypeError("fetch failed", {
+      cause: { code: "CERT_HAS_EXPIRED" },
+    });
+  };
+  const r = await createDetailFetcher({ fetcher: f, resolver })(lead);
+  assert.equal(n, 1);
+  assert.match(r.reason, /TLS/);
+  assert.equal(r.ok, false);
+});

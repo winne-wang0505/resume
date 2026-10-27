@@ -31,6 +31,8 @@ jobs:
           JOB_CITY: ${{ vars.JOB_CITY }}
           JOB_REGION: ${{ vars.JOB_REGION }}
           JOB_EXCLUDE: ${{ vars.JOB_EXCLUDE }}
+          JOB_EMPLOYMENT: ${{ vars.JOB_EMPLOYMENT }}
+          JOB_EXPERIENCE: ${{ vars.JOB_EXPERIENCE }}
       - name: Save public job index
         run: |
           git config user.name 'github-actions[bot]'

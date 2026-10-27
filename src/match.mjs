@@ -20,6 +20,12 @@ export function roleAlignment(role, title) {
       "software engineer",
       "software developer",
     ],
+    ["产品", "產品", "product"],
+    ["算法", "algorithm"],
+    ["大模型", "llm", "large language model"],
+    ["开发", "開發", "developer", "development"],
+    ["运营", "運營", "operations"],
+    ["快消", "fmcg"],
     ["金融", "finance", "financial"],
     ["会计", "會計", "accountant", "accounting"],
     ["市场营销", "市場營銷", "marketing"],
@@ -30,21 +36,31 @@ export function roleAlignment(role, title) {
       .toLowerCase()
       .replace(/\s+/g, " ")
       .trim();
+  const contains = (text, term) => {
+    if (/^[a-z0-9 .+#-]+$/.test(term)) {
+      const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      return new RegExp(
+        "(?:^|[^a-z0-9])" + escaped + "(?:$|[^a-z0-9])",
+        "i",
+      ).test(text);
+    }
+    return text.includes(term);
+  };
   const t = norm(title),
     terms = String(role)
-      .split(/[,，、;；\n]/)
+      .split(/[,，、;；/\n]/)
       .map(norm)
       .filter(Boolean);
   return terms.some(
     (term) =>
-      t.includes(term) ||
+      contains(t, term) ||
       aliases.some(
         (group) =>
           group.some(
             (a) =>
               norm(a) === term ||
               (term.endsWith("师") && term.slice(0, -1) === norm(a)),
-          ) && group.some((a) => t.includes(norm(a))),
+          ) && group.some((a) => contains(t, norm(a))),
       ),
   );
 }
@@ -122,7 +138,13 @@ export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
   if (prefs.city && job.city)
     add(
       "地点",
-      job.city.includes(prefs.city) || prefs.city.includes(job.city) ? 100 : 20,
+      String(prefs.city)
+        .split(/[,，、/;；\n]/)
+        .map((x) => x.trim())
+        .filter(Boolean)
+        .some((x) => job.city.includes(x) || x.includes(job.city))
+        ? 100
+        : 20,
       10,
       `工作地点：${job.city}`,
     );
@@ -165,7 +187,7 @@ export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
       ? "尚未取得岗位详情，搜索摘要不用于评分"
       : !personalKnown
         ? "请先补充技能、专业或经历"
-        : coreWeight < 15 || total < 35
+        : coreWeight < 35 || total < 50
           ? "已披露的任职要求不足，暂不生成分数"
           : null;
   const match =
@@ -236,11 +258,13 @@ export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
           ? "岗位方向尚未对应：先核实职责，暂不列为优先推荐"
           : blockers.length
             ? "先核实硬性门槛，再决定是否投入时间"
-            : value >= 75
-              ? "优先投递：定制简历并准备岗位案例"
-              : value >= 50
-                ? "选择性投递：补足缺失技能后再申请"
-                : "低优先级：建议调整方向或先补齐能力",
+            : confidence < 50
+              ? "已知要求较少：先补齐原公告信息，再决定是否投递"
+              : value >= 75
+                ? "优先投递：定制简历并准备岗位案例"
+                : value >= 50
+                  ? "选择性投递：补足缺失技能后再申请"
+                  : "低优先级：建议调整方向或先补齐能力",
   };
 }
 export function safeURL(value) {

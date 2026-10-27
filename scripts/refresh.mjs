@@ -6,7 +6,8 @@ const preferences = {
   region: process.env.JOB_REGION || "全部",
   city: process.env.JOB_CITY || "",
   category: "全部",
-  employment: "全职",
+  employment: process.env.JOB_EMPLOYMENT || "全职",
+  experienceLevel: process.env.JOB_EXPERIENCE || "",
   mode: "不限",
   exclude: process.env.JOB_EXCLUDE || "",
 };

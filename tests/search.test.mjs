@@ -88,3 +88,34 @@ test("one-region failure is disclosed as partial refresh", async () => {
   assert.equal(r.warnings.length, 1);
   assert.equal(r.jobs.length, 1);
 });
+
+test("combined legacy configuration is split into roles, cities, exclusions and entry-level preference", () => {
+  const p = normalizePreferences({
+    role: "JOB_TYPE：数据分析/大模型/AI/产品/算法/开发/运营/金融/快消 JOB_REGION：上海/杭州/深圳/香港 JOB_EXCLUDE：夜班/销售 JOB NATURE全职/实习/兼职 JOB EXPERIENCE：应届",
+    region: "全部",
+    employment: "全职",
+  });
+  assert.equal(p.legacyInput, true);
+  assert.equal(p.roles.length, 9);
+  assert.deepEqual(p.cities, ["上海", "杭州", "深圳", "香港"]);
+  assert.equal(p.exclude, "夜班、销售");
+  assert.equal(p.experienceLevel, "应届");
+  assert.equal(p.employment, "不限");
+  assert.ok(!p.role.includes("JOB_"));
+  const q = buildQuery(p, "香港");
+  assert.ok(q.includes("graduate"));
+  assert.ok(!q.includes("上海"));
+  assert.ok(q.includes('-"销售"'));
+  assert.ok(q.length <= 350);
+});
+test("ordinary multiple-city preferences use OR rather than an impossible combined city name", () => {
+  const p = normalizePreferences({
+    role: "数据分析/商业分析",
+    city: "上海/杭州/香港",
+    region: "全部",
+  });
+  assert.equal(p.roles.length, 2);
+  const q = buildQuery(p, "内地");
+  assert.ok(q.includes("(上海 OR 杭州)"));
+  assert.ok(!q.includes("香港"));
+});
