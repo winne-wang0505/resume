@@ -98,7 +98,7 @@
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-27T15:21:02.632Z",
+  "updatedAt": "2026-10-27T15:24:02.096Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -205,14 +205,14 @@
           "quote": "2027届"
         }
       },
-      "detailFetchedAt": "2026-10-27T15:21:03.881Z",
+      "detailFetchedAt": "2026-10-27T15:24:03.408Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
       "missingFields": [],
       "detailMethod": "structured",
       "firstSeenAt": "2026-10-27T13:39:20.978Z",
-      "lastSeenAt": "2026-10-27T15:21:05.970Z",
+      "lastSeenAt": "2026-10-27T15:24:06.186Z",
       "retained": false
     }
   ],
@@ -234,9 +234,27 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "UFLP in Human Resources",
+        "headings": [
+          "About Unilever",
+          "What do we look for?",
+          "The role: Human Resources (HR)",
+          "What could your day-to-day role include (depending on your role)?",
+          "Skills required include:",
+          "Our application process involves:",
+          "Step 1: Online Application",
+          "Step 2: Profile Assessment",
+          "Step 3: Digital Interview:",
+          "Step 4: Discovery Centre:",
+          "What Can Unilever offer YOU ?",
+          "What support will you receive?"
+        ],
+        "publicTextExcerpt": "UFLP in Human Resources\n\nAs we receive a high volume of applications, please make sure to read the job description below carefully and apply for the ONE function you are most interested in. Only your first application will be considered.\n\nAbout Unilever\n\nUnilever is one of the world's leading FMCG companies, home to iconic brands including Dove, Vaseline, TRESemm&eacute;, Lynx, Persil, Domestos, Surf, Radox, Sure and Liquid I.V. Through products used by millions of people every day, we help improve health, wellbeing, confidence and care around the world.\n\nEstablished over 100 years ago, Unilever has a proud heritage of innovation and a long-standing belief that great brands, great people and responsible business go hand in hand.\n\nToday, we are transforming into a faster, more focused growth company centred on Beauty & Wellbeing, Personal Care and Home Care. Through world-class brands, cutting-edge science and technology, digital innovation and AI-enabled capabilities, we are building unmissably superior products and experiences for consumers around the world.\n\nA career at Unilever offers the opportunity to work at global scale while helping shape the future of some of the world's most recognised brands. Our people are at the heart of everything we do, bringing curiosity, creativity and passion to solve real business challenges and make a meaningful impact every day.\n\n What do we look for? \n\nWe are looking for future HR leaders who are motivated by a passion for people and are trusted partners in the business to get things done. We need people who can drive performance by using data and insight to inform decision-making and continually think of new ways of doing things, fuelled by their dissatisfaction with the status quo. Whilst people skills are critical for the Unilever Futures Programme in HR, there are no specific qualifications necessary.  We need HR people who are mindful and responsive to contexts and audiences, inspired to develop colleagues and the capabilities required for our winning business.  \n\nThe role of HR in Unilever as a core strategic business area means we look for people with enthusiasm, an interest in how businesses operate, and the bravery to offer creative insights and execute change. People who can build relationships, collaborate with others, have a data-driven mindset, and possess strong influencing and negotiation abilities. Business challenges are always changing and evolving so remaining constantly curious and keen to learn, d"
+      }
     },
     {
       "id": "1a59b8d4474138b6dd",
@@ -255,7 +273,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -276,7 +294,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -297,9 +315,14 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "publicTextExcerpt": "请稍候 - BOSS直聘 B O S S 正在加载中...\n\n&copy; copyright BOSS直聘 京ICP备14013441号-5"
+      }
     },
     {
       "id": "25b03455f6dea766de",
@@ -318,7 +341,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -339,9 +362,14 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "publicTextExcerpt": "请稍候 - BOSS直聘 B O S S 正在加载中...\n\n&copy; copyright BOSS直聘 京ICP备14013441号-5"
+      }
     },
     {
       "id": "4ee1c9fa60ecacbb35",
@@ -360,7 +388,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -381,7 +409,7 @@
       "discoveredAt": "2026-10-27T15:20:18.960Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "detailFailure": "来源返回 HTTP 404"
     },
     {
@@ -401,7 +429,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -422,9 +450,14 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "publicTextExcerpt": "为了更好的访问体验，请进行验证\n\nappkey: \"CF_APP_WAF\", // 应用标识var AC_Opt = {userUserId: requestInfo.userUserId TraceID: ac11000117931146460367068e00a4\n--> var requestInfo = {\"data\":\"\",\"region\":\"cn\",\"sceneId\":\"19x5u7lo\",\"token\":\"bcd94ae34d7d18ba4d159b11efefc579\",\"traceid\":\"ac11000117931146460367068e00a4\",\"type\":\"GET\",\"userId\":\"HpadJlQnz2zSKcSmjXBaqQvjYUvP4jMJIk/ZwGNDNiM=\",\"userUserId\":\"FJ2gUMan73YzuCZ6GxCmxKRp8QxBgcNhaIqzpo9VgL0=\"};"
+      }
     },
     {
       "id": "5baa53c5bc057e7d40",
@@ -443,7 +476,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -464,7 +497,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -485,7 +518,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -506,9 +539,26 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [
+          "",
+          "",
+          "Work Location(s)",
+          "Job",
+          "Division",
+          "Schedule",
+          "Job Posting",
+          "Closing Date",
+          "Refer a friend for this job",
+          "Refer a candidate",
+          ""
+        ],
+        "publicTextExcerpt": "Careers at MTR\nGo to the main content section.\n\n| My Account Options\n\n| Sign In\n\nThis service is set to disconnect automatically after {0} minutes of inactivity. Your session will end in {1} minutes.\nClick OK to reset the timer to {0} minutes.\n\nYou have been signed out.\nThis service is set to sign out after {0} minutes of inactivity.\n\nJob Search\n\nMy Jobpage\n\nAll Jobs\nMy Submissions\n|\nMy Job Cart\n|\nMy Saved Searches\n|\n\nBeginning of the main content section. Return to the home page\nPrintable Format\n\nReturn to previous position on page\n\nWork Location(s)\n:\n\nJob\n:\nDivision\n:\nSchedule\n:\nJob Posting\n:\nClosing Date\n:\nJob Number:\n\nRefer a friend for this job\nRefer a friend\nRefer a candidate\nSubmit a candidate's profile"
+      }
     },
     {
       "id": "a29d0c0ea0f597da11",
@@ -527,7 +577,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -548,7 +598,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -569,7 +619,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -590,7 +640,7 @@
       "discoveredAt": "2026-10-27T15:20:18.960Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "detailFailure": "来源返回 HTTP 404"
     },
     {
@@ -610,7 +660,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -631,8 +681,13 @@
       "discoveredAt": "2026-10-27T15:20:18.960Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "publicTextExcerpt": "请稍候 - BOSS直聘 B O S S 正在加载中...\n\n&copy; copyright BOSS直聘 京ICP备14013441号-5"
+      }
     },
     {
       "id": "ef85e36d56f65ca836",
@@ -651,7 +706,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 405"
     },
@@ -672,7 +727,7 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailAttemptedAt": "2026-10-27T15:24:02.096Z",
       "retained": true,
       "detailFailure": "来源返回 HTTP 404"
     }
