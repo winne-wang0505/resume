@@ -98,19 +98,24 @@
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-27T15:20:18.960Z",
+  "updatedAt": "2026-10-27T15:21:02.632Z",
   "mode": "enriched",
   "jobs": [
     {
       "id": "7ddfe733d0ddf772ed",
       "url": "https://www.liepin.com/job/1985879369.shtml",
       "source": "www.liepin.com",
+      "sourceLabel": "猎聘",
+      "sourceType": "招聘平台",
       "region": "内地",
       "discoveredAt": "2026-10-27T13:39:20.978Z",
       "searchGroup": "运营、金融、快消",
       "demo": false,
       "title": "分析师助理岗（2027届，周期组）",
       "company": "国投证券",
+      "countries": [
+        "CN"
+      ],
       "city": "深圳-福田区",
       "degree": "硕士",
       "skills": [
@@ -141,6 +146,11 @@
           "method": "schema.org/JobPosting",
           "field": "hiringOrganization.name",
           "quote": "国投证券"
+        },
+        "countries": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address.addressCountry",
+          "quote": "[\"CN\"]"
         },
         "city": {
           "method": "schema.org/JobPosting",
@@ -195,80 +205,18 @@
           "quote": "2027届"
         }
       },
-      "detailFetchedAt": "2026-10-27T13:43:18.892Z",
+      "detailFetchedAt": "2026-10-27T15:21:03.881Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
       "missingFields": [],
       "detailMethod": "structured",
       "firstSeenAt": "2026-10-27T13:39:20.978Z",
-      "lastSeenAt": "2026-10-27T13:39:20.978Z",
-      "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": false
+      "lastSeenAt": "2026-10-27T15:21:05.970Z",
+      "retained": false
     }
   ],
   "leads": [
-    {
-      "id": "50e19d74b3d7d188ee",
-      "title": "Stellenanzeige Marketing Intern (d/f/m) bei Unilever",
-      "company": null,
-      "region": "香港",
-      "searchGroup": "快消",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Start your internship in June for a 6-month period in the Marketing Home Care department, based in Warsaw, Poland. It offers a unique opportunity to gain insight into working in the dynamic FMCG industry.",
-      "source": "careers.unilever.com",
-      "sourceLabel": "联合利华招聘",
-      "sourceType": "企业官网",
-      "url": "https://careers.unilever.com/de/stellenbeschreibung/warschau/marketing-intern-d-f-m/34155/95005403984",
-      "discoveredAt": "2026-10-27T15:20:18.960Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "来源返回 HTTP 404",
-      "detailAttemptedAt": "2026-10-27T15:20:18.960Z"
-    },
-    {
-      "id": "cab184a8d18209f06d",
-      "title": "Commercial Junior Finance Manager at Unilever",
-      "company": null,
-      "region": "香港",
-      "searchGroup": "快消",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Solid understanding of P&amp;L and experience with month-end close and forecasting processes; FMCG experience is an advantage.",
-      "source": "careers.unilever.com",
-      "sourceLabel": "联合利华招聘",
-      "sourceType": "企业官网",
-      "url": "https://careers.unilever.com/en/job/varsova/commercial-junior-finance-manager/34155/96210467632",
-      "discoveredAt": "2026-10-27T15:20:18.960Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "来源返回 HTTP 404",
-      "detailAttemptedAt": "2026-10-27T15:20:18.960Z"
-    },
-    {
-      "id": "dfc1fa2675534b5779",
-      "title": "字节跳动——大模型安全策略实习生",
-      "company": null,
-      "region": "内地",
-      "searchGroup": "大模型",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "正在加载中",
-      "source": "www.zhipin.com",
-      "sourceLabel": "BOSS直聘",
-      "sourceType": "招聘平台",
-      "url": "https://www.zhipin.com/job_detail/f2debe5c113e6a4a031z3Ny1ElpY.html",
-      "discoveredAt": "2026-10-27T15:20:18.960Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:20:18.960Z"
-    },
     {
       "id": "0f397d3554e33fa090",
       "title": "UK&I Graduate Scheme (UFLP) in Human Resources",
@@ -286,9 +234,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "1a59b8d4474138b6dd",
@@ -307,9 +255,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "200180506ccf1f0e6f",
@@ -328,9 +276,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "24a0353300efaaba52",
@@ -349,9 +297,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "25b03455f6dea766de",
@@ -370,9 +318,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "3b664f97b06de5a70c",
@@ -391,9 +339,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "4ee1c9fa60ecacbb35",
@@ -412,9 +360,29 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
+    },
+    {
+      "id": "50e19d74b3d7d188ee",
+      "title": "Stellenanzeige Marketing Intern (d/f/m) bei Unilever",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "快消",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Start your internship in June for a 6-month period in the Marketing Home Care department, based in Warsaw, Poland. It offers a unique opportunity to gain insight into working in the dynamic FMCG industry.",
+      "source": "careers.unilever.com",
+      "sourceLabel": "联合利华招聘",
+      "sourceType": "企业官网",
+      "url": "https://careers.unilever.com/de/stellenbeschreibung/warschau/marketing-intern-d-f-m/34155/95005403984",
+      "discoveredAt": "2026-10-27T15:20:18.960Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailFailure": "来源返回 HTTP 404"
     },
     {
       "id": "587fdeaef8e3f9ceed",
@@ -433,9 +401,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "5a99a8ac31fac49af4",
@@ -454,9 +422,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "5baa53c5bc057e7d40",
@@ -475,9 +443,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "65e09fff873ce8d600",
@@ -496,9 +464,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "6acaeef756fc78e33f",
@@ -517,9 +485,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "7ad8e48337b933f157",
@@ -538,9 +506,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "a29d0c0ea0f597da11",
@@ -559,9 +527,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "b5c1fb704c72ab763b",
@@ -580,9 +548,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "bb4d256c98151bd3d1",
@@ -601,9 +569,29 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
+    },
+    {
+      "id": "cab184a8d18209f06d",
+      "title": "Commercial Junior Finance Manager at Unilever",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "快消",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Solid understanding of P&amp;L and experience with month-end close and forecasting processes; FMCG experience is an advantage.",
+      "source": "careers.unilever.com",
+      "sourceLabel": "联合利华招聘",
+      "sourceType": "企业官网",
+      "url": "https://careers.unilever.com/en/job/varsova/commercial-junior-finance-manager/34155/96210467632",
+      "discoveredAt": "2026-10-27T15:20:18.960Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailFailure": "来源返回 HTTP 404"
     },
     {
       "id": "d07a90501a82b54316",
@@ -622,9 +610,29 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
+    },
+    {
+      "id": "dfc1fa2675534b5779",
+      "title": "字节跳动——大模型安全策略实习生",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "大模型",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "正在加载中",
+      "source": "www.zhipin.com",
+      "sourceLabel": "BOSS直聘",
+      "sourceType": "招聘平台",
+      "url": "https://www.zhipin.com/job_detail/f2debe5c113e6a4a031z3Ny1ElpY.html",
+      "discoveredAt": "2026-10-27T15:20:18.960Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "ef85e36d56f65ca836",
@@ -643,9 +651,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 405"
     },
     {
       "id": "fea22362557f1730f2",
@@ -664,9 +672,9 @@
       "discoveredAt": "2026-10-27T15:10:33.399Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 404",
-      "detailAttemptedAt": "2026-10-27T15:10:33.399Z",
-      "retained": true
+      "detailAttemptedAt": "2026-10-27T15:21:02.632Z",
+      "retained": true,
+      "detailFailure": "来源返回 HTTP 404"
     }
   ],
   "excluded": [
@@ -710,13 +718,13 @@
     "当日搜索预算已用完，保留已获得结果及仍可参考的历史岗位；次日自动恢复。"
   ],
   "stats": {
-    "discovered": 7,
-    "detailAttempts": 7,
-    "detailSuccess": 0,
+    "discovered": 27,
+    "detailAttempts": 23,
+    "detailSuccess": 1,
     "pending": 22,
     "excluded": 4,
     "activePool": 1,
-    "historyRetained": 1,
+    "historyRetained": 0,
     "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
