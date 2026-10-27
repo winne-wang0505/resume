@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-10-27T13:39:22.331Z",
+  "updatedAt": "2026-10-27T13:43:15.913Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -15,13 +15,23 @@
       "company": "国投证券",
       "city": "深圳-福田区",
       "degree": "硕士",
+      "skills": [
+        "逻辑思维",
+        "沟通表达",
+        "文字功底",
+        "抗压能力"
+      ],
+      "experience": 0,
       "salaryMin": 15000,
       "salaryMax": 18000,
       "currency": "CNY",
       "salaryPeriod": "月",
       "postedAt": "2026-09-28T10:38:50+08:00",
+      "deadline": "2026-10-31",
+      "graduationYears": [
+        2027
+      ],
       "description": "职责描述:\n1、参与行业日报、周报撰写及基础数据跟踪及分析等日常工作；\n2、参与研究相关课题、深度报告的撰写工作。参与调研、电话调研等工作，进行会议纪要的整理等工作；\n3、参与证券研究所相关培训，学习行研基础技能及行业/企业基本面分析方法。\n\n任职资格:\n1、硕士研究生及以上学历，金融、经管类、理工类相关专业优先；\n2、勤奋自驱，具备较强的成就动机与抗压能力，乐于从事挑战性工作；\n3、具备良好的逻辑思维能力、沟通表达能力，文字功底扎实；\n4、有券商行研实习经验者优先。\n\n截止日期：2026年10月31日\n招聘人数：2人",
-      "skills": [],
       "category": "待核实",
       "fieldEvidence": {
         "title": {
@@ -40,8 +50,18 @@
           "quote": "深圳-福田区"
         },
         "degree": {
-          "method": "page-text",
-          "quote": "学历：硕士"
+          "method": "schema.org/JobPosting",
+          "field": "educationRequirements",
+          "quote": "硕士"
+        },
+        "skills": {
+          "method": "requirements-text",
+          "quote": "2、勤奋自驱，具备较强的成就动机与抗压能力，乐于从事挑战性工作；\n3、具备良好的逻辑思维能力、沟通表达能力，文字功底扎实；\n\n截止日期：2026年10月31日\n招聘人数：2人；具备较强的成就动机与抗压能力，乐于从事挑战性工作；\n3、具备良好的逻辑思维能力、沟通表达能力，文字功底扎实；\n\n截止日期：2026年10月31日\n招聘人数：2人；动机与抗压能力，乐于从事挑战性工作；\n3、具备良好的逻辑思维能力、沟通表达能力，文字功底扎实；\n\n截止日期：2026年10月31日\n招聘人数：2人；2、勤奋自驱，具备较强的成就动机与抗压能力，乐于从事挑战性工作；\n3、具备良好的逻辑思维能力、沟通表达能力，文字功底扎实；\n\n截止日期：2026年10月31日\n招聘人数：2"
+        },
+        "experience": {
+          "method": "schema.org/JobPosting",
+          "field": "experienceRequirements",
+          "quote": "0"
         },
         "salaryMin": {
           "method": "schema.org/JobPosting",
@@ -67,16 +87,21 @@
           "method": "schema.org/JobPosting",
           "field": "datePosted",
           "quote": "2026-09-28T10:38:50+08:00"
+        },
+        "deadline": {
+          "method": "description-text",
+          "quote": "截止日期：2026年10月31日"
+        },
+        "graduationYears": {
+          "method": "title-and-description",
+          "quote": "2027届"
         }
       },
-      "detailFetchedAt": "2026-10-27T13:39:24.699Z",
+      "detailFetchedAt": "2026-10-27T13:43:18.892Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
-      "missingFields": [
-        "experience",
-        "deadline"
-      ],
+      "missingFields": [],
       "detailMethod": "structured"
     }
   ],
@@ -96,8 +121,8 @@
       "discoveredAt": "2026-10-27T13:39:15.407Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T13:39:22.331Z"
+      "detailAttemptedAt": "2026-10-27T13:43:15.913Z",
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "eb821044012ef03fc1",
@@ -114,48 +139,11 @@
       "discoveredAt": "2026-10-27T13:39:20.979Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T13:39:22.331Z"
+      "detailAttemptedAt": "2026-10-27T13:43:15.913Z",
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     }
   ],
-  "excluded": [
-    {
-      "id": "1404836dda9c493e9e",
-      "title": "高级/资深海外广告优化师（哈萨克语方向）",
-      "url": "https://www.liepin.com/job/1983772809.shtml",
-      "reason": "明确要求 3 年经验，不符合应届条件"
-    },
-    {
-      "id": "b2b1aa49849e59dfc1",
-      "title": "品牌运营总监",
-      "url": "https://www.liepin.com/job/1982143513.shtml",
-      "reason": "包含排除关键词：销售"
-    },
-    {
-      "id": "72f5b5bc7fe1bc99e7",
-      "title": "AI产品战略总监（事业部负责人）",
-      "url": "https://www.liepin.com/job/1981818159.shtml",
-      "reason": "包含排除关键词：销售"
-    },
-    {
-      "id": "0cd24f0cba080e8b50",
-      "title": "解决方案总监",
-      "url": "https://www.liepin.com/job/1985883345.shtml",
-      "reason": "明确要求 8 年经验，不符合应届条件"
-    },
-    {
-      "id": "67a5a74a5212b35e18",
-      "title": "平头哥-流程&质量体系管理专家-上海",
-      "url": "https://www.liepin.com/job/1983206011.shtml",
-      "reason": "明确要求 8 年经验，不符合应届条件"
-    },
-    {
-      "id": "5ad57e9becc7761f30",
-      "title": "资深产品运营/专家",
-      "url": "https://www.liepin.com/job/1985902817.shtml",
-      "reason": "包含排除关键词：销售"
-    }
-  ],
+  "excluded": [],
   "searchPreferences": {
     "role": "数据分析、大模型、AI、产品、算法、开发、运营、金融、快消",
     "region": "全部",
@@ -169,11 +157,11 @@
   "searchUpdatedAt": "2026-10-27T13:39:22.331Z",
   "warnings": [],
   "stats": {
-    "discovered": 9,
-    "detailAttempts": 9,
+    "discovered": 3,
+    "detailAttempts": 3,
     "detailSuccess": 1,
     "pending": 2,
-    "excluded": 6
+    "excluded": 0
   },
   "notice": "详情字段取自公开招聘页或 JobPosting 元数据，每个已提取要求附有来源证据；仍需在投递前核实在招状态、工作许可和所有门槛。未提取到的信息不会推测。"
 }
