@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
-import { sources, sourceURL } from "./sources.mjs";
+import { sourceURL } from "./sources.mjs";
 import { enrichIndex } from "./pipeline.mjs";
+import { setTimeout as delay } from "node:timers/promises";
 export function normalizePreferences(p = {}) {
   const clean = (x) =>
     typeof x === "string"
@@ -25,6 +26,17 @@ export function normalizePreferences(p = {}) {
   };
 }
 export function buildQuery(p, region) {
+  const aliases = {
+    数据分析: ["数据分析", "數據分析", "Data Analyst"],
+    数据分析师: ["数据分析师", "數據分析師", "Data Analyst"],
+    商业分析: ["商业分析", "商業分析", "Business Analyst"],
+    产品运营: ["产品运营", "產品運營", "Product Operations"],
+    金融: ["金融", "Finance", "Financial Analyst"],
+    会计: ["会计", "會計", "Accountant"],
+  };
+  const role = aliases[p.role]
+    ? `(${aliases[p.role].map((x) => '"' + x + '"').join(" OR ")})`
+    : p.role;
   const extra = [
     region === "香港" ? (p.city === "香港" ? p.city : "") : p.city,
     p.skills,
@@ -38,7 +50,27 @@ export function buildQuery(p, region) {
   ]
     .filter(Boolean)
     .join(" ");
-  return `${p.role} ${extra} ${region === "香港" ? "香港 招聘 vacancy" : "招聘 职位"} (${sources[region].map((x) => "site:" + x).join(" OR ")}) -inurl:company-jobs -inurl:/zhaopin/ -inurl:HRNews -inurl:q-`;
+  const detailSources =
+    region === "香港"
+      ? [
+          "hk.jobsdb.com/job/",
+          "jobs.ctgoodjobs.hk/job/",
+          "csboa1.csb.gov.hk/csboa/jve/",
+          "careers.gov.hk",
+          "jobs.gov.hk",
+          "hk.indeed.com/viewjob",
+        ]
+      : [
+          "jobs.zhaopin.com",
+          "liepin.com/job/",
+          "liepin.com/a/",
+          "jobs.51job.com",
+          "iguopin.com/job/",
+          "scs.gov.cn",
+          "mohrss.gov.cn",
+          "sasac.gov.cn",
+        ];
+  return `${role} ${extra} ${region === "香港" ? "香港 招聘 vacancy" : "招聘 职位"} (${detailSources.map((x) => "site:" + x).join(" OR ")}) -inurl:company-jobs -inurl:/zhaopin/ -inurl:HRNews -inurl:q-`;
 }
 export async function searchJobs(
   preferences,
@@ -60,7 +92,11 @@ export async function searchJobs(
   }
   const jobs = [];
   const errors = [];
-  for (const region of p.region === "全部" ? ["内地", "香港"] : [p.region]) {
+  for (const [regionIndex, region] of (p.region === "全部"
+    ? ["内地", "香港"]
+    : [p.region]
+  ).entries()) {
+    if (regionIndex) await delay(1100);
     const url = new URL("https://api.search.brave.com/res/v1/web/search");
     url.search = new URLSearchParams({
       q: buildQuery(p, region),

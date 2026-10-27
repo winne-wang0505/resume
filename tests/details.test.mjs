@@ -242,3 +242,31 @@ test("dates without timezone use the supported markets timezone consistently", (
   ).job;
   assert.equal(j.deadline, "2026-11-30T23:59:59+08:00");
 });
+
+test("official HK vacancy table uses named title and department, including dd/mm/yyyy closing date", () => {
+  const html =
+    "<html><h1>Government Vacancies Advertising & Enquiry System</h1><table><tr><td>Department:</td><td>Test Department</td></tr><tr><td>Job Title:</td><td>Statistical Officer</td></tr><tr><td>Entry Requirements:</td><td>A Bachelor degree and 2 years of relevant experience are required. Applicants must demonstrate professional data analysis and communication capabilities.</td></tr><tr><td>Duties:</td><td>Prepare economic reports, maintain departmental statistics, review data quality and coordinate research projects with the team.</td></tr><tr><td>Closing Date(dd/mm/yyyy):</td><td>30/11/2026 23:59:00</td></tr></table></html>";
+  const j = extractDetail(
+    html,
+    {
+      ...lead,
+      url: "https://csboa1.csb.gov.hk/csboa/jve/JVE_003_text.action?jobid=123&languageType=1",
+    },
+    { now },
+  ).job;
+  assert.equal(j.title, "Statistical Officer");
+  assert.equal(j.company, "Test Department");
+  assert.equal(j.degree, "本科");
+  assert.equal(j.experience, 2);
+  assert.equal(j.deadline, "2026-11-30T23:59:00+08:00");
+  assert.equal(j.category, "公务员／公共机构");
+});
+test("schema experience string is read as published requirements", () => {
+  const html = fixture
+    .replace(
+      '"experienceRequirements":{"@type":"OccupationalExperienceRequirements","monthsOfExperience":24}',
+      '"experienceRequirements":"5-7 years"',
+    )
+    .replace("2年以上相关工作经验", "相关业务能力");
+  assert.equal(extractDetail(html, lead, { now }).job.experience, 5);
+});

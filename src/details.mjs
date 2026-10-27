@@ -369,6 +369,19 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
       if (Number.isFinite(n) && n >= 0)
         set("experience", n / 12, "experienceRequirements.monthsOfExperience");
     }
+    if (
+      typeof p.experienceRequirements === "string" &&
+      !Number.isFinite(values.experience)
+    ) {
+      const years = p.experienceRequirements.match(
+        /(\d{1,2})(?:\s*[-–~至到]\s*\d{1,2})?\s*(?:年|years?)/i,
+      );
+      if (years) set("experience", Number(years[1]), "experienceRequirements");
+      else if (
+        /不限|不要求|no experience required/i.test(p.experienceRequirements)
+      )
+        set("experience", 0, "experienceRequirements");
+    }
     const salary = schemaSalary(p.baseSalary);
     if (salary)
       for (const [k, v] of Object.entries(salary)) set(k, v, "baseSalary");
@@ -396,13 +409,28 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
   } else {
     // Text fallback requires a concrete title, named employer and separate duties/requirements.
     method = "page-text";
+    const officialHK =
+      new URL(lead.url).hostname.endsWith("csb.gov.hk") &&
+      new URL(lead.url).searchParams.has("jobid");
+    const officialTitle = officialHK
+      ? text.match(
+          /(?:^|\n)\s*(?:Job Title|職位名稱|职位名称)[：:\s]*([^\n]{2,120})/i,
+        )
+      : null;
     const title = clean(
-      html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1\s*>/i)?.[1] ||
+      officialTitle?.[1] ||
+        html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1\s*>/i)?.[1] ||
         metadata(html, "og:title"),
     );
-    const employer = text.match(
-      /(?:公司名称|公司名稱|招聘单位|招聘單位|雇主|僱主|hiring organization|employer)[：:\s]*([^\n]{2,100})/i,
-    );
+    const employer =
+      text.match(
+        /(?:公司名称|公司名稱|招聘单位|招聘單位|雇主|僱主|hiring organization|employer)[：:\s]*([^\n]{2,100})/i,
+      ) ||
+      (officialHK
+        ? text.match(
+            /(?:^|\n)\s*(?:Department|Bureau|部門|部门)[：:\s]*([^\n]{2,120})/i,
+          )
+        : null);
     if (
       !title ||
       !employer ||
@@ -422,7 +450,7 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
     evidence.title = { method, quote: title };
     evidence.company = { method, quote: employer[0] };
     const start = text.search(
-      /(?:岗位职责|崗位職責|工作职责|工作職責|工作内容|工作內容|responsibilities|duties)/i,
+      /(?:岗位职责|崗位職責|工作职责|工作職責|工作内容|工作內容|任职要求|任職要求|入职条件|入職條件|entry requirements|responsibilities|duties|qualifications)/i,
     );
     description = text.slice(Math.max(0, start), Math.max(0, start) + 12000);
     const parsed = explicitRequirements(description);
@@ -445,6 +473,18 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
         .join("-");
       values.deadline = dateOnly(date);
       evidence.deadline = { method, quote: end[0] };
+    }
+    if (officialHK && !values.deadline) {
+      const hkEnd = text.match(
+        /(?:Closing Date\s*(?:\(dd\/mm\/yyyy\))?|截止申請日期|截止申请日期|截止日期)[：:\s]*(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{2}:\d{2}(?::\d{2})?))?/i,
+      );
+      if (hkEnd) {
+        const raw =
+          `${hkEnd[3]}-${hkEnd[2].padStart(2, "0")}-${hkEnd[1].padStart(2, "0")}` +
+          (hkEnd[4] ? "T" + hkEnd[4] + "+08:00" : "");
+        values.deadline = dateOnly(raw);
+        evidence.deadline = { method: "official-page-text", quote: hkEnd[0] };
+      }
     }
   }
   if (

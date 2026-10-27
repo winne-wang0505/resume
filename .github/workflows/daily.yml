@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: "0 0 * * *" # 08:00 Asia/Shanghai; GitHub scheduling can be delayed.
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - src/search.mjs
+      - .github/workflows/daily.yml
 permissions:
   contents: write
 concurrency:

@@ -54,7 +54,7 @@ node --env-file=.env server.mjs
 
 `.github/workflows/enrich.yml`（**Upgrade existing job details**）在详情解析相关代码更新时自动运行，也可手动触发。它无需新增 API 密钥，会重新处理仓库中已有的公开链接、写入处理统计和失败原因、保存索引并部署。不会把本机浏览器档案上传。此任务不执行新关键词搜索。
 
-正常每日流程继续由 **Daily job discovery** 负责，已自动包含详情处理。数据写入保留远端并发修改，避免 force push；所有 Pages 部署共用串行部署组。
+正常每日流程继续由 **Daily job discovery** 负责，已自动包含详情处理。检索策略或每日工作流更新推送后也会自动触发一次完整检索，复用已有密钥，无需用户手动重跑。数据写入保留远端并发修改，避免 force push；所有 Pages 部署共用串行部署组。
 
 ## 评分口径
 
