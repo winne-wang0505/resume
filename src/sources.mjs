@@ -346,6 +346,8 @@ export function classifyLink(job) {
   }
   if (/\.(pdf|xlsx?|docx?|zip)$/i.test(p))
     return { kind: "excluded", reason: "附件或非网页内容，暂不解析" };
+  if (/51job\.com$/.test(u.hostname) && /\/co[a-z0-9_-]+\.html$/i.test(p))
+    return { kind: "excluded", reason: "企业招聘汇总页，不是单一岗位" };
   const detail =
     /\/(?:jobdesc|job-detail|jobdetails?|positions?\/detail|requisitions?\/[^/]+)|\/job\/[^/]+\/[^/]+/i.test(
       p,

@@ -390,3 +390,26 @@ test("official employer fallback labels the publisher brand instead of inventing
     false,
   );
 });
+
+test("challenge and dynamic shell contents are not published as job evidence or debug excerpts", async () => {
+  const f = async (u) =>
+    new Response(
+      String(u).endsWith("robots.txt")
+        ? ""
+        : '<h1>进行验证</h1><p>requestInfo token: "synthetic-do-not-store"</p>',
+      { headers: { "content-type": "text/html" } },
+    );
+  const r = await createDetailFetcher({ fetcher: f, resolver })(lead);
+  assert.equal(r.ok, false);
+  assert.match(r.reason, /验证/);
+  assert.equal(JSON.stringify(r).includes("synthetic-do-not-store"), false);
+  assert.equal(r.extractionNotes.pageKind, "verification-or-dynamic-shell");
+  assert.equal(
+    classifyLink({
+      url: "https://jobs.51job.com/all/coVDMAZFEwUmhVMQVgVzUAPA.html",
+      title: "公司招聘",
+      region: "内地",
+    }).kind,
+    "excluded",
+  );
+});

@@ -920,20 +920,28 @@ export function createDetailFetcher({
         url: result.url,
       });
       if (!extracted.ok) {
-        const visible = plainText(result.body),
-          heading = plainText(
-            result.body.match(/<h1\b[^>]*>([\s\S]*?)<\/h1\s*>/i)?.[1] || "",
+        const visible = plainText(result.body);
+        const shell =
+          /正在加载|正在載入|请稍候|請稍候|进行验证|進行驗證|captcha|CF_APP_WAF|requestInfo|userUserId|(?:token|api[_-]?key|sessionId)["']?\s*[:=]\s*["']/i.test(
+            visible,
           );
-        const start = heading ? Math.max(0, visible.indexOf(heading)) : 0;
-        extracted.extractionNotes = {
-          title: heading,
-          headings: [
-            ...result.body.matchAll(/<h[23]\b[^>]*>([\s\S]*?)<\/h[23]\s*>/gi),
-          ]
-            .slice(0, 12)
-            .map((m) => plainText(m[1]).slice(0, 120)),
-          publicTextExcerpt: visible.slice(start, start + 2500),
-        };
+        if (shell) {
+          extracted.reason = "来源返回安全验证或动态加载页面，未绕过访问限制";
+          extracted.extractionNotes = {
+            pageKind: "verification-or-dynamic-shell",
+          };
+        } else
+          extracted.extractionNotes = {
+            title: plainText(
+              result.body.match(/<h1\b[^>]*>([\s\S]*?)<\/h1\s*>/i)?.[1] || "",
+            ),
+            headings: [
+              ...result.body.matchAll(/<h[23]\b[^>]*>([\s\S]*?)<\/h[23]\s*>/gi),
+            ]
+              .slice(0, 12)
+              .map((m) => plainText(m[1]).slice(0, 120)),
+            pageKind: "insufficient-structured-fields",
+          };
       }
       return extracted;
     } catch (e) {
