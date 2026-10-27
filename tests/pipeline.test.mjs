@@ -243,9 +243,11 @@ test("detail budget balances employer/campus/platform channels instead of always
           sourceType,
           searchGroup: "分析",
           url:
-            region === "内地"
-              ? `https://www.liepin.com/job/${r}${t}${i}.shtml`
-              : `https://hk.jobsdb.com/job/${r}${t}${i}`,
+            sourceType === "企业官网"
+              ? `https://careers.tencent.com/jobdesc.html?postId=${r}${t}${i}`
+              : region === "内地"
+                ? `https://www.liepin.com/job/${r}${t}${i}.shtml`
+                : `https://hk.jobsdb.com/job/${r}${t}${i}`,
         })),
       ),
     ),
