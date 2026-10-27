@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-10-27T13:32:24.690Z",
+  "updatedAt": "2026-10-27T13:37:48.694Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -80,7 +80,7 @@
           "quote": "2026-08-03T18:12:56+08:00"
         }
       },
-      "detailFetchedAt": "2026-10-27T13:32:26.664Z",
+      "detailFetchedAt": "2026-10-27T13:37:50.448Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
@@ -160,7 +160,7 @@
           "quote": "2026-08-25T10:14:21+08:00"
         }
       },
-      "detailFetchedAt": "2026-10-27T13:32:26.616Z",
+      "detailFetchedAt": "2026-10-27T13:37:50.955Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
@@ -235,7 +235,7 @@
           "quote": "2026-07-31T15:27:59+08:00"
         }
       },
-      "detailFetchedAt": "2026-10-27T13:32:27.137Z",
+      "detailFetchedAt": "2026-10-27T13:37:51.259Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
@@ -261,8 +261,8 @@
       "discoveredAt": "2026-10-27T13:32:23.313Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T13:32:24.690Z"
+      "detailAttemptedAt": "2026-10-27T13:37:48.694Z",
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "bb884ffbab5f396f36",
@@ -278,8 +278,8 @@
       "discoveredAt": "2026-10-27T13:32:23.313Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "职位详情缺少明确名称、公司或完整描述",
-      "detailAttemptedAt": "2026-10-27T13:32:24.690Z"
+      "detailAttemptedAt": "2026-10-27T13:37:48.694Z",
+      "detailFailure": "职位详情缺少明确名称、公司或完整描述"
     },
     {
       "id": "c9f5652172cd8f0bd5",
@@ -295,8 +295,8 @@
       "discoveredAt": "2026-10-27T13:32:24.690Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "detailAttemptedAt": "2026-10-27T13:32:24.690Z"
+      "detailAttemptedAt": "2026-10-27T13:37:48.694Z",
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "e6c101de868eb84a3b",
@@ -312,8 +312,8 @@
       "discoveredAt": "2026-10-27T13:32:24.690Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源返回 HTTP 405",
-      "detailAttemptedAt": "2026-10-27T13:32:24.690Z"
+      "detailAttemptedAt": "2026-10-27T13:37:48.694Z",
+      "detailFailure": "来源返回 HTTP 405"
     }
   ],
   "excluded": [],
