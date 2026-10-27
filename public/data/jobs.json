@@ -1,82 +1,237 @@
 {
-  "updatedAt": "2026-10-27T13:03:38.271Z",
-  "mode": "search",
+  "schemaVersion": 2,
+  "updatedAt": "2026-10-27T13:25:40.512Z",
+  "mode": "enriched",
   "jobs": [
     {
-      "id": "3a076ff7582281a65b",
-      "title": "分布式数据库专家招聘 - 智联招聘",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "【招聘岗位】开发、测试、算法、数据岗全年在招，全国均有岗位在招聘(北上广深、南京、成都、杭州、西安、东莞等)，接受考研考公没上岸、空档，延毕、应届 ... AI交付工程师FDE（ForwardDeploymentEngineer），面向大型制造企业，负责驻场解决大模型落地时的架构设计、混合部署、微调优化以及工程高可用等问 ... 相关招聘 海南金洋房地产开发公司招聘网池州贵池区日结兼职深圳市众创空间招聘plc产品调试招聘安发展招聘泡沫工厂货车司机招聘中广核管理人员招聘钢管厂天车工招聘中牟招聘行政经理石家庄工地施工员招聘信息",
-      "source": "www.zhaopin.com",
-      "url": "https://www.zhaopin.com/zhaopin/809acac6b86845fbabf98831381e8719/",
-      "discoveredAt": "2026-10-27T13:03:38.151Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "00c21e6b950b3ef149",
-      "title": "中国市场人才市场招聘数据分析招聘信息 - 智联招聘",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "招聘人数：1‑2人汇报对象：产品总监工作地点：上海（总部，可接受少量出差）薪资范围：底薪+项目奖金+年度绩效奖金（综合月薪20K‑40K）岗位职责负责B ... 岗位职责1.负责搭建并优化部门运营数据管理模型，统筹运营生产全流程的数据收集、整理、统计工作，确保数据真实、准确、完整。2.定期开展运营数据",
-      "source": "www.zhaopin.com",
-      "url": "https://www.zhaopin.com/zhaopin/76065326de6440f49bf371d7dead098c/",
-      "discoveredAt": "2026-10-27T13:03:38.151Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "baec431a72050e24fe",
-      "title": "数据分析师毕业生招聘信息 - 智联招聘",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "【波司登数据分析员岗位职责】负责服装进销存、销售、库存数据分析，跟踪售罄、库龄、连带率，输出周/月报表；监控滞销款，提供调货、清仓、补货的数据 ... 岗位简述面向大模型多模态数据集，对音频、图片、视频...",
-      "source": "www.zhaopin.com",
-      "url": "https://www.zhaopin.com/zhaopin/36feef16c7ce49d08393672f153ed357/",
-      "discoveredAt": "2026-10-27T13:03:38.151Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "0fad30daa475f1df9e",
-      "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "PCB工程师射频工程师FPGA工程师天线工程师单片机工程师DSP工程师驱动开发嵌入式软件开发嵌入式硬件开发信号完整性工程师硬件工程师硬件测试工程师电磁兼容工程师(EMC)硬件产品经理ARM ... 自动化测试功能测试性能测试游戏测试软件测试移动端测试测试开发测试工程师测试经理/主管硬件测试工程师 ... 爬虫数据挖掘工程师数据分析师商业数据分析数据建模临床数据分析数据库开发工程师数据仓库工程师数据治理BI工程师ETL工程师大数据开发工程师数据开发数据采集 ... 推荐算法大模型算法搜索算法导航算法自然语言处理(NLP)规控算法SLAM算法机器视觉飞控算法风控算法图像算法语音识别深度学习机器学习算法工程师高性能计算工程师",
+      "id": "061245dd1dd31ef151",
+      "url": "https://www.liepin.com/a/78457425.shtml",
       "source": "www.liepin.com",
-      "url": "https://www.liepin.com/company-jobs/9777887/",
-      "discoveredAt": "2026-10-27T13:03:38.151Z",
-      "verification": "search-result",
-      "demo": false
+      "region": "内地",
+      "discoveredAt": "2026-10-27T13:03:38.152Z",
+      "demo": false,
+      "title": "海外销售总监",
+      "company": "某知名家电上市公司",
+      "city": "上海",
+      "degree": "本科",
+      "skills": [
+        "英语"
+      ],
+      "salaryMin": 50000,
+      "salaryMax": 80000,
+      "currency": "CNY",
+      "salaryPeriod": "月",
+      "postedAt": "2026-08-03T18:12:56+08:00",
+      "description": "1. 战略规划与市场布局\n深度研判海外目标市场的照明行业政策、市场需求、竞争格局及渠道生态，制定海外年度销售战略、市场规划与落地路径图，拆解营收、利润、回款、市场占有率等核心经营指标，统筹落地执行并对整体业绩结果全权负责。以东南亚核心市场为突破口，优化业务布局，挖掘新市场、新渠道、新客户机会，搭建可持续增长的海外照明业务体系。\n2. 渠道开拓与经销商体系搭建\n主导海外经销商、代理商、工程商、照明批发商等渠道资源的开发与筛选，搭建标准化核心渠道体系，建立长期战略合作生态。制定渠道政策、价格体系、授信管理及激励方案，推动渠道下沉与覆盖，快速扩大海外销售网络。独立对接海外大型照明经销商、连锁建材超市、工程商及中资出海企业等核心客户资源，精准挖掘客户需求，推动产品导入与订单转化。\n3. 大客户经营与订单获取\n统筹开拓海外交通部、市政单位、头部 EPC 总包、ICT 集成商、本土照明龙头及中资工程资源，建立大客户资源库并持续深耕。负责大客户商务谈判、合同签订、订单跟进及全周期回款管理，攻坚规模化订单及重点项目。推动智慧路灯、市政道路照明、工业照明、商业照明等 To B/G 产品的海外市场渗透，实现业绩稳步增长。\n\n任职要求：\n1. 统招本科及以上学历，8 年以上海外销售经验，其中 5 年以上照明/建材/家电/工业\n品等相关行业海外销售或大区业务操盘经验，3 年以上团队管理经验。具备外贸销售\n背景且业绩突出者亦可重点考虑。\n2. 精通海外 B2B 销售模式，熟悉经销商/代理商体系搭建与管理、渠道政策制定及大\n客户开发逻辑。现阶段以东南亚市场渠道资源为优先，兼具中东、非洲等区域经验者\n更佳。了解智慧路灯、市政照明、工业照明等 To B/G 产品知识及海外工程商务流程者\n优先。\n3. 英语流利，可作为工作语言独立进行商务谈判与汇报；具备极强的市场布局、渠\n道搭建、大客户公关及订单攻坚能力，经营思维突出，结果导向意识强。\n4. 具备优质的海外经销商、工程商、大型建材连锁或市政/EPC 核心人脉资源者优先；有从 0 到 1 搭建海外渠道体系并成功实现业绩突破的实战案例者优先；具备智慧城市大型项目操盘经验者优先。\n5. 具备极强的抗压能力、跨文化沟通能力和团队领导力，能够适配高频海外出差，\n接受高强度的业务攻坚节奏。",
+      "category": "待核实",
+      "fieldEvidence": {
+        "title": {
+          "method": "schema.org/JobPosting",
+          "field": "title",
+          "quote": "海外销售总监"
+        },
+        "company": {
+          "method": "schema.org/JobPosting",
+          "field": "hiringOrganization.name",
+          "quote": "某知名家电上市公司"
+        },
+        "city": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address",
+          "quote": "上海"
+        },
+        "degree": {
+          "method": "page-text",
+          "quote": "学历：本科"
+        },
+        "skills": {
+          "method": "requirements-text",
+          "quote": "市政照明、工业照明等 To B/G 产品知识及海外工程商务流程者\n优先。\n3. 英语流利，可作为工作语言独立进行商务谈判与汇报；具备极强的市场布局、渠\n道搭建、大客户公关及订单攻坚能力，经营思维突出，结果导向意识强"
+        },
+        "salaryMin": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "50000"
+        },
+        "salaryMax": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "80000"
+        },
+        "currency": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "CNY"
+        },
+        "salaryPeriod": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "月"
+        },
+        "postedAt": {
+          "method": "schema.org/JobPosting",
+          "field": "datePosted",
+          "quote": "2026-08-03T18:12:56+08:00"
+        }
+      },
+      "detailFetchedAt": "2026-10-27T13:25:42.906Z",
+      "verification": "structured-detail",
+      "status": "open-unconfirmed",
+      "assessable": true,
+      "missingFields": [
+        "experience",
+        "deadline"
+      ],
+      "detailMethod": "structured"
     },
     {
-      "id": "27301161928b4370a2",
-      "title": "嘉定区招聘来啦→126家企业、429个岗位、招聘1312人",
-      "company": null,
+      "id": "9d015b26442e387e4a",
+      "url": "https://www.liepin.com/job/1983054453.shtml",
+      "source": "www.liepin.com",
       "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "２７．上海祥乐田村电化工业有限公司 ... 带货主播（兼职）、带货主播（全职）、抖音中控（全职）、抖音客服（全职）、物流储备干部、食品原料销售工程师（全职）、美妆原料销售工程师（全职）、销售助理（全职）",
-      "source": "www.shanghai.gov.cn",
-      "url": "https://www.shanghai.gov.cn/nw17239/20261020/9fe6f22b673848b0893b264f35ecf127.html",
       "discoveredAt": "2026-10-27T13:03:38.151Z",
-      "verification": "search-result",
-      "demo": false
+      "demo": false,
+      "title": "区域销售总监",
+      "company": "深圳市泰永电气科技有限公司",
+      "city": "上海-闵行区",
+      "degree": "专科",
+      "salaryMin": 30000,
+      "salaryMax": 50000,
+      "currency": "CNY",
+      "salaryPeriod": "月",
+      "postedAt": "2026-08-25T10:14:21+08:00",
+      "description": "岗位职责：\n1.负责华东区域能源行业（侧重储能领域）的市场开拓与销售目标达成，制定并执行区域销售策略。\n2.维护现有储能行业客户资源，挖掘潜在客户需求，推动项目合作与订单落地。\n3.统筹区域销售团队管理工作，包括团队组建、目标分解、过程指导及业绩考核。\n4.分析区域市场动态与竞品信息，定期反馈市场趋势及客户需求，为产品优化提供建议。\n\n任职要求：\n1.大专及以上学历，5年以上能源行业销售经验，具备储能领域客户资源者优先。\n2.熟悉华东区域能源市场，有独立操盘区域销售项目成功案例。\n3.具备团队管理经验，能高效协调内外部资源，推动团队目标达成。\n4.具备较强的市场洞察力、商务谈判能力及抗压能力，适应短期出差。\n备注：办公地点在华东区域都可以。",
+      "skills": [],
+      "category": "待核实",
+      "fieldEvidence": {
+        "title": {
+          "method": "schema.org/JobPosting",
+          "field": "title",
+          "quote": "区域销售总监"
+        },
+        "company": {
+          "method": "schema.org/JobPosting",
+          "field": "hiringOrganization.name",
+          "quote": "深圳市泰永电气科技有限公司"
+        },
+        "city": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address",
+          "quote": "上海-闵行区"
+        },
+        "degree": {
+          "method": "page-text",
+          "quote": "学历：大专"
+        },
+        "salaryMin": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "30000"
+        },
+        "salaryMax": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "50000"
+        },
+        "currency": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "CNY"
+        },
+        "salaryPeriod": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "月"
+        },
+        "postedAt": {
+          "method": "schema.org/JobPosting",
+          "field": "datePosted",
+          "quote": "2026-08-25T10:14:21+08:00"
+        }
+      },
+      "detailFetchedAt": "2026-10-27T13:25:42.404Z",
+      "verification": "structured-detail",
+      "status": "open-unconfirmed",
+      "assessable": true,
+      "missingFields": [
+        "experience",
+        "deadline"
+      ],
+      "detailMethod": "structured"
     },
+    {
+      "id": "cff37ae5d284f1d654",
+      "url": "https://www.liepin.com/a/78486433.shtml",
+      "source": "www.liepin.com",
+      "region": "内地",
+      "discoveredAt": "2026-10-27T13:03:38.152Z",
+      "demo": false,
+      "title": "销售总监",
+      "company": "某上海医疗器械上市公司",
+      "city": "上海",
+      "salaryMin": 40000,
+      "salaryMax": 50000,
+      "currency": "CNY",
+      "salaryPeriod": "月",
+      "postedAt": "2026-07-31T15:27:59+08:00",
+      "description": "1.利用自有KOL专家资源，销售合富现有赋能产品，包括远程手术在线指导的医疗、教学及科研音视频集成系统平台（品牌名称：迈塔威），医院运营决策支持系统（品牌名称：指北塔），及正在开发的AI临床诊疗辅助系统CDSS等\n2.对于迈塔威和指北塔两项赋能项目，与各省市KOL建立横向课题及示范中心，向各基层医院进行推广落地。\n3.实施合富经销网络布局策略，搭建所负责的省地市合作伙伴的渠道。推动与合作伙伴的多元合作模式，包括但不限于推动成立合资公司、个案业务合作、经销渠道合作等。\n4.开发辖区内临床检验（IVD）及耗材集采新业务。\n5.提出KOL用户需求，作为各项新赋能项目的研发及迭代升级的参考。硬性任职资格（筛选底线）",
+      "skills": [],
+      "category": "待核实",
+      "fieldEvidence": {
+        "title": {
+          "method": "schema.org/JobPosting",
+          "field": "title",
+          "quote": "销售总监"
+        },
+        "company": {
+          "method": "schema.org/JobPosting",
+          "field": "hiringOrganization.name",
+          "quote": "某上海医疗器械上市公司"
+        },
+        "city": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address",
+          "quote": "上海"
+        },
+        "salaryMin": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "40000"
+        },
+        "salaryMax": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "50000"
+        },
+        "currency": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "CNY"
+        },
+        "salaryPeriod": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "月"
+        },
+        "postedAt": {
+          "method": "schema.org/JobPosting",
+          "field": "datePosted",
+          "quote": "2026-07-31T15:27:59+08:00"
+        }
+      },
+      "detailFetchedAt": "2026-10-27T13:25:42.525Z",
+      "verification": "structured-detail",
+      "status": "open-unconfirmed",
+      "assessable": false,
+      "missingFields": [
+        "degree",
+        "experience",
+        "deadline"
+      ],
+      "detailMethod": "structured"
+    }
+  ],
+  "leads": [
     {
       "id": "74763f48c9466fe0da",
       "title": "【上海 大宗供应链方向商业化负责人（AI大模型公司）招聘】-千帆策略(北京)管理咨询有限公司上海招聘信息-猎聘",
@@ -90,7 +245,9 @@
       "url": "https://www.liepin.com/job/1985895077.shtml",
       "discoveredAt": "2026-10-27T13:03:38.151Z",
       "verification": "search-result",
-      "demo": false
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "detailAttemptedAt": "2026-10-27T13:25:40.512Z"
     },
     {
       "id": "bb884ffbab5f396f36",
@@ -105,217 +262,9 @@
       "url": "https://www.liepin.com/job/1968607013.shtml",
       "discoveredAt": "2026-10-27T13:03:38.151Z",
       "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "245a28dacf9894182c",
-      "title": "【上海KA大客户销售招聘网_2026年上海KA大客户销售招聘信息】-上海猎聘-第2页",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "上海准入和销售经理招聘上海咖啡机销售主任招聘上海储能市场客户经理招聘上海战略大客户总经理招聘上海阿里巴巴渠道客户经理招聘上海区域全国重点客户经理招聘上海代理线高级销售工程师招聘上海教材推广招聘上海AI解决方案高级客户经理招聘上海监狱监管行业大客户经理招聘上海软件行业销售招聘上海物流KA销售招聘上海砷化镓芯片销售招聘上海调味品销售主任招聘上海电容器销售经理招聘上海AI销售管培生招聘上海资深业代招聘上海OTC大客",
-      "source": "www.liepin.com",
-      "url": "https://www.liepin.com/city-sh/zpkadakehuxiaoshou03/pn1/",
-      "discoveredAt": "2026-10-27T13:03:38.151Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "9d015b26442e387e4a",
-      "title": "【上海 区域销售总监招聘】-深圳市泰永电气科技有限公司上海招聘信息-猎聘",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "区域销售总监 30-50k · 上海-闵行区 5-10年 大专 招1人 9月29日更新 · 投简历 聊一聊 · 收藏 · 微信分享扫码 · 五险一金 年终奖金 发展空间大 公司规模大 · 农先生 一周前在线 已认证 · 招聘经理 · 深圳市泰永电气科技有限公司 ...",
-      "source": "www.liepin.com",
-      "url": "https://www.liepin.com/job/1983054453.shtml",
-      "discoveredAt": "2026-10-27T13:03:38.151Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "cff37ae5d284f1d654",
-      "title": "【上海 销售总监招聘】-猎头顾问上海招聘信息-猎聘",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "1.利用自有KOL专家资源，销售合富现有赋能产品，包括远程手术在线指导的医疗、教学及科研音视频集成系统平台（品牌名称：迈塔威），医院运营决策支持系统（品牌名称：指北塔），及正在开发的AI临床诊疗辅助系统CDSS等 2.对于迈塔威和指北塔两项赋能项目，与各省市KOL建立横向课题及示范中心，向各基层医院进行推广落地。 3.实施合富经销网络布局策略，搭建所负责的省地市合作伙伴的渠道。推动与合作伙伴的多元合作模式，包括但不限于推动成立合资公司、个案业务合作、经销渠道合作等。 4.开发辖区内临床检验（IVD）及耗材集采新业务。 5.提出KOL用户需求，作为各项新赋能项目的研发及迭代升级的参考。硬性任职资格（筛选底线）",
-      "source": "www.liepin.com",
-      "url": "https://www.liepin.com/a/78486433.shtml",
-      "discoveredAt": "2026-10-27T13:03:38.152Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "061245dd1dd31ef151",
-      "title": "【上海 海外销售总监招聘】-猎头顾问上海招聘信息-猎聘",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "大客户经营与订单获取 统筹开拓海外交通部、市政单位、头部 EPC 总包、ICT 集成商、本土照明龙头及中资工程资源，建立大客户资源库并持续深耕。负责大客户商务谈判、合同签订、订单跟进及全周期回款管理，攻坚规模化订单及重点项目。推动智慧路灯、市政道路照明、工业照明、商业照明等 To B/G 产品的海外市场渗透，实现业绩稳步增长。 任职要求： 1. 统招本科及以上学历，8 年以上海外销售经验，其中 5 年以上照明/建材/家电/工业 品等相关行业",
-      "source": "www.liepin.com",
-      "url": "https://www.liepin.com/a/78457425.shtml",
-      "discoveredAt": "2026-10-27T13:03:38.152Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "24d23ef862a578d4b3",
-      "title": "中华人民共和国国民经济和社会发展 第十五个五年规划纲要 2026 年3 月",
-      "company": null,
-      "region": "内地",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "中华人民共和国国民经济和社会发展 · 第十五个五年规划纲要",
-      "source": "www.ndrc.gov.cn",
-      "url": "https://www.ndrc.gov.cn/fggz/fzzlgh/gjfzgh/202603/U020260317369114704096.pdf",
-      "discoveredAt": "2026-10-27T13:03:38.152Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "07f93da2b4770f2e97",
-      "title": "香港全職兼職搵工及招聘平台 | 最新職位空缺 | CTgoodjobs",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Blue aspires to build a true digital life insurance business that serves HK customers. We consider ourselves to be the first digital life insurer in Hong Kong. We’re all about evolution through creativity and excited with the thought of changing an entire industry for the better.",
-      "source": "www.ctgoodjobs.hk",
-      "url": "https://www.ctgoodjobs.hk/zh",
-      "discoveredAt": "2026-10-27T13:03:38.270Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "d048da306e60084dec",
-      "title": "招聘 Jobs in Hong Kong - Oct 2026 | Jobsdb",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Find your ideal job at Jobsdb with 10687 招聘 jobs found in Hong Kong. View all our 招聘 vacancies now with new jobs added daily!",
-      "source": "hk.jobsdb.com",
-      "url": "https://hk.jobsdb.com/%E6%8B%9B%E8%81%98-jobs",
-      "discoveredAt": "2026-10-27T13:03:38.270Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "845fb0ee5ed379d70c",
-      "title": "兼職 Jobs in Hong Kong - Oct 2026 | Jobsdb",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Find your ideal job at Jobsdb with 4076 兼職 jobs found in Hong Kong. View all our 兼職 vacancies now with new jobs added daily!",
-      "source": "hk.jobsdb.com",
-      "url": "https://hk.jobsdb.com/%E5%85%BC%E8%81%B7-jobs",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "e6e4cf840a05e9cfdc",
-      "title": "75+ 兼職, 臨時工 Jobs, Employment October 17, 2026| Indeed",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "85 兼職, 臨時工 jobs available on Indeed.com. Apply to Digital Assistant, Receptionist, 二級行政助理 (part Time) and more!",
-      "source": "hk.indeed.com",
-      "url": "https://hk.indeed.com/q-%E5%85%BC%E8%81%B7,-%E8%87%A8%E6%99%82%E5%B7%A5-jobs.html",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "e1edca1ef13dd777b5",
-      "title": "26,000+ Hong Kong Jobs, Employment May 21, 2026| Indeed",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "26,153 Hong Kong jobs available on Indeed.com. Apply to 技術員, Customer Service Representative, Income Manager and more!",
-      "source": "hk.indeed.com",
-      "url": "https://hk.indeed.com/q-hong-kong-jobs.html",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "e6c101de868eb84a3b",
-      "title": "Jobs Search, employment and career site in Hong Kong - CTgoodjobs",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "CTgoodjobs is a leading jobs, employment and recruitment portal in Hong Kong, featuring part-time/full-time job vacancies, interview skills and tips, career news, cover letter/CV sample and many more. 香港領先求職招聘網站CTgoodjobs.hk，提供各行業全職/兼職好工、搵工面...",
-      "source": "jobs.ctgoodjobs.hk",
-      "url": "https://jobs.ctgoodjobs.hk/job/10278570/senior-data-analyst-data-management",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "254e575cd961d2183f",
-      "title": "HK01 Company Limited Jobs in Hong Kong - Oct 2026 | Jobsdb",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Find your ideal job on Jobsdb with 7 HK01 Company Limited jobs (7 at HK01 Company Limited) listed in Hong Kong. View all the HK01 Company Limited vacancies now with new jobs added daily!",
-      "source": "hk.jobsdb.com",
-      "url": "https://hk.jobsdb.com/HK01-Company-Limited-jobs",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "be4a1ad381e891946c",
-      "title": "營運Jobs in 香港- May 2026",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Find your ideal job at Jobsdb with 11485 營運 jobs found in Hong Kong. View all our 營運 vacancies now with new jobs added daily!",
-      "source": "hk.jobsdb.com",
-      "url": "https://hk.jobsdb.com/%E7%87%9F%E9%81%8B-jobs",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
-    },
-    {
-      "id": "25ffaba364f081348c",
-      "title": "25+ 香港 代表有限公司 Jobs, Employment in Choi Hung, Kowloon October 20, 2026| Indeed",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "35 香港 代表有限公司 jobs available in Choi Hung, Kowloon on Indeed.com. Apply to Secretary, Accounts Assistant, Secretarial Assistant and more!",
-      "source": "hk.indeed.com",
-      "url": "https://hk.indeed.com/q-%E9%A6%99%E6%B8%AF-%E4%BB%A3%E8%A1%A8%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-l-choi-hung,-kowloon-jobs.html",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "demo": false,
+      "detailFailure": "职位详情缺少明确名称、公司或完整描述",
+      "detailAttemptedAt": "2026-10-27T13:25:40.512Z"
     },
     {
       "id": "c9f5652172cd8f0bd5",
@@ -330,144 +279,183 @@
       "url": "https://csboa1.csb.gov.hk/csboa/jve/JVE_003_text.action?jobid=50354&languageType=1",
       "discoveredAt": "2026-10-27T13:03:38.271Z",
       "verification": "search-result",
-      "demo": false
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "detailAttemptedAt": "2026-10-27T13:25:40.512Z"
+    },
+    {
+      "id": "e6c101de868eb84a3b",
+      "title": "Jobs Search, employment and career site in Hong Kong - CTgoodjobs",
+      "company": null,
+      "region": "香港",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "CTgoodjobs is a leading jobs, employment and recruitment portal in Hong Kong, featuring part-time/full-time job vacancies, interview skills and tips, career news, cover letter/CV sample and many more. 香港領先求職招聘網站CTgoodjobs.hk，提供各行業全職/兼職好工、搵工面...",
+      "source": "jobs.ctgoodjobs.hk",
+      "url": "https://jobs.ctgoodjobs.hk/job/10278570/senior-data-analyst-data-management",
+      "discoveredAt": "2026-10-27T13:03:38.271Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源返回 HTTP 405",
+      "detailAttemptedAt": "2026-10-27T13:25:40.512Z"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "3a076ff7582281a65b",
+      "title": "分布式数据库专家招聘 - 智联招聘",
+      "url": "https://www.zhaopin.com/zhaopin/809acac6b86845fbabf98831381e8719/",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "00c21e6b950b3ef149",
+      "title": "中国市场人才市场招聘数据分析招聘信息 - 智联招聘",
+      "url": "https://www.zhaopin.com/zhaopin/76065326de6440f49bf371d7dead098c/",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "baec431a72050e24fe",
+      "title": "数据分析师毕业生招聘信息 - 智联招聘",
+      "url": "https://www.zhaopin.com/zhaopin/36feef16c7ce49d08393672f153ed357/",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "0fad30daa475f1df9e",
+      "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
+      "url": "https://www.liepin.com/company-jobs/9777887/",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "27301161928b4370a2",
+      "title": "嘉定区招聘来啦→126家企业、429个岗位、招聘1312人",
+      "url": "https://www.shanghai.gov.cn/nw17239/20261020/9fe6f22b673848b0893b264f35ecf127.html",
+      "reason": "招聘活动、资讯或汇总页"
+    },
+    {
+      "id": "245a28dacf9894182c",
+      "title": "【上海KA大客户销售招聘网_2026年上海KA大客户销售招聘信息】-上海猎聘-第2页",
+      "url": "https://www.liepin.com/city-sh/zpkadakehuxiaoshou03/pn1/",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "24d23ef862a578d4b3",
+      "title": "中华人民共和国国民经济和社会发展 第十五个五年规划纲要 2026 年3 月",
+      "url": "https://www.ndrc.gov.cn/fggz/fzzlgh/gjfzgh/202603/U020260317369114704096.pdf",
+      "reason": "附件或非网页内容，暂不解析"
+    },
+    {
+      "id": "07f93da2b4770f2e97",
+      "title": "香港全職兼職搵工及招聘平台 | 最新職位空缺 | CTgoodjobs",
+      "url": "https://www.ctgoodjobs.hk/zh",
+      "reason": "招聘平台首页"
+    },
+    {
+      "id": "d048da306e60084dec",
+      "title": "招聘 Jobs in Hong Kong - Oct 2026 | Jobsdb",
+      "url": "https://hk.jobsdb.com/%E6%8B%9B%E8%81%98-jobs",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "845fb0ee5ed379d70c",
+      "title": "兼職 Jobs in Hong Kong - Oct 2026 | Jobsdb",
+      "url": "https://hk.jobsdb.com/%E5%85%BC%E8%81%B7-jobs",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "e6e4cf840a05e9cfdc",
+      "title": "75+ 兼職, 臨時工 Jobs, Employment October 17, 2026| Indeed",
+      "url": "https://hk.indeed.com/q-%E5%85%BC%E8%81%B7,-%E8%87%A8%E6%99%82%E5%B7%A5-jobs.html",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "e1edca1ef13dd777b5",
+      "title": "26,000+ Hong Kong Jobs, Employment May 21, 2026| Indeed",
+      "url": "https://hk.indeed.com/q-hong-kong-jobs.html",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "254e575cd961d2183f",
+      "title": "HK01 Company Limited Jobs in Hong Kong - Oct 2026 | Jobsdb",
+      "url": "https://hk.jobsdb.com/HK01-Company-Limited-jobs",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "be4a1ad381e891946c",
+      "title": "營運Jobs in 香港- May 2026",
+      "url": "https://hk.jobsdb.com/%E7%87%9F%E9%81%8B-jobs",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "25ffaba364f081348c",
+      "title": "25+ 香港 代表有限公司 Jobs, Employment in Choi Hung, Kowloon October 20, 2026| Indeed",
+      "url": "https://hk.indeed.com/q-%E9%A6%99%E6%B8%AF-%E4%BB%A3%E8%A1%A8%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-l-choi-hung,-kowloon-jobs.html",
+      "reason": "搜索结果或岗位汇总页"
     },
     {
       "id": "a2f4448f8bce0546d7",
       "title": "【勞工處招聘會2026(十月更新)】飲食、零售、建造、保安等最新職位空缺一覽表(內附勞工處招聘會10大常見問題)",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "You need to enable JavaScript to run this app",
-      "source": "civilservice.ctgoodjobs.hk",
       "url": "https://civilservice.ctgoodjobs.hk/article/46107/%E5%8B%9E%E5%B7%A5%E8%99%95%E6%8B%9B%E8%81%98%E6%9C%832026-%E9%A3%B2%E9%A3%9F%E9%9B%B6%E5%94%AE%E5%BB%BA%E9%80%A0%E4%BF%9D%E5%AE%89-%E6%9C%80%E6%96%B0%E8%81%B7%E4%BD%8D%E7%A9%BA%E7%BC%BA-%E6%8B%9B%E8%81%9810%E5%A4%A7%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C-%E6%90%B5%E5%B7%A5",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "reason": "招聘活动、资讯或汇总页"
     },
     {
       "id": "38780ad31b950fb353",
       "title": "100+ Hong Kong Warehouse Jobs, Employment May 13, 2026| Indeed",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "163 Hong Kong Warehouse jobs available on Indeed.com. Apply to Warehouse Worker, 倉務員, Warehouse Supervisor and more!",
-      "source": "hk.indeed.com",
       "url": "https://hk.indeed.com/q-hong-kong-warehouse-jobs.html",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "reason": "搜索结果或岗位汇总页"
     },
     {
       "id": "a829c7f431832023a6",
       "title": "觀塘區牛頭角的僱員再培訓職位- 10 月2026 - Jobsdb Hong Kong",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "在 Jobsdb 搜尋理想職位，於 觀塘區 牛頭角 找到 9 個 僱員再培訓 職位。立即查看所有 僱員再培訓 空缺，每日新增職位！",
-      "source": "hk.jobsdb.com",
       "url": "https://hk.jobsdb.com/zh/%E5%83%B1%E5%93%A1%E5%86%8D%E5%9F%B9%E8%A8%93-jobs/in-%E8%A7%80%E5%A1%98%E5%8D%80-%E7%89%9B%E9%A0%AD%E8%A7%92",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "reason": "搜索结果或岗位汇总页"
     },
     {
       "id": "d047651387d93c8035",
       "title": "九龍城區 啟德 的 Qa 職位 - 10 月 2026 | Jobsdb",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "在 Jobsdb 搜尋理想職位，於 九龍城區 啟德 找到 82 個 Qa 職位。立即查看所有 Qa 空缺，每日新增職位！",
-      "source": "hk.jobsdb.com",
       "url": "https://hk.jobsdb.com/zh/qa-jobs/in-Kai-Tak-Kowloon-City-District",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "reason": "搜索结果或岗位汇总页"
     },
     {
       "id": "c6685ee2a29154bd68",
       "title": "75+ 註冊中醫師 Jobs, Employment October 26, 2026| Indeed",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "79 註冊中醫師 jobs available on Indeed.com. Apply to 中醫師 and more!",
-      "source": "hk.indeed.com",
       "url": "https://hk.indeed.com/q-%E8%A8%BB%E5%86%8A%E4%B8%AD%E9%86%AB%E5%B8%AB-jobs.html",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "reason": "搜索结果或岗位汇总页"
     },
     {
       "id": "3243c648e86881c8b2",
       "title": "100+ 兼職中醫 Jobs, Employment October 26, 2026| Indeed",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "132 兼職中醫 jobs available on Indeed.com. Apply to 中醫師, 中醫診所助理 and more!",
-      "source": "hk.indeed.com",
       "url": "https://hk.indeed.com/q-%E5%85%BC%E8%81%B7%E4%B8%AD%E9%86%AB-jobs.html",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "reason": "搜索结果或岗位汇总页"
     },
     {
       "id": "39e303c801b954f86c",
       "title": "【空姐入行2026】周圍飛又有人工收！月薪可達$2萬 一文睇晒身高/學歷/語文能力要求（附最新招聘資訊)",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "空姐（空中服務員）於2026年在香港仍然是年輕人爭相投身的理想職業之一。國泰航空、香港航空等多間本地及國際航空公司積極招聘，入行起薪加上飛行津貼、外站獎金，可達$20,000，晉升後月入更多。只要中學畢業、語言能力和形象達標，就能擁有周圍飛的機會和穩定收入。下文整合航空公司最新招聘要求、入職流程、晉升機制與專業訓練，並解答求職新手最常見疑問。",
-      "source": "cthr.ctgoodjobs.hk",
       "url": "https://cthr.ctgoodjobs.hk/HRNews/%E7%A9%BA%E5%A7%90%E5%85%A5%E8%A1%8C-%E4%BA%BA%E5%B7%A5-%E8%BA%AB%E9%AB%98-%E5%AD%B8%E6%AD%B7-%E8%AA%9E%E6%96%87%E8%83%BD%E5%8A%9B%E8%A6%81%E6%B1%82/43984",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "reason": "招聘活动、资讯或汇总页"
     },
     {
       "id": "a382e46aaed7dc5962",
       "title": "25+ 兼職辦公室清潔員 Jobs, Employment in Yuen Long District, New Territories October 17, 2026| Indeed",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "29 兼職辦公室清潔員 jobs available in Yuen Long District, New Territories on Indeed.com. Apply to 清潔員, 店員, 潔淨員 and more!",
-      "source": "hk.indeed.com",
       "url": "https://hk.indeed.com/q-%E5%85%BC%E8%81%B7%E8%BE%A6%E5%85%AC%E5%AE%A4%E6%B8%85%E6%BD%94%E5%93%A1-l-yuen-long-district,-new-territories-jobs.html",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "reason": "搜索结果或岗位汇总页"
     },
     {
       "id": "4bab202def067be3ed",
       "title": "25+ Cafe Assistant Jobs, Employment in Wan Chai, Hong Kong Island October 6, 2026| Indeed",
-      "company": null,
-      "region": "香港",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "40 Cafe Assistant jobs available in Wan Chai, Hong Kong Island on Indeed.com. Apply to Barista, Server, 店員 and more!",
-      "source": "hk.indeed.com",
       "url": "https://hk.indeed.com/q-cafe-assistant-l-wan-chai,-hong-kong-island-jobs.html",
-      "discoveredAt": "2026-10-27T13:03:38.271Z",
-      "verification": "search-result",
-      "demo": false
+      "reason": "搜索结果或岗位汇总页"
     }
   ],
+  "searchPreferences": null,
+  "searchUpdatedAt": "2026-10-27T13:03:38.271Z",
   "warnings": [],
-  "notice": "搜索结果为近一个月收录的招聘线索，可能包含汇总页或已结束岗位；非经核验的在招职位，发布时间、要求与薪资需以原公告为准。"
+  "stats": {
+    "discovered": 31,
+    "detailAttempts": 7,
+    "detailSuccess": 3,
+    "pending": 4,
+    "excluded": 24
+  },
+  "notice": "详情字段取自公开招聘页或 JobPosting 元数据，每个已提取要求附有来源证据；仍需在投递前核实在招状态、工作许可和所有门槛。未提取到的信息不会推测。"
 }
