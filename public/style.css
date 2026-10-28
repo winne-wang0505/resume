@@ -1368,3 +1368,18 @@ dialog::backdrop {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+#manualImport .full {
+  grid-column: 1 / -1;
+}
+#manualImport {
+  margin: 20px 0;
+}
+#manualImport textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+#sourceHealth p,
+#manualList p {
+  overflow-wrap: anywhere;
+}

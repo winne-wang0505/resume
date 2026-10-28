@@ -1,3 +1,4 @@
+import { cooling, updateHealth } from "./health.mjs";
 import { createHash } from "node:crypto";
 import { sourceURL, identifySource } from "./sources.mjs";
 import { eligibilityIssue, deadlineTime } from "./eligibility.mjs";
@@ -104,6 +105,7 @@ export async function retainHistory(
   let kept = 0,
     checked = 0,
     archived = 0;
+  let sourceHealth = current.sourceHealth || previous.sourceHealth || {};
   const historicalCandidates = [
     ...(previous.jobs || []),
     ...(previous.leads || []).filter(
@@ -157,6 +159,7 @@ export async function retainHistory(
       reason = pending?.detailFailure || "本轮未检索到，保留最近已读取的详情";
     if (
       !pending &&
+      !cooling(sourceHealth, identifySource(old.url)?.id, now) &&
       detailFetcher &&
       checked < recheckLimit &&
       now.getTime() -
@@ -170,6 +173,7 @@ export async function retainHistory(
     ) {
       checked++;
       const result = await detailFetcher(old);
+      sourceHealth = updateHealth(sourceHealth, [{ lead: old, result }], now);
       if (result.ok) {
         job = result.job;
         const disqualified = eligibilityIssue(job, prefs, { now });
@@ -248,6 +252,7 @@ export async function retainHistory(
     .slice(0, 200);
   return {
     ...current,
+    sourceHealth,
     schemaVersion: 3,
     jobs: deduped.jobs,
     leads,

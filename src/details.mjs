@@ -1,5 +1,7 @@
-import { lookup } from "node:dns/promises";
-import { setTimeout as delay } from "node:timers/promises";
+const lookup = async (...args) =>
+  (await import("node:dns/promises")).lookup(...args);
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+import { adaptOfficialPage } from "./adapters.mjs";
 import { sourceURL, classifyLink, identifySource } from "./sources.mjs";
 
 export function plainText(html = "") {
@@ -347,6 +349,8 @@ function employmentName(v) {
   );
 }
 export function extractDetail(html, lead, { now = new Date() } = {}) {
+  const adapted = adaptOfficialPage(html, lead);
+  if (adapted) html += adapted;
   const postings = structuredPostings(html);
   if (postings.length > 1)
     return { ok: false, reason: "页面包含多个职位，属于汇总页" };
@@ -663,6 +667,14 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
       quote: "香港公务员事务局",
     };
   }
+  if (adapted) {
+    for (const item of Object.values(evidence)) {
+      if (item.method === "schema.org/JobPosting") {
+        item.method = "official-embedded-json";
+        item.field = "mapped:" + item.field;
+      }
+    }
+  }
   const deadline = values.deadline;
   const deadlineTime = deadline
     ? deadline.includes("T")
@@ -779,12 +791,26 @@ export function createDetailFetcher({
   fetcher = fetch,
   resolver = lookup,
   timeout = 12000,
+  renderer = null,
+  renderLimit = 4,
 } = {}) {
+  let rendered = 0;
   const robots = new Map();
-  async function request(raw, region, maxBytes = 2000000) {
+  async function request(
+    raw,
+    region,
+    maxBytes = 2000000,
+    assets = false,
+    onlyOrigin = null,
+    authorize = null,
+  ) {
     let url = sourceURL(raw, region);
     if (!url) throw Error("目标或跳转地址不在允许的招聘来源范围");
     for (let n = 0; n < 4; n++) {
+      if (onlyOrigin && url.origin !== onlyOrigin)
+        throw Error("渲染禁止跨站跳转");
+      if (authorize && !(await authorize(url)))
+        throw Error("来源 robots.txt 不允许读取跳转路径");
       const addresses = await resolver(url.hostname, { all: true });
       if (!addresses.length || addresses.some((a) => !publicAddress(a.address)))
         throw Error("拒绝访问非公网地址");
@@ -826,7 +852,13 @@ export function createDetailFetcher({
         throw Error(`来源返回 HTTP ${res.status}`);
       }
       const type = res.headers.get("content-type") || "";
-      if (!/text\/html|application\/xhtml|text\/plain/i.test(type)) {
+      if (
+        !/text\/html|application\/xhtml|text\/plain/i.test(type) &&
+        !(
+          assets &&
+          /(?:java|ecma)script|application\/json|text\/css/i.test(type)
+        )
+      ) {
         await res.body?.cancel?.();
         throw Error("页面不是可解析文本");
       }
@@ -837,7 +869,7 @@ export function createDetailFetcher({
       if (!res.body?.getReader) {
         const body = await res.text();
         if (Buffer.byteLength(body) > maxBytes) throw Error("页面超过大小限制");
-        return { body, url: url.href };
+        return { body, url: url.href, type };
       }
       const reader = res.body.getReader(),
         chunks = [];
@@ -859,7 +891,7 @@ export function createDetailFetcher({
       } catch {
         body = Buffer.concat(chunks).toString("utf8");
       }
-      return { body, url: url.href };
+      return { body, url: url.href, type };
     }
     throw Error("跳转次数过多");
   }
@@ -867,20 +899,29 @@ export function createDetailFetcher({
     const u = sourceURL(lead.url, lead.region);
     if (!u) return { ok: false, reason: "来源不在支持范围" };
     try {
-      if (!robots.has(u.origin))
-        robots.set(
-          u.origin,
-          request(u.origin + "/robots.txt", lead.region, 512000)
-            .then((r) => r.body)
-            .catch((e) => {
-              if (/HTTP 404/.test(e.message)) return "";
-              throw e;
-            }),
-        );
-      const rules = await robots.get(u.origin);
-      if (!robotsAllowed(rules, u.href))
+      const canRead = async (target) => {
+        if (!robots.has(target.origin))
+          robots.set(
+            target.origin,
+            request(target.origin + "/robots.txt", lead.region, 512000)
+              .then((r) => r.body)
+              .catch((e) => {
+                if (/HTTP 404/.test(e.message)) return "";
+                throw e;
+              }),
+          );
+        return robotsAllowed(await robots.get(target.origin), target.href);
+      };
+      if (!(await canRead(u)))
         return { ok: false, reason: "来源 robots.txt 不允许自动读取此路径" };
-      const result = await request(u.href, lead.region);
+      const result = await request(
+        u.href,
+        lead.region,
+        2000000,
+        false,
+        null,
+        canRead,
+      );
       if (lead.discoveryOnly) {
         const links = [];
         for (const match of result.body.matchAll(
@@ -915,10 +956,37 @@ export function createDetailFetcher({
           discoveredLinks: links,
         };
       }
-      const extracted = extractDetail(result.body, {
+      let extracted = extractDetail(result.body, {
         ...lead,
         url: result.url,
       });
+      // Rendering is only attempted on public employer/campus pages, never on
+      // explicit security challenges or failed HTTP requests.
+      if (
+        !extracted.ok &&
+        renderer &&
+        rendered < renderLimit &&
+        ["企业官网", "校招／实习"].includes(identifySource(result.url)?.type) &&
+        !/captcha|verify you are human|access denied|安全验证|安全驗證|请完成验证|CF_APP_WAF|requestInfo/i.test(
+          result.body,
+        )
+      ) {
+        rendered++;
+        try {
+          const body = await renderer(result.url, {
+            request,
+            region: lead.region,
+            robotsAllowed,
+          });
+          const next = extractDetail(body, { ...lead, url: result.url });
+          if (next.ok) {
+            next.job.detailMethod += "+browser";
+            extracted = next;
+          }
+        } catch {
+          /* A rendering failure never replaces honest pending status. */
+        }
+      }
       if (!extracted.ok) {
         const visible = plainText(result.body);
         const shell =

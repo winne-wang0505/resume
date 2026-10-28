@@ -7,3 +7,6 @@ await copyFile("src/brief.mjs", "dist/src/brief.mjs");
 
 await copyFile("src/sources.mjs", "dist/src/sources.mjs");
 console.log("Built dist/ (static website and PWA)");
+
+for (const name of ["manual", "details", "adapters"])
+  await copyFile(`src/${name}.mjs`, `dist/src/${name}.mjs`);

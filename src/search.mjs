@@ -123,6 +123,7 @@ export function buildQuery(
     batch,
     p.sourceDay || 0,
     roles[0] || p.role,
+    p.sourceHealth || {},
   );
   const source = `(${selected.map((x) => "site:" + (x.search || x.host)).join(" OR ")})`;
   const entry = /应届|應屆|fresh|graduate|entry/i.test(p.experienceLevel || "")
@@ -188,6 +189,7 @@ export async function searchJobs(
   const day = chinaDay(now),
     ordinal = Math.floor(Date.parse(day + "T00:00:00Z") / 86400000);
   p.sourceDay = ordinal;
+  p.sourceHealth = previousIndex.sourceHealth || {};
   const limit = bounded(dailyBudget, 24, 1, 100),
     pages = bounded(maxPages, 2, 1, 3),
     detailLimit = bounded(maxDetails, 36, 1, 100);
@@ -214,7 +216,14 @@ export async function searchJobs(
     if (used >= limit) return null;
     if (calls && requestInterval) await delay(requestInterval);
     const { region, role, roleIndex, offset } = plan;
-    const selected = querySources(region, roleIndex, ordinal, role);
+    const selected = querySources(
+      region,
+      roleIndex,
+      ordinal,
+      role,
+      previousIndex.sourceHealth || {},
+    );
+    if (!selected.length) return null;
     const url = new URL("https://api.search.brave.com/res/v1/web/search");
     url.search = new URLSearchParams({
       q: buildQuery(p, region, [role], roleIndex),
@@ -342,6 +351,7 @@ export async function searchJobs(
     );
   const result = {
     schemaVersion: 3,
+    sourceHealth: previousIndex.sourceHealth || {},
     updatedAt: now.toISOString(),
     mode: "search",
     jobs,
@@ -423,6 +433,7 @@ export async function searchJobs(
   );
   const enriched = await enrichIndex(result, {
     detailFetcher,
+    sourceHealth: previousIndex.sourceHealth || {},
     maxDetails: detailLimit,
     now,
     cacheResolver: (lead) => {

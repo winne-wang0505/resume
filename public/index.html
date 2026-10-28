@@ -388,6 +388,55 @@
                 <summary id="excludedTitle">已过滤的页面</summary>
                 <div id="excludedList"></div>
               </details>
+              <details id="manualImportSection" class="pending-section">
+                <summary>粘贴岗位正文进行分析</summary>
+                <p class="form-note">
+                  适用于可以正常打开、但无法自动读取的岗位。只粘贴一个岗位的公开正文，包含“岗位职责”和“任职要求”小标题。仅保存在本机，不上传，也不表示已核实在招。
+                </p>
+                <form id="manualImport" class="form-grid">
+                  <label
+                    >岗位名称<input name="title" required maxlength="180"
+                  /></label>
+                  <label
+                    >招聘单位<input name="company" required maxlength="180"
+                  /></label>
+                  <label
+                    >地区<select name="region">
+                      <option>内地</option>
+                      <option>香港</option>
+                    </select></label
+                  >
+                  <label
+                    >工作地点<input name="city" required maxlength="120"
+                  /></label>
+                  <label class="full"
+                    >原公告链接（可选）<input
+                      name="url"
+                      type="url"
+                      placeholder="https://"
+                      maxlength="2000"
+                  /></label>
+                  <label class="full"
+                    >完整岗位正文<textarea
+                      name="text"
+                      required
+                      minlength="80"
+                      maxlength="30000"
+                      rows="10"
+                      placeholder="岗位职责：…&#10;任职要求：…&#10;薪资、截止日期等请一并粘贴；未披露的信息不会猜测。"
+                    ></textarea>
+                  </label>
+                  <p
+                    id="manualMessage"
+                    class="form-note full"
+                    role="status"
+                  ></p>
+                  <button type="submit" class="primary">
+                    保存到本机并分析
+                  </button>
+                </form>
+                <div id="manualList"></div>
+              </details>
               <button class="primary" id="generateBrief">
                 按当前档案重新分析
               </button>
@@ -405,6 +454,10 @@
                 <h3>数据更新状态</h3>
                 <p id="dataFreshness"></p>
                 <p id="coverageStatus" class="form-note"></p>
+                <details>
+                  <summary>来源读取健康状态</summary>
+                  <div id="sourceHealth"></div>
+                </details>
                 <details>
                   <summary>招聘来源与覆盖范围</summary>
                   <div id="sourceCatalog"></div>

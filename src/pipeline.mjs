@@ -1,3 +1,4 @@
+import { updateHealth, cooling } from "./health.mjs";
 import { classifyLink, identifySource } from "./sources.mjs";
 import { createDetailFetcher } from "./details.mjs";
 import { eligibilityIssue, normalizedMarket } from "./eligibility.mjs";
@@ -9,6 +10,7 @@ export async function enrichIndex(
     maxDetails = 36,
     now = new Date(),
     cacheResolver = () => null,
+    sourceHealth = input.sourceHealth || {},
   } = {},
 ) {
   const candidates = [...(input.jobs || []), ...(input.leads || [])].filter(
@@ -79,6 +81,7 @@ export async function enrichIndex(
       }
     }
   queue.splice(0, queue.length, ...balanced);
+  const healthResults = [];
   let index = 0,
     attempted = 0;
   async function worker() {
@@ -86,6 +89,16 @@ export async function enrichIndex(
       const n = index++,
         lead = queue[n];
       const cached = cacheResolver(lead);
+      const source = identifySource(lead.url);
+      if (!cached && cooling(sourceHealth, source?.id, now)) {
+        leads.push({
+          ...lead,
+          verification: "search-result",
+          detailFailure:
+            "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
+        });
+        continue;
+      }
       if (!cached && attempted >= maxDetails) {
         leads.push({
           ...lead,
@@ -103,6 +116,7 @@ export async function enrichIndex(
       } catch {
         result = { ok: false, reason: "来源读取失败" };
       }
+      if (!cached) healthResults.push({ lead, result });
       if (result.ok) {
         const job = result.job;
         if (job.status === "closed") {
@@ -143,6 +157,7 @@ export async function enrichIndex(
   leads.sort((a, b) => a.id.localeCompare(b.id));
   return {
     schemaVersion: 3,
+    sourceHealth: updateHealth(sourceHealth, healthResults, now),
     searchUsage: input.searchUsage || null,
     coverage: input.coverage || null,
     updatedAt: now.toISOString(),

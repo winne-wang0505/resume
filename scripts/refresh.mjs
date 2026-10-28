@@ -1,4 +1,6 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { createDetailFetcher } from "../src/details.mjs";
+import { createBrowserRenderer } from "../src/browser.mjs";
 import { searchJobs } from "../src/search.mjs";
 const role = process.env.JOB_ROLE || "数据分析";
 const preferences = {
@@ -20,7 +22,21 @@ if (!process.env.BRAVE_SEARCH_API_KEY) {
 const previousIndex = JSON.parse(
   await readFile("public/data/jobs.json", "utf8"),
 );
-const result = await searchJobs(preferences, { previousIndex });
+let browser;
+let result;
+try {
+  if (process.env.JOB_BROWSER_RENDER === "true")
+    browser = await createBrowserRenderer();
+  result = await searchJobs(preferences, {
+    previousIndex,
+    detailFetcher: createDetailFetcher({
+      renderer: browser?.render,
+      renderLimit: 4,
+    }),
+  });
+} finally {
+  await browser?.close();
+}
 if (result.warnings.length)
   console.warn("Search notes: " + result.warnings.join("；"));
 await mkdir("public/data", { recursive: true });

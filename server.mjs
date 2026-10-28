@@ -68,6 +68,9 @@ export const server = http.createServer(async (req, res) => {
       "/src/match.mjs",
       "/src/brief.mjs",
       "/src/sources.mjs",
+      "/src/details.mjs",
+      "/src/adapters.mjs",
+      "/src/manual.mjs",
     ].includes(decoded);
     const base = path.join(root, isModule ? "src" : "public");
     const file = isModule

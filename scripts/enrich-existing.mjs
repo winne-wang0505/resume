@@ -3,7 +3,21 @@ import { enrichIndex } from "../src/pipeline.mjs";
 const old = JSON.parse(await readFile("public/data/jobs.json", "utf8"));
 if (old.mode === "demo")
   throw Error("No real source index is available to enrich");
-const enriched = await enrichIndex(old);
+const { createDetailFetcher } = await import("../src/details.mjs");
+const { createBrowserRenderer } = await import("../src/browser.mjs");
+let browser, enriched;
+try {
+  if (process.env.JOB_BROWSER_RENDER === "true")
+    browser = await createBrowserRenderer();
+  enriched = await enrichIndex(old, {
+    detailFetcher: createDetailFetcher({
+      renderer: browser?.render,
+      renderLimit: 4,
+    }),
+  });
+} finally {
+  await browser?.close();
+}
 const { retainHistory } = await import("../src/history.mjs");
 const result = await retainHistory(enriched, old, { recheckLimit: 0 });
 await writeFile(

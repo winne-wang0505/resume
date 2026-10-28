@@ -1,5 +1,6 @@
 import { evaluate, safeURL } from "./src/match.mjs";
 import { buildBrief } from "./src/brief.mjs";
+import { importManual } from "./src/manual.mjs";
 import { sourceCatalog } from "./src/sources.mjs";
 const $ = (s) => document.querySelector(s),
   $$ = (s) => [...document.querySelectorAll(s)];
@@ -40,6 +41,12 @@ let profile = { ...defaults, ...read("profile", {}) },
     exclude: "",
     ...read("prefs", {}),
   };
+let localJobs = read("localJobs", []);
+if (!Array.isArray(localJobs)) localJobs = [];
+localJobs = localJobs.filter(
+  (j) => j && j.userProvided && typeof j.id === "string",
+);
+let publicData = {};
 let saved = read("saved", {}),
   jobs = [],
   region = "全部",
@@ -47,7 +54,10 @@ let saved = read("saved", {}),
   apiAvailable = false,
   quality = "detailed";
 const detailed = (j) =>
-  j.demo || ["structured-detail", "page-detail"].includes(j.verification);
+  j.demo ||
+  ["structured-detail", "page-detail", "user-provided-detail"].includes(
+    j.verification,
+  );
 function deadlineLabel(value) {
   return value
     ? /^\d{4}-\d{2}-\d{2}$/.test(value)
@@ -135,7 +145,7 @@ $("#prefsForm").onsubmit = (e) => {
 };
 $("#deleteData").onclick = () => {
   if (!confirm("清除本机档案、偏好与投递记录？此操作无法撤销。")) return;
-  for (const k of ["profile", "prefs", "saved", "brief"])
+  for (const k of ["profile", "prefs", "saved", "brief", "localJobs"])
     localStorage.removeItem("career." + k);
   location.reload();
 };
@@ -293,6 +303,11 @@ function showDetail(j) {
     url = safeURL(j.url);
   $("#detailBody").innerHTML =
     `<span class="eyebrow">OPPORTUNITY ANALYSIS</span><h2>${esc(j.title)}</h2><p>${esc(j.company || "雇主待核实")} · ${esc(j.city || j.region)} · ${esc(j.category)}</p>${j.demo ? '<p class="notice">演示岗位：用于体验功能，不能投递。请检索真实岗位并核验原公告。</p>' : ""}${r.expired ? '<p class="notice">该岗位已超过标注的截止日期。</p>' : ""}<div class="detail-scores"><div><strong>${score(r.match)}</strong>岗位匹配度</div><div><strong>${score(r.readiness)}</strong>竞争准备度</div><div><strong>${score(r.value)}</strong>投递性价比</div></div><p class="confidence">评分信息覆盖度 ${r.confidence}% · 分数范围 0–100 · ${r.confidence < 50 ? "信息不足，谨慎参考" : "依据已知要求估算"}。竞争准备度不代表录用率或真实竞争者排名。</p><h3>规划建议</h3><p>${esc(r.advice)}</p>${j.region === "香港" ? `<p class="notice">香港工作资格：${esc(profile.workAuth || "待确认")}。签证支持、永久居民要求、语文及资格考试要求请在原公告核实；当前不据此自动判断资格。</p>` : ""}<h3>岗位内容与要求</h3><p>${esc(j.description || "尚未获得完整职位描述，请查看原始招聘页面。")}</p><p>工作方式：${esc(j.mode || "待核实")} · 用工类型：${esc(j.employment || "待核实")}<br>工作时间：${esc(j.hours || "待核实")} · 截止日期：${esc(deadlineLabel(j.deadline))}<br>薪资：${j.salaryMin ? `${j.salaryMin}–${j.salaryMax} ${esc(j.currency)} / 月` : "未披露，不进行薪资评分"}</p><h3>评分依据</h3>${r.dims.length ? r.dims.map((d, i) => `<p>${esc(r.evidence[i])} <b>${d.value} 分</b></p><div class="score-bar"><span style="width:${d.value}%"></span></div>`).join("") : "<p>仅有搜索摘要，无法据此计算可靠的岗位匹配分。请补充已核验的岗位要求。</p>"}<h3>差距与准备清单</h3><ul>${[...r.blockers, ...r.unverifiedRequirements, ...r.missing.map((s) => "补充技能证据或学习计划：" + s), "准备针对该岗位的成果案例与简历；核对工作时间、专业限制和薪资口径。"].map((s) => `<li>${esc(s)}</li>`).join("")}</ul><p>预计申请准备时间：${j.applyMinutes || 30} 分钟（规划假设）。<br>发现时间：${esc(j.discoveredAt || "演示数据，无真实更新时间")}<br>来源：${esc(j.source)}；搜索发现时间不等同于职位发布时间。</p>${url ? `<a class="primary detail-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${j.demo ? "访问招聘平台（非该岗位）" : "查看原始招聘页面"} ↗</a>` : ""}`;
+  if (j.userProvided)
+    $("#detailBody").insertAdjacentHTML(
+      "afterbegin",
+      '<p class="notice">此岗位由你在本机粘贴，来源与在招状态未经自动验证；评分仅依据所填正文。</p>',
+    );
   const proof = Object.entries(j.fieldEvidence || {});
   const labels = {
     graduationYears: "毕业届别",
@@ -316,7 +331,7 @@ function showDetail(j) {
     majorRequirement: "专业要求",
   };
   $("#detailBody").innerHTML +=
-    `${j.detailFailure ? `<p class="notice">详情尚未取得：${esc(j.detailFailure)}。此线索不会进入优先推荐。</p>` : ""}${r.scoreReason ? `<p class="notice">暂不评分：${esc(r.scoreReason)}</p>` : ""}${proof.length ? `<details class="evidence-section"><summary>查看 ${proof.length} 项提取证据</summary>${proof.map(([key, e]) => `<div class="evidence-item"><b>${esc(labels[key] || key)}</b><small>${esc(e.field || e.method)}</small><blockquote>${esc(e.quote)}</blockquote></div>`).join("")}</details>` : ""}<p class="form-note">详情读取时间：${esc(updatedLabel(j.detailFetchedAt))}。读取成功不等于人工核实或雇主确认在招。${j.majorRequirement ? "专业要求：" + esc(j.majorRequirement) : ""}</p>`;
+    `${j.detailFailure ? `<p class="notice">详情尚未取得：${esc(j.detailFailure)}。此线索不会进入优先推荐。</p>` : ""}${r.scoreReason ? `<p class="notice">暂不评分：${esc(r.scoreReason)}</p>` : ""}${proof.length ? `<details class="evidence-section"><summary>查看 ${proof.length} 项提取证据</summary>${proof.map(([key, e]) => `<div class="evidence-item"><b>${esc(labels[key] || key)}</b><small>${esc(e.field || e.method)}</small><blockquote>${esc(e.quote)}</blockquote></div>`).join("")}</details>` : ""}<p class="form-note">${j.userProvided ? "正文导入时间" : "详情读取时间"}：${esc(updatedLabel(j.detailFetchedAt))}。读取成功不等于人工核实或雇主确认在招。${j.majorRequirement ? "专业要求：" + esc(j.majorRequirement) : ""}</p>`;
   $("#detail").showModal();
 }
 $("#closeDetail").onclick = () => $("#detail").close();
@@ -348,7 +363,7 @@ function renderBrief() {
           const salary = j.salaryMin
             ? `${j.salaryMin.toLocaleString()}–${j.salaryMax.toLocaleString()} ${esc(j.currency)}/月`
             : "薪资未披露";
-          return `<article class="recommendation"><div class="recommendation-top"><span class="rank">${String(i + 1).padStart(2, "0")}</span><div><h3>${esc(j.title)}</h3><p>${esc(j.company)} · ${esc(j.city || j.region)}</p><span class="tag ${j.retained ? "history-tag" : ""}">${j.retained ? "历史保留 · 先核实" : "本轮发现"}</span>${j.sourceType ? `<span class="tag">${esc(j.sourceType)}</span>` : ""}</div><span class="recommendation-salary">${salary}</span></div><div class="brief-score-row"><span><b>${score(r.match)}</b> 匹配度</span><span><b>${score(r.readiness)}</b> 准备度</span><span><b>${score(r.value)}</b> 性价比</span><small>信息覆盖 ${r.confidence}%</small></div><p class="recommendation-reason">${esc(j.retained ? (j.retentionReason || "历史岗位：投递前请复核原公告") + "；" + r.advice : r.advice)}</p><p class="form-note">${esc(r.evidence.slice(0, 3).join("；"))}</p>${[...r.blockers, ...r.unverifiedRequirements].length ? `<p class="card-reason warning">需核实：${esc([...r.blockers, ...r.unverifiedRequirements].join("；"))}</p>` : ""}<div class="brief-apply"><span class="form-note">截止：${esc(deadlineLabel(j.deadline))} · 来源：${esc(j.sourceLabel || j.source)}${j.retained ? " · 最近读取：" + esc(updatedLabel(j.detailFetchedAt)) : ""}</span><button class="detail-btn" data-detail="${esc(j.id)}">查看分析 ↗</button>${url ? `<a class="primary detail-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">查看原公告 ↗</a>` : ""}<button class="save-btn" data-save="${esc(j.id)}" aria-label="收藏岗位">${saved[j.id] ? "♥" : "♡"}</button></div></article>`;
+          return `<article class="recommendation"><div class="recommendation-top"><span class="rank">${String(i + 1).padStart(2, "0")}</span><div><h3>${esc(j.title)}</h3><p>${esc(j.company)} · ${esc(j.city || j.region)}</p><span class="tag ${j.retained ? "history-tag" : ""}">${j.userProvided ? "用户粘贴 · 未验证" : j.retained ? "历史保留 · 先核实" : "本轮发现"}</span>${j.sourceType ? `<span class="tag">${esc(j.sourceType)}</span>` : ""}</div><span class="recommendation-salary">${salary}</span></div><div class="brief-score-row"><span><b>${score(r.match)}</b> 匹配度</span><span><b>${score(r.readiness)}</b> 准备度</span><span><b>${score(r.value)}</b> 性价比</span><small>信息覆盖 ${r.confidence}%</small></div><p class="recommendation-reason">${esc(j.retained ? (j.retentionReason || "历史岗位：投递前请复核原公告") + "；" + r.advice : r.advice)}</p><p class="form-note">${esc(r.evidence.slice(0, 3).join("；"))}</p>${[...r.blockers, ...r.unverifiedRequirements].length ? `<p class="card-reason warning">需核实：${esc([...r.blockers, ...r.unverifiedRequirements].join("；"))}</p>` : ""}<div class="brief-apply"><span class="form-note">截止：${esc(deadlineLabel(j.deadline))} · 来源：${esc(j.sourceLabel || j.source)}${j.retained ? " · 最近读取：" + esc(updatedLabel(j.detailFetchedAt)) : ""}</span><button class="detail-btn" data-detail="${esc(j.id)}">查看分析 ↗</button>${url ? `<a class="primary detail-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">查看原公告 ↗</a>` : ""}<button class="save-btn" data-save="${esc(j.id)}" aria-label="收藏岗位">${saved[j.id] ? "♥" : "♡"}</button></div></article>`;
         })
         .join("")
     : '<div class="empty">本轮暂无足够信息的匹配岗位。<br>已将受访问限制或要求不完整的来源放入下方待核实区，不用低质量页面凑推荐。</div>';
@@ -403,6 +418,15 @@ function renderBrief() {
           .join("")}</ul>`,
     )
     .join("");
+  const health = Object.values(dataInfo.sourceHealth || {});
+  $("#sourceHealth").innerHTML = health.length
+    ? health
+        .map((s) => {
+          const paused = Date.parse(s.cooldownUntil || "") > Date.now();
+          return `<p><b>${esc(s.name)}</b>：${s.successes}/${s.attempts} 次读取成功${paused ? " · 暂缓至 " + esc(updatedLabel(s.cooldownUntil)) : ""}<br><small>最近尝试 ${esc(updatedLabel(s.lastAttemptAt))}；最近成功 ${esc(updatedLabel(s.lastSuccessAt))}</small></p>`;
+        })
+        .join("")
+    : '<p class="form-note">下一轮自动更新后显示；配置来源不等于已经接通接口。</p>';
   if (dataInfo.searchPreferences?.legacyInput)
     $("#dataFreshness").textContent +=
       " 已自动拆分 JOB_ROLE 中合并填写的配置；建议后续分别保存变量。";
@@ -423,6 +447,16 @@ $("#export").onclick = () => {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
 function setData(data) {
+  publicData = data;
+  const localURLs = new Set(localJobs.map((j) => j.url).filter(Boolean));
+  data = {
+    ...data,
+    jobs: [
+      ...(data.jobs || []).filter((j) => !localURLs.has(j.url)),
+      ...localJobs,
+    ],
+    leads: (data.leads || []).filter((j) => !localURLs.has(j.url)),
+  };
   dataInfo = data;
   jobs = [
     ...(Array.isArray(data.jobs) ? data.jobs : []),
@@ -435,6 +469,7 @@ function setData(data) {
 
   render();
   renderBrief();
+  renderLocalJobs();
 }
 $("#refresh").onclick = async () => {
   if (apiAvailable && !prefs.role) {
@@ -525,3 +560,45 @@ $("#install").onclick = async () => {
 };
 if ("serviceWorker" in navigator)
   navigator.serviceWorker.register("./sw.js").catch(() => {});
+
+function renderLocalJobs() {
+  $("#manualList").innerHTML = localJobs
+    .map(
+      (j) =>
+        `<p>${esc(j.company)} · ${esc(j.title)} <button type="button" class="text-button" data-remove-local="${esc(j.id)}">删除本机岗位</button></p>`,
+    )
+    .join("");
+  $$("[data-remove-local]").forEach(
+    (b) =>
+      (b.onclick = () => {
+        const next = localJobs.filter((j) => j.id !== b.dataset.removeLocal);
+        if (!store("localJobs", next)) return;
+        localJobs = next;
+        if (saved[b.dataset.removeLocal]) {
+          delete saved[b.dataset.removeLocal];
+          store("saved", saved);
+        }
+        setData(publicData);
+      }),
+  );
+}
+$("#manualImport").onsubmit = (e) => {
+  e.preventDefault();
+  try {
+    const input = Object.fromEntries(new FormData(e.target));
+    const existing = input.url && localJobs.find((j) => j.url === input.url);
+    const job = importManual(input, existing ? { id: existing.id } : {});
+    if (!existing && localJobs.length >= 50)
+      throw Error("本机最多保存 50 个岗位，请先删除旧岗位");
+    const next = [...localJobs.filter((j) => j.id !== job.id), job];
+    if (!store("localJobs", next)) return;
+    localJobs = next;
+    setData(publicData);
+    $("#manualMessage").textContent =
+      "已保存到本机，并按当前档案生成分析。请在原公告核实在招状态。";
+    showDetail(job);
+  } catch (error) {
+    $("#manualMessage").textContent = error.message;
+  }
+};
+renderLocalJobs();

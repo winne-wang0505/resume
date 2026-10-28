@@ -22,6 +22,62 @@ export const sources = {
 // pass robots, single-posting extraction and eligibility checks.
 export const sourceCatalog = [
   {
+    id: "amazon",
+    name: "亚马逊招聘",
+    host: "amazon.jobs",
+    type: "企业官网",
+    regions: ["内地", "香港"],
+  },
+  {
+    id: "apple",
+    name: "苹果招聘",
+    host: "jobs.apple.com",
+    type: "企业官网",
+    regions: ["内地", "香港"],
+  },
+  {
+    id: "siemens",
+    name: "西门子招聘",
+    host: "jobs.siemens.com",
+    type: "企业官网",
+    regions: ["内地", "香港"],
+  },
+  {
+    id: "sap",
+    name: "SAP招聘",
+    host: "jobs.sap.com",
+    type: "企业官网",
+    regions: ["内地", "香港"],
+  },
+  {
+    id: "bosch",
+    name: "博世招聘",
+    host: "jobs.bosch.com",
+    type: "企业官网",
+    regions: ["内地", "香港"],
+  },
+  {
+    id: "sjtu",
+    name: "上海交大就业网",
+    host: "career.sjtu.edu.cn",
+    type: "校招／实习",
+    regions: ["内地"],
+  },
+  {
+    id: "pku",
+    name: "北京大学就业网",
+    host: "scc.pku.edu.cn",
+    type: "校招／实习",
+    regions: ["内地"],
+  },
+  {
+    id: "fudan",
+    name: "复旦大学就业网",
+    host: "career.fudan.edu.cn",
+    type: "校招／实习",
+    regions: ["内地"],
+  },
+  {
     id: "zhaopin",
     name: "智联招聘",
     host: "zhaopin.com",
@@ -280,13 +336,24 @@ export function identifySource(raw, region) {
     return null;
   }
 }
-export function querySources(region, roleIndex = 0, day = 0, role = "") {
+export function querySources(
+  region,
+  roleIndex = 0,
+  day = 0,
+  role = "",
+  health = {},
+) {
   const group = (type) =>
-    sourceCatalog.filter((s) => s.regions.includes(region) && s.type === type);
+    sourceCatalog.filter(
+      (s) =>
+        s.regions.includes(region) &&
+        s.type === type &&
+        !(Date.parse(health[s.id]?.cooldownUntil || "") > day * 86400000),
+    );
   const types = [
-    (day + roleIndex) % 4 === 0 ? "公共部门" : "招聘平台",
-    "校招／实习",
     "企业官网",
+    "校招／实习",
+    (day + roleIndex) % 4 === 0 ? "公共部门" : "招聘平台",
   ];
   return types
     .map((type, i) => {
