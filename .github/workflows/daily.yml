@@ -26,8 +26,8 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Validate code before using search quota
-        run: npm test
+      - name: Validate core workflows before using search quota
+        run: npm test && npm run test:ui
       - name: Refresh public job discovery index
         run: npm run jobs:refresh
         env:

@@ -27,7 +27,7 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm test
+      - run: npm test && npm run test:ui
       - name: Read and classify current public source pages
         run: node scripts/enrich-existing.mjs
         env:
