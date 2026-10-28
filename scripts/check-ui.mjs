@@ -131,6 +131,8 @@ try {
       `UI regression passed: ${viewport.width}px (profile/preferences/import/score/save/status/reload/delete)`,
     );
   }
+  const { checkPersonalUI } = await import("./check-personal-ui.mjs");
+  await checkPersonalUI(browser, url, job);
 } finally {
   await browser?.close();
   server.kill();

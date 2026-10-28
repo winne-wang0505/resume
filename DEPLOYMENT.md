@@ -35,3 +35,9 @@
 来源健康保存在 jobs.json 的 sourceHealth，连续三次访问限制/robots/网络失败后暂缓 48 小时，成功读取后恢复；未尝试的来源没有统计，不代表已接通。官网 JSON 适配受页面实际结构约束，不保证所有官网页面都会成功。
 
 发布前检查见 [功能基线](docs/FEATURE_BASELINE.md)。GitHub Pages 构建会新增手机/电脑回归测试，覆盖档案、偏好、岗位分析、本机导入、收藏、投递状态和刷新保留。
+
+## 多用户自主修改日报检索需求
+
+新增个人后端服务；原 GitHub Actions 仍生成共享岗位池，不接收或公开个人会话数据。GitHub Pages 用户只有连接个人后端后才会获得真实自主搜索。
+
+无服务器时，按照 [个人服务部署指南](docs/PERSONAL_SERVICE.md)使用仓库 Dockerfile / render.yaml 创建常驻服务及持久磁盘。该配置涉及收费资源，必须由仓库所有者在平台确认套餐并创建；代码推送不会自动购买。无需把后台 API key 交给 App 用户。部署后的 Render 服务同时提供完整前端和 API；共享原 Pages 地址时，可在 public/service.json 配置公开 apiBase。

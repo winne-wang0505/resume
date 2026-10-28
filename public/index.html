@@ -269,6 +269,31 @@
               <p>用于推荐排序与检索；未知的岗位条件会提示进一步核实。</p>
             </div>
           </div>
+          <section class="form-card">
+            <h3>我的岗位日报服务</h3>
+            <p id="personalStatus" role="status">
+              尚未连接个人检索服务。当前仍可使用公开日报和本机分析。
+            </p>
+            <details>
+              <summary>连接个人检索服务</summary>
+              <p class="form-note">
+                服务由管理员部署一次，所有用户可使用同一个地址，各设备会话独立。无需填写搜索
+                API key。个人档案不上传，只发送你同意的检索关键词。
+              </p>
+              <form id="serviceForm" class="form-grid">
+                <label class="wide"
+                  >服务地址<input
+                    id="serviceAddress"
+                    type="url"
+                    placeholder="https://你的服务地址.onrender.com"
+                /></label>
+                <button type="submit" class="primary">连接服务</button>
+                <button type="button" id="deletePersonal" class="outline">
+                  停用并删除服务端日报
+                </button>
+              </form>
+            </details>
+          </section>
           <form id="prefsForm" class="form-card">
             <div class="form-grid">
               <label
@@ -331,6 +356,12 @@
                 >期望专业要求<input
                   name="majorReq"
                   placeholder="如：接受专业不限岗位" /></label
+              ><label
+                >求职阶段<select name="experienceLevel">
+                  <option value="">不限</option>
+                  <option>应届／在校生</option>
+                  <option>已有工作经验</option>
+                </select></label
               ><label class="wide"
                 >希望从事的工作内容<textarea
                   name="content"
@@ -344,14 +375,21 @@
               /></label>
             </div>
             <p class="form-note">
-              工作时间、用工类型与专业偏好会加入检索关键词；原公告未披露的信息不能保证满足。
+              个人搜索最多选择 3
+              个岗位方向。工作时间、用工类型与专业偏好会加入检索关键词；原公告未披露的信息不能保证满足。
             </p>
             <label class="check"
               ><input
                 name="searchConsent"
                 type="checkbox"
               />允许实时检索时向搜索服务发送岗位、地区、技能、专业和偏好关键词（不会发送姓名、年龄、性别或完整经历）</label
-            ><button class="primary" type="submit">保存求职偏好 ↗</button>
+            ><label class="check"
+              ><input
+                name="personalDaily"
+                type="checkbox"
+              />启用我的每日检索（需要已连接的常驻服务；按个人需求更新，受服务额度限制）</label
+            >
+            <button class="primary" type="submit">保存我的日报需求 ↗</button>
           </form>
         </section>
         <section id="saved" class="view" hidden>
@@ -474,7 +512,7 @@
                   <p id="connectionStatus">正在检查服务…</p>
                   <p>
                     每天通过 GitHub Actions
-                    更新公开岗位索引；网页根据本机档案生成个人分析。网页偏好不会自动修改后台检索范围。
+                    更新公开岗位索引；网页根据本机档案生成个人分析。连接个人检索服务后，每位用户可在“求职偏好”自主修改检索需求；未连接时仅使用共享公开索引。
                   </p>
                   <p>
                     仅应用内日报，不发送邮件。关闭应用不影响 GitHub

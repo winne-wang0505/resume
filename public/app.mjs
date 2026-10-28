@@ -53,6 +53,79 @@ let saved = read("saved", {}),
   dataInfo = {},
   apiAvailable = false,
   quality = "detailed";
+let connection = read("connection", { base: "", token: "" });
+let apiBase = connection.base || new URL("./", location.href).href;
+function serviceBase(value) {
+  const url = new URL(value || "./", location.href);
+  if (
+    url.protocol !== "https:" &&
+    !(
+      url.protocol === "http:" &&
+      ["localhost", "127.0.0.1"].includes(url.hostname)
+    )
+  )
+    throw Error("服务地址需要 HTTPS，本机开发可使用 localhost");
+  if (url.username || url.password || url.search || url.hash)
+    throw Error("请填写不含账户、参数或片段的服务地址");
+  return url.href.replace(/\/?$/, "/");
+}
+async function personalRequest(path, method = "GET", body) {
+  const response = await fetch(new URL("api/" + path, apiBase), {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      ...(connection.base === apiBase && connection.token
+        ? { Authorization: "Bearer " + connection.token }
+        : {}),
+    },
+    ...(body ? { body: JSON.stringify(body) } : {}),
+    signal: AbortSignal.timeout(path === "search" ? 180000 : 15000),
+  });
+  const data = await response.json();
+  if (!response.ok)
+    throw Object.assign(Error(data.error || "个人日报服务暂不可用"), {
+      status: response.status,
+    });
+  return data;
+}
+async function ensureSession() {
+  if (connection.base === apiBase && connection.token) return;
+  const data = await personalRequest("session", "POST", {});
+  const next = { base: apiBase, token: data.token };
+  if (!store("connection", next))
+    throw Error("无法保存设备会话，请启用浏览器本机存储");
+  connection = next;
+}
+function personalView(data) {
+  $("#personalStatus").textContent =
+    `个人服务已连接 · 每日检索${data.enabled ? "已启用" : "未启用"} · 今日个人请求 ${data.quota.userUsed}/${data.quota.userLimit}，服务剩余 ${data.quota.globalRemaining} 次。${data.expiresAt ? "设备会话有效至 " + updatedLabel(data.expiresAt) + "（保存需求可续期）。" : ""}${data.lastRunAt ? "日报时间：" + updatedLabel(data.lastRunAt) + "。" : "尚未生成个人日报。"}${data.error || ""}`;
+  if (data.index) {
+    store("personalIndex", data.index);
+    setData({ ...data.index, personal: true });
+  }
+}
+async function detectPersonal() {
+  const status = await personalRequest("status");
+  if (!status.personal || !status.search)
+    throw Error("个人搜索服务尚未配置完成");
+  apiAvailable = true;
+  $("#refresh").textContent = "↻ 更新我的岗位日报";
+  $("#connectionStatus").textContent =
+    "个人检索服务已连接；保存需求后可自主检索。定时日报由在线后端执行，不修改 GitHub 共享变量。";
+  $("#personalStatus").textContent =
+    "服务可用，保存求职需求后点击“更新我的岗位日报”。";
+  if (connection.base === apiBase && connection.token) {
+    try {
+      personalView(await personalRequest("personal"));
+    } catch (error) {
+      if (error.status !== 401) throw error;
+      connection = { base: apiBase, token: "" };
+      store("connection", connection);
+      $("#personalStatus").textContent =
+        "设备会话已到期，请重新保存个人日报需求以建立新会话。";
+    }
+  }
+}
 const detailed = (j) =>
   j.demo ||
   ["structured-detail", "page-detail", "user-provided-detail"].includes(
@@ -125,12 +198,13 @@ $("#profileForm").onsubmit = (e) => {
   toast("档案已保存在本机，岗位分析已更新");
   switchView("discover");
 };
-$("#prefsForm").onsubmit = (e) => {
+$("#prefsForm").onsubmit = async (e) => {
   e.preventDefault();
   const next = {
     ...prefs,
     ...Object.fromEntries(new FormData(e.target)),
     searchConsent: e.target.elements.searchConsent.checked,
+    personalDaily: e.target.elements.personalDaily.checked,
   };
   if (!store("prefs", next)) return;
   prefs = next;
@@ -140,12 +214,49 @@ $("#prefsForm").onsubmit = (e) => {
   );
   $("#category").value = prefs.category;
   render();
-  toast("偏好已保存，已更新本机筛选与分析；后台检索范围仍由管理员配置");
+  if (apiAvailable && !prefs.searchConsent) {
+    try {
+      if (connection.token)
+        await personalRequest("personal", "PUT", { enabled: false });
+      toast("未授权发送检索关键词，需求仅保存在本机；服务端每日检索已停用");
+    } catch (error) {
+      toast("本机需求已保存，但服务端停用失败，请重连后停用：" + error.message);
+    }
+    switchView("discover");
+    return;
+  }
+  if (apiAvailable) {
+    try {
+      await ensureSession();
+      const state = await personalRequest("personal", "PUT", {
+        preferences: { ...prefs, skills: profile.skills, major: profile.major },
+        enabled: prefs.personalDaily,
+      });
+      // Preserve old report until a new search completes, and show its own scope.
+      personalView(state);
+      toast("个人日报需求已保存；点击“更新我的岗位日报”按新需求检索");
+    } catch (error) {
+      toast("需求已保存到本机，服务端尚未更新：" + error.message);
+    }
+  } else toast("需求已保存到本机；连接个人检索服务后可按此需求搜索");
   switchView("discover");
 };
 $("#deleteData").onclick = () => {
-  if (!confirm("清除本机档案、偏好与投递记录？此操作无法撤销。")) return;
-  for (const k of ["profile", "prefs", "saved", "brief", "localJobs"])
+  if (
+    !confirm(
+      "清除本机档案、偏好与投递记录？如已启用服务端日报，请先在求职偏好中停用并删除服务端日报。本操作无法撤销。",
+    )
+  )
+    return;
+  for (const k of [
+    "profile",
+    "prefs",
+    "saved",
+    "brief",
+    "localJobs",
+    "connection",
+    "personalIndex",
+  ])
     localStorage.removeItem("career." + k);
   location.reload();
 };
@@ -399,7 +510,7 @@ function renderBrief() {
   const coverage = dataInfo.coverage,
     usage = dataInfo.searchUsage;
   $("#coverageStatus").textContent = coverage
-    ? `本轮按 ${coverage.roleDirections} 个方向检索，搜索 ${coverage.requestsThisRun} 次，翻页 ${coverage.paginationRequests} 次。${usage ? "当日累计 " + usage.requests + "/" + usage.limit + " 次，剩余 " + Math.max(0, usage.limit - usage.requests) + " 次。" : ""}${coverage.partial ? " 部分查询未完成，已保留可参考的历史岗位。" : ""}`
+    ? `本轮按 ${coverage.roleDirections} 个方向检索，搜索 ${coverage.requestsThisRun} 次，翻页 ${coverage.paginationRequests} 次。${usage ? "检索日 " + (usage.day || "未记录") + " 累计 " + usage.requests + "/" + usage.limit + " 次，剩余 " + Math.max(0, usage.limit - usage.requests) + " 次。" : ""}${coverage.partial ? " 部分查询未完成，已保留可参考的历史岗位。" : ""}`
     : "等待新策略运行后显示查询和翻页统计。";
   $("#sourceCatalog").innerHTML = [
     "招聘平台",
@@ -462,8 +573,11 @@ function setData(data) {
     ...(Array.isArray(data.jobs) ? data.jobs : []),
     ...(Array.isArray(data.leads) ? data.leads : []),
   ];
-  $("#dataStatus").textContent =
-    data.mode === "demo"
+  $("#dataStatus").textContent = data.personal
+    ? "我的个人日报 · " +
+      updatedLabel(data.updatedAt) +
+      " · 按此设备的检索需求生成"
+    : data.mode === "demo"
       ? "当前为明确标注的演示数据，尚未连接真实岗位源。"
       : `更新于 ${updatedLabel(data.updatedAt)} · ${jobs.filter(detailed).length} 个具体岗位 / ${jobs.filter((j) => !detailed(j)).length} 条待核实线索 · 投递前核实原公告`;
 
@@ -481,6 +595,14 @@ $("#refresh").onclick = async () => {
     toast("请先在求职偏好中同意发送检索关键词");
     switchView("preferences");
     return;
+  }
+  if (!apiAvailable && connection.token) {
+    try {
+      await detectPersonal();
+    } catch {
+      toast("个人服务暂不可用，已保留个人日报；请在求职偏好中检查连接");
+      return;
+    }
   }
   if (!apiAvailable) {
     const b = $("#refresh");
@@ -501,22 +623,17 @@ $("#refresh").onclick = async () => {
   b.disabled = true;
   b.textContent = "正在检索…";
   try {
-    const res = await fetch("./api/search", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        preferences: { ...prefs, skills: profile.skills, major: profile.major },
-      }),
+    await ensureSession();
+    const data = await personalRequest("search", "POST", {
+      preferences: { ...prefs, skills: profile.skills, major: profile.major },
     });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "检索失败");
-    setData(data);
+    personalView(data);
     toast(`已处理 ${jobs.length} 条来源，具体岗位与待核实线索已分开`);
   } catch (e) {
     toast(e.message);
   } finally {
     b.disabled = false;
-    b.textContent = "↻ 检索最新岗位";
+    b.textContent = "↻ 更新我的岗位日报";
   }
 };
 $("#today").textContent = new Intl.DateTimeFormat("zh-CN", {
@@ -533,18 +650,65 @@ try {
   render();
 }
 try {
-  const res = await fetch("./api/status");
-  if (res.ok && res.headers.get("content-type")?.includes("application/json")) {
-    const status = await res.json();
-    apiAvailable = true;
-    $("#connectionStatus").textContent =
-      `后台已连接 · 搜索${status.search ? "已配置" : "未配置"} · 每日推送通过 GitHub Actions 配置`;
-  } else throw Error();
+  if (!connection.base) {
+    const config = await fetch("./service.json", { cache: "no-store" }).then(
+      (r) => (r.ok ? r.json() : {}),
+    );
+    if (config.apiBase) apiBase = serviceBase(config.apiBase);
+  } else apiBase = serviceBase(connection.base);
+  $("#serviceAddress").value =
+    connection.base ||
+    (apiBase !== new URL("./", location.href).href ? apiBase : "");
+  await detectPersonal();
 } catch {
+  apiAvailable = false;
+  const cached = read("personalIndex", null);
+  if (cached && connection.token) setData({ ...cached, personal: true });
   $("#connectionStatus").textContent =
-    "当前使用 GitHub 定时生成的岗位索引；即时搜索服务未部署，不影响已发布日报的查看与本机分析。";
-  $("#refresh").textContent = "↻ 加载最新日报";
+    "个人检索服务未连接；可查看共享公开日报或本机已保存的个人日报。搜索需求不会提交到 GitHub。";
+  $("#refresh").textContent = connection.token
+    ? "↻ 重连个人检索服务"
+    : "↻ 加载最新公开日报";
 }
+$("#serviceForm").onsubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const nextBase = serviceBase($("#serviceAddress").value);
+    // Never send a previous server's token to a different address.
+    if (nextBase !== apiBase) {
+      connection = { base: nextBase, token: "" };
+      apiAvailable = false;
+    }
+    apiBase = nextBase;
+    await detectPersonal();
+    await ensureSession();
+    personalView(await personalRequest("personal"));
+    toast("个人服务已连接，请保存日报需求");
+  } catch (error) {
+    $("#personalStatus").textContent = "连接失败：" + error.message;
+  }
+};
+$("#deletePersonal").onclick = async () => {
+  if (!connection.token) return toast("当前没有服务端设备会话");
+  if (
+    !confirm("停用每日检索并删除此设备的服务端需求和日报？本机档案和收藏保留。")
+  )
+    return;
+  try {
+    await personalRequest("personal", "DELETE");
+    localStorage.removeItem("career.connection");
+    localStorage.removeItem("career.personalIndex");
+    connection = { base: apiBase, token: "" };
+    $("#personalStatus").textContent =
+      "此设备的服务端日报与需求已删除，每日检索已停用。";
+    const data = await fetch("./data/jobs.json", { cache: "no-store" }).then(
+      (r) => r.json(),
+    );
+    setData(data);
+  } catch (error) {
+    toast(error.message);
+  }
+};
 let installPrompt;
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();

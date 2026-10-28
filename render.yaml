@@ -1,0 +1,25 @@
+# A persistent, always-on plan is necessary for scheduled personal reports.
+# Render displays the plan and disk price for the owner to confirm before creating.
+services:
+  - type: web
+    name: career-compass-personal
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/status
+    disk:
+      name: personal-reports
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: BRAVE_SEARCH_API_KEY
+        sync: false
+      - key: APP_ORIGINS
+        value: https://winne-wang0505.github.io
+      - key: PERSONAL_STATE_FILE
+        value: /var/data/personal.json
+      - key: PERSONAL_DAILY_BUDGET
+        value: "6"
+      - key: PERSONAL_USER_BUDGET
+        value: "4"
+      - key: TRUST_PROXY
+        value: "true"

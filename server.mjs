@@ -2,7 +2,7 @@ import http from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { searchJobs } from "./src/search.mjs";
+import { createPersonalService } from "./src/personal-service.mjs";
 const root = path.dirname(fileURLToPath(import.meta.url));
 const port = Number(process.env.PORT || 3000),
   host = process.env.HOST || "127.0.0.1";
@@ -23,42 +23,102 @@ const json = (res, status, data) => {
   });
   res.end(JSON.stringify(data));
 };
-let lastSearch = 0;
+const personal = createPersonalService();
+const allowedOrigins = new Set(
+  (process.env.APP_ORIGINS || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean),
+);
+const scheduler = setInterval(() => {
+  if (process.env.BRAVE_SEARCH_API_KEY)
+    personal
+      .tick()
+      .catch(() =>
+        console.error(
+          "Personal scheduler unavailable; previous reports preserved.",
+        ),
+      );
+}, 60000);
+scheduler.unref();
 export const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, "http://localhost");
-    if (url.pathname === "/api/status" && req.method === "GET")
-      return json(res, 200, { search: !!process.env.BRAVE_SEARCH_API_KEY });
-    if (url.pathname === "/api/search" && req.method === "POST") {
-      // Browser cross-origin requests cannot invoke paid search; public deployments also need a reverse-proxy rate limit.
+    if (url.pathname.startsWith("/api/")) {
+      const origin = req.headers.origin;
       if (
-        req.headers.origin &&
-        new URL(req.headers.origin).host !== req.headers.host
+        origin &&
+        !allowedOrigins.has(origin) &&
+        new URL(origin).host !== req.headers.host
       )
-        return json(res, 403, { error: "仅接受同源请求" });
-      if (!req.headers["content-type"]?.startsWith("application/json"))
-        return json(res, 415, { error: "需要 application/json" });
-      if (Date.now() - lastSearch < 10000)
-        return json(res, 429, { error: "请稍后重试（检索间隔 10 秒）" });
+        return json(res, 403, {
+          error: "此 App 地址尚未获准连接，请管理员配置 APP_ORIGINS",
+        });
+      if (origin) {
+        res.setHeader("Access-Control-Allow-Origin", origin);
+        res.setHeader("Vary", "Origin");
+        res.setHeader(
+          "Access-Control-Allow-Methods",
+          "GET,POST,PUT,DELETE,OPTIONS",
+        );
+        res.setHeader(
+          "Access-Control-Allow-Headers",
+          "Content-Type,Authorization",
+        );
+      }
+      if (req.method === "OPTIONS") {
+        res.writeHead(204);
+        return res.end();
+      }
+      if (url.pathname === "/api/status" && req.method === "GET")
+        return json(res, 200, {
+          personal: true,
+          search: !!process.env.BRAVE_SEARCH_API_KEY,
+        });
+      if (
+        !process.env.BRAVE_SEARCH_API_KEY &&
+        ["/api/session", "/api/search"].includes(url.pathname)
+      )
+        return json(res, 503, { error: "管理员尚未配置搜索服务密钥" });
       let body = "";
-      for await (const chunk of req) {
-        body += chunk;
-        if (Buffer.byteLength(body) > 12000)
-          return json(res, 413, { error: "请求过大" });
+      if (["POST", "PUT"].includes(req.method)) {
+        if (!req.headers["content-type"]?.startsWith("application/json"))
+          return json(res, 415, { error: "需要 application/json" });
+        for await (const chunk of req) {
+          body += chunk;
+          if (Buffer.byteLength(body) > 12000)
+            return json(res, 413, { error: "请求过大" });
+        }
       }
-      let data;
       try {
-        data = JSON.parse(body);
-      } catch {
-        return json(res, 400, { error: "无效 JSON" });
-      }
-      if (!data.preferences?.searchConsent)
-        return json(res, 400, { error: "请先同意发送检索关键词" });
-      lastSearch = Date.now();
-      try {
-        return json(res, 200, await searchJobs(data.preferences));
+        const data = body ? JSON.parse(body) : {};
+        const token = req.headers.authorization?.match(
+          /^Bearer ([a-f0-9]{64})$/,
+        )?.[1];
+        const ip =
+          process.env.TRUST_PROXY === "true"
+            ? String(req.headers["x-forwarded-for"] || req.socket.remoteAddress)
+                .split(",")[0]
+                .trim()
+            : req.socket.remoteAddress;
+        return json(
+          res,
+          200,
+          await personal.handle({
+            method: req.method,
+            pathname: url.pathname,
+            token,
+            body: data,
+            ip,
+          }),
+        );
       } catch (e) {
-        return json(res, e.status || 400, { error: e.message });
+        return json(res, e.status || (e instanceof SyntaxError ? 400 : 500), {
+          error:
+            e.status || e instanceof SyntaxError
+              ? e.message
+              : "个人日报服务暂时不可用",
+        });
       }
     }
     if (!["GET", "HEAD"].includes(req.method))
@@ -87,7 +147,7 @@ export const server = http.createServer(async (req, res) => {
         "X-Content-Type-Options": "nosniff",
         "Cache-Control": "no-cache",
         "Content-Security-Policy":
-          "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+          "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https:; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
       });
       res.end(req.method === "HEAD" ? undefined : content);
     } catch {
