@@ -14,27 +14,27 @@
     },
     "mtr": {
       "name": "港铁招聘",
-      "attempts": 2,
+      "attempts": 3,
       "successes": 0,
-      "consecutiveFailures": 2,
+      "consecutiveFailures": 3,
       "failures": {
-        "fields": 2
+        "fields": 3
       },
-      "lastAttemptAt": "2026-10-28T01:51:06.078Z",
+      "lastAttemptAt": "2026-10-28T01:52:09.635Z",
       "lastFailureKind": "fields"
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 4,
-      "successes": 2,
-      "consecutiveFailures": 1,
+      "attempts": 5,
+      "successes": 3,
+      "consecutiveFailures": 0,
       "failures": {
         "fields": 2
       },
-      "lastAttemptAt": "2026-10-28T01:51:06.078Z",
+      "lastAttemptAt": "2026-10-28T01:52:09.635Z",
       "lastFailureKind": "fields",
       "cooldownUntil": null,
-      "lastSuccessAt": "2026-10-28T01:51:06.078Z"
+      "lastSuccessAt": "2026-10-28T01:52:09.635Z"
     },
     "apple": {
       "name": "苹果招聘",
@@ -147,7 +147,7 @@
   },
   "searchUsage": {
     "day": "2026-10-28",
-    "requests": 18,
+    "requests": 24,
     "limit": 24
   },
   "coverage": {
@@ -156,9 +156,9 @@
     "regions": 2,
     "pagesLimit": 2,
     "plannedFirstPages": 18,
-    "requestsThisRun": 18,
-    "dailyRemaining": 6,
-    "partial": false,
+    "requestsThisRun": 6,
+    "dailyRemaining": 0,
+    "partial": true,
     "paginationRequests": 0,
     "queryLog": [
       {
@@ -167,8 +167,8 @@
         "page": 1,
         "sources": [
           "联合利华招聘",
-          "腾讯校招",
-          "BOSS直聘"
+          "上海交大就业网",
+          "前程无忧"
         ],
         "results": 0,
         "unseenResults": 0,
@@ -193,12 +193,12 @@
         "page": 1,
         "sources": [
           "汇丰招聘",
-          "北京大学就业网",
-          "前程无忧"
+          "复旦大学就业网",
+          "猎聘"
         ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
+        "results": 1,
+        "unseenResults": 1,
+        "newLinks": 1
       },
       {
         "role": "大模型",
@@ -207,7 +207,7 @@
         "sources": [
           "香港交易所招聘",
           "GradConnection 香港",
-          "JobsDB 香港"
+          "Indeed 香港"
         ],
         "results": 0,
         "unseenResults": 0,
@@ -219,12 +219,12 @@
         "page": 1,
         "sources": [
           "渣打招聘",
-          "牛客校招",
+          "实习僧",
           "国家公务员局"
         ],
-        "results": 7,
-        "unseenResults": 7,
-        "newLinks": 7
+        "results": 0,
+        "unseenResults": 0,
+        "newLinks": 0
       },
       {
         "role": "AI",
@@ -238,170 +238,92 @@
         "results": 1,
         "unseenResults": 1,
         "newLinks": 1
-      },
-      {
-        "role": "产品",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "安永招聘",
-          "应届生求职网",
-          "国聘"
-        ],
-        "results": 6,
-        "unseenResults": 6,
-        "newLinks": 2
-      },
-      {
-        "role": "产品",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "亚马逊招聘",
-          "GradConnection 香港",
-          "JobsDB 香港"
-        ],
-        "results": 2,
-        "unseenResults": 2,
-        "newLinks": 2
-      },
-      {
-        "role": "算法",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "普华永道招聘",
-          "上海交大就业网",
-          "猎聘"
-        ],
-        "results": 2,
-        "unseenResults": 2,
-        "newLinks": 2
-      },
-      {
-        "role": "算法",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "苹果招聘",
-          "GradConnection 香港",
-          "JobsDB 香港"
-        ],
-        "results": 1,
-        "unseenResults": 1,
-        "newLinks": 1
-      },
-      {
-        "role": "开发",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "德勤招聘",
-          "复旦大学就业网",
-          "BOSS直聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "开发",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "西门子招聘",
-          "GradConnection 香港",
-          "JobsDB 香港"
-        ],
-        "results": 6,
-        "unseenResults": 6,
-        "newLinks": 6
-      },
-      {
-        "role": "运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "亚马逊招聘",
-          "实习僧",
-          "国家公务员局"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "运营",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "SAP招聘",
-          "GradConnection 香港",
-          "香港公务员招聘"
-        ],
-        "results": 5,
-        "unseenResults": 5,
-        "newLinks": 5
-      },
-      {
-        "role": "金融",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "渣打招聘",
-          "腾讯校招",
-          "智联招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "金融",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "渣打招聘",
-          "GradConnection 香港",
-          "JobsDB 香港"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "快消",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "宝洁招聘",
-          "北京大学就业网",
-          "国聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "快消",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "宝洁招聘",
-          "GradConnection 香港",
-          "JobsDB 香港"
-        ],
-        "results": 5,
-        "unseenResults": 5,
-        "newLinks": 5
       }
     ],
-    "discoveryPages": 1,
+    "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-28T01:51:06.078Z",
+  "updatedAt": "2026-10-28T01:52:09.635Z",
   "mode": "enriched",
   "jobs": [
+    {
+      "id": "2294450a8be239cbd8",
+      "url": "https://www.liepin.com/job/1985237551.shtml",
+      "source": "www.liepin.com",
+      "sourceLabel": "猎聘",
+      "sourceType": "招聘平台",
+      "region": "内地",
+      "discoveredAt": "2026-10-28T01:52:09.635Z",
+      "searchGroup": "大模型",
+      "demo": false,
+      "title": "大模型 Agent 开发工程师实习生",
+      "company": "深圳市原初之境科技有限公司",
+      "countries": [
+        "CN"
+      ],
+      "city": "深圳-南山区",
+      "degree": "硕士",
+      "skills": [
+        "Python",
+        "普通话"
+      ],
+      "postedAt": "2026-08-28T16:12:00+08:00",
+      "deadline": "2027-08-28",
+      "description": "一、提供转正机会\n\n二、岗位摘要\n构建持续运行的多智能体世界与 World Engine Harness——统一封装世界模型 / 仿真后端，支撑长程、多智能体、带记忆与社会关系的 Agent 系统。\n\n三、工作职责\n1. Agent Harness 设计与效果调优\n负责 Agent 主循环、工具调用协议、Skill / Prompt 体系的设计与迭代；通过 harness engineering 而非单纯换模型，把不同底座模型的能力压榨到可用水位，并保证跨模型的一致性。\n2. 记忆与上下文管理\n设计并实现长运行场景下的记忆与上下文机制（分层记忆、滑动窗口、增量/异步压缩、动态装载卸载），在关键信息不丢失与 prompt cache 命中率之间取得平衡，优化 token 成本与端到端时延。\n3. 多智能体与长程任务\n参与多 Agent 协同、任务编排与状态管理的框架设计；支持任务的动态打断 / 恢复 / 重建，保证高并发下的稳定性与响应速度。\n4. 评测体系与效果闭环\n搭建可复现的 Agent 评测集与线上埋点，定位 bad case，把\"感觉变好了\"变成可量化的指标；持续跟踪前沿工作与竞品（Claude Code、Cursor、Codex 等），输出调研并推动落地。\n5. 工程落地\n与工程团队协同完成链路改造，交付可上线的服务接口与中间层，保证模块解耦与可维护性。\n\n四、任职资格\n- 计算机、人工智能或相关专业硕士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系统经验：独立负责过 Prompt / Skill 设计、工具调用链路或 Agent 主循环，而不仅是调用现成框架。\n- 熟悉 LLM 推理与上下文机制的基本原理（KV cache、context window、function calling、结构化输出），理解成本与时延从哪来。\n- 有明确的效果度量意识：能说清自己的改动带来了什么指标变化、怎么测出来的。\n- 学习速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数：1人",
+      "category": "待核实",
+      "fieldEvidence": {
+        "title": {
+          "method": "schema.org/JobPosting",
+          "field": "title",
+          "quote": "大模型 Agent 开发工程师实习生"
+        },
+        "company": {
+          "method": "schema.org/JobPosting",
+          "field": "hiringOrganization.name",
+          "quote": "深圳市原初之境科技有限公司"
+        },
+        "countries": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address.addressCountry",
+          "quote": "[\"CN\"]"
+        },
+        "city": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address",
+          "quote": "深圳-南山区"
+        },
+        "degree": {
+          "method": "schema.org/JobPosting",
+          "field": "educationRequirements",
+          "quote": "硕士"
+        },
+        "skills": {
+          "method": "requirements-text",
+          "quote": "士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系；速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数："
+        },
+        "postedAt": {
+          "method": "schema.org/JobPosting",
+          "field": "datePosted",
+          "quote": "2026-08-28T16:12:00+08:00"
+        },
+        "deadline": {
+          "method": "description-text",
+          "quote": "截止日期2027年08月28日"
+        }
+      },
+      "detailFetchedAt": "2026-10-28T01:52:18.181Z",
+      "verification": "structured-detail",
+      "status": "open-unconfirmed",
+      "assessable": true,
+      "missingFields": [
+        "experience",
+        "salaryMin"
+      ],
+      "detailMethod": "structured",
+      "firstSeenAt": "2026-10-28T01:52:09.635Z",
+      "lastSeenAt": "2026-10-28T01:52:09.635Z",
+      "retained": false
+    },
     {
       "id": "7ddfe733d0ddf772ed",
       "url": "https://www.liepin.com/job/1985879369.shtml",
@@ -514,10 +436,37 @@
       "detailMethod": "structured",
       "firstSeenAt": "2026-10-27T13:39:20.978Z",
       "lastSeenAt": "2026-10-28T01:51:17.247Z",
-      "retained": false
+      "retained": true,
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
+      "recheckPending": false
     }
   ],
   "leads": [
+    {
+      "id": "7ad8e48337b933f157",
+      "title": "Job Description - 2027 Graduate Recruitment (260000UY)",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Click the link provided to see the complete job description.",
+      "source": "careers.mtr.com.hk",
+      "sourceLabel": "港铁招聘",
+      "sourceType": "企业官网",
+      "url": "https://careers.mtr.com.hk/careersection/mtr_graduates_apply/jobdetail.ftl?job=260000UY&lang=en",
+      "discoveredAt": "2026-10-28T01:52:09.635Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:52:09.635Z"
+    },
     {
       "id": "0f397d3554e33fa090",
       "title": "UK&I Graduate Scheme (UFLP) in Human Resources",
@@ -607,7 +556,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "200180506ccf1f0e6f",
@@ -695,7 +645,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "3b664f97b06de5a70c",
@@ -736,7 +687,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "来源返回 HTTP 404"
+      "detailFailure": "来源返回 HTTP 404",
+      "retained": true
     },
     {
       "id": "481820d7d31ad1b12d",
@@ -756,7 +708,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "来源返回 HTTP 403"
+      "detailFailure": "来源返回 HTTP 403",
+      "retained": true
     },
     {
       "id": "4aad0f8b5a49f8bea5",
@@ -788,7 +741,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "4ee1c9fa60ecacbb35",
@@ -850,7 +804,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "来源访问超时"
+      "detailFailure": "来源访问超时",
+      "retained": true
     },
     {
       "id": "587fdeaef8e3f9ceed",
@@ -938,7 +893,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "6acaeef756fc78e33f",
@@ -960,31 +916,6 @@
       "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
       "retained": true,
       "detailFailure": "本轮详情读取限额已达，留待后续核实"
-    },
-    {
-      "id": "7ad8e48337b933f157",
-      "title": "Job Description - 2027 Graduate Recruitment (260000UY)",
-      "company": null,
-      "region": "香港",
-      "searchGroup": "AI",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Click the link provided to see the complete job description.",
-      "source": "careers.mtr.com.hk",
-      "sourceLabel": "港铁招聘",
-      "sourceType": "企业官网",
-      "url": "https://careers.mtr.com.hk/careersection/mtr_graduates_apply/jobdetail.ftl?job=260000UY&lang=en",
-      "discoveredAt": "2026-10-28T01:48:58.631Z",
-      "verification": "search-result",
-      "demo": false,
-      "extractionNotes": {
-        "title": "",
-        "headings": [],
-        "pageKind": "insufficient-structured-fields"
-      },
-      "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
     },
     {
       "id": "7bedc933d508c45453",
@@ -1009,7 +940,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "80c7aa014c462dd314",
@@ -1041,7 +973,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "879a3e4088f6582829",
@@ -1068,7 +1001,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "9559f88b3cd7d71e7b",
@@ -1106,7 +1040,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "98aa791359e24b07ed",
@@ -1126,7 +1061,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "来源返回 HTTP 404"
+      "detailFailure": "来源返回 HTTP 404",
+      "retained": true
     },
     {
       "id": "a29d0c0ea0f597da11",
@@ -1172,7 +1108,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "b5c1fb704c72ab763b",
@@ -1239,7 +1176,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "cab184a8d18209f06d",
@@ -1298,7 +1236,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "cf88c94b5becf4dbd7",
@@ -1318,7 +1257,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "来源返回 HTTP 404"
+      "detailFailure": "来源返回 HTTP 404",
+      "retained": true
     },
     {
       "id": "d07a90501a82b54316",
@@ -1359,7 +1299,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "跳转至不支持或需要登录的站点"
+      "detailFailure": "跳转至不支持或需要登录的站点",
+      "retained": true
     },
     {
       "id": "d3a966992ee76959d3",
@@ -1387,7 +1328,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "da7e8ea0791380c646",
@@ -1412,7 +1354,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "dccd48832398d77ea0",
@@ -1444,7 +1387,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "df76ac66e6fda58c0b",
@@ -1469,7 +1413,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "dfac70d92f7c7ea57f",
@@ -1489,7 +1434,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "来源返回 HTTP 404"
+      "detailFailure": "来源返回 HTTP 404",
+      "retained": true
     },
     {
       "id": "dfc1fa2675534b5779",
@@ -1530,7 +1476,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "来源返回 HTTP 404"
+      "detailFailure": "来源返回 HTTP 404",
+      "retained": true
     },
     {
       "id": "ecb8a06a22da72f93d",
@@ -1555,7 +1502,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:48:58.631Z",
-      "detailFailure": "本轮详情读取限额已达，留待后续核实"
+      "detailFailure": "本轮详情读取限额已达，留待后续核实",
+      "retained": true
     },
     {
       "id": "ef85e36d56f65ca836",
@@ -1614,7 +1562,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     },
     {
       "id": "fea22362557f1730f2",
@@ -1638,38 +1587,7 @@
       "detailFailure": "本轮详情读取限额已达，留待后续核实"
     }
   ],
-  "excluded": [
-    {
-      "id": "3570c232339cc5cd91",
-      "title": "Procter & Gamble Türkiye - Jobs | Procter & Gamble",
-      "url": "https://www.pgcareers.com/eu/en/procter-gamble-t%C3%BCrkiye-jobs",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "030a8c4f05069beb86",
-      "title": "中/高级多媒体算法工程师（AI/AIGC/AI Agent） (MJ004588)",
-      "url": "https://www.liepin.com/job/1983076805.shtml",
-      "reason": "明确要求 4 年经验，不符合应届条件"
-    },
-    {
-      "id": "b23e8987f12a6da097",
-      "title": "SAP Next Gen - Global Revenue Operations",
-      "url": "https://jobs.sap.com/en/jobs/744000154525737/sap-next-gen-global-revenue-operations/",
-      "reason": "公告工作国家不在内地／香港范围"
-    },
-    {
-      "id": "baea181567f84d762e",
-      "title": "Go-to-Market student internship - Riyadh F/M",
-      "url": "https://jobs.sap.com/en/jobs/744000152941479/go-to-market-student-internship-riyadh-fm/",
-      "reason": "公告工作国家不在内地／香港范围"
-    },
-    {
-      "id": "94de50bc7f03bb4f9c",
-      "title": "Business Operations Associate – SAP UK Intern (13 Month Placement)",
-      "url": "https://jobs.sap.com/en/jobs/744000155745349/business-operations-associate-sap-uk-intern-13-month-placement/",
-      "reason": "公告工作国家不在内地／香港范围"
-    }
-  ],
+  "excluded": [],
   "searchPreferences": {
     "role": "数据分析、大模型、AI、产品、算法、开发、运营、金融、快消",
     "region": "全部",
@@ -1680,20 +1598,22 @@
     "experienceLevel": "应届生/在校生",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-10-28T01:48:58.631Z",
-  "warnings": [],
+  "searchUpdatedAt": "2026-10-28T01:52:09.635Z",
+  "warnings": [
+    "当日搜索预算已用完，保留已获得结果及仍可参考的历史岗位；次日自动恢复。"
+  ],
   "stats": {
-    "discovered": 52,
-    "detailAttempts": 36,
+    "discovered": 2,
+    "detailAttempts": 2,
     "detailSuccess": 1,
     "pending": 46,
-    "excluded": 5,
-    "activePool": 1,
-    "historyRetained": 0,
+    "excluded": 0,
+    "activePool": 2,
+    "historyRetained": 1,
     "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
-    "companies": 1
+    "companies": 2
   },
   "notice": "详情字段取自公开招聘页或 JobPosting 元数据，每个已提取要求附有来源证据；仍需在投递前核实在招状态、工作许可和所有门槛。未提取到的信息不会推测。"
 }
