@@ -156,174 +156,17 @@
     "regions": 2,
     "pagesLimit": 2,
     "plannedFirstPages": 18,
-    "requestsThisRun": 6,
+    "requestsThisRun": 0,
     "dailyRemaining": 0,
     "partial": true,
     "paginationRequests": 0,
-    "queryLog": [
-      {
-        "role": "数据分析",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "联合利华招聘",
-          "上海交大就业网",
-          "前程无忧"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "数据分析",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "德勤招聘",
-          "GradConnection 香港",
-          "JobsDB 香港"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "大模型",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "汇丰招聘",
-          "复旦大学就业网",
-          "猎聘"
-        ],
-        "results": 1,
-        "unseenResults": 1,
-        "newLinks": 1
-      },
-      {
-        "role": "大模型",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "香港交易所招聘",
-          "GradConnection 香港",
-          "Indeed 香港"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "AI",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "渣打招聘",
-          "实习僧",
-          "国家公务员局"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "AI",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "港铁招聘",
-          "GradConnection 香港",
-          "香港公务员招聘"
-        ],
-        "results": 1,
-        "unseenResults": 1,
-        "newLinks": 1
-      }
-    ],
+    "queryLog": [],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-28T01:52:09.635Z",
+  "updatedAt": "2026-10-28T02:57:03.959Z",
   "mode": "enriched",
   "jobs": [
-    {
-      "id": "2294450a8be239cbd8",
-      "url": "https://www.liepin.com/job/1985237551.shtml",
-      "source": "www.liepin.com",
-      "sourceLabel": "猎聘",
-      "sourceType": "招聘平台",
-      "region": "内地",
-      "discoveredAt": "2026-10-28T01:52:09.635Z",
-      "searchGroup": "大模型",
-      "demo": false,
-      "title": "大模型 Agent 开发工程师实习生",
-      "company": "深圳市原初之境科技有限公司",
-      "countries": [
-        "CN"
-      ],
-      "city": "深圳-南山区",
-      "degree": "硕士",
-      "skills": [
-        "Python",
-        "普通话"
-      ],
-      "postedAt": "2026-08-28T16:12:00+08:00",
-      "deadline": "2027-08-28",
-      "description": "一、提供转正机会\n\n二、岗位摘要\n构建持续运行的多智能体世界与 World Engine Harness——统一封装世界模型 / 仿真后端，支撑长程、多智能体、带记忆与社会关系的 Agent 系统。\n\n三、工作职责\n1. Agent Harness 设计与效果调优\n负责 Agent 主循环、工具调用协议、Skill / Prompt 体系的设计与迭代；通过 harness engineering 而非单纯换模型，把不同底座模型的能力压榨到可用水位，并保证跨模型的一致性。\n2. 记忆与上下文管理\n设计并实现长运行场景下的记忆与上下文机制（分层记忆、滑动窗口、增量/异步压缩、动态装载卸载），在关键信息不丢失与 prompt cache 命中率之间取得平衡，优化 token 成本与端到端时延。\n3. 多智能体与长程任务\n参与多 Agent 协同、任务编排与状态管理的框架设计；支持任务的动态打断 / 恢复 / 重建，保证高并发下的稳定性与响应速度。\n4. 评测体系与效果闭环\n搭建可复现的 Agent 评测集与线上埋点，定位 bad case，把\"感觉变好了\"变成可量化的指标；持续跟踪前沿工作与竞品（Claude Code、Cursor、Codex 等），输出调研并推动落地。\n5. 工程落地\n与工程团队协同完成链路改造，交付可上线的服务接口与中间层，保证模块解耦与可维护性。\n\n四、任职资格\n- 计算机、人工智能或相关专业硕士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系统经验：独立负责过 Prompt / Skill 设计、工具调用链路或 Agent 主循环，而不仅是调用现成框架。\n- 熟悉 LLM 推理与上下文机制的基本原理（KV cache、context window、function calling、结构化输出），理解成本与时延从哪来。\n- 有明确的效果度量意识：能说清自己的改动带来了什么指标变化、怎么测出来的。\n- 学习速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数：1人",
-      "category": "待核实",
-      "fieldEvidence": {
-        "title": {
-          "method": "schema.org/JobPosting",
-          "field": "title",
-          "quote": "大模型 Agent 开发工程师实习生"
-        },
-        "company": {
-          "method": "schema.org/JobPosting",
-          "field": "hiringOrganization.name",
-          "quote": "深圳市原初之境科技有限公司"
-        },
-        "countries": {
-          "method": "schema.org/JobPosting",
-          "field": "jobLocation.address.addressCountry",
-          "quote": "[\"CN\"]"
-        },
-        "city": {
-          "method": "schema.org/JobPosting",
-          "field": "jobLocation.address",
-          "quote": "深圳-南山区"
-        },
-        "degree": {
-          "method": "schema.org/JobPosting",
-          "field": "educationRequirements",
-          "quote": "硕士"
-        },
-        "skills": {
-          "method": "requirements-text",
-          "quote": "士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系；速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数："
-        },
-        "postedAt": {
-          "method": "schema.org/JobPosting",
-          "field": "datePosted",
-          "quote": "2026-08-28T16:12:00+08:00"
-        },
-        "deadline": {
-          "method": "description-text",
-          "quote": "截止日期2027年08月28日"
-        }
-      },
-      "detailFetchedAt": "2026-10-28T01:52:18.181Z",
-      "verification": "structured-detail",
-      "status": "open-unconfirmed",
-      "assessable": true,
-      "missingFields": [
-        "experience",
-        "salaryMin"
-      ],
-      "detailMethod": "structured",
-      "firstSeenAt": "2026-10-28T01:52:09.635Z",
-      "lastSeenAt": "2026-10-28T01:52:09.635Z",
-      "retained": false
-    },
     {
       "id": "7ddfe733d0ddf772ed",
       "url": "https://www.liepin.com/job/1985879369.shtml",
@@ -439,6 +282,86 @@
       "retained": true,
       "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": false
+    },
+    {
+      "id": "2294450a8be239cbd8",
+      "url": "https://www.liepin.com/job/1985237551.shtml",
+      "source": "www.liepin.com",
+      "sourceLabel": "猎聘",
+      "sourceType": "招聘平台",
+      "region": "内地",
+      "discoveredAt": "2026-10-28T01:52:09.635Z",
+      "searchGroup": "大模型",
+      "demo": false,
+      "title": "大模型 Agent 开发工程师实习生",
+      "company": "深圳市原初之境科技有限公司",
+      "countries": [
+        "CN"
+      ],
+      "city": "深圳-南山区",
+      "degree": "硕士",
+      "skills": [
+        "Python",
+        "普通话"
+      ],
+      "postedAt": "2026-08-28T16:12:00+08:00",
+      "deadline": "2027-08-28",
+      "description": "一、提供转正机会\n\n二、岗位摘要\n构建持续运行的多智能体世界与 World Engine Harness——统一封装世界模型 / 仿真后端，支撑长程、多智能体、带记忆与社会关系的 Agent 系统。\n\n三、工作职责\n1. Agent Harness 设计与效果调优\n负责 Agent 主循环、工具调用协议、Skill / Prompt 体系的设计与迭代；通过 harness engineering 而非单纯换模型，把不同底座模型的能力压榨到可用水位，并保证跨模型的一致性。\n2. 记忆与上下文管理\n设计并实现长运行场景下的记忆与上下文机制（分层记忆、滑动窗口、增量/异步压缩、动态装载卸载），在关键信息不丢失与 prompt cache 命中率之间取得平衡，优化 token 成本与端到端时延。\n3. 多智能体与长程任务\n参与多 Agent 协同、任务编排与状态管理的框架设计；支持任务的动态打断 / 恢复 / 重建，保证高并发下的稳定性与响应速度。\n4. 评测体系与效果闭环\n搭建可复现的 Agent 评测集与线上埋点，定位 bad case，把\"感觉变好了\"变成可量化的指标；持续跟踪前沿工作与竞品（Claude Code、Cursor、Codex 等），输出调研并推动落地。\n5. 工程落地\n与工程团队协同完成链路改造，交付可上线的服务接口与中间层，保证模块解耦与可维护性。\n\n四、任职资格\n- 计算机、人工智能或相关专业硕士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系统经验：独立负责过 Prompt / Skill 设计、工具调用链路或 Agent 主循环，而不仅是调用现成框架。\n- 熟悉 LLM 推理与上下文机制的基本原理（KV cache、context window、function calling、结构化输出），理解成本与时延从哪来。\n- 有明确的效果度量意识：能说清自己的改动带来了什么指标变化、怎么测出来的。\n- 学习速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数：1人",
+      "category": "待核实",
+      "fieldEvidence": {
+        "title": {
+          "method": "schema.org/JobPosting",
+          "field": "title",
+          "quote": "大模型 Agent 开发工程师实习生"
+        },
+        "company": {
+          "method": "schema.org/JobPosting",
+          "field": "hiringOrganization.name",
+          "quote": "深圳市原初之境科技有限公司"
+        },
+        "countries": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address.addressCountry",
+          "quote": "[\"CN\"]"
+        },
+        "city": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address",
+          "quote": "深圳-南山区"
+        },
+        "degree": {
+          "method": "schema.org/JobPosting",
+          "field": "educationRequirements",
+          "quote": "硕士"
+        },
+        "skills": {
+          "method": "requirements-text",
+          "quote": "士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系；速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数："
+        },
+        "postedAt": {
+          "method": "schema.org/JobPosting",
+          "field": "datePosted",
+          "quote": "2026-08-28T16:12:00+08:00"
+        },
+        "deadline": {
+          "method": "description-text",
+          "quote": "截止日期2027年08月28日"
+        }
+      },
+      "detailFetchedAt": "2026-10-28T01:52:18.181Z",
+      "verification": "structured-detail",
+      "status": "open-unconfirmed",
+      "assessable": true,
+      "missingFields": [
+        "experience",
+        "salaryMin"
+      ],
+      "detailMethod": "structured",
+      "firstSeenAt": "2026-10-28T01:52:09.635Z",
+      "lastSeenAt": "2026-10-28T01:52:09.635Z",
+      "retained": true,
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
+      "recheckPending": false
     }
   ],
   "leads": [
@@ -465,7 +388,8 @@
         "headings": [],
         "pageKind": "insufficient-structured-fields"
       },
-      "detailAttemptedAt": "2026-10-28T01:52:09.635Z"
+      "detailAttemptedAt": "2026-10-28T01:52:09.635Z",
+      "retained": true
     },
     {
       "id": "0f397d3554e33fa090",
@@ -1603,13 +1527,13 @@
     "当日搜索预算已用完，保留已获得结果及仍可参考的历史岗位；次日自动恢复。"
   ],
   "stats": {
-    "discovered": 2,
-    "detailAttempts": 2,
-    "detailSuccess": 1,
+    "discovered": 0,
+    "detailAttempts": 0,
+    "detailSuccess": 0,
     "pending": 46,
     "excluded": 0,
     "activePool": 2,
-    "historyRetained": 1,
+    "historyRetained": 2,
     "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
