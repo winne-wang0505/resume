@@ -1,81 +1,175 @@
 {
   "schemaVersion": 3,
+  "sourceHealth": {
+    "nowcoder": {
+      "name": "牛客校招",
+      "attempts": 7,
+      "successes": 0,
+      "consecutiveFailures": 7,
+      "failures": {
+        "fields": 7
+      },
+      "lastAttemptAt": "2026-10-28T01:48:58.631Z",
+      "lastFailureKind": "fields"
+    },
+    "mtr": {
+      "name": "港铁招聘",
+      "attempts": 1,
+      "successes": 0,
+      "consecutiveFailures": 1,
+      "failures": {
+        "fields": 1
+      },
+      "lastAttemptAt": "2026-10-28T01:48:58.631Z",
+      "lastFailureKind": "fields"
+    },
+    "liepin": {
+      "name": "猎聘",
+      "attempts": 2,
+      "successes": 1,
+      "consecutiveFailures": 0,
+      "failures": {
+        "fields": 1
+      },
+      "lastAttemptAt": "2026-10-28T01:48:58.631Z",
+      "lastFailureKind": "fields",
+      "cooldownUntil": null,
+      "lastSuccessAt": "2026-10-28T01:48:58.631Z"
+    },
+    "apple": {
+      "name": "苹果招聘",
+      "attempts": 1,
+      "successes": 0,
+      "consecutiveFailures": 1,
+      "failures": {
+        "fields": 1
+      },
+      "lastAttemptAt": "2026-10-28T01:48:58.631Z",
+      "lastFailureKind": "fields"
+    },
+    "amazon": {
+      "name": "亚马逊招聘",
+      "attempts": 2,
+      "successes": 0,
+      "consecutiveFailures": 2,
+      "failures": {
+        "fields": 2
+      },
+      "lastAttemptAt": "2026-10-28T01:48:58.631Z",
+      "lastFailureKind": "fields"
+    },
+    "sap": {
+      "name": "SAP招聘",
+      "attempts": 5,
+      "successes": 3,
+      "consecutiveFailures": 0,
+      "failures": {
+        "restricted": 1,
+        "fields": 1
+      },
+      "lastAttemptAt": "2026-10-28T01:48:58.631Z",
+      "lastFailureKind": "fields",
+      "cooldownUntil": null,
+      "lastSuccessAt": "2026-10-28T01:48:58.631Z"
+    },
+    "pg": {
+      "name": "宝洁招聘",
+      "attempts": 4,
+      "successes": 0,
+      "consecutiveFailures": 4,
+      "failures": {
+        "fields": 4
+      },
+      "lastAttemptAt": "2026-10-28T01:48:58.631Z",
+      "lastFailureKind": "fields"
+    },
+    "siemens": {
+      "name": "西门子招聘",
+      "attempts": 6,
+      "successes": 0,
+      "consecutiveFailures": 6,
+      "failures": {
+        "gone": 5,
+        "fields": 1
+      },
+      "lastAttemptAt": "2026-10-28T01:48:58.631Z",
+      "lastFailureKind": "gone"
+    },
+    "yingjiesheng": {
+      "name": "应届生求职网",
+      "attempts": 2,
+      "successes": 0,
+      "consecutiveFailures": 2,
+      "failures": {
+        "fields": 2
+      },
+      "lastAttemptAt": "2026-10-28T01:48:58.631Z",
+      "lastFailureKind": "fields"
+    }
+  },
   "searchUsage": {
-    "day": "2026-10-27",
-    "requests": 24,
+    "day": "2026-10-28",
+    "requests": 18,
     "limit": 24
   },
   "coverage": {
-    "configuredSources": 33,
+    "configuredSources": 41,
     "roleDirections": 9,
     "regions": 2,
     "pagesLimit": 2,
     "plannedFirstPages": 18,
-    "requestsThisRun": 6,
-    "dailyRemaining": 0,
-    "partial": true,
+    "requestsThisRun": 18,
+    "dailyRemaining": 6,
+    "partial": false,
     "paginationRequests": 0,
     "queryLog": [
       {
-        "role": "快消",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "CTgoodjobs",
-          "GradConnection 香港",
-          "联合利华招聘"
-        ],
-        "results": 6,
-        "unseenResults": 6,
-        "newLinks": 6
-      },
-      {
         "role": "数据分析",
         "region": "内地",
         "page": 1,
         "sources": [
-          "国聘",
-          "实习僧",
-          "宝洁招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "数据分析",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "Indeed 香港",
-          "GradConnection 香港",
-          "汇丰招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "大模型",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "BOSS直聘",
+          "联合利华招聘",
           "腾讯校招",
-          "渣打招聘"
+          "BOSS直聘"
         ],
-        "results": 1,
-        "unseenResults": 1,
-        "newLinks": 1
+        "results": 0,
+        "unseenResults": 0,
+        "newLinks": 0
+      },
+      {
+        "role": "数据分析",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "德勤招聘",
+          "GradConnection 香港",
+          "JobsDB 香港"
+        ],
+        "results": 0,
+        "unseenResults": 0,
+        "newLinks": 0
+      },
+      {
+        "role": "大模型",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "汇丰招聘",
+          "北京大学就业网",
+          "前程无忧"
+        ],
+        "results": 0,
+        "unseenResults": 0,
+        "newLinks": 0
       },
       {
         "role": "大模型",
         "region": "香港",
         "page": 1,
         "sources": [
-          "JobsDB 香港",
+          "香港交易所招聘",
           "GradConnection 香港",
-          "普华永道招聘"
+          "JobsDB 香港"
         ],
         "results": 0,
         "unseenResults": 0,
@@ -86,19 +180,188 @@
         "region": "内地",
         "page": 1,
         "sources": [
-          "智联招聘",
-          "实习僧",
-          "德勤招聘"
+          "渣打招聘",
+          "牛客校招",
+          "国家公务员局"
+        ],
+        "results": 7,
+        "unseenResults": 7,
+        "newLinks": 7
+      },
+      {
+        "role": "AI",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "港铁招聘",
+          "GradConnection 香港",
+          "香港公务员招聘"
+        ],
+        "results": 1,
+        "unseenResults": 1,
+        "newLinks": 1
+      },
+      {
+        "role": "产品",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "安永招聘",
+          "应届生求职网",
+          "国聘"
+        ],
+        "results": 6,
+        "unseenResults": 6,
+        "newLinks": 2
+      },
+      {
+        "role": "产品",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "亚马逊招聘",
+          "GradConnection 香港",
+          "JobsDB 香港"
+        ],
+        "results": 2,
+        "unseenResults": 2,
+        "newLinks": 2
+      },
+      {
+        "role": "算法",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "普华永道招聘",
+          "上海交大就业网",
+          "猎聘"
+        ],
+        "results": 2,
+        "unseenResults": 2,
+        "newLinks": 2
+      },
+      {
+        "role": "算法",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "苹果招聘",
+          "GradConnection 香港",
+          "JobsDB 香港"
+        ],
+        "results": 1,
+        "unseenResults": 1,
+        "newLinks": 1
+      },
+      {
+        "role": "开发",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "德勤招聘",
+          "复旦大学就业网",
+          "BOSS直聘"
         ],
         "results": 0,
         "unseenResults": 0,
         "newLinks": 0
+      },
+      {
+        "role": "开发",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "西门子招聘",
+          "GradConnection 香港",
+          "JobsDB 香港"
+        ],
+        "results": 6,
+        "unseenResults": 6,
+        "newLinks": 6
+      },
+      {
+        "role": "运营",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "亚马逊招聘",
+          "实习僧",
+          "国家公务员局"
+        ],
+        "results": 0,
+        "unseenResults": 0,
+        "newLinks": 0
+      },
+      {
+        "role": "运营",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "SAP招聘",
+          "GradConnection 香港",
+          "香港公务员招聘"
+        ],
+        "results": 5,
+        "unseenResults": 5,
+        "newLinks": 5
+      },
+      {
+        "role": "金融",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "渣打招聘",
+          "腾讯校招",
+          "智联招聘"
+        ],
+        "results": 0,
+        "unseenResults": 0,
+        "newLinks": 0
+      },
+      {
+        "role": "金融",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "渣打招聘",
+          "GradConnection 香港",
+          "JobsDB 香港"
+        ],
+        "results": 0,
+        "unseenResults": 0,
+        "newLinks": 0
+      },
+      {
+        "role": "快消",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "宝洁招聘",
+          "北京大学就业网",
+          "国聘"
+        ],
+        "results": 0,
+        "unseenResults": 0,
+        "newLinks": 0
+      },
+      {
+        "role": "快消",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "宝洁招聘",
+          "GradConnection 香港",
+          "JobsDB 香港"
+        ],
+        "results": 5,
+        "unseenResults": 5,
+        "newLinks": 5
       }
     ],
-    "discoveryPages": 0,
+    "discoveryPages": 1,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-27T15:28:40.689Z",
+  "updatedAt": "2026-10-28T01:48:58.631Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -213,10 +476,700 @@
       "detailMethod": "structured",
       "firstSeenAt": "2026-10-27T13:39:20.978Z",
       "lastSeenAt": "2026-10-27T15:28:43.088Z",
-      "retained": false
+      "retained": true,
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
+      "recheckPending": false
     }
   ],
   "leads": [
+    {
+      "id": "1bbdf3ccf032b64a24",
+      "title": "Hungary Traineeships and Internships | Procter & Gamble",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "快消",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Certification and awards we proudly received in 2023 are external recognitions of our focus to our employees and communities: Family-friendly organization certified (Family Friendly Hungary Centre), Business Superbrand (Superbrands) and 2nd top employer in Hungary in FMCG category (PWC).",
+      "source": "www.pgcareers.com",
+      "sourceLabel": "宝洁招聘",
+      "sourceType": "企业官网",
+      "url": "https://www.pgcareers.com/eu/en/hungary-traineeships-and-internships",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "Hungary\nTraineeships\n& Internships\n- Roles Available",
+        "headings": [
+          "P&G in Hungary",
+          "WE ARE CURRENTLY HIRING FOR THE FOLLOWING ROLES:",
+          "Why Join Us?",
+          "Join Our Talent Community!",
+          "follow us"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "2f984efe14f700801b",
+      "title": "AI Infra工程师-容器方向-阿里巴巴2027届实习生_阿里巴巴集团校招_牛客网",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "阿里巴巴集团校招 AI Infra工程师-容器方向-阿里巴巴2027届实习生 2026最新招聘求职信息，薪资：0-9999999，地点：杭州,北京,深圳，点击查看更多阿里巴巴集团招聘岗位、岗位职责要求、工作内容、薪资待遇介绍等企业招聘信息。",
+      "source": "www.nowcoder.com",
+      "sourceLabel": "牛客校招",
+      "sourceType": "校招／实习",
+      "url": "https://www.nowcoder.com/jobs/detail/446367?urlSource=sitemap",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "AI Infra工程师-容器方向-阿里巴巴2027届实习生",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "3c65c323aa130a2669",
+      "title": "Senior SAP ABAP Developer - Job Detail | Careers Marketplace - Siemens",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "开发",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Wichtiger Hinweis: Für alle Bewerber: Bitte beachte, dass Siemens zu keinem Zeitpunkt – weder vor noch während oder nach dem Bewerbungsprozess – Gebühren verlangt. Wir fordern keine Bankdaten oder persönlichen Finanzinformationen als Voraussetzung für eine Einstellung an.",
+      "source": "jobs.siemens.com",
+      "sourceLabel": "西门子招聘",
+      "sourceType": "企业官网",
+      "url": "https://jobs.siemens.com/de_DE/externaljobs/JobDetail/503261",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源返回 HTTP 404",
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "481820d7d31ad1b12d",
+      "title": "SAP Fieldglass iXp Intern - Partner Operations Intern Job Details | SAP",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "运营",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Galway SAP Fieldglass iXp Intern - Partner Operations Intern, H91W3P8",
+      "source": "jobs.sap.com",
+      "sourceLabel": "SAP招聘",
+      "sourceType": "企业官网",
+      "url": "https://jobs.sap.com/job/Galway-SAP-Fieldglass-iXp-Intern-Partner-Operations-Intern-H91W3P8/1425620233/",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源返回 HTTP 403",
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "4aad0f8b5a49f8bea5",
+      "title": "Jobs in P&G Turkey | P&G Careers",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "快消",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Procter &amp; Gamble (P&amp;G) is the leading FMCG company in the world with a long standing, value led &amp; purpose driven culture: Touching lives, improving life.",
+      "source": "www.pgcareers.com",
+      "sourceLabel": "宝洁招聘",
+      "sourceType": "企业官网",
+      "url": "https://www.pgcareers.com/global/en/locations/T%C3%BCrkiye",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "Jobs in P&G\n​​​​​​​Türkiye",
+        "headings": [
+          "Locations in P&G Türkiye",
+          "Working at P&G Türkiye​​​​​​​",
+          "Search Jobs in P&G Türkiye​​​​​​​",
+          "No results for\n\"${pageStateData.searchKeyword}\"",
+          "No results for\n\"${pageStateData.placeVal}\"",
+          "follow us"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "551933704932889237",
+      "title": "浙江双环传动机械股份有限公司2027校园招聘宣讲会_应届生求职网",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "产品",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "、流程优化、降本增效、生产体系完善 台州、嘉兴 综合职能储备 硕士 4 机械类、智能制造相关专业 集团复合型技术管理储备，定向培养中层技术骨干 嘉兴 本科 7 机械类、工业工程、计算机类、人工智能、经管类相关专业 人力、采购、数据信息化、企业管理等综合职能储备 嘉兴、淮安、台州 合计 —— 313 —— —— —— 二、工作地点： 台州（玉环本部）、嘉兴、淮安、重庆、东莞、深圳、杭州等地。公司可根据业务发展、人才培养需要，结合个人",
+      "source": "my.yingjiesheng.com",
+      "sourceLabel": "应届生求职网",
+      "sourceType": "校招／实习",
+      "url": "https://my.yingjiesheng.com/xjh-006-274-912.html",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "�㽭˫��������е�ɷ����޹�˾2027У԰��Ƹ������\n-����ʯ�ʹ�ѧ",
+        "headings": [
+          "С��ʾ"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "67d2cbc3d13cea08c6",
+      "title": "客户端研发工程师_阿里巴巴集团实习_牛客网",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "阿里巴巴集团实习 客户端研发工程师 2026最新招聘求职信息，薪资：350-500，地点：杭州，点击查看更多阿里巴巴集团招聘岗位、岗位职责要求、工作内容、薪资待遇介绍等企业招聘信息。",
+      "source": "www.nowcoder.com",
+      "sourceLabel": "牛客校招",
+      "sourceType": "校招／实习",
+      "url": "https://www.nowcoder.com/jobs/detail/439032?deliverSource=1&pageSource=5001&channel=npJobTab",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "客户端研发工程师",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "7ad8e48337b933f157",
+      "title": "Job Description - 2027 Graduate Recruitment (260000UY)",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Click the link provided to see the complete job description.",
+      "source": "careers.mtr.com.hk",
+      "sourceLabel": "港铁招聘",
+      "sourceType": "企业官网",
+      "url": "https://careers.mtr.com.hk/careersection/mtr_graduates_apply/jobdetail.ftl?job=260000UY&lang=en",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "7bedc933d508c45453",
+      "title": "算法工程师-AIOps_阿里云实习_牛客网",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "本职位只招收27届应届毕业生（2026.11 ~ 2027.10 ），暑期实习。 岗位要求 1. 专业背景扎实，计算机、人工智能、软件工程、模式识别、统计学相关专业； 2. 具备扎实的算法功底，熟练掌...",
+      "source": "www.nowcoder.com",
+      "sourceLabel": "牛客校招",
+      "sourceType": "校招／实习",
+      "url": "https://www.nowcoder.com/jobs/detail/434898?urlSource=sitemap",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "算法工程师-AIOps",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "80c7aa014c462dd314",
+      "title": "Malaysia Internship | Procter & Gamble",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "快消",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Over the years, we have remained consistently among the top in marketing, relentlessly finding most effective and innovative ways to win the hearts and minds of consumers. ​​​​​​​Join the Brand Management function of the world’s largest FMCG Company for your 2023 internship!",
+      "source": "www.pgcareers.com",
+      "sourceLabel": "宝洁招聘",
+      "sourceType": "企业官网",
+      "url": "https://www.pgcareers.com/apac/en/malaysia-internship",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "P&G Malaysia\n​​​​​​​Internship",
+        "headings": [
+          "Welcome aboard the P&G internship – your journey from today to an accelerated career starts here!",
+          "Apply Now: How to get your internship boarding pass",
+          "Sales",
+          "Finance",
+          "Brand",
+          "follow us"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "879a3e4088f6582829",
+      "title": "查看所有職位",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "开发",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "類似職位 · Semantic Data Engineer 5+ Years of exp · Pune, Maharashtra, India · Lead Software Developer - AI · Bangalore, Karnataka, India · Sr Software Engineer (Datawarehouse) · Data Scientist - NLP Focussed · Senior Software Engineer - AI Application Development and Operations",
+      "source": "jobs.siemens.com",
+      "sourceLabel": "西门子招聘",
+      "sourceType": "企业官网",
+      "url": "https://jobs.siemens.com/zh_TW/externaljobs/WidgetRelatedJobs?folderId=520335",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [
+          "類似職位"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "9559f88b3cd7d71e7b",
+      "title": "SAP Fieldglass iXp Intern - Partner Operations Finance Intern Job Details | SAP",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "运营",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Galway SAP Fieldglass iXp Intern - Partner Operations Finance Intern, H91W3P8",
+      "source": "jobs.sap.com",
+      "sourceLabel": "SAP招聘",
+      "sourceType": "企业官网",
+      "url": "https://jobs.sap.com/job/Galway-SAP-Fieldglass-iXp-Intern-Partner-Operations-Finance-Intern-H91W3P8/1425506933/",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "Open jobs",
+        "headings": [
+          "Quick Links",
+          "Trending",
+          "About SAP",
+          "Site Information",
+          "Our hiring process, step by step",
+          "1. Search and apply",
+          "2. Application review",
+          "3. Interviews and assessments",
+          "4. Offer and onboarding",
+          "Not ready to apply? Stay in touch.",
+          "SAP iXp Intern  Product Expert, SAP Business One",
+          "SAP iXp Intern — Marketing & Demand Generation"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "98aa791359e24b07ed",
+      "title": "SAP BTP CAP with AI Developer - Job Detail | Careers Marketplace - Siemens",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "开发",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Wichtiger Hinweis: Für alle Bewerber: Bitte beachte, dass Siemens zu keinem Zeitpunkt – weder vor noch während oder nach dem Bewerbungsprozess – Gebühren verlangt. Wir fordern keine Bankdaten oder persönlichen Finanzinformationen als Voraussetzung für eine Einstellung an.",
+      "source": "jobs.siemens.com",
+      "sourceLabel": "西门子招聘",
+      "sourceType": "企业官网",
+      "url": "https://jobs.siemens.com/de_DE/externaljobs/JobDetail/501114",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源返回 HTTP 404",
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "a9ef8355d1c5f6a4fe",
+      "title": "AI计算系统协同设计研发-阿里星-阿里巴巴2027届实习生_阿里巴巴集团校招_牛客网",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "阿里巴巴集团校招 AI计算系统协同设计研发-阿里星-阿里巴巴2027届实习生 2026最新招聘求职信息，薪资：0-9999999，地点：成都,上海,杭州,北京，点击查看更多阿里巴巴集团招聘岗位、岗位职责要求、工作内容、薪资待遇介绍...",
+      "source": "www.nowcoder.com",
+      "sourceLabel": "牛客校招",
+      "sourceType": "校招／实习",
+      "url": "https://www.nowcoder.com/jobs/detail/446409?urlSource=sitemap",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "AI计算系统协同设计研发-阿里星-阿里巴巴2027届实习生",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "bb7f01d20ad72d57e4",
+      "title": "米哈游2027校园招聘_北京上海校园招聘",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "产品",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "上一条： [上海]上海光翼商业管理有限公司 下一条： [上海杭州南京]虹软科技股份有限公司 ... 【北京上海广东天津其它】北京市龙源电力集团股份有限公司2027校园招聘2026-10-07截止",
+      "source": "www.yingjiesheng.com",
+      "sourceLabel": "应届生求职网",
+      "sourceType": "校招／实习",
+      "url": "https://www.yingjiesheng.com/job-008-016-177.html",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "ccfeed91711e7c1f05",
+      "title": "Marketing",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "产品",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "At Amazon, our customer obsession speaks for itself through new products and services. Behind the scenes, our marketing teams are working hard to spread the word to new and existing audiences around the world.Our team’s wide range of skills provides a ...",
+      "source": "amazon.jobs",
+      "sourceLabel": "亚马逊招聘",
+      "sourceType": "企业官网",
+      "url": "https://amazon.jobs/content/en/job-categories/marketing",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "Marketing",
+        "headings": [
+          "Resources",
+          "Sharing and connecting around the world",
+          "Marketing positions include:",
+          "Marketing Coordinator",
+          "Marketing Manager",
+          "Social and Digital Media Manager",
+          "Brand and Positioning Specialist",
+          "Strategic Communications Manager",
+          "Voices of Amazonians",
+          "“When marketing is done really well, it helps customers solve problems in the moment. You do thorough research, and then",
+          "“What I like most about my role is I have the ability to come up with ideas and push those ideas forward. You’re not jus",
+          "Find jobs in Marketing"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "cf88c94b5becf4dbd7",
+      "title": "Software Developer Internship: Silicon Monitoring Solutions - Job Detail | Careers Marketplace - Siemens",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "开发",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Siemens Digital Industries Software – #TransformTheEveryday · Check the video: SIEMENS DISW Electronic Design Automation",
+      "source": "jobs.siemens.com",
+      "sourceLabel": "西门子招聘",
+      "sourceType": "企业官网",
+      "url": "https://jobs.siemens.com/en_US/externaljobs/JobDetail/499638",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源返回 HTTP 404",
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "d2b92717afa70e1f3e",
+      "title": "Machine Learning Algorithm Engineer - Jobs - Careers at Apple",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "算法",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Apply for a Machine Learning Algorithm Engineer job at Apple. Read about the role and find out if it’s right for you.",
+      "source": "jobs.apple.com",
+      "sourceLabel": "苹果招聘",
+      "sourceType": "企业官网",
+      "url": "https://jobs.apple.com/en-us/details/200689245-0836/machine-learning-algorithm-engineer",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "跳转至不支持或需要登录的站点",
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "d3a966992ee76959d3",
+      "title": "【上海 AI算法实习生招聘】-UAES上海招聘信息-猎聘",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "算法",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "AI算法实习生 提供转正 200-250元/天 · 上海-浦东新区 实习 4天/周 6个月 硕士 学生可投 招1人 7月10日更新 · 投简历 聊一聊 · 收藏 · 微信分享扫码 · 冉女士 17小时前在线 已认证 · HR · UAES · 聊一聊 · 职位介绍 · 1、 ...",
+      "source": "www.liepin.com",
+      "sourceLabel": "猎聘",
+      "sourceType": "招聘平台",
+      "url": "https://www.liepin.com/job/1983411337.shtml",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [
+          "热门职位",
+          "推荐企业"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "da7e8ea0791380c646",
+      "title": "图像数据处理实习生_梅卡曼德机器人实习_牛客网",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "梅卡曼德机器人实习 图像数据处理实习生 2026最新招聘求职信息，薪资：130-180，地点：北京，点击查看更多梅卡曼德机器人招聘岗位、岗位职责要求、工作内容、薪资待遇介绍等企业招聘信息。",
+      "source": "www.nowcoder.com",
+      "sourceLabel": "牛客校招",
+      "sourceType": "校招／实习",
+      "url": "https://www.nowcoder.com/jobs/detail/446537?urlSource=sitemap",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "图像数据处理实习生",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "dccd48832398d77ea0",
+      "title": "Jobs in P&G Malaysia - Procter & Gamble",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "快消",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "The business sells products in various categories, namely beauty, fabric and home care, and health and grooming, many of which top their respective market categories. ​​​​​​​In 2022, P&amp;G Malaysia was recognized as a Top Most Preferred FMCG Graduate Employer to Work For in FMCG by Talentbank Malaysia’s Graduates’ Choice Awards.",
+      "source": "www.pgcareers.com",
+      "sourceLabel": "宝洁招聘",
+      "sourceType": "企业官网",
+      "url": "https://www.pgcareers.com/apac/en/locations/malaysia",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "Jobs in P&G\nMalaysia",
+        "headings": [
+          "Locations in P&G Malaysia",
+          "Working at P&G Malaysia​​​​​​​",
+          "Search Jobs in P&G Malaysia​​​​​​​",
+          "No results for\n\"${pageStateData.searchKeyword}\"",
+          "No results for\n\"${pageStateData.placeVal}\"",
+          "follow us"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "df76ac66e6fda58c0b",
+      "title": "AI Infra测试开发工程师-存储方向-阿里巴巴2027届实习生_阿里巴巴集团校招_牛客网",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "阿里巴巴集团校招 AI Infra测试开发工程师-存储方向-阿里巴巴2027届实习生 2026最新招聘求职信息，薪资：0-9999999，地点：成都,上海,杭州，点击查看更多阿里巴巴集团招聘岗位、岗位职责要求、工作内容、薪资待遇介绍等企...",
+      "source": "www.nowcoder.com",
+      "sourceLabel": "牛客校招",
+      "sourceType": "校招／实习",
+      "url": "https://www.nowcoder.com/jobs/detail/446438?urlSource=sitemap",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "AI Infra测试开发工程师-存储方向-阿里巴巴2027届实习生",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "dfac70d92f7c7ea57f",
+      "title": "Finance Analyst - Job Detail | Careers Marketplace - Siemens",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "开发",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "When you join Siemens Healthineers, you become one in a global team of scientists, clinicians, developers, researchers, professionals, and skilled specialists, who believe in each individual’s potential to contribute with diverse ideas.",
+      "source": "jobs.siemens.com",
+      "sourceLabel": "西门子招聘",
+      "sourceType": "企业官网",
+      "url": "https://jobs.siemens.com/ja_JP/externaljobs/JobDetail/498072?gh_src=Discover+Technata+job+board",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源返回 HTTP 404",
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "e2f4975ad771f4495c",
+      "title": "Degree Apprentice - Project Manager (Level 6) - Job Detail | Careers Marketplace - Siemens",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "开发",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "A key aspect of their work is to foster seamless coordination among diverse teams—including hardware engineers, software developers, and installation specialists—and to effectively engage with numerous stakeholders such as rail operators, regulatory bodies, and various sub-contractors.",
+      "source": "jobs.siemens.com",
+      "sourceLabel": "西门子招聘",
+      "sourceType": "企业官网",
+      "url": "https://jobs.siemens.com/ja_JP/externaljobs/JobDetail/485826",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源返回 HTTP 404",
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "ecb8a06a22da72f93d",
+      "title": "AI Infra工程师-计算方向-阿里巴巴2027届实习生_阿里巴巴集团校招_牛客网",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "阿里巴巴集团校招 AI Infra工程师-计算方向-阿里巴巴2027届实习生 2026最新招聘求职信息，薪资：0-9999999，地点：上海,杭州,北京，点击查看更多阿里巴巴集团招聘岗位、岗位职责要求、工作内容、薪资待遇介绍等企业招聘信息。",
+      "source": "www.nowcoder.com",
+      "sourceLabel": "牛客校招",
+      "sourceType": "校招／实习",
+      "url": "https://www.nowcoder.com/jobs/detail/446399?urlSource=sitemap",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "AI Infra工程师-计算方向-阿里巴巴2027届实习生",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
+    {
+      "id": "eff7a16fda0050cab9",
+      "title": "Amazon Ads",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "产品",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "At Amazon Ads we’re re-imagining the advertising experience for everyone. Whether you’re a visionary in developing cutting-edge AdTech products, a campaign mastermind, or a strategist who helps brands reach their goals, we want you to help us re-imagin...",
+      "source": "www.amazon.jobs",
+      "sourceLabel": "亚马逊招聘",
+      "sourceType": "企业官网",
+      "url": "https://www.amazon.jobs/content/en/teams/advertising",
+      "discoveredAt": "2026-10-28T01:48:58.631Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "Amazon Ads",
+        "headings": [
+          "Resources",
+          "Browse roles by job category",
+          "Account Management, Sales and Business Development",
+          "Applied Science, Machine Learning and Research",
+          "Campaign and Creative Management",
+          "Customer Service and Operations",
+          "Data Engineering",
+          "Data, Analytics and Insights",
+          "Design and Creative",
+          "Operations, IT and Support Engineering",
+          "Marketing and Editorial",
+          "Product Management"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-28T01:48:58.631Z"
+    },
     {
       "id": "0f397d3554e33fa090",
       "title": "UK&I Graduate Scheme (UFLP) in Human Resources",
@@ -406,7 +1359,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
-      "detailFailure": "来源返回 HTTP 404"
+      "detailFailure": "来源返回 HTTP 404",
+      "retained": true
     },
     {
       "id": "587fdeaef8e3f9ceed",
@@ -493,44 +1447,6 @@
       "detailFailure": "来源返回 HTTP 405"
     },
     {
-      "id": "7ad8e48337b933f157",
-      "title": "Job Description - 2027 Graduate Recruitment (260000UY)",
-      "company": null,
-      "region": "香港",
-      "searchGroup": "AI",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Click the link provided to see the complete job description.",
-      "source": "careers.mtr.com.hk",
-      "sourceLabel": "港铁招聘",
-      "sourceType": "企业官网",
-      "url": "https://careers.mtr.com.hk/careersection/mtr_graduates_apply/jobdetail.ftl?job=260000UY&lang=en",
-      "discoveredAt": "2026-10-27T15:10:33.399Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
-      "retained": true,
-      "extractionNotes": {
-        "title": "",
-        "headings": [
-          "",
-          "",
-          "Work Location(s)",
-          "Job",
-          "Division",
-          "Schedule",
-          "Job Posting",
-          "Closing Date",
-          "Refer a friend for this job",
-          "Refer a candidate",
-          ""
-        ],
-        "pageKind": "insufficient-structured-fields"
-      },
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
-    },
-    {
       "id": "a29d0c0ea0f597da11",
       "title": "Junior AI Engineer (RAG, Cutting Edge Solution)",
       "company": null,
@@ -611,7 +1527,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-27T15:28:40.689Z",
-      "detailFailure": "来源返回 HTTP 404"
+      "detailFailure": "来源返回 HTTP 404",
+      "retained": true
     },
     {
       "id": "d07a90501a82b54316",
@@ -655,7 +1572,8 @@
       "extractionNotes": {
         "pageKind": "verification-or-dynamic-shell"
       },
-      "detailFailure": "来源返回安全验证或动态加载页面，未绕过访问限制"
+      "detailFailure": "来源返回安全验证或动态加载页面，未绕过访问限制",
+      "retained": true
     },
     {
       "id": "ef85e36d56f65ca836",
@@ -702,34 +1620,34 @@
   ],
   "excluded": [
     {
-      "id": "d7a47d17eeeaf82d03",
-      "title": "Internship '27: - Customer Development - Customer Service & Sales Support",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-customer-development-customer-service-and-sales-support/34155/101567837280",
+      "id": "3570c232339cc5cd91",
+      "title": "Procter & Gamble Türkiye - Jobs | Procter & Gamble",
+      "url": "https://www.pgcareers.com/eu/en/procter-gamble-t%C3%BCrkiye-jobs",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "030a8c4f05069beb86",
+      "title": "中/高级多媒体算法工程师（AI/AIGC/AI Agent） (MJ004588)",
+      "url": "https://www.liepin.com/job/1983076805.shtml",
+      "reason": "明确要求 4 年经验，不符合应届条件"
+    },
+    {
+      "id": "b23e8987f12a6da097",
+      "title": "SAP Next Gen - Global Revenue Operations",
+      "url": "https://jobs.sap.com/en/jobs/744000154525737/sap-next-gen-global-revenue-operations/",
       "reason": "公告工作国家不在内地／香港范围"
     },
     {
-      "id": "5704b0eec3f5b54a05",
-      "title": "Internship '27: Customer Development",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-customer-development/34155/101567836912",
+      "id": "baea181567f84d762e",
+      "title": "Go-to-Market student internship - Riyadh F/M",
+      "url": "https://jobs.sap.com/en/jobs/744000152941479/go-to-market-student-internship-riyadh-fm/",
       "reason": "公告工作国家不在内地／香港范围"
     },
     {
-      "id": "f92b864e01f4b0030c",
-      "title": "Internship '27: Customer Development - Trade Marketing",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-customer-development-trade-marketing/34155/101567837200",
+      "id": "94de50bc7f03bb4f9c",
+      "title": "Business Operations Associate – SAP UK Intern (13 Month Placement)",
+      "url": "https://jobs.sap.com/en/jobs/744000155745349/business-operations-associate-sap-uk-intern-13-month-placement/",
       "reason": "公告工作国家不在内地／香港范围"
-    },
-    {
-      "id": "bd6a55159624a3a9a1",
-      "title": "Internship '27: Field Sales & Trade Marketing",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-field-sales-and-trade-marketing/34155/101567837264",
-      "reason": "公告工作国家不在内地／香港范围"
-    },
-    {
-      "id": "5a99a8ac31fac49af4",
-      "title": "【保利（武汉）物业管理有限公司招聘_武汉招聘信息】-前程无忧官方招聘网站",
-      "url": "https://jobs.51job.com/all/coVDMAZFEwUmhVMQVgVzUAPA.html",
-      "reason": "企业招聘汇总页，不是单一岗位"
     }
   ],
   "searchPreferences": {
@@ -742,18 +1660,16 @@
     "experienceLevel": "应届生/在校生",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-10-27T15:20:18.960Z",
-  "warnings": [
-    "当日搜索预算已用完，保留已获得结果及仍可参考的历史岗位；次日自动恢复。"
-  ],
+  "searchUpdatedAt": "2026-10-28T01:48:58.631Z",
+  "warnings": [],
   "stats": {
-    "discovered": 27,
-    "detailAttempts": 22,
-    "detailSuccess": 1,
-    "pending": 21,
+    "discovered": 31,
+    "detailAttempts": 30,
+    "detailSuccess": 0,
+    "pending": 46,
     "excluded": 5,
     "activePool": 1,
-    "historyRetained": 0,
+    "historyRetained": 1,
     "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
