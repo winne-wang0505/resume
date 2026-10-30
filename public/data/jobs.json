@@ -157,201 +157,96 @@
       },
       "lastAttemptAt": "2026-10-29T03:23:38.890Z",
       "lastFailureKind": "fields"
+    },
+    "offertoday": {
+      "name": "OfferToday",
+      "attempts": 1,
+      "successes": 0,
+      "consecutiveFailures": 1,
+      "failures": {
+        "fields": 1
+      },
+      "lastAttemptAt": "2026-10-30T03:18:38.899Z",
+      "lastFailureKind": "fields"
     }
   },
   "searchUsage": {
-    "day": "2026-10-29",
-    "requests": 18,
+    "day": "2026-10-30",
+    "requests": 9,
     "limit": 24
   },
   "coverage": {
-    "configuredSources": 41,
+    "configuredSources": 42,
     "roleDirections": 9,
     "regions": 2,
     "pagesLimit": 2,
     "plannedFirstPages": 18,
-    "requestsThisRun": 18,
-    "dailyRemaining": 6,
-    "partial": false,
+    "requestsThisRun": 9,
+    "dailyRemaining": 15,
+    "partial": true,
     "paginationRequests": 0,
     "queryLog": [
       {
-        "role": "数据分析",
+        "role": "大模型",
         "region": "香港",
         "page": 1,
         "sources": [
-          "香港交易所招聘",
-          "GradConnection 香港",
-          "Indeed 香港"
+          "OfferToday"
         ],
-        "results": 0,
-        "unseenResults": 0,
+        "results": 2,
+        "unseenResults": 2,
         "newLinks": 0
       },
       {
-        "role": "大模型",
-        "region": "内地",
+        "role": "AI",
+        "region": "香港",
         "page": 1,
         "sources": [
-          "渣打招聘",
-          "牛客校招",
-          "国家公务员局"
+          "OfferToday"
+        ],
+        "results": 14,
+        "unseenResults": 14,
+        "newLinks": 1
+      },
+      {
+        "role": "产品",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "OfferToday"
+        ],
+        "results": 2,
+        "unseenResults": 2,
+        "newLinks": 0
+      },
+      {
+        "role": "算法",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "OfferToday"
+        ],
+        "results": 2,
+        "unseenResults": 2,
+        "newLinks": 0
+      },
+      {
+        "role": "开发",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "OfferToday"
         ],
         "results": 1,
         "unseenResults": 1,
-        "newLinks": 1
-      },
-      {
-        "role": "大模型",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "港铁招聘",
-          "GradConnection 香港",
-          "香港公务员招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
         "newLinks": 0
-      },
-      {
-        "role": "AI",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "安永招聘",
-          "腾讯校招",
-          "猎聘"
-        ],
-        "results": 7,
-        "unseenResults": 7,
-        "newLinks": 4
-      },
-      {
-        "role": "AI",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "亚马逊招聘",
-          "GradConnection 香港",
-          "Indeed 香港"
-        ],
-        "results": 17,
-        "unseenResults": 17,
-        "newLinks": 17
-      },
-      {
-        "role": "产品",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "普华永道招聘",
-          "北京大学就业网",
-          "智联招聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "产品",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "苹果招聘",
-          "GradConnection 香港",
-          "JobsDB 香港"
-        ],
-        "results": 11,
-        "unseenResults": 11,
-        "newLinks": 11
-      },
-      {
-        "role": "算法",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "德勤招聘",
-          "牛客校招",
-          "国聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "算法",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "西门子招聘",
-          "GradConnection 香港",
-          "Indeed 香港"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "开发",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "亚马逊招聘",
-          "腾讯校招",
-          "国家公务员局"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "开发",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "SAP招聘",
-          "GradConnection 香港",
-          "香港公务员招聘"
-        ],
-        "results": 7,
-        "unseenResults": 7,
-        "newLinks": 7
-      },
-      {
-        "role": "运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "苹果招聘",
-          "北京大学就业网",
-          "猎聘"
-        ],
-        "results": 5,
-        "unseenResults": 5,
-        "newLinks": 1
       },
       {
         "role": "运营",
         "region": "香港",
         "page": 1,
         "sources": [
-          "博世招聘",
-          "GradConnection 香港",
-          "Indeed 香港"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "金融",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "安永招聘",
-          "牛客校招",
-          "智联招聘"
+          "OfferToday"
         ],
         "results": 0,
         "unseenResults": 0,
@@ -362,25 +257,10 @@
         "region": "香港",
         "page": 1,
         "sources": [
-          "安永招聘",
-          "GradConnection 香港",
-          "JobsDB 香港"
+          "OfferToday"
         ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "快消",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "联合利华招聘",
-          "腾讯校招",
-          "国聘"
-        ],
-        "results": 0,
-        "unseenResults": 0,
+        "results": 3,
+        "unseenResults": 3,
         "newLinks": 0
       },
       {
@@ -388,32 +268,28 @@
         "region": "香港",
         "page": 1,
         "sources": [
-          "联合利华招聘",
-          "GradConnection 香港",
-          "Indeed 香港"
+          "OfferToday"
         ],
-        "results": 20,
-        "unseenResults": 20,
-        "newLinks": 20
+        "results": 0,
+        "unseenResults": 0,
+        "newLinks": 0
       },
       {
         "role": "数据分析",
-        "region": "内地",
+        "region": "香港",
         "page": 1,
         "sources": [
-          "汇丰招聘",
-          "北京大学就业网",
-          "国聘"
+          "OfferToday"
         ],
-        "results": 0,
-        "unseenResults": 0,
+        "results": 8,
+        "unseenResults": 8,
         "newLinks": 0
       }
     ],
-    "discoveryPages": 2,
+    "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-30T03:17:39.699Z",
+  "updatedAt": "2026-10-30T03:18:38.899Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -529,7 +405,7 @@
       "firstSeenAt": "2026-10-27T13:39:20.978Z",
       "lastSeenAt": "2026-10-28T01:51:17.247Z",
       "retained": true,
-      "retentionReason": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": true,
       "detailAttemptedAt": "2026-10-29T03:23:38.890Z"
     },
@@ -610,12 +486,39 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-28T01:52:09.635Z",
       "retained": true,
-      "retentionReason": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": true,
       "detailAttemptedAt": "2026-10-30T03:17:39.740Z"
     }
   ],
   "leads": [
+    {
+      "id": "d41c139a2a94a87a77",
+      "title": "Key Recruitment Limited is recruiting for technican at Mong Kok-offerToday",
+      "company": null,
+      "region": "香港",
+      "searchGroup": "AI",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "Join Key Recruitment Limited as a Technican with competitive salary 18K-27K. Enjoy year-end bonus, family medical plan, attendance bonus, and more. No experience or education restrictions. Apply now!",
+      "source": "offertoday.com",
+      "sourceLabel": "OfferToday",
+      "sourceType": "招聘平台",
+      "url": "https://offertoday.com/en/job/TlfFUrHrNBN4sA-OazOiFg==",
+      "discoveredAt": "2026-10-30T03:18:38.899Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [
+          "OfferToday"
+        ],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-30T03:18:38.899Z"
+    },
     {
       "id": "7a2b50f7ea3e7f61ed",
       "title": "【上海 交互设计师（AI教育）招聘】-LingoAce上海招聘信息-猎聘",
@@ -634,7 +537,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-29T03:23:38.890Z",
-      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析"
+      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
+      "retained": true
     },
     {
       "id": "8f46dd3ffe4a23c8bd",
@@ -654,7 +558,8 @@
       "verification": "search-result",
       "demo": false,
       "detailAttemptedAt": "2026-10-29T03:23:38.890Z",
-      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析"
+      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
+      "retained": true
     },
     {
       "id": "d3a966992ee76959d3",
@@ -766,579 +671,27 @@
       "reason": "原岗位链接已不可用（404/410）",
       "unavailable": true,
       "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "6323e8845ea2d9a935",
-      "title": "【宁波 机器人学习研究员 (MJ003097)招聘】-均胜集团宁波招聘信息-猎聘",
-      "url": "https://www.liepin.com/job/1986153389.shtml",
-      "reason": "公告地点 宁波 不在目标城市范围"
-    },
-    {
-      "id": "eed7ba16d3bd5d2f6b",
-      "title": "Remote jobs",
-      "url": "https://www.amazon.jobs/content/en-gb/locations/remote-jobs",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "194148af8f0e5aeab2",
-      "title": "Amazon's global career site",
-      "url": "https://amazon.jobs/en/search?base_query=&country=IND&loc_query=India",
-      "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "d7a47d17eeeaf82d03",
-      "title": "Internship '27: - Customer Development - Customer Service & Sales Support",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-customer-development-customer-service-and-sales-support/34155/101567837280",
-      "reason": "公告工作国家不在内地／香港范围"
-    },
-    {
-      "id": "bd6a55159624a3a9a1",
-      "title": "Internship '27: Field Sales & Trade Marketing",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-field-sales-and-trade-marketing/34155/101567837264",
-      "reason": "公告工作国家不在内地／香港范围"
-    },
-    {
-      "id": "f92b864e01f4b0030c",
-      "title": "Internship '27: Customer Development - Trade Marketing",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-customer-development-trade-marketing/34155/101567837200",
-      "reason": "公告工作国家不在内地／香港范围"
-    },
-    {
-      "id": "5704b0eec3f5b54a05",
-      "title": "Internship '27: Customer Development",
-      "url": "https://careers.unilever.com/en/job/rotterdam/internship-27-customer-development/34155/101567836912",
-      "reason": "公告工作国家不在内地／香港范围"
-    },
-    {
-      "id": "02b0a849079904bf5b",
-      "title": "Senior Product Manager - Technical, Quick Sight - Structured Data Analytics - Stellen-ID: 10421322 | Amazon.jobs",
-      "url": "https://amazon.jobs/de/jobs/10421322/senior-product-manager-technical-quick-sight-structured-data-analytics",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "052dc48b276b26fe6c",
-      "title": "AWS Work-Based Learning Program",
-      "url": "https://www.amazon.jobs/content/en/teams/amazon-web-services/data-centers/work-based-learning-program",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "1063b98277ec96930e",
-      "title": "SAP China iXp Intern - Full Stack AI-Native Developer Intern - Shanghai, Shanghai, China | SAP Careers",
-      "url": "https://jobs.sap.com/en/jobs/744000157039749/sap-china-ixp-intern-full-stack-ai-native-developer-intern-shanghai/",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "10c31c1a5a8f86db91",
-      "title": "SAP iXp Intern (f/m/d) - Software Developer, Walldorf, Germany | SAP Careers",
-      "url": "https://jobs.sap.com/en/jobs/744000154686264/sap-ixp-intern-fmd-software-developer/",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "1686f895a31e5d9346",
-      "title": "B&W Thailand Category Development Innovation Manager- Hypermarket (Trade Marketing) at Unilever",
-      "url": "https://careers.unilever.com/en/job/banguecoque/b-and-w-thailand-category-development-innovation-manager-hypermarket-trade-marketing/34155/96201559440",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "273ab62d21226f9055",
-      "title": "AWS Professional Services",
-      "url": "https://www.amazon.jobs/content/en/teams/amazon-web-services/professional-services",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "2d0a292700ac7e9b19",
-      "title": "落地页 | 腾讯校招",
-      "url": "https://join.qq.com/land.html?pageId=10052",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "339c5e4a60d2b604b7",
-      "title": "Product PR Lead - Jobs at Apple",
-      "url": "https://jobs.apple.com/en-sa/details/200682115/product-pr-lead",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "3cba6341476f193dfb",
-      "title": "Hyderabad, India",
-      "url": "https://www.amazon.jobs/content/en/locations/india/hyderabad",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "4442565fd570b59629",
-      "title": "Full Stack Developer Intern (AI topics) SAP Business AI Singapore Job Details | SAP",
-      "url": "https://jobs.sap.com/job/Singapore-Full-Stack-Developer-Intern-%28AI-topics%29-SAP-Business-AI-Singapore-117440/1261533801/",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "44719cdcb7bfaf90fe",
-      "title": "Product Manager, iPadOS - Jobs - Careers at Apple",
-      "url": "https://jobs.apple.com/en-us/details/200669455-0836/product-manager-ipados",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "47464dfdfe59c7c17d",
-      "title": "2027 Applied Science Internship - United States, Undergrad Student Science Recruiting, Frontier AI & Robotics - Job ID: 10564599 | Amazon.jobs",
-      "url": "https://www.amazon.jobs/en/jobs/10564599/2027-applied-science-internship-united-states-undergrad-student-science-recruiting-frontier-ai-robotics",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "4cc781a8ef36aaf0e7",
-      "title": "Personal Care Innovation Planner - Unilever International at Unilever",
-      "url": "https://careers.unilever.com/en/job/singapore/personal-care-innovation-planner-unilever-international/34155/99103739056",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "4d291a7e04fbfa53b7",
-      "title": "Product/Senior Product Manager, AppleCare - Jobs - Careers at Apple",
-      "url": "https://jobs.apple.com/en-us/details/200631262-0836/product-senior-product-manager-applecare",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "542bf002fb2ee5151d",
-      "title": "Product Manager, Internet Apps - Jobs - Careers at Apple",
-      "url": "https://jobs.apple.com/en-us/details/200672284-0836/product-manager-internet-apps?team=MKTG",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "5b0dd5795f5b28319c",
-      "title": "Amazon Careers: Impact the Future, Today",
-      "url": "https://www.amazon.jobs/en-gb",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "6a220daad33ae81d85",
-      "title": "Senior Product Manager, Claris",
-      "url": "https://jobs.apple.com/en-hk/details/200652607-3956/senior-product-manager-claris",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "6b758fd9baa28a15e4",
-      "title": "Product Merchandiser - Jobs at Apple",
-      "url": "https://jobs.apple.com/en-il/details/200679983/product-merchandiser",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "76707db0b82d497178",
-      "title": "Internships for Students",
-      "url": "https://www.amazon.jobs/content/en/career-programs/university/internships-for-students",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "8427444b27861b45cf",
-      "title": "SAP Globalization iXp Intern (f/m/d) - User Assistance Developer Job Details | SAP",
-      "url": "https://jobs.sap.com/job/St_-Leon-Rot-SAP-Globalization-iXp-Intern-%28fmd%29-User-Assistance-Developer-68789/1387316733/",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "8678e58950001f3daf",
-      "title": "SAP NS2 AIS Developer , Newtown Square, United States | SAP Careers",
-      "url": "https://jobs.sap.com/en/jobs/744000154779984/sap-ns2-ais-developer/",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "874dc20ea321b5c632",
-      "title": "Marketing Manager Knorr, Foods at Unilever",
-      "url": "https://careers.unilever.com/en/job/lagos/marketing-manager-knorr-foods/34155/102026092512",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "8d17a3f385c9c88fbe",
-      "title": "Amazon AI Careers - Build the Future of Generative AI",
-      "url": "https://www.amazon.jobs/content/en/artificial-intelligence-ai",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "968dc94f6444f30b6e",
-      "title": "首页 | 腾讯校招",
-      "url": "https://join.qq.com/index.html",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "a03b2cd56547636736",
-      "title": "UK&I Industrial Placement in Finance",
-      "url": "https://careers.unilever.com/en/uk-and-ireland-early-careers-industrial-placement-finance",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "a1a09e8d7e9ab5688b",
-      "title": "Amazon public relations and communications",
-      "url": "https://amazon.jobs/content/en/job-categories/public-relations-communications",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "a53dcf388a7cbbc77e",
-      "title": "AWS Machine Learning",
-      "url": "https://amazon.jobs/content/en/teams/amazon-web-services/machine-learning",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "ab7e57090409ccfeec",
-      "title": "Senior AI Developer / Architect - SAP Labs East Asia Singapore Job Details | SAP",
-      "url": "https://jobs.sap.com/job/Singapore-Senior-AI-Developer-Architect-SAP-Labs-East-Asia-Singapore-117440/1386118033/",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "ada899e7d839f89d22",
-      "title": "Product Manager, AppleCare, Retail Technology - Jobs - Careers at Apple",
-      "url": "https://jobs.apple.com/en-us/details/200652923-0836/product-manager-applecare-retail-technology",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "b356636dd0ef150355",
-      "title": "Amazon Artificial General Intelligence (AGI) | Amazon.jobs",
-      "url": "https://www.amazon.jobs/en-gb/business_categories/AGI",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "b44aee68e15a221d34",
-      "title": "UK&I Industrial Placement in Communications and Corporate Affairs (CC",
-      "url": "https://careers.unilever.com/en/uk-and-ireland-early-careers-industrial-placement-communications-and-corporate-affairs",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "bb208c02ccb0e7a3d0",
-      "title": "Students & graduates | Amazon jobs",
-      "url": "https://amazon.jobs/content/en/career-programs/university",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "bf48cc95d516021579",
-      "title": "Generative AI at AWS - Building the Future of Artificial Intelligence",
-      "url": "https://amazon.jobs/content/en/teams/amazon-web-services/generative-ai",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "c719c1796a89143aea",
-      "title": "Amazon India",
-      "url": "https://www.amazon.jobs/content/en/teams/international-stores/india",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "c856c273c90196c029",
-      "title": "大模型推理KV Cache系统：从存储架构到软硬协同的全栈演进-阿里星-阿里巴巴2027届实习生_阿里巴巴集团校招_牛客网",
-      "url": "https://www.nowcoder.com/jobs/detail/446421?urlSource=sitemap",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "cab184a8d18209f06d",
-      "title": "Commercial Junior Finance Manager at Unilever",
-      "url": "https://careers.unilever.com/en/job/varsova/commercial-junior-finance-manager/34155/96210467632",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "cbb28ce12e4fab8eb9",
-      "title": "UFLP Finance 2026 - Indonesia at Unilever",
-      "url": "https://careers.unilever.com/en/job/indonesia/uflp-finance-2026-indonesia/34155/94587231584",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "cbe18516410b3f80ec",
-      "title": "Foods RDC Processing Assistant Manager, Cooking Aids at Unilever",
-      "url": "https://careers.unilever.com/en/job/bangkok/foods-rdc-processing-assistant-manager-cooking-aids/34155/100705500256",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "d3f188c5b1daa9f6d7",
-      "title": "Amazon Artificial General Intelligence AGI",
-      "url": "https://amazon.jobs/content/en/teams/agi",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "da97796fbc5a00e631",
-      "title": "Product Design Engineer - Softgoods - Jobs - Careers at Apple",
-      "url": "https://jobs.apple.com/en-us/details/200650409-0365/product-design-engineer-softgoods",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "eb2b6a62952d4b3981",
-      "title": "Internship - Fullstack Cloud Developer – AI Agent Platform (SAP Build Experience) -F/M, Levallois-Perret, France | SAP Careers",
-      "url": "https://jobs.sap.com/en/jobs/744000154698564/internship-fullstack-cloud-developer-ai-agent-platform-sap-build-experience-fm/",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "f0cc9a57dce11fdb5e",
-      "title": "Product Merchandiser - Jobs at Apple (IN)",
-      "url": "https://jobs.apple.com/en-in/details/200658404-0836/product-merchandiser",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "f217e156bd66a0b296",
-      "title": "Media and Data Lead at Unilever",
-      "url": "https://careers.unilever.com/en/job/ho-chi-minh-city/media-and-data-lead/34155/97908811600",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "f90c77d39956524aaf",
-      "title": "UK&I Industrial Placement in Marketing",
-      "url": "https://careers.unilever.com/en/uk-and-ireland-early-careers-industrial-placement-marketing",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "fa03ccb85e28e22f70",
-      "title": "Product Design Engineering Intern - Apple 工作機會(台灣)",
-      "url": "https://jobs.apple.com/en-us/details/200674739/product-design-engineering-intern",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "fd12ed091f19f28674",
-      "title": "Unilever Industrial Placement Programme - Marketing UK at Unilever",
-      "url": "https://careers.unilever.com/en/job/united-kingdom/unilever-industrial-placement-programme-marketing-uk/34155/100608746768",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "fdea084fc4f63dc42a",
-      "title": "UFLP Supply Chain 2026 - Indonesia at Unilever",
-      "url": "https://careers.unilever.com/en/job/indonesia/uflp-supply-chain-2026-indonesia/34155/94587231568",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "ff994e556f32aaf0a9",
-      "title": "Product Design Engineering Intern-iPhone - Jobs - Careers at Apple",
-      "url": "https://jobs.apple.com/en-us/details/200683459-3715/product-design-engineering-intern-iphone?team=STDNT",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "7ad8e48337b933f157",
-      "title": "Job Description - 2027 Graduate Recruitment (260000UY)",
-      "url": "https://careers.mtr.com.hk/careersection/mtr_graduates_apply/jobdetail.ftl?job=260000UY&lang=en",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "0f397d3554e33fa090",
-      "title": "UK&I Graduate Scheme (UFLP) in Human Resources",
-      "url": "https://careers.unilever.com/en/uk-and-ireland-early-career-UFLP-Human-Resources",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "1a59b8d4474138b6dd",
-      "title": "2026 Wealth Management Trainee / Internship (Fresh Grad & IANG are Welcomed) - Challenge Elites",
-      "url": "https://jobs.ctgoodjobs.hk/job/10190580/2026-wealth-management-trainee-internship-fresh-grad-iang-are-welcomed",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "1bbdf3ccf032b64a24",
-      "title": "Hungary Traineeships and Internships | Procter & Gamble",
-      "url": "https://www.pgcareers.com/eu/en/hungary-traineeships-and-internships",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "200180506ccf1f0e6f",
-      "title": "Sales Coordinator / Sales Administration Support ( Fresh Graduate Welcome ) - All Market Consulting Limited | CTgoodjobs",
-      "url": "https://jobs.ctgoodjobs.hk/job/10076339/sales-coordinator-sales-administration-support-fresh-graduate-welcome",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "24a0353300efaaba52",
-      "title": "软通动力2026年AI大模型开发招聘工资",
-      "url": "https://www.zhipin.com/job_detail/29df090fb832348d0nV52Ni0FFZZ.html",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "25b03455f6dea766de",
-      "title": "Product Design Intern (Hong Kong based) - Bowtie Life Insurance Company | CTgoodjobs",
-      "url": "https://jobs.ctgoodjobs.hk/job/09999620/product-design-intern-hong-kong-based",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "2f984efe14f700801b",
-      "title": "AI Infra工程师-容器方向-阿里巴巴2027届实习生_阿里巴巴集团校招_牛客网",
-      "url": "https://www.nowcoder.com/jobs/detail/446367?urlSource=sitemap",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "3b664f97b06de5a70c",
-      "title": "「置业顾问/无责底薪6000+高提点/ACN共享机制招聘」_北京链家招聘-BOSS直聘",
-      "url": "https://www.zhipin.com/job_detail/5279d28bff4358aa03Vz2d29GVJS.html",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "481820d7d31ad1b12d",
-      "title": "SAP Fieldglass iXp Intern - Partner Operations Intern Job Details | SAP",
-      "url": "https://jobs.sap.com/job/Galway-SAP-Fieldglass-iXp-Intern-Partner-Operations-Intern-H91W3P8/1425620233/",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "4aad0f8b5a49f8bea5",
-      "title": "Jobs in P&G Turkey | P&G Careers",
-      "url": "https://www.pgcareers.com/global/en/locations/T%C3%BCrkiye",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "4ee1c9fa60ecacbb35",
-      "title": "Bilingual Education Sales Associate - Crimson Education | CTgoodjobs",
-      "url": "https://jobs.ctgoodjobs.hk/job/10076896/bilingual-education-sales-associate",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "551933704932889237",
-      "title": "浙江双环传动机械股份有限公司2027校园招聘宣讲会_应届生求职网",
-      "url": "https://my.yingjiesheng.com/xjh-006-274-912.html",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "587fdeaef8e3f9ceed",
-      "title": "2027 Accenture Graduate Program",
-      "url": "https://jobs.ctgoodjobs.hk/job/10257848/2027-accenture-graduate-program",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "5baa53c5bc057e7d40",
-      "title": "Artificial Intelligence (AI) Intern - United Asia Finance Limited | CTgoodjobs",
-      "url": "https://jobs.ctgoodjobs.hk/job/10164616/artificial-intelligence-ai-intern",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "65e09fff873ce8d600",
-      "title": "2027 Digital & IT Graduate Trainee Programme (HK & GBA)",
-      "url": "https://jobs.ctgoodjobs.hk/job/10273123/2027-digital-it-graduate-trainee-programme-hk-gba",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "67d2cbc3d13cea08c6",
-      "title": "客户端研发工程师_阿里巴巴集团实习_牛客网",
-      "url": "https://www.nowcoder.com/jobs/detail/439032?deliverSource=1&pageSource=5001&channel=npJobTab",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "6acaeef756fc78e33f",
-      "title": "Sales Support Coordinator (Welcome Fresh Graduates) - Bun Kee (International) Ltd",
-      "url": "https://jobs.ctgoodjobs.hk/job/10189643/sales-support-coordinator-welcome-fresh-graduates",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "7bedc933d508c45453",
-      "title": "算法工程师-AIOps_阿里云实习_牛客网",
-      "url": "https://www.nowcoder.com/jobs/detail/434898?urlSource=sitemap",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "80c7aa014c462dd314",
-      "title": "Malaysia Internship | Procter & Gamble",
-      "url": "https://www.pgcareers.com/apac/en/malaysia-internship",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "879a3e4088f6582829",
-      "title": "查看所有職位",
-      "url": "https://jobs.siemens.com/zh_TW/externaljobs/WidgetRelatedJobs?folderId=520335",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "9559f88b3cd7d71e7b",
-      "title": "SAP Fieldglass iXp Intern - Partner Operations Finance Intern Job Details | SAP",
-      "url": "https://jobs.sap.com/job/Galway-SAP-Fieldglass-iXp-Intern-Partner-Operations-Finance-Intern-H91W3P8/1425506933/",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "a29d0c0ea0f597da11",
-      "title": "Junior AI Engineer (RAG, Cutting Edge Solution)",
-      "url": "https://jobs.ctgoodjobs.hk/job/10218067/junior-ai-engineer-rag-cutting-edge-solution-hong-kong-hk",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "a9ef8355d1c5f6a4fe",
-      "title": "AI计算系统协同设计研发-阿里星-阿里巴巴2027届实习生_阿里巴巴集团校招_牛客网",
-      "url": "https://www.nowcoder.com/jobs/detail/446409?urlSource=sitemap",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "b5c1fb704c72ab763b",
-      "title": "2026 AIA Hong Kong and Macau Summer Internship Program - Operations - AIA International Limited. | CTgoodjobs",
-      "url": "https://jobs.ctgoodjobs.hk/job/10077325/2026-aia-hong-kong-and-macau-summer-internship-program-operations",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "bb4d256c98151bd3d1",
-      "title": "Human Resources Intern - CCB International (Holdings) Limited | CTgoodjobs",
-      "url": "https://jobs.ctgoodjobs.hk/job/10139169/human-resources-intern",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "bb7f01d20ad72d57e4",
-      "title": "米哈游2027校园招聘_北京上海校园招聘",
-      "url": "https://www.yingjiesheng.com/job-008-016-177.html",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "ccfeed91711e7c1f05",
-      "title": "Marketing",
-      "url": "https://amazon.jobs/content/en/job-categories/marketing",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "d07a90501a82b54316",
-      "title": "Operation Intern - Tiger Brokers Hong Kong | CTgoodjobs",
-      "url": "https://jobs.ctgoodjobs.hk/job/10100522/operation-intern",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "d2b92717afa70e1f3e",
-      "title": "Machine Learning Algorithm Engineer - Jobs - Careers at Apple",
-      "url": "https://jobs.apple.com/en-us/details/200689245-0836/machine-learning-algorithm-engineer",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "da7e8ea0791380c646",
-      "title": "图像数据处理实习生_梅卡曼德机器人实习_牛客网",
-      "url": "https://www.nowcoder.com/jobs/detail/446537?urlSource=sitemap",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "dccd48832398d77ea0",
-      "title": "Jobs in P&G Malaysia - Procter & Gamble",
-      "url": "https://www.pgcareers.com/apac/en/locations/malaysia",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "df76ac66e6fda58c0b",
-      "title": "AI Infra测试开发工程师-存储方向-阿里巴巴2027届实习生_阿里巴巴集团校招_牛客网",
-      "url": "https://www.nowcoder.com/jobs/detail/446438?urlSource=sitemap",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "dfc1fa2675534b5779",
-      "title": "字节跳动——大模型安全策略实习生",
-      "url": "https://www.zhipin.com/job_detail/f2debe5c113e6a4a031z3Ny1ElpY.html",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "ecb8a06a22da72f93d",
-      "title": "AI Infra工程师-计算方向-阿里巴巴2027届实习生_阿里巴巴集团校招_牛客网",
-      "url": "https://www.nowcoder.com/jobs/detail/446399?urlSource=sitemap",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "ef85e36d56f65ca836",
-      "title": "Internship Accountant",
-      "url": "https://jobs.ctgoodjobs.hk/job/10214972/internship-accountant",
-      "reason": "来源已退出当前精选范围"
-    },
-    {
-      "id": "eff7a16fda0050cab9",
-      "title": "Amazon Ads",
-      "url": "https://www.amazon.jobs/content/en/teams/advertising",
-      "reason": "来源已退出当前精选范围"
     }
   ],
   "searchPreferences": {
     "role": "数据分析、大模型、AI、产品、算法、开发、运营、金融、快消",
+    "sourceMode": "standard",
     "region": "全部",
     "city": "上海、杭州、深圳、香港",
     "category": "全部",
     "exclude": "夜班、销售",
     "employment": "不限",
     "experienceLevel": "应届生/在校生",
-    "legacyInput": true,
-    "sourceMode": "standard"
+    "legacyInput": true
   },
-  "searchUpdatedAt": "2026-10-29T03:23:38.890Z",
+  "searchUpdatedAt": "2026-10-30T03:18:38.899Z",
   "warnings": [],
   "stats": {
-    "discovered": 107,
-    "detailAttempts": 0,
+    "discovered": 11,
+    "detailAttempts": 1,
     "detailSuccess": 0,
-    "pending": 3,
-    "excluded": 102,
+    "pending": 4,
+    "excluded": 10,
     "activePool": 2,
     "historyRetained": 2,
     "historyRechecked": 0,
