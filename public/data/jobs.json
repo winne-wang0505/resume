@@ -413,7 +413,7 @@
     "discoveryPages": 2,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-29T03:23:38.890Z",
+  "updatedAt": "2026-10-30T03:17:39.699Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -529,7 +529,7 @@
       "firstSeenAt": "2026-10-27T13:39:20.978Z",
       "lastSeenAt": "2026-10-28T01:51:17.247Z",
       "retained": true,
-      "retentionReason": "来源访问超时",
+      "retentionReason": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
       "recheckPending": true,
       "detailAttemptedAt": "2026-10-29T03:23:38.890Z"
     },
@@ -610,8 +610,9 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-28T01:52:09.635Z",
       "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": true
+      "retentionReason": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
+      "recheckPending": true,
+      "detailAttemptedAt": "2026-10-30T03:17:39.740Z"
     }
   ],
   "leads": [
@@ -632,8 +633,8 @@
       "discoveredAt": "2026-10-29T03:23:38.890Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源访问超时",
-      "detailAttemptedAt": "2026-10-29T03:23:38.890Z"
+      "detailAttemptedAt": "2026-10-29T03:23:38.890Z",
+      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析"
     },
     {
       "id": "8f46dd3ffe4a23c8bd",
@@ -652,8 +653,8 @@
       "discoveredAt": "2026-10-29T03:23:38.890Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源访问超时",
-      "detailAttemptedAt": "2026-10-29T03:23:38.890Z"
+      "detailAttemptedAt": "2026-10-29T03:23:38.890Z",
+      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析"
     },
     {
       "id": "d3a966992ee76959d3",
@@ -681,8 +682,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "retained": true
+      "retained": true,
+      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析"
     }
   ],
   "excluded": [
@@ -1333,18 +1334,17 @@
   "searchUpdatedAt": "2026-10-29T03:23:38.890Z",
   "warnings": [],
   "stats": {
-    "discovered": 61,
-    "detailAttempts": 36,
+    "discovered": 107,
+    "detailAttempts": 0,
     "detailSuccess": 0,
     "pending": 3,
     "excluded": 102,
     "activePool": 2,
     "historyRetained": 2,
-    "historyRechecked": 1,
+    "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
   },
-  "notice": "详情字段取自公开招聘页或 JobPosting 元数据，每个已提取要求附有来源证据；仍需在投递前核实在招状态、工作许可和所有门槛。未提取到的信息不会推测。",
-  "qualityCleanedAt": "2026-10-30T03:16:54.361Z"
+  "notice": "详情字段取自公开招聘页或 JobPosting 元数据，每个已提取要求附有来源证据；仍需在投递前核实在招状态、工作许可和所有门槛。未提取到的信息不会推测。"
 }
