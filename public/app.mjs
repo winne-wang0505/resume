@@ -6,7 +6,12 @@ import {
 import { evaluate, safeURL } from "./src/match.mjs";
 import { buildBrief } from "./src/brief.mjs";
 import { importManual } from "./src/manual.mjs";
-import { sourceCatalog, sourceMatches, sourceModes } from "./src/sources.mjs";
+import {
+  sourceCatalog,
+  sourceMatches,
+  sourceModes,
+  sourcePauseUntil,
+} from "./src/sources.mjs";
 const $ = (s) => document.querySelector(s),
   $$ = (s) => [...document.querySelectorAll(s)];
 const esc = (s) =>
@@ -564,8 +569,9 @@ function renderBrief() {
   $("#sourceHealth").innerHTML = health.length
     ? health
         .map((s) => {
-          const paused = Date.parse(s.cooldownUntil || "") > Date.now();
-          return `<p><b>${esc(s.name)}</b>：${s.successes}/${s.attempts} 次读取成功${paused ? " · 暂缓至 " + esc(updatedLabel(s.cooldownUntil)) : ""}<br><small>最近尝试 ${esc(updatedLabel(s.lastAttemptAt))}；最近成功 ${esc(updatedLabel(s.lastSuccessAt))}</small></p>`;
+          const until = sourcePauseUntil(s);
+          const paused = until > Date.now();
+          return `<p><b>${esc(s.name)}</b>：${s.successes}/${s.attempts} 次读取成功${paused ? " · 暂缓至 " + esc(updatedLabel(new Date(until).toISOString())) : ""}<br><small>最近尝试 ${esc(updatedLabel(s.lastAttemptAt))}；最近成功 ${esc(updatedLabel(s.lastSuccessAt))}</small></p>`;
         })
         .join("")
     : '<p class="form-note">下一轮自动更新后显示；配置来源不等于已经接通接口。</p>';

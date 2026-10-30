@@ -354,6 +354,12 @@ export function identifySource(raw, region) {
     return null;
   }
 }
+export function sourcePauseUntil(row) {
+  return row?.lastFailureKind === "network" &&
+    (row.cooldownUntil || row.consecutiveFailures >= 3)
+    ? Date.parse(row.lastAttemptAt || "") + 30 * 60000
+    : Date.parse(row?.cooldownUntil || "");
+}
 export function querySources(
   region,
   roleIndex = 0,
@@ -361,6 +367,7 @@ export function querySources(
   role = "",
   health = {},
   mode = "broad",
+  at = day * 86400000,
 ) {
   if (mode !== "broad") {
     const ids = (sourceModes[mode] || sourceModes.standard).ids;
@@ -369,7 +376,7 @@ export function querySources(
         ids.includes(s.id) &&
         s.regions.includes(region) &&
         s.id !== "boss" &&
-        !(Date.parse(health[s.id]?.cooldownUntil || "") > day * 86400000),
+        !(sourcePauseUntil(health[s.id]) > at),
     );
   }
   const group = (type) =>
@@ -377,7 +384,7 @@ export function querySources(
       (s) =>
         s.regions.includes(region) &&
         s.type === type &&
-        !(Date.parse(health[s.id]?.cooldownUntil || "") > day * 86400000),
+        !(sourcePauseUntil(health[s.id]) > at),
     );
   const types = [
     "企业官网",

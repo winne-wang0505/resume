@@ -281,3 +281,51 @@ test("old publication with no expiry is not assumed active; future dated campus 
     null,
   );
 });
+test("transient network cooldown recovers in 30 minutes, including legacy two-day rows", async () => {
+  const { cooling, updateHealth } = await import("../src/health.mjs");
+  assert.equal(
+    cooling(
+      updateHealth(
+        {},
+        [{ lead, result: { ok: false, reason: "来源网络连接失败" } }],
+        now,
+      ),
+      "liepin",
+      now,
+    ),
+    false,
+  );
+  const rows = updateHealth(
+    {},
+    Array.from({ length: 3 }, () => ({
+      lead,
+      result: { ok: false, reason: "来源网络连接失败" },
+    })),
+    now,
+  );
+  assert.equal(
+    cooling(rows, "liepin", new Date(now.getTime() + 29 * 60000)),
+    true,
+  );
+  assert.equal(
+    cooling(rows, "liepin", new Date(now.getTime() + 31 * 60000)),
+    false,
+  );
+  const legacy = {
+    liepin: { ...rows.liepin, cooldownUntil: "2026-11-02T00:00:00Z" },
+  };
+  const later = new Date(now.getTime() + 31 * 60000);
+  assert.equal(cooling(legacy, "liepin", later), false);
+  assert.equal(
+    querySources(
+      "内地",
+      0,
+      Math.floor(now.getTime() / 86400000),
+      "数据分析",
+      legacy,
+      "standard",
+      later.getTime(),
+    )[0].id,
+    "liepin",
+  );
+});

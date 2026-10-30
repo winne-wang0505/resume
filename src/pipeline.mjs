@@ -108,7 +108,7 @@ export async function enrichIndex(
           ...lead,
           verification: "search-result",
           detailFailure:
-            "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
+            "此来源连续访问失败或受限，暂缓自动读取；可在来源健康状态查看恢复时间，或打开原页粘贴正文分析",
         });
         continue;
       }

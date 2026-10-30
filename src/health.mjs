@@ -1,4 +1,4 @@
-import { identifySource } from "./sources.mjs";
+import { identifySource, sourcePauseUntil } from "./sources.mjs";
 export function failureKind(reason = "") {
   if (/robots/.test(reason)) return "robots";
   if (/验证|驗證|captcha|HTTP (?:403|405|429)/i.test(reason))
@@ -37,12 +37,13 @@ export function updateHealth(previous = {}, results = [], now = new Date()) {
         row.consecutiveFailures >= 3
       )
         row.cooldownUntil = new Date(
-          now.getTime() + 2 * 86400000,
+          now.getTime() +
+            (row.lastFailureKind === "network" ? 30 * 60000 : 2 * 86400000),
         ).toISOString();
     }
   }
   return next;
 }
 export function cooling(health, id, now = new Date()) {
-  return Date.parse(health?.[id]?.cooldownUntil || "") > now.getTime();
+  return sourcePauseUntil(health?.[id]) > now.getTime();
 }

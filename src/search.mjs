@@ -130,6 +130,7 @@ export function buildQuery(
     roles[0] || p.role,
     p.sourceHealth || {},
     p.sourceMode,
+    p.sourceNow,
   );
   const source = `(${selected.map((x) => "site:" + (x.search || x.host)).join(" OR ")})`;
   const entry = /应届|應屆|fresh|graduate|entry/i.test(p.experienceLevel || "")
@@ -196,6 +197,7 @@ export async function searchJobs(
   const day = chinaDay(now),
     ordinal = Math.floor(Date.parse(day + "T00:00:00Z") / 86400000);
   p.sourceDay = ordinal;
+  p.sourceNow = now.getTime();
   p.sourceHealth = previousIndex.sourceHealth || {};
   const limit = bounded(dailyBudget, 24, 1, 100),
     pages = bounded(maxPages, 2, 1, 3),
@@ -236,6 +238,7 @@ export async function searchJobs(
       role,
       previousIndex.sourceHealth || {},
       p.sourceMode,
+      now.getTime(),
     );
     if (!selected.length) return null;
     const url = new URL("https://api.search.brave.com/res/v1/web/search");
