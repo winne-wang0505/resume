@@ -55,6 +55,7 @@ try {
       viewport,
       serviceWorkers: "block",
     });
+    await context.route("**/service.json", route => route.fulfill({ json: { apiBase: "" } }));
     const page = await context.newPage();
     const errors = [];
     page.on("pageerror", (e) => errors.push(e.message));

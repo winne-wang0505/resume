@@ -3,6 +3,7 @@ export async function checkPersonalUI(browser, url, fixtureJob) {
   const users = new Map();
   let sequence = 0;
   async function wire(context) {
+    await context.route("**/service.json", route => route.fulfill({ json: { apiBase: "" } }));
     await context.route("**/data/jobs.json", (route) =>
       route.fulfill({ json: { mode: "enriched", jobs: [], leads: [] } }),
     );
