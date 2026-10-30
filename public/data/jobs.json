@@ -25,17 +25,17 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 8,
-      "successes": 3,
-      "consecutiveFailures": 3,
+      "attempts": 13,
+      "successes": 6,
+      "consecutiveFailures": 0,
       "failures": {
-        "fields": 2,
+        "fields": 4,
         "network": 3
       },
-      "lastAttemptAt": "2026-10-29T03:23:38.890Z",
-      "lastFailureKind": "network",
-      "cooldownUntil": "2026-10-31T03:23:38.890Z",
-      "lastSuccessAt": "2026-10-28T01:52:09.635Z"
+      "lastAttemptAt": "2026-10-30T03:26:45.047Z",
+      "lastFailureKind": "fields",
+      "cooldownUntil": null,
+      "lastSuccessAt": "2026-10-30T03:26:45.047Z"
     },
     "apple": {
       "name": "苹果招聘",
@@ -160,13 +160,13 @@
     },
     "offertoday": {
       "name": "OfferToday",
-      "attempts": 2,
+      "attempts": 3,
       "successes": 0,
-      "consecutiveFailures": 2,
+      "consecutiveFailures": 3,
       "failures": {
-        "fields": 2
+        "fields": 3
       },
-      "lastAttemptAt": "2026-10-30T03:25:17.333Z",
+      "lastAttemptAt": "2026-10-30T03:26:45.047Z",
       "lastFailureKind": "fields"
     }
   },
@@ -289,9 +289,87 @@
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-30T03:25:17.333Z",
+  "updatedAt": "2026-10-30T03:26:45.047Z",
   "mode": "enriched",
   "jobs": [
+    {
+      "id": "2294450a8be239cbd8",
+      "url": "https://www.liepin.com/job/1985237551.shtml",
+      "source": "www.liepin.com",
+      "sourceLabel": "猎聘",
+      "sourceType": "招聘平台",
+      "region": "内地",
+      "discoveredAt": "2026-10-28T01:52:09.635Z",
+      "searchGroup": "大模型",
+      "demo": false,
+      "title": "大模型 Agent 开发工程师实习生",
+      "company": "深圳市原初之境科技有限公司",
+      "countries": [
+        "CN"
+      ],
+      "city": "深圳-南山区",
+      "degree": "硕士",
+      "skills": [
+        "Python",
+        "普通话"
+      ],
+      "postedAt": "2026-08-28T16:12:00+08:00",
+      "deadline": "2027-08-28",
+      "description": "一、提供转正机会\n\n二、岗位摘要\n构建持续运行的多智能体世界与 World Engine Harness——统一封装世界模型 / 仿真后端，支撑长程、多智能体、带记忆与社会关系的 Agent 系统。\n\n三、工作职责\n1. Agent Harness 设计与效果调优\n负责 Agent 主循环、工具调用协议、Skill / Prompt 体系的设计与迭代；通过 harness engineering 而非单纯换模型，把不同底座模型的能力压榨到可用水位，并保证跨模型的一致性。\n2. 记忆与上下文管理\n设计并实现长运行场景下的记忆与上下文机制（分层记忆、滑动窗口、增量/异步压缩、动态装载卸载），在关键信息不丢失与 prompt cache 命中率之间取得平衡，优化 token 成本与端到端时延。\n3. 多智能体与长程任务\n参与多 Agent 协同、任务编排与状态管理的框架设计；支持任务的动态打断 / 恢复 / 重建，保证高并发下的稳定性与响应速度。\n4. 评测体系与效果闭环\n搭建可复现的 Agent 评测集与线上埋点，定位 bad case，把\"感觉变好了\"变成可量化的指标；持续跟踪前沿工作与竞品（Claude Code、Cursor、Codex 等），输出调研并推动落地。\n5. 工程落地\n与工程团队协同完成链路改造，交付可上线的服务接口与中间层，保证模块解耦与可维护性。\n\n四、任职资格\n- 计算机、人工智能或相关专业硕士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系统经验：独立负责过 Prompt / Skill 设计、工具调用链路或 Agent 主循环，而不仅是调用现成框架。\n- 熟悉 LLM 推理与上下文机制的基本原理（KV cache、context window、function calling、结构化输出），理解成本与时延从哪来。\n- 有明确的效果度量意识：能说清自己的改动带来了什么指标变化、怎么测出来的。\n- 学习速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数：1人",
+      "category": "待核实",
+      "fieldEvidence": {
+        "title": {
+          "method": "schema.org/JobPosting",
+          "field": "title",
+          "quote": "大模型 Agent 开发工程师实习生"
+        },
+        "company": {
+          "method": "schema.org/JobPosting",
+          "field": "hiringOrganization.name",
+          "quote": "深圳市原初之境科技有限公司"
+        },
+        "countries": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address.addressCountry",
+          "quote": "[\"CN\"]"
+        },
+        "city": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address",
+          "quote": "深圳-南山区"
+        },
+        "degree": {
+          "method": "schema.org/JobPosting",
+          "field": "educationRequirements",
+          "quote": "硕士"
+        },
+        "skills": {
+          "method": "requirements-text",
+          "quote": "士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系；速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数："
+        },
+        "postedAt": {
+          "method": "schema.org/JobPosting",
+          "field": "datePosted",
+          "quote": "2026-08-28T16:12:00+08:00"
+        },
+        "deadline": {
+          "method": "description-text",
+          "quote": "截止日期2027年08月28日"
+        }
+      },
+      "detailFetchedAt": "2026-10-30T03:26:47.001Z",
+      "verification": "structured-detail",
+      "status": "open-unconfirmed",
+      "assessable": true,
+      "missingFields": [
+        "experience",
+        "salaryMin"
+      ],
+      "detailMethod": "structured",
+      "firstSeenAt": "2026-10-28T01:52:09.635Z",
+      "lastSeenAt": "2026-10-30T03:26:56.179Z",
+      "retained": false
+    },
     {
       "id": "7ddfe733d0ddf772ed",
       "url": "https://www.liepin.com/job/1985879369.shtml",
@@ -396,99 +474,15 @@
           "quote": "2027届"
         }
       },
-      "detailFetchedAt": "2026-10-28T01:51:07.514Z",
+      "detailFetchedAt": "2026-10-30T03:26:46.578Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
       "missingFields": [],
       "detailMethod": "structured",
       "firstSeenAt": "2026-10-27T13:39:20.978Z",
-      "lastSeenAt": "2026-10-28T01:51:17.247Z",
-      "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": true,
-      "detailAttemptedAt": "2026-10-29T03:23:38.890Z"
-    },
-    {
-      "id": "2294450a8be239cbd8",
-      "url": "https://www.liepin.com/job/1985237551.shtml",
-      "source": "www.liepin.com",
-      "sourceLabel": "猎聘",
-      "sourceType": "招聘平台",
-      "region": "内地",
-      "discoveredAt": "2026-10-28T01:52:09.635Z",
-      "searchGroup": "大模型",
-      "demo": false,
-      "title": "大模型 Agent 开发工程师实习生",
-      "company": "深圳市原初之境科技有限公司",
-      "countries": [
-        "CN"
-      ],
-      "city": "深圳-南山区",
-      "degree": "硕士",
-      "skills": [
-        "Python",
-        "普通话"
-      ],
-      "postedAt": "2026-08-28T16:12:00+08:00",
-      "deadline": "2027-08-28",
-      "description": "一、提供转正机会\n\n二、岗位摘要\n构建持续运行的多智能体世界与 World Engine Harness——统一封装世界模型 / 仿真后端，支撑长程、多智能体、带记忆与社会关系的 Agent 系统。\n\n三、工作职责\n1. Agent Harness 设计与效果调优\n负责 Agent 主循环、工具调用协议、Skill / Prompt 体系的设计与迭代；通过 harness engineering 而非单纯换模型，把不同底座模型的能力压榨到可用水位，并保证跨模型的一致性。\n2. 记忆与上下文管理\n设计并实现长运行场景下的记忆与上下文机制（分层记忆、滑动窗口、增量/异步压缩、动态装载卸载），在关键信息不丢失与 prompt cache 命中率之间取得平衡，优化 token 成本与端到端时延。\n3. 多智能体与长程任务\n参与多 Agent 协同、任务编排与状态管理的框架设计；支持任务的动态打断 / 恢复 / 重建，保证高并发下的稳定性与响应速度。\n4. 评测体系与效果闭环\n搭建可复现的 Agent 评测集与线上埋点，定位 bad case，把\"感觉变好了\"变成可量化的指标；持续跟踪前沿工作与竞品（Claude Code、Cursor、Codex 等），输出调研并推动落地。\n5. 工程落地\n与工程团队协同完成链路改造，交付可上线的服务接口与中间层，保证模块解耦与可维护性。\n\n四、任职资格\n- 计算机、人工智能或相关专业硕士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系统经验：独立负责过 Prompt / Skill 设计、工具调用链路或 Agent 主循环，而不仅是调用现成框架。\n- 熟悉 LLM 推理与上下文机制的基本原理（KV cache、context window、function calling、结构化输出），理解成本与时延从哪来。\n- 有明确的效果度量意识：能说清自己的改动带来了什么指标变化、怎么测出来的。\n- 学习速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数：1人",
-      "category": "待核实",
-      "fieldEvidence": {
-        "title": {
-          "method": "schema.org/JobPosting",
-          "field": "title",
-          "quote": "大模型 Agent 开发工程师实习生"
-        },
-        "company": {
-          "method": "schema.org/JobPosting",
-          "field": "hiringOrganization.name",
-          "quote": "深圳市原初之境科技有限公司"
-        },
-        "countries": {
-          "method": "schema.org/JobPosting",
-          "field": "jobLocation.address.addressCountry",
-          "quote": "[\"CN\"]"
-        },
-        "city": {
-          "method": "schema.org/JobPosting",
-          "field": "jobLocation.address",
-          "quote": "深圳-南山区"
-        },
-        "degree": {
-          "method": "schema.org/JobPosting",
-          "field": "educationRequirements",
-          "quote": "硕士"
-        },
-        "skills": {
-          "method": "requirements-text",
-          "quote": "士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系；速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数："
-        },
-        "postedAt": {
-          "method": "schema.org/JobPosting",
-          "field": "datePosted",
-          "quote": "2026-08-28T16:12:00+08:00"
-        },
-        "deadline": {
-          "method": "description-text",
-          "quote": "截止日期2027年08月28日"
-        }
-      },
-      "detailFetchedAt": "2026-10-28T01:52:18.181Z",
-      "verification": "structured-detail",
-      "status": "open-unconfirmed",
-      "assessable": true,
-      "missingFields": [
-        "experience",
-        "salaryMin"
-      ],
-      "detailMethod": "structured",
-      "firstSeenAt": "2026-10-28T01:52:09.635Z",
-      "lastSeenAt": "2026-10-28T01:52:09.635Z",
-      "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": true,
-      "detailAttemptedAt": "2026-10-30T03:17:39.740Z"
+      "lastSeenAt": "2026-10-30T03:26:56.179Z",
+      "retained": false
     }
   ],
   "leads": [
@@ -509,7 +503,6 @@
       "discoveredAt": "2026-10-30T03:25:17.333Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
       "extractionNotes": {
         "title": "",
         "headings": [
@@ -517,81 +510,27 @@
         ],
         "pageKind": "insufficient-structured-fields"
       },
-      "detailAttemptedAt": "2026-10-30T03:25:17.333Z"
-    },
+      "detailAttemptedAt": "2026-10-30T03:26:45.047Z",
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+    }
+  ],
+  "excluded": [
     {
       "id": "7a2b50f7ea3e7f61ed",
       "title": "【上海 交互设计师（AI教育）招聘】-LingoAce上海招聘信息-猎聘",
-      "company": null,
-      "region": "内地",
-      "searchGroup": "AI",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "该职位已暂停招聘 投递了该职位的人还查看了以下职位，快去看看吧 · 【技研】UI设计专家 (MJ012400) · 【 上海-黄浦区 】 · 35-45k·15薪 · 众安在线财产保险 · 互联网 已上市 2000-5000人 · 赵女士 · 集团校招负责人 · 聊一聊 ...",
-      "source": "www.liepin.com",
-      "sourceLabel": "猎聘",
-      "sourceType": "招聘平台",
       "url": "https://www.liepin.com/job/1979157659.shtml",
-      "discoveredAt": "2026-10-29T03:23:38.890Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailAttemptedAt": "2026-10-29T03:23:38.890Z",
-      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
-      "retained": true
-    },
-    {
-      "id": "8f46dd3ffe4a23c8bd",
-      "title": "【上海 用户运营招聘】-上海顶留教育科技有限公司上海招聘信息-猎聘",
-      "company": null,
-      "region": "内地",
-      "searchGroup": "运营",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "用户运营 8-13k · 上海-青浦区 1-3年 本科 招1人 9月11日更新 · 聊一聊 · 收藏 · 微信分享扫码 · 冉女士 14小时前在线 已认证 · 创始人 · 上海顶留教育科技有限公司 · 职位介绍 · 私域运营（培养型留学顾问） 岗位职责 1. ...",
-      "source": "www.liepin.com",
-      "sourceLabel": "猎聘",
-      "sourceType": "招聘平台",
-      "url": "https://www.liepin.com/job/1979052317.shtml",
-      "discoveredAt": "2026-10-29T03:23:38.890Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailAttemptedAt": "2026-10-29T03:23:38.890Z",
-      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析",
-      "retained": true
+      "reason": "岗位已关闭或下架",
+      "unavailable": true,
+      "excludedAt": "2026-10-30T03:26:45.047Z"
     },
     {
       "id": "d3a966992ee76959d3",
       "title": "【上海 AI算法实习生招聘】-UAES上海招聘信息-猎聘",
-      "company": null,
-      "region": "内地",
-      "searchGroup": "算法",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "AI算法实习生 提供转正 200-250元/天 · 上海-浦东新区 实习 4天/周 6个月 硕士 学生可投 招1人 7月10日更新 · 投简历 聊一聊 · 收藏 · 微信分享扫码 · 冉女士 17小时前在线 已认证 · HR · UAES · 聊一聊 · 职位介绍 · 1、 ...",
-      "source": "www.liepin.com",
-      "sourceLabel": "猎聘",
-      "sourceType": "招聘平台",
       "url": "https://www.liepin.com/job/1983411337.shtml",
-      "discoveredAt": "2026-10-28T01:48:58.631Z",
-      "verification": "search-result",
-      "demo": false,
-      "extractionNotes": {
-        "title": "",
-        "headings": [
-          "热门职位",
-          "推荐企业"
-        ],
-        "pageKind": "insufficient-structured-fields"
-      },
-      "detailAttemptedAt": "2026-10-28T01:51:06.078Z",
-      "retained": true,
-      "detailFailure": "此来源连续访问受限，暂缓自动读取两天；可打开原页后粘贴正文分析"
-    }
-  ],
-  "excluded": [
+      "reason": "岗位已关闭或下架",
+      "unavailable": true,
+      "excludedAt": "2026-10-30T03:26:45.047Z"
+    },
     {
       "id": "2442600c4058b49e45",
       "title": "Area Sales Manager at Unilever",
@@ -671,6 +610,12 @@
       "reason": "原岗位链接已不可用（404/410）",
       "unavailable": true,
       "excludedAt": "2026-10-30T03:16:54.361Z"
+    },
+    {
+      "id": "8f46dd3ffe4a23c8bd",
+      "title": "用户运营",
+      "url": "https://www.liepin.com/job/1979052317.shtml",
+      "reason": "包含排除关键词：销售"
     }
   ],
   "searchPreferences": {
@@ -687,13 +632,13 @@
   "searchUpdatedAt": "2026-10-30T03:25:17.333Z",
   "warnings": [],
   "stats": {
-    "discovered": 11,
-    "detailAttempts": 1,
-    "detailSuccess": 0,
-    "pending": 4,
-    "excluded": 10,
+    "discovered": 16,
+    "detailAttempts": 6,
+    "detailSuccess": 2,
+    "pending": 1,
+    "excluded": 13,
     "activePool": 2,
-    "historyRetained": 2,
+    "historyRetained": 0,
     "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
