@@ -1,3 +1,4 @@
+import { unavailableReason } from "./availability.mjs";
 import { cooling, updateHealth } from "./health.mjs";
 import { createHash } from "node:crypto";
 import { sourceURL, identifySource } from "./sources.mjs";
@@ -75,6 +76,7 @@ export async function retainHistory(
     recheckLimit = 6,
     retentionDays = 30,
     confirmationDays = 7,
+    recheckAfterMs = day,
   } = {},
 ) {
   const prefs = current.searchPreferences || {},
@@ -133,18 +135,23 @@ export async function retainHistory(
         title: old.title,
         url: old.url,
         reason: issue || "历史保留期已超过 " + retentionDays + " 天",
+        ...(unavailableReason(old, { now })
+          ? { unavailable: true, excludedAt: now.toISOString() }
+          : {}),
       });
       archived++;
       continue;
     }
     const pendingIndex = leads.findIndex((j) => key(j) === url);
     const pending = pendingIndex >= 0 ? leads[pendingIndex] : null;
-    if (pending && /HTTP (?:404|410)/.test(pending.detailFailure || "")) {
+    if (pending && unavailableReason(pending, { now })) {
       excluded.push({
         id: old.id,
         title: old.title,
         url: old.url,
-        reason: "原岗位链接已不可用",
+        reason: unavailableReason(pending, { now }),
+        unavailable: true,
+        excludedAt: now.toISOString(),
       });
       leads.splice(pendingIndex, 1);
       archived++;
@@ -169,7 +176,7 @@ export async function retainHistory(
             old.discoveredAt ||
             "",
         ) >=
-        day
+        recheckAfterMs
     ) {
       checked++;
       const result = await detailFetcher(old);
@@ -183,6 +190,9 @@ export async function retainHistory(
             title: job.title,
             url: job.url,
             reason: disqualified,
+            ...(unavailableReason(job, { now })
+              ? { unavailable: true, excludedAt: now.toISOString() }
+              : {}),
           });
           archived++;
           continue;
@@ -191,12 +201,14 @@ export async function retainHistory(
       } else {
         job = { ...old, detailAttemptedAt: now.toISOString() };
         reason = result.reason;
-        if (/HTTP (?:404|410)/.test(reason)) {
+        if (unavailableReason(result, { now })) {
           excluded.push({
             id: old.id,
             title: old.title,
             url: old.url,
-            reason: "原岗位链接已不可用",
+            reason: unavailableReason(result, { now }),
+            unavailable: true,
+            excludedAt: now.toISOString(),
           });
           archived++;
           continue;
@@ -232,6 +244,19 @@ export async function retainHistory(
   for (const old of previous.leads || []) {
     const url = key(old);
     if (!url || leadKeys.has(url) || old.demo) continue;
+    const gone = unavailableReason(old, { now });
+    if (gone) {
+      excluded.push({
+        id: old.id,
+        title: old.title,
+        url: old.url,
+        reason: gone,
+        unavailable: true,
+        excludedAt: now.toISOString(),
+      });
+      leadKeys.add(url);
+      continue;
+    }
     const first = Date.parse(old.firstSeenAt || old.discoveredAt || "");
     if (
       !Number.isFinite(first) ||
@@ -249,7 +274,12 @@ export async function retainHistory(
   const deduped = deduplicateJobs(jobs);
   const uniqueExcluded = excluded
     .filter((j, i, a) => a.findIndex((x) => x.url === j.url) === i)
-    .slice(0, 200);
+    .sort(
+      (a, b) =>
+        Number(!!b.unavailable) - Number(!!a.unavailable) ||
+        String(b.excludedAt || "").localeCompare(String(a.excludedAt || "")),
+    )
+    .slice(0, 500);
   return {
     ...current,
     sourceHealth,

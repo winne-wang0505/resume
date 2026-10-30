@@ -1,3 +1,4 @@
+import { unavailableReason } from "./availability.mjs";
 import { updateHealth, cooling } from "./health.mjs";
 import { classifyLink, identifySource } from "./sources.mjs";
 import { createDetailFetcher } from "./details.mjs";
@@ -31,6 +32,18 @@ export async function enrichIndex(
       j.sourceLabel = source.name;
     }
     delete j.detailFailure;
+    const unavailable = unavailableReason(j, { now });
+    if (unavailable) {
+      excluded.push({
+        id: j.id,
+        title: j.title,
+        url: j.url,
+        reason: unavailable,
+        unavailable: true,
+        excludedAt: now.toISOString(),
+      });
+      continue;
+    }
     const classification = classifyLink(j);
     if (classification.kind === "excluded") {
       excluded.push({
@@ -117,6 +130,20 @@ export async function enrichIndex(
         result = { ok: false, reason: "来源读取失败" };
       }
       if (!cached) healthResults.push({ lead, result });
+      const gone = result.ok
+        ? unavailableReason(result.job, { now })
+        : unavailableReason(result, { now });
+      if (gone) {
+        excluded.push({
+          id: lead.id,
+          title: lead.title,
+          url: lead.url,
+          reason: gone,
+          unavailable: true,
+          excludedAt: now.toISOString(),
+        });
+        continue;
+      }
       if (result.ok) {
         const job = result.job;
         if (job.status === "closed") {

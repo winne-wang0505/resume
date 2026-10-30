@@ -5,6 +5,7 @@ import { searchJobs } from "../src/search.mjs";
 const role = process.env.JOB_ROLE || "数据分析";
 const preferences = {
   role,
+  sourceMode: process.env.JOB_SOURCE_MODE || "standard",
   region: process.env.JOB_REGION || "全部",
   city: process.env.JOB_CITY || "",
   category: "全部",

@@ -73,6 +73,7 @@ export const server = http.createServer(async (req, res) => {
       if (url.pathname === "/api/status" && req.method === "GET")
         return json(res, 200, {
           personal: true,
+          sourcePolicyVersion: 1,
           search: !!process.env.BRAVE_SEARCH_API_KEY,
         });
       if (
@@ -125,6 +126,7 @@ export const server = http.createServer(async (req, res) => {
       return json(res, 405, { error: "Method not allowed" });
     const decoded = decodeURIComponent(url.pathname);
     const isModule = [
+      "/src/availability.mjs",
       "/src/match.mjs",
       "/src/brief.mjs",
       "/src/sources.mjs",

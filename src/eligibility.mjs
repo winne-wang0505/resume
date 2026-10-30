@@ -1,3 +1,5 @@
+import { sourceMatches } from "./sources.mjs";
+import { unavailableReason } from "./availability.mjs";
 const terms = (value) =>
   String(value || "")
     .split(/[,，、/;；\n]+/)
@@ -22,6 +24,9 @@ export function eligibilityIssue(
   prefs = {},
   { now = new Date(), titleOnly = false } = {},
 ) {
+  if (!sourceMatches(job, prefs.sourceMode)) return "来源不在当前精选范围";
+  const unavailable = unavailableReason(job, { now });
+  if (unavailable) return unavailable;
   if (
     job.status === "closed" ||
     (Number.isFinite(deadlineTime(job)) && deadlineTime(job) < now.getTime())

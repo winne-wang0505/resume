@@ -39,7 +39,9 @@ const detailed = {
   salaryMin: 22000,
   salaryMax: 30000,
   currency: "HKD",
-  description: "具体职责与要求",
+  description:
+    "岗位职责：负责经营数据分析、维护报表、梳理产品需求、向业务团队解释指标变化，输出可复用的数据报告并参与数据质量监控。任职要求：本科学历，两年以上相关经验，熟练使用 SQL 和 Excel，具备沟通表达能力。",
+  detailFetchedAt: now.toISOString(),
   status: "open-unconfirmed",
 };
 test("pipeline separates detailed jobs, blocked leads, aggregates and expired jobs", async () => {

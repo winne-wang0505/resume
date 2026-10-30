@@ -1,7 +1,12 @@
+import {
+  unavailableReason,
+  qualityIssue,
+  removeUnavailable,
+} from "./src/availability.mjs";
 import { evaluate, safeURL } from "./src/match.mjs";
 import { buildBrief } from "./src/brief.mjs";
 import { importManual } from "./src/manual.mjs";
-import { sourceCatalog } from "./src/sources.mjs";
+import { sourceCatalog, sourceMatches, sourceModes } from "./src/sources.mjs";
 const $ = (s) => document.querySelector(s),
   $$ = (s) => [...document.querySelectorAll(s)];
 const esc = (s) =>
@@ -31,6 +36,7 @@ const defaults = {
 let profile = { ...defaults, ...read("profile", {}) },
   prefs = {
     region: "全部",
+    sourceMode: "standard",
     city: "",
     role: "",
     salary: 10000,
@@ -108,6 +114,11 @@ async function detectPersonal() {
   const status = await personalRequest("status");
   if (!status.personal || !status.search)
     throw Error("个人搜索服务尚未配置完成");
+  if (status.sourcePolicyVersion !== 1) {
+    $("#personalStatus").textContent =
+      "个人后台版本较旧：请在 Render 服务中选择 Manual Deploy → Deploy latest commit，更新后重新连接。为避免继续广泛检索，暂不调用旧后台。";
+    throw Error("个人后台需更新精选来源与失效过滤版本");
+  }
   apiAvailable = true;
   $("#refresh").textContent = "↻ 更新我的岗位日报";
   $("#connectionStatus").textContent =
@@ -127,10 +138,11 @@ async function detectPersonal() {
   }
 }
 const detailed = (j) =>
-  j.demo ||
-  ["structured-detail", "page-detail", "user-provided-detail"].includes(
-    j.verification,
-  );
+  !qualityIssue(j) &&
+  (j.demo ||
+    ["structured-detail", "page-detail", "user-provided-detail"].includes(
+      j.verification,
+    ));
 function deadlineLabel(value) {
   return value
     ? /^\d{4}-\d{2}-\d{2}$/.test(value)
@@ -303,6 +315,8 @@ function visibleRows() {
     analyzed(
       jobs.filter(
         (j) =>
+          sourceMatches(j, prefs.sourceMode) &&
+          !unavailableReason(j) &&
           (quality === "detailed" ? detailed(j) : !detailed(j)) &&
           (region === "全部" || j.region === region) &&
           (cat === "全部" || j.category === cat) &&
@@ -316,10 +330,11 @@ function visibleRows() {
   );
 }
 function card({ job: j, result: r }, isSaved = false) {
+  const issue = qualityIssue(j);
   const money = j.salaryMin
     ? `${j.salaryMin.toLocaleString()}–${j.salaryMax.toLocaleString()} <small>${esc(j.currency)}/月</small>`
     : "薪资待核实";
-  return `<article class="job-card"><div class="job-top"><div class="company-icon">${esc(j.company?.slice(0, 1) || "职")}</div><div class="job-info"><h3>${esc(j.title)}</h3><p>${esc(j.company || "雇主待核实")} · ${esc(j.category || "待核实")}</p></div><div class="salary">${money}</div></div><div class="job-tags"><span class="tag">${esc(j.city || j.region)}</span><span class="tag">${esc(j.degree || "学历待核实")}</span><span class="tag">${Number.isFinite(j.experience) ? j.experience + " 年经验" : "经验待核实"}</span><span class="tag ${j.demo ? "demo" : ""}">${j.demo ? "演示 · 非真实招聘" : esc(j.source || "来源待核实")}</span>${j.sourceType ? `<span class="tag">${esc(j.sourceType)}</span>` : ""}${j.retained ? '<span class="tag history-tag">历史保留 · 需核实</span>' : ""}${r.expired ? '<span class="tag demo">已截止</span>' : ""}</div>${j.detailFailure ? `<p class="card-reason">待核实：${esc(j.detailFailure)}</p>` : !j.demo ? `<p class="card-reason">${esc(r.advice)} · 信息覆盖度 ${r.confidence}%</p>` : ""}<div class="job-bottom"><span class="score"><b>${score(r.match)}</b>匹配度</span><span class="score"><b>${score(r.readiness)}</b>准备度</span><span class="score"><b>${score(r.value)}</b>性价比</span><div class="card-actions">${isSaved ? `<select class="status-select" data-status="${esc(j.id)}" aria-label="投递状态">${["待评估", "准备中", "已投递", "面试中", "已结束"].map((s) => `<option ${saved[j.id]?.status === s ? "selected" : ""}>${s}</option>`).join("")}</select>` : ""}<button class="save-btn" data-save="${esc(j.id)}" aria-label="${saved[j.id] ? "取消收藏" : "收藏岗位"}">${saved[j.id] ? "♥" : "♡"}</button><button class="detail-btn" data-detail="${esc(j.id)}">查看分析 ↗</button></div></div></article>`;
+  return `<article class="job-card"><div class="job-top"><div class="company-icon">${esc(j.company?.slice(0, 1) || "职")}</div><div class="job-info"><h3>${esc(j.title)}</h3><p>${esc(j.company || "雇主待核实")} · ${esc(j.category || "待核实")}</p></div><div class="salary">${money}</div></div><div class="job-tags"><span class="tag">${esc(j.city || j.region)}</span><span class="tag">${esc(j.degree || "学历待核实")}</span><span class="tag">${Number.isFinite(j.experience) ? j.experience + " 年经验" : "经验待核实"}</span><span class="tag ${j.demo ? "demo" : ""}">${j.demo ? "演示 · 非真实招聘" : esc(j.source || "来源待核实")}</span>${j.sourceType ? `<span class="tag">${esc(j.sourceType)}</span>` : ""}${j.retained ? '<span class="tag history-tag">历史保留 · 需核实</span>' : ""}${j.detailFetchedAt && !j.userProvided ? `<span class="tag">最近读取 ${esc(updatedLabel(j.detailFetchedAt))}</span>` : ""}${r.expired ? '<span class="tag demo">已截止</span>' : ""}</div>${issue || j.detailFailure ? `<p class="card-reason">未纳入推荐：${esc(issue || j.detailFailure)}</p>` : !j.demo ? `<p class="card-reason">${esc(r.advice)} · 信息覆盖度 ${r.confidence}%</p>` : ""}<div class="job-bottom"><span class="score"><b>${score(r.match)}</b>匹配度</span><span class="score"><b>${score(r.readiness)}</b>准备度</span><span class="score"><b>${score(r.value)}</b>性价比</span><div class="card-actions">${isSaved ? `<select class="status-select" data-status="${esc(j.id)}" aria-label="投递状态">${["待评估", "准备中", "已投递", "面试中", "已结束"].map((s) => `<option ${saved[j.id]?.status === s ? "selected" : ""}>${s}</option>`).join("")}</select>` : ""}<button class="save-btn" data-save="${esc(j.id)}" aria-label="${saved[j.id] ? "取消收藏" : "收藏岗位"}">${saved[j.id] ? "♥" : "♡"}</button><button class="detail-btn" data-detail="${esc(j.id)}">查看分析 ↗</button></div></div></article>`;
 }
 function bindCards(root) {
   root.querySelectorAll("[data-save]").forEach(
@@ -362,14 +377,22 @@ function render() {
   const rows = visibleRows();
   $("#jobList").innerHTML = rows.length
     ? rows.map((r) => card(r)).join("")
-    : `<div class="empty">${quality === "detailed" ? "暂无符合筛选且已获得详情的岗位。<br>可切换到待核实线索查看来源限制；本轮不会用汇总页凑推荐数量。" : "暂无符合筛选的待核实线索。"}</div>`;
+    : `<div class="empty">${quality === "detailed" ? "当前来源没有符合条件的有效完整岗位。<br>可以更新个人日报、在求职偏好中调整来源，或粘贴你正在查看的岗位正文。" : "暂无来源诊断记录。"}</div>`;
   bindCards($("#jobList"));
-  $("#statTotal").textContent = jobs.filter(detailed).length;
-  $("#detailCount").textContent = jobs.filter(detailed).length;
-  $("#pendingCount").textContent = jobs.filter((j) => !detailed(j)).length;
+  $("#statTotal").textContent = jobs.filter(
+    (j) => detailed(j) && sourceMatches(j, prefs.sourceMode),
+  ).length;
+  $("#detailCount").textContent = jobs.filter(
+    (j) => detailed(j) && sourceMatches(j, prefs.sourceMode),
+  ).length;
+  $("#pendingCount").textContent = jobs.filter(
+    (j) => !detailed(j) && sourceMatches(j, prefs.sourceMode),
+  ).length;
   $("#statPriority").textContent = analyzed(jobs).filter(
     (x) =>
       !x.job.demo &&
+      detailed(x.job) &&
+      sourceMatches(x.job, prefs.sourceMode) &&
       !x.result.expired &&
       x.result.match !== null &&
       x.result.confidence >= 50 &&
@@ -456,11 +479,11 @@ function renderBrief() {
     dateStyle: "full",
   }).format(new Date());
   $("#briefSummary").textContent =
-    `当前 ${brief.ready.length} 个岗位可评估（历史保留 ${brief.ready.filter((x) => x.job.retained).length} 个），${brief.pending.length} 条线索待核实，已过滤 ${brief.excludedCount} 个汇总、资讯、不符合条件或已截止页面。${brief.stale ? " 索引超过 48 小时，请先核实有效性。" : ""}`;
+    `当前 ${brief.ready.length} 个岗位可评估（历史保留 ${brief.ready.filter((x) => x.job.retained).length} 个），${brief.pending.length} 条记录未纳入推荐（诊断中查看），已过滤 ${brief.excludedCount} 个汇总、资讯、不符合条件或已截止页面。${brief.stale ? " 索引超过 48 小时，请先核实有效性。" : ""}`;
   $("#briefMetrics").innerHTML = [
     ["可评估岗位", brief.ready.length],
     ["历史保留", brief.ready.filter((x) => x.job.retained).length],
-    ["待核实线索", brief.pending.length],
+    ["未纳入推荐", brief.pending.length],
     ["已过滤页面", brief.excludedCount],
   ]
     .map(
@@ -479,12 +502,13 @@ function renderBrief() {
         .join("")
     : '<div class="empty">本轮暂无足够信息的匹配岗位。<br>已将受访问限制或要求不完整的来源放入下方待核实区，不用低质量页面凑推荐。</div>';
   bindCards($("#briefList"));
-  $("#pendingTitle").textContent = `待核实线索（${brief.pending.length}）`;
+  $("#pendingTitle").textContent =
+    `来源诊断与待补充资料（${brief.pending.length}）`;
   $("#pendingList").innerHTML =
     brief.pending
       .map(
         ({ job: j, reason }) =>
-          `<article class="pending-item"><h4>${esc(j.title)}</h4><p>${esc(j.company || j.source || "雇主未知")} · ${esc(j.city || j.region)}</p><p class="card-reason">${esc(reason || "任职要求不足")}</p><button class="detail-btn" data-detail="${esc(j.id)}">查看线索与来源 ↗</button></article>`,
+          `<article class="pending-item"><h4>${esc(j.title)}</h4><p>${esc(j.company || j.source || "雇主未知")} · ${esc(j.city || j.region)}</p><p class="card-reason">${esc(reason || qualityIssue(j) || "任职要求不足")}</p><button class="detail-btn" data-detail="${esc(j.id)}">查看线索与来源 ↗</button></article>`,
       )
       .join("") || '<p class="form-note">暂无待核实线索。</p>';
   bindCards($("#pendingList"));
@@ -512,24 +536,31 @@ function renderBrief() {
   $("#coverageStatus").textContent = coverage
     ? `本轮按 ${coverage.roleDirections} 个方向检索，搜索 ${coverage.requestsThisRun} 次，翻页 ${coverage.paginationRequests} 次。${usage ? "检索日 " + (usage.day || "未记录") + " 累计 " + usage.requests + "/" + usage.limit + " 次，剩余 " + Math.max(0, usage.limit - usage.requests) + " 次。" : ""}${coverage.partial ? " 部分查询未完成，已保留可参考的历史岗位。" : ""}`
     : "等待新策略运行后显示查询和翻页统计。";
-  $("#sourceCatalog").innerHTML = [
-    "招聘平台",
-    "校招／实习",
-    "企业官网",
-    "公共部门",
-  ]
-    .map(
-      (type) =>
-        `<h4>${esc(type)}</h4><ul class="source-list">${sourceCatalog
-          .filter((s) => s.type === type)
-          .map(
-            (s) =>
-              `<li><a href="https://${esc(s.host)}/" target="_blank" rel="noopener noreferrer">${esc(s.name)} ↗</a><small>${esc(s.regions.join("／"))}</small></li>`,
-          )
-          .join("")}</ul>`,
+  $("#sourceCatalog").innerHTML =
+    `<p>当前选择：${esc(sourceModes[prefs.sourceMode]?.label || "精选双来源")}。BOSS 尚未取得授权数据；OfferToday 仅尝试公开正文，能否读取以本轮状态为准。</p>` +
+    ["招聘平台", "校招／实习", "企业官网", "公共部门"]
+      .map(
+        (type) =>
+          `<h4>${esc(type)}</h4><ul class="source-list">${sourceCatalog
+            .filter(
+              (s) =>
+                s.type === type &&
+                (
+                  sourceModes[prefs.sourceMode] || sourceModes.standard
+                ).ids.includes(s.id),
+            )
+            .map(
+              (s) =>
+                `<li><a href="https://${esc(s.host)}/" target="_blank" rel="noopener noreferrer">${esc(s.name)} ↗</a><small>${esc(s.regions.join("／"))}</small></li>`,
+            )
+            .join("")}</ul>`,
+      )
+      .join("");
+  const health = Object.entries(dataInfo.sourceHealth || {})
+    .filter(([id]) =>
+      (sourceModes[prefs.sourceMode] || sourceModes.standard).ids.includes(id),
     )
-    .join("");
-  const health = Object.values(dataInfo.sourceHealth || {});
+    .map(([, row]) => row);
   $("#sourceHealth").innerHTML = health.length
     ? health
         .map((s) => {
@@ -558,6 +589,7 @@ $("#export").onclick = () => {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
 function setData(data) {
+  data = removeUnavailable(data);
   publicData = data;
   const localURLs = new Set(localJobs.map((j) => j.url).filter(Boolean));
   data = {
@@ -572,15 +604,17 @@ function setData(data) {
   jobs = [
     ...(Array.isArray(data.jobs) ? data.jobs : []),
     ...(Array.isArray(data.leads) ? data.leads : []),
-  ];
+  ].filter((j) => !unavailableReason(j));
   $("#dataStatus").textContent = data.personal
     ? "我的个人日报 · " +
       updatedLabel(data.updatedAt) +
       " · 按此设备的检索需求生成"
     : data.mode === "demo"
       ? "当前为明确标注的演示数据，尚未连接真实岗位源。"
-      : `更新于 ${updatedLabel(data.updatedAt)} · ${jobs.filter(detailed).length} 个具体岗位 / ${jobs.filter((j) => !detailed(j)).length} 条待核实线索 · 投递前核实原公告`;
+      : `更新于 ${updatedLabel(data.updatedAt)} · ${jobs.filter((j) => detailed(j) && sourceMatches(j, prefs.sourceMode)).length} 个具体岗位 / ${jobs.filter((j) => !detailed(j) && sourceMatches(j, prefs.sourceMode)).length} 条待核实线索 · 投递前核实原公告`;
 
+  if (data.warnings?.length)
+    $("#dataStatus").textContent += " · " + data.warnings.join("；");
   render();
   renderBrief();
   renderLocalJobs();
@@ -766,3 +800,15 @@ $("#manualImport").onsubmit = (e) => {
   }
 };
 renderLocalJobs();
+
+// Re-evaluate deadlines and the 24-hour freshness gate without paid searches.
+setInterval(() => {
+  render();
+  if (!$("#daily").hidden) renderBrief();
+}, 60000);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    render();
+    renderBrief();
+  }
+});

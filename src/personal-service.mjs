@@ -1,3 +1,4 @@
+import { removeUnavailable } from "./availability.mjs";
 import { readFile, mkdir, writeFile, rename } from "node:fs/promises";
 import path from "node:path";
 import { randomBytes, createHash } from "node:crypto";
@@ -12,6 +13,7 @@ const dayOf = (now) =>
   }).format(now);
 const fail = (status, message) => Object.assign(new Error(message), { status });
 const fields = [
+  "sourceMode",
   "role",
   "region",
   "city",
@@ -44,6 +46,9 @@ export function publicPreferences(input = {}) {
     role: p.role,
     region: p.region,
     city: p.city,
+    sourceMode: ["standard", "preferred"].includes(input.sourceMode)
+      ? input.sourceMode
+      : "standard",
     searchConsent: true,
   };
 }
@@ -117,6 +122,11 @@ export function createPersonalService({
   }
   function view(user, now) {
     const day = quota(now);
+    const cleaned = removeUnavailable(user.index, { now });
+    if (cleaned !== user.index) {
+      user.index = cleaned;
+      dirty = true;
+    }
     return {
       preferences: user.preferences || null,
       enabled: !!user.enabled,
@@ -156,13 +166,20 @@ export function createPersonalService({
         ...(user.index || {}),
         searchUsage: { day, requests: 0, limit: allowance },
       };
-      const index = await search(user.preferences, {
-        previousIndex,
-        dailyBudget: allowance,
-        maxPages: 1,
-        maxDetails: 12,
-        now,
-      });
+      const index = await search(
+        {
+          ...user.preferences,
+          sourceMode: user.preferences.sourceMode || "standard",
+        },
+        {
+          previousIndex,
+          dailyBudget: allowance,
+          maxPages: 1,
+          maxDetails: 12,
+          liveVerification: true,
+          now,
+        },
+      );
       const actual = Math.min(
         allowance,
         Math.max(0, index.coverage?.requestsThisRun ?? allowance),

@@ -1,5 +1,8 @@
+import { sourceMatches } from "./sources.mjs";
+import { unavailableReason, qualityIssue } from "./availability.mjs";
 import { evaluate } from "./match.mjs";
 export function preferenceFilter(job, prefs) {
+  if (!sourceMatches(job, prefs.sourceMode)) return false;
   if (prefs.region && prefs.region !== "全部" && job.region !== prefs.region)
     return false;
   if (
@@ -28,7 +31,10 @@ export function buildBrief(data, profile, prefs, { now = new Date() } = {}) {
   const closed = rows.filter((x) => x.result.expired);
   const relevant = rows.filter((x) => !x.result.expired);
   const ready = relevant.filter(
-    (x) => x.result.match !== null && x.result.roleAligned !== false,
+    (x) =>
+      !qualityIssue(x.job, { now }) &&
+      x.result.match !== null &&
+      x.result.roleAligned !== false,
   );
   ready.sort(
     (a, b) =>
@@ -38,16 +44,22 @@ export function buildBrief(data, profile, prefs, { now = new Date() } = {}) {
       b.result.confidence - a.result.confidence,
   );
   const pending = relevant
-    .filter((x) => x.result.match === null || x.result.roleAligned === false)
+    .filter(
+      (x) =>
+        qualityIssue(x.job, { now }) ||
+        x.result.match === null ||
+        x.result.roleAligned === false,
+    )
     .map((x) => ({
       ...x,
       reason:
-        x.result.roleAligned === false
+        qualityIssue(x.job, { now }) ||
+        (x.result.roleAligned === false
           ? "与目标岗位名称尚未明确对应，建议先核实职责"
-          : x.result.scoreReason,
+          : x.result.scoreReason),
     }));
   for (const job of data.leads || [])
-    if (preferenceFilter(job, prefs))
+    if (!unavailableReason(job, { now }) && preferenceFilter(job, prefs))
       pending.push({
         job,
         result: evaluate(profile, prefs, job, { now }),
@@ -96,7 +108,9 @@ export function buildBrief(data, profile, prefs, { now = new Date() } = {}) {
     ready,
     pending,
     closed,
-    excludedCount: data.stats?.excluded ?? data.excluded?.length ?? 0,
+    excludedCount:
+      (data.stats?.excluded ?? data.excluded?.length ?? 0) +
+      (data.leads || []).filter((j) => unavailableReason(j, { now })).length,
     tasks,
     stale,
     total: ready.length + pending.length,

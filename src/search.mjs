@@ -4,9 +4,11 @@ import {
   identifySource,
   querySources,
   sourceCatalog,
+  sourceMatches,
   classifyLink,
 } from "./sources.mjs";
 import { createDetailFetcher } from "./details.mjs";
+import { unavailableReason } from "./availability.mjs";
 import { retainHistory } from "./history.mjs";
 import { deadlineTime } from "./eligibility.mjs";
 import { enrichIndex } from "./pipeline.mjs";
@@ -71,6 +73,9 @@ export function normalizePreferences(p = {}) {
     mode: clean(p.mode),
     experienceLevel: clean(p.experienceLevel || embedded.EXPERIENCE || ""),
     legacyInput: Object.keys(embedded).length > 0,
+    sourceMode: ["standard", "preferred"].includes(p.sourceMode)
+      ? p.sourceMode
+      : "broad",
   };
 }
 export function buildQuery(
@@ -124,6 +129,7 @@ export function buildQuery(
     p.sourceDay || 0,
     roles[0] || p.role,
     p.sourceHealth || {},
+    p.sourceMode,
   );
   const source = `(${selected.map((x) => "site:" + (x.search || x.host)).join(" OR ")})`;
   const entry = /应届|應屆|fresh|graduate|entry/i.test(p.experienceLevel || "")
@@ -173,6 +179,7 @@ export async function searchJobs(
     now = new Date(),
     requestInterval = 1100,
     maxSearchMs = 120000,
+    liveVerification = false,
   } = {},
 ) {
   const p = normalizePreferences(preferences);
@@ -206,6 +213,12 @@ export async function searchJobs(
   const rotation = ordinal % plans.length;
   plans.push(...plans.splice(0, rotation));
   const seenResults = new Map();
+  const tombstones = (previousIndex.excluded || []).filter(
+    (j) =>
+      j.unavailable &&
+      now.getTime() - Date.parse(j.excludedAt || "") < 7 * 86400000,
+  );
+  const deadURLs = new Set(tombstones.map((j) => sourceURL(j.url)?.href));
   const jobs = [],
     errors = [],
     queryLog = [],
@@ -222,6 +235,7 @@ export async function searchJobs(
       ordinal,
       role,
       previousIndex.sourceHealth || {},
+      p.sourceMode,
     );
     if (!selected.length) return null;
     const url = new URL("https://api.search.brave.com/res/v1/web/search");
@@ -229,7 +243,7 @@ export async function searchJobs(
       q: buildQuery(p, region, [role], roleIndex),
       count: "20",
       offset: String(offset),
-      freshness: "py",
+      freshness: p.sourceMode === "broad" ? "py" : "pm",
       country: region === "香港" ? "HK" : "CN",
       search_lang: region === "香港" ? "zh-hant" : "zh-hans",
     });
@@ -269,13 +283,34 @@ export async function searchJobs(
         }
 
         const u = sourceURL(item.url, region);
-        if (!u) continue;
+        if (
+          !u ||
+          deadURLs.has(u.href) ||
+          !sourceMatches({ url: u.href }, p.sourceMode)
+        )
+          continue;
         const plain = (value) =>
           String(value || "")
             .replace(/<[^>]*>/g, "")
             .slice(0, 2000);
         const title = plain(item.title),
           description = plain(item.description);
+        const gone = unavailableReason(
+          { title, detailFailure: description },
+          { now },
+        );
+        if (gone) {
+          if (!deadURLs.has(u.href))
+            tombstones.push({
+              url: u.href,
+              title,
+              reason: gone,
+              unavailable: true,
+              excludedAt: now.toISOString(),
+            });
+          deadURLs.add(u.href);
+          continue;
+        }
         if (
           splitTerms(p.exclude).some((w) =>
             (title + " " + description).toLowerCase().includes(w.toLowerCase()),
@@ -355,12 +390,21 @@ export async function searchJobs(
     updatedAt: now.toISOString(),
     mode: "search",
     jobs,
-    warnings: errors,
+    excluded: tombstones,
+    warnings: [
+      ...errors,
+      ...(p.sourceMode === "preferred"
+        ? [
+            "BOSS 自动读取受限制，尚未接入授权数据；当前仅尝试 OfferToday 公开岗位，BOSS 岗位可通过正文导入分析。",
+          ]
+        : []),
+    ],
     searchUpdatedAt: calls
       ? now.toISOString()
       : previousIndex.searchUpdatedAt || previousIndex.updatedAt || null,
     searchPreferences: {
       role: p.role,
+      sourceMode: p.sourceMode,
       region: p.region,
       city: p.city,
       category: p.category,
@@ -437,6 +481,7 @@ export async function searchJobs(
     maxDetails: detailLimit,
     now,
     cacheResolver: (lead) => {
+      if (liveVerification) return null;
       const old = cached.get(lead.url);
       const age = now.getTime() - Date.parse(old?.detailFetchedAt || "");
       if (
@@ -458,5 +503,9 @@ export async function searchJobs(
       };
     },
   });
-  return retainHistory(enriched, previousIndex, { detailFetcher, now });
+  return retainHistory(enriched, previousIndex, {
+    detailFetcher,
+    now,
+    ...(liveVerification ? { recheckAfterMs: 0, confirmationDays: 1 } : {}),
+  });
 }

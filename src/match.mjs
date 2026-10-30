@@ -1,3 +1,4 @@
+import { unavailableReason } from "./availability.mjs";
 export const degreeRank = {
   不限: 0,
   高中: 1,
@@ -185,8 +186,8 @@ export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
     .reduce((s, d) => s + d.weight, 0);
   const personalKnown = Boolean(
     String(profile.skills || "").trim() ||
-    String(profile.experience || "").trim() ||
-    String(profile.major || "").trim(),
+      String(profile.experience || "").trim() ||
+      String(profile.major || "").trim(),
   );
   const scoreReason =
     job.verification === "search-result"
@@ -254,6 +255,7 @@ export function evaluate(profile, prefs, job, { now = new Date() } = {}) {
       : Date.parse(rawDeadline + "T23:59:59+08:00")
     : NaN;
   const expired =
+    !!unavailableReason(job, { now }) ||
     job.status === "closed" ||
     (Number.isFinite(deadlineAt) && deadlineAt < now.getTime());
   return {

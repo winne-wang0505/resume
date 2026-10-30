@@ -20,7 +20,25 @@ export const sources = {
 };
 // Public recruitment entry points, not authenticated feeds. Each result must still
 // pass robots, single-posting extraction and eligibility checks.
+export const sourceModes = {
+  standard: { label: "精选双来源", ids: ["liepin", "offertoday"] },
+  preferred: { label: "BOSS＋OfferToday", ids: ["boss", "offertoday"] },
+};
+export function sourceMatches(job, mode = "broad") {
+  if (job.userProvided || job.demo || mode === "broad") return true;
+  return (sourceModes[mode]?.ids || sourceModes.standard.ids).includes(
+    identifySource(job.url)?.id,
+  );
+}
 export const sourceCatalog = [
+  {
+    id: "offertoday",
+    name: "OfferToday",
+    host: "offertoday.com",
+    search: "offertoday.com",
+    type: "招聘平台",
+    regions: ["香港"],
+  },
   {
     id: "amazon",
     name: "亚马逊招聘",
@@ -342,7 +360,18 @@ export function querySources(
   day = 0,
   role = "",
   health = {},
+  mode = "broad",
 ) {
+  if (mode !== "broad") {
+    const ids = (sourceModes[mode] || sourceModes.standard).ids;
+    return sourceCatalog.filter(
+      (s) =>
+        ids.includes(s.id) &&
+        s.regions.includes(region) &&
+        s.id !== "boss" &&
+        !(Date.parse(health[s.id]?.cooldownUntil || "") > day * 86400000),
+    );
+  }
   const group = (type) =>
     sourceCatalog.filter(
       (s) =>
@@ -416,6 +445,8 @@ export function classifyLink(job) {
   if (/51job\.com$/.test(u.hostname) && /\/co[a-z0-9_-]+\.html$/i.test(p))
     return { kind: "excluded", reason: "企业招聘汇总页，不是单一岗位" };
   const detail =
+    (/offertoday\.com$/.test(u.hostname) &&
+      /\/(?:jobs?|position|vacancy)\/[a-z0-9_-]{6,}/i.test(p)) ||
     /\/(?:jobdesc|job-detail|jobdetails?|positions?\/detail|requisitions?\/[^/]+)|\/job\/[^/]+\/[^/]+/i.test(
       p,
     ) ||

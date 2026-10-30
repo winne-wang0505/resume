@@ -45,7 +45,7 @@ export async function createBrowserRenderer({
                 request(target.origin + "/robots.txt", region, 512000)
                   .then((r) => r.body)
                   .catch((e) => {
-                    if (/HTTP 404/.test(e.message)) return "";
+                    if (/HTTP (?:404|410)/.test(e.message)) return "";
                     throw e;
                   }),
               );

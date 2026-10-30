@@ -3,7 +3,9 @@ export async function checkPersonalUI(browser, url, fixtureJob) {
   const users = new Map();
   let sequence = 0;
   async function wire(context) {
-    await context.route("**/service.json", route => route.fulfill({ json: { apiBase: "" } }));
+    await context.route("**/service.json", (route) =>
+      route.fulfill({ json: { apiBase: "" } }),
+    );
     await context.route("**/data/jobs.json", (route) =>
       route.fulfill({ json: { mode: "enriched", jobs: [], leads: [] } }),
     );
@@ -12,7 +14,9 @@ export async function checkPersonalUI(browser, url, fixtureJob) {
         path = new URL(req.url()).pathname,
         method = req.method();
       if (path === "/api/status")
-        return route.fulfill({ json: { search: true, personal: true } });
+        return route.fulfill({
+          json: { search: true, personal: true, sourcePolicyVersion: 1 },
+        });
       if (path === "/api/session") {
         const token = String(++sequence).repeat(64);
         users.set(token, {
@@ -46,6 +50,7 @@ export async function checkPersonalUI(browser, url, fixtureJob) {
           jobs: [
             {
               ...fixtureJob,
+              url: "https://www.liepin.com/job/123456.shtml",
               id: "personal-" + user.preferences.role,
               title: user.preferences.role + "专属岗位",
             },

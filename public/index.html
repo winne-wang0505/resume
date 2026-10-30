@@ -106,7 +106,7 @@
             <button class="selected" data-quality="detailed">
               具体岗位 <b id="detailCount">0</b></button
             ><button data-quality="pending">
-              待核实线索 <b id="pendingCount">0</b>
+              来源诊断 <b id="pendingCount">0</b>
             </button>
           </div>
           <div class="filters">
@@ -296,6 +296,21 @@
           </section>
           <form id="prefsForm" class="form-card">
             <div class="form-grid">
+              <label class="wide"
+                >岗位来源<select name="sourceMode">
+                  <option value="standard">
+                    精选双来源：内地猎聘／香港 OfferToday
+                  </option>
+                  <option value="preferred">
+                    常用平台：BOSS／OfferToday（BOSS 需授权接入）
+                  </option>
+                </select></label
+              >
+              <p class="form-note wide">
+                优先显示正文完整、24
+                小时内重读且未发现失效证据的岗位。薪资未披露不会猜测；搜索引擎收录不等于仍在招。BOSS
+                当前无法自动读取，可粘贴正文分析。
+              </p>
               <label
                 >目标地区<select name="region">
                   <option>全部</option>
@@ -416,9 +431,9 @@
               <p id="briefSummary" role="status"></p>
               <div id="briefList"></div>
               <details id="pendingSection" class="pending-section">
-                <summary id="pendingTitle">待核实线索</summary>
+                <summary id="pendingTitle">来源诊断与待补充资料</summary>
                 <p class="form-note">
-                  这些页面尚未提供足够要求，或尚未与目标岗位对应，不纳入优先投递。查看原因后再决定是否核实。
+                  访问受限、字段不足、读取超时和需补充档案的记录集中放在这里，不作为推荐岗位。已下架或失效的记录直接剔除。
                 </p>
                 <div id="pendingList"></div>
               </details>
@@ -500,7 +515,7 @@
                   <summary>招聘来源与覆盖范围</summary>
                   <div id="sourceCatalog"></div>
                   <p class="form-note">
-                    这里列出已配置的公开招聘来源，不代表每个网站都能自动读取。来源需要登录、受
+                    只列出当前选中的来源；不扩散到其他平台。来源需要登录、受
                     robots 限制或无职位详情时会标注为待核实。
                   </p>
                 </details>

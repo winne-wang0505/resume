@@ -1,6 +1,7 @@
 const lookup = async (...args) =>
   (await import("node:dns/promises")).lookup(...args);
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+import { closedTextReason } from "./availability.mjs";
 import { adaptOfficialPage } from "./adapters.mjs";
 import { sourceURL, classifyLink, identifySource } from "./sources.mjs";
 
@@ -355,6 +356,20 @@ export function extractDetail(html, lead, { now = new Date() } = {}) {
   if (postings.length > 1)
     return { ok: false, reason: "页面包含多个职位，属于汇总页" };
   const text = plainText(html).slice(0, 180000);
+  const headings = [
+    ...html.matchAll(
+      /<(?:h1|h2|title)\b[^>]*>([\s\S]*?)<\/(?:h1|h2|title)\s*>/gi,
+    ),
+  ].map((m) => plainText(m[1]));
+  const currentText = text
+    .slice(0, 1800)
+    .split(
+      /相关推荐|相關職位|相关职位|推薦職位|related jobs|similar jobs|recommended jobs/i,
+    )[0];
+  const closedPage =
+    headings.map(closedTextReason).find(Boolean) ||
+    closedTextReason(currentText);
+  if (closedPage) return { ok: false, unavailable: true, reason: closedPage };
   if (
     !postings.length &&
     /captcha|verify you are human|access denied|请完成验证|請完成驗證|登录后查看|登錄後查看|安全验证|安全驗證/i.test(
@@ -906,7 +921,7 @@ export function createDetailFetcher({
             request(target.origin + "/robots.txt", lead.region, 512000)
               .then((r) => r.body)
               .catch((e) => {
-                if (/HTTP 404/.test(e.message)) return "";
+                if (/HTTP (?:404|410)/.test(e.message)) return "";
                 throw e;
               }),
           );
@@ -960,6 +975,7 @@ export function createDetailFetcher({
         ...lead,
         url: result.url,
       });
+      if (extracted.unavailable) return extracted;
       // Rendering is only attempted on public employer/campus pages, never on
       // explicit security challenges or failed HTTP requests.
       if (

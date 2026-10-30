@@ -32,6 +32,7 @@ jobs:
         run: npm run jobs:refresh
         env:
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+          JOB_SOURCE_MODE: ${{ vars.JOB_SOURCE_MODE }}
           JOB_ROLE: ${{ vars.JOB_ROLE }}
           JOB_CITY: ${{ vars.JOB_CITY }}
           JOB_REGION: ${{ vars.JOB_REGION }}
