@@ -160,19 +160,19 @@
     },
     "offertoday": {
       "name": "OfferToday",
-      "attempts": 1,
+      "attempts": 2,
       "successes": 0,
-      "consecutiveFailures": 1,
+      "consecutiveFailures": 2,
       "failures": {
-        "fields": 1
+        "fields": 2
       },
-      "lastAttemptAt": "2026-10-30T03:18:38.899Z",
+      "lastAttemptAt": "2026-10-30T03:25:17.333Z",
       "lastFailureKind": "fields"
     }
   },
   "searchUsage": {
     "day": "2026-10-30",
-    "requests": 9,
+    "requests": 18,
     "limit": 24
   },
   "coverage": {
@@ -182,7 +182,7 @@
     "pagesLimit": 2,
     "plannedFirstPages": 18,
     "requestsThisRun": 9,
-    "dailyRemaining": 15,
+    "dailyRemaining": 6,
     "partial": true,
     "paginationRequests": 0,
     "queryLog": [
@@ -289,7 +289,7 @@
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-30T03:18:38.899Z",
+  "updatedAt": "2026-10-30T03:25:17.333Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -506,7 +506,7 @@
       "sourceLabel": "OfferToday",
       "sourceType": "招聘平台",
       "url": "https://offertoday.com/en/job/TlfFUrHrNBN4sA-OazOiFg==",
-      "discoveredAt": "2026-10-30T03:18:38.899Z",
+      "discoveredAt": "2026-10-30T03:25:17.333Z",
       "verification": "search-result",
       "demo": false,
       "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
@@ -517,7 +517,7 @@
         ],
         "pageKind": "insufficient-structured-fields"
       },
-      "detailAttemptedAt": "2026-10-30T03:18:38.899Z"
+      "detailAttemptedAt": "2026-10-30T03:25:17.333Z"
     },
     {
       "id": "7a2b50f7ea3e7f61ed",
@@ -684,7 +684,7 @@
     "experienceLevel": "应届生/在校生",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-10-30T03:18:38.899Z",
+  "searchUpdatedAt": "2026-10-30T03:25:17.333Z",
   "warnings": [],
   "stats": {
     "discovered": 11,
