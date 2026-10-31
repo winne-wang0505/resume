@@ -25,17 +25,17 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 13,
-      "successes": 6,
+      "attempts": 16,
+      "successes": 7,
       "consecutiveFailures": 0,
       "failures": {
-        "fields": 4,
+        "fields": 6,
         "network": 3
       },
-      "lastAttemptAt": "2026-10-30T03:26:45.047Z",
+      "lastAttemptAt": "2026-10-31T03:10:06.428Z",
       "lastFailureKind": "fields",
       "cooldownUntil": null,
-      "lastSuccessAt": "2026-10-30T03:26:45.047Z"
+      "lastSuccessAt": "2026-10-31T03:10:06.428Z"
     },
     "apple": {
       "name": "苹果招聘",
@@ -171,162 +171,86 @@
     }
   },
   "searchUsage": {
-    "day": "2026-10-30",
-    "requests": 18,
+    "day": "2026-10-31",
+    "requests": 2,
     "limit": 24
   },
   "coverage": {
     "configuredSources": 42,
-    "roleDirections": 9,
+    "roleDirections": 1,
     "regions": 2,
     "pagesLimit": 2,
-    "plannedFirstPages": 18,
-    "requestsThisRun": 9,
-    "dailyRemaining": 6,
-    "partial": true,
+    "plannedFirstPages": 2,
+    "requestsThisRun": 2,
+    "dailyRemaining": 22,
+    "partial": false,
     "paginationRequests": 0,
     "queryLog": [
       {
-        "role": "大模型",
+        "role": "产品运营",
         "region": "香港",
         "page": 1,
         "sources": [
           "OfferToday"
         ],
-        "results": 2,
-        "unseenResults": 2,
+        "results": 11,
+        "unseenResults": 11,
         "newLinks": 0
       },
       {
-        "role": "AI",
-        "region": "香港",
+        "role": "产品运营",
+        "region": "内地",
         "page": 1,
         "sources": [
-          "OfferToday"
+          "猎聘"
         ],
-        "results": 14,
-        "unseenResults": 14,
-        "newLinks": 1
-      },
-      {
-        "role": "产品",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 2,
-        "unseenResults": 2,
-        "newLinks": 0
-      },
-      {
-        "role": "算法",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 2,
-        "unseenResults": 2,
-        "newLinks": 0
-      },
-      {
-        "role": "开发",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 1,
-        "unseenResults": 1,
-        "newLinks": 0
-      },
-      {
-        "role": "运营",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "金融",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 3,
-        "unseenResults": 3,
-        "newLinks": 0
-      },
-      {
-        "role": "快消",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 0,
-        "unseenResults": 0,
-        "newLinks": 0
-      },
-      {
-        "role": "数据分析",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 8,
-        "unseenResults": 8,
-        "newLinks": 0
+        "results": 18,
+        "unseenResults": 18,
+        "newLinks": 5
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-10-30T03:26:45.047Z",
+  "updatedAt": "2026-10-31T03:10:06.428Z",
   "mode": "enriched",
   "jobs": [
     {
-      "id": "2294450a8be239cbd8",
-      "url": "https://www.liepin.com/job/1985237551.shtml",
+      "id": "28500b5fed37dba27a",
+      "url": "https://www.liepin.com/job/1985621231.shtml",
       "source": "www.liepin.com",
       "sourceLabel": "猎聘",
       "sourceType": "招聘平台",
       "region": "内地",
-      "discoveredAt": "2026-10-28T01:52:09.635Z",
-      "searchGroup": "大模型",
+      "discoveredAt": "2026-10-31T03:10:06.428Z",
+      "searchGroup": "产品运营",
       "demo": false,
-      "title": "大模型 Agent 开发工程师实习生",
-      "company": "深圳市原初之境科技有限公司",
+      "title": "旅游度假-商品策略运营专家",
+      "company": "美团",
       "countries": [
         "CN"
       ],
-      "city": "深圳-南山区",
-      "degree": "硕士",
-      "skills": [
-        "Python",
-        "普通话"
-      ],
-      "postedAt": "2026-08-28T16:12:00+08:00",
-      "deadline": "2027-08-28",
-      "description": "一、提供转正机会\n\n二、岗位摘要\n构建持续运行的多智能体世界与 World Engine Harness——统一封装世界模型 / 仿真后端，支撑长程、多智能体、带记忆与社会关系的 Agent 系统。\n\n三、工作职责\n1. Agent Harness 设计与效果调优\n负责 Agent 主循环、工具调用协议、Skill / Prompt 体系的设计与迭代；通过 harness engineering 而非单纯换模型，把不同底座模型的能力压榨到可用水位，并保证跨模型的一致性。\n2. 记忆与上下文管理\n设计并实现长运行场景下的记忆与上下文机制（分层记忆、滑动窗口、增量/异步压缩、动态装载卸载），在关键信息不丢失与 prompt cache 命中率之间取得平衡，优化 token 成本与端到端时延。\n3. 多智能体与长程任务\n参与多 Agent 协同、任务编排与状态管理的框架设计；支持任务的动态打断 / 恢复 / 重建，保证高并发下的稳定性与响应速度。\n4. 评测体系与效果闭环\n搭建可复现的 Agent 评测集与线上埋点，定位 bad case，把\"感觉变好了\"变成可量化的指标；持续跟踪前沿工作与竞品（Claude Code、Cursor、Codex 等），输出调研并推动落地。\n5. 工程落地\n与工程团队协同完成链路改造，交付可上线的服务接口与中间层，保证模块解耦与可维护性。\n\n四、任职资格\n- 计算机、人工智能或相关专业硕士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系统经验：独立负责过 Prompt / Skill 设计、工具调用链路或 Agent 主循环，而不仅是调用现成框架。\n- 熟悉 LLM 推理与上下文机制的基本原理（KV cache、context window、function calling、结构化输出），理解成本与时延从哪来。\n- 有明确的效果度量意识：能说清自己的改动带来了什么指标变化、怎么测出来的。\n- 学习速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数：1人",
+      "city": "上海",
+      "degree": "本科",
+      "experience": 3,
+      "salaryMin": 15000,
+      "salaryMax": 30000,
+      "currency": "CNY",
+      "salaryPeriod": "月",
+      "postedAt": "2026-10-31T08:17:13+08:00",
+      "description": "美团酒店旅行业务涵盖酒店、民宿、机票、火车票、旅游度假、景点门票等各类住行游品类，通过与产业上下游的深度合作，为用户提供美好的旅游旅行体验。我们积极打造AI友好型组织，使用AI等新技术提升旅游服务的供需匹配效率，更好满足用户个性化、多样化的出游需求。我们持续深耕产业链，用数字化服务助力实体商家高质量经营，探索自有品牌等供给新模式，打造健康的商家生态，保障用户服务体验。为满足用户日益增长的跨境旅行需求，我们将聚焦亚太区域，打造高品质的住宿、交通、游玩等服务矩阵。\n这里有多元的业务布局、持续的成长空间，无论是向往的远方还是眼前的工作，一路都是风景相伴。加入我们，共同为用户创造旅游旅行中的高光时刻！\n\n岗位职责\n\n1.洞察并发掘年轻用户的旅游新需求，围绕“更有趣、更深度、更有特色”的体验，寻找能够满足用户需求的目的地碎片化新玩法产品。前期需要明确商家选型和供给策略。通过制定分目的地的玩法日历，为商务团队提供明确的供给覆盖指引，为供给丰富度负责。\n2. 打通站内外获客渠道，协同产品团队优化导购链路和交易体验，为新品类的流量和转化效率负责。\n3. 通过跟踪、诊断新供给在覆盖、动销、转化、履约数据表现，帮助供给侧看清品类问题，明确做功方向。制定品类发展策略，不断驱动新品类高速高质量增长。\n4.打造新品类服务标杆，不断优化用户履约体验。通过在玩法设计/服务标准/价格竞争力上打造商品优势，不断提升供给质量和品类心智，持续提升新品类规模和线上渗透率。\n\n岗位基本需求\n1. 有3年以上电商/OTA/到店休娱行业的商品运营或品类运营经验，有供给增长或新品类孵化实操经验加分；\n2. 爱玩，会玩，经常旅行且喜欢自己做攻略。喜欢探索徒步/Citywalk/探索小众目的地的新奇特玩法；\n3. 有探索精神，自驱力强。这份工作需要敢于打破常规，跳出固定范式，真正站在用户需求角度寻找供给和服务的新解法。希望你是大胆，有想法且行动力强的。\n4. 数据敏感，能熟练使用数据分析工具（如SQL）进行取数和分析，能够通过数据分析识别用户需求并转化为可执行的运营策略；\n5. 沟通协同力强，能和BD团队紧密配合，也能撬动内外部资源拿到结果。\n\n具备以下者优先\n有商品/品类/商家运营（特别是选品策略）、旅游行业经验者优先。\n\n岗位亮点\n1. 主导新品类1到10的运营全链路：不是成熟业务的螺丝钉，而是创新项目的合伙人，与品类负责人一起把这个品类做大；\n2. 打法自由度高：创新项目没有那么多条条框框，只要能满足用户需求拿回结果，就听谁的，团队开放度高。\n3. 确定性方向：深度游和个性化体验是旅游行业公认的下一个增量，也是业务重点投入的方向；\n4. 团队氛围好。都是年轻人，鼓励探索和试错，团队氛围很和谐，每天欢乐不断。",
+      "skills": [],
       "category": "待核实",
       "fieldEvidence": {
         "title": {
           "method": "schema.org/JobPosting",
           "field": "title",
-          "quote": "大模型 Agent 开发工程师实习生"
+          "quote": "旅游度假-商品策略运营专家"
         },
         "company": {
           "method": "schema.org/JobPosting",
           "field": "hiringOrganization.name",
-          "quote": "深圳市原初之境科技有限公司"
+          "quote": "美团"
         },
         "countries": {
           "method": "schema.org/JobPosting",
@@ -336,38 +260,54 @@
         "city": {
           "method": "schema.org/JobPosting",
           "field": "jobLocation.address",
-          "quote": "深圳-南山区"
+          "quote": "上海"
         },
         "degree": {
           "method": "schema.org/JobPosting",
           "field": "educationRequirements",
-          "quote": "硕士"
+          "quote": "本科"
         },
-        "skills": {
-          "method": "requirements-text",
-          "quote": "士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系；速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数："
+        "experience": {
+          "method": "schema.org/JobPosting",
+          "field": "experienceRequirements",
+          "quote": "3"
+        },
+        "salaryMin": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "15000"
+        },
+        "salaryMax": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "30000"
+        },
+        "currency": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "CNY"
+        },
+        "salaryPeriod": {
+          "method": "schema.org/JobPosting",
+          "field": "baseSalary",
+          "quote": "月"
         },
         "postedAt": {
           "method": "schema.org/JobPosting",
           "field": "datePosted",
-          "quote": "2026-08-28T16:12:00+08:00"
-        },
-        "deadline": {
-          "method": "description-text",
-          "quote": "截止日期2027年08月28日"
+          "quote": "2026-10-31T08:17:13+08:00"
         }
       },
-      "detailFetchedAt": "2026-10-30T03:26:47.001Z",
+      "detailFetchedAt": "2026-10-31T03:10:10.613Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
       "missingFields": [
-        "experience",
-        "salaryMin"
+        "deadline"
       ],
       "detailMethod": "structured",
-      "firstSeenAt": "2026-10-28T01:52:09.635Z",
-      "lastSeenAt": "2026-10-30T03:26:56.179Z",
+      "firstSeenAt": "2026-10-31T03:10:06.428Z",
+      "lastSeenAt": "2026-10-31T03:10:06.428Z",
       "retained": false
     },
     {
@@ -482,10 +422,142 @@
       "detailMethod": "structured",
       "firstSeenAt": "2026-10-27T13:39:20.978Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
-      "retained": false
+      "retained": true,
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
+      "recheckPending": false
+    },
+    {
+      "id": "2294450a8be239cbd8",
+      "url": "https://www.liepin.com/job/1985237551.shtml",
+      "source": "www.liepin.com",
+      "sourceLabel": "猎聘",
+      "sourceType": "招聘平台",
+      "region": "内地",
+      "discoveredAt": "2026-10-28T01:52:09.635Z",
+      "searchGroup": "大模型",
+      "demo": false,
+      "title": "大模型 Agent 开发工程师实习生",
+      "company": "深圳市原初之境科技有限公司",
+      "countries": [
+        "CN"
+      ],
+      "city": "深圳-南山区",
+      "degree": "硕士",
+      "skills": [
+        "Python",
+        "普通话"
+      ],
+      "postedAt": "2026-08-28T16:12:00+08:00",
+      "deadline": "2027-08-28",
+      "description": "一、提供转正机会\n\n二、岗位摘要\n构建持续运行的多智能体世界与 World Engine Harness——统一封装世界模型 / 仿真后端，支撑长程、多智能体、带记忆与社会关系的 Agent 系统。\n\n三、工作职责\n1. Agent Harness 设计与效果调优\n负责 Agent 主循环、工具调用协议、Skill / Prompt 体系的设计与迭代；通过 harness engineering 而非单纯换模型，把不同底座模型的能力压榨到可用水位，并保证跨模型的一致性。\n2. 记忆与上下文管理\n设计并实现长运行场景下的记忆与上下文机制（分层记忆、滑动窗口、增量/异步压缩、动态装载卸载），在关键信息不丢失与 prompt cache 命中率之间取得平衡，优化 token 成本与端到端时延。\n3. 多智能体与长程任务\n参与多 Agent 协同、任务编排与状态管理的框架设计；支持任务的动态打断 / 恢复 / 重建，保证高并发下的稳定性与响应速度。\n4. 评测体系与效果闭环\n搭建可复现的 Agent 评测集与线上埋点，定位 bad case，把\"感觉变好了\"变成可量化的指标；持续跟踪前沿工作与竞品（Claude Code、Cursor、Codex 等），输出调研并推动落地。\n5. 工程落地\n与工程团队协同完成链路改造，交付可上线的服务接口与中间层，保证模块解耦与可维护性。\n\n四、任职资格\n- 计算机、人工智能或相关专业硕士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系统经验：独立负责过 Prompt / Skill 设计、工具调用链路或 Agent 主循环，而不仅是调用现成框架。\n- 熟悉 LLM 推理与上下文机制的基本原理（KV cache、context window、function calling、结构化输出），理解成本与时延从哪来。\n- 有明确的效果度量意识：能说清自己的改动带来了什么指标变化、怎么测出来的。\n- 学习速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数：1人",
+      "category": "待核实",
+      "fieldEvidence": {
+        "title": {
+          "method": "schema.org/JobPosting",
+          "field": "title",
+          "quote": "大模型 Agent 开发工程师实习生"
+        },
+        "company": {
+          "method": "schema.org/JobPosting",
+          "field": "hiringOrganization.name",
+          "quote": "深圳市原初之境科技有限公司"
+        },
+        "countries": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address.addressCountry",
+          "quote": "[\"CN\"]"
+        },
+        "city": {
+          "method": "schema.org/JobPosting",
+          "field": "jobLocation.address",
+          "quote": "深圳-南山区"
+        },
+        "degree": {
+          "method": "schema.org/JobPosting",
+          "field": "educationRequirements",
+          "quote": "硕士"
+        },
+        "skills": {
+          "method": "requirements-text",
+          "quote": "士及以上；1–3 年大模型 / Agent 方向工作经验（含高质量实习）。\n- Python 扎实，具备工程化能力（服务端接口、异步、并发），有 Go / C++ / C# 任一者更佳。\n- 有真实上线过的 Agent 系；速度快，能自己读论文 / 读源码，把前沿方法落到产品里。\n\n其他信息\n语言要求：普通话\n行业要求：AI/互联网/IT\n\n招聘截止日期2027年08月28日\n招聘人数1人\n\n截止日期：2027年08月28日\n招聘人数："
+        },
+        "postedAt": {
+          "method": "schema.org/JobPosting",
+          "field": "datePosted",
+          "quote": "2026-08-28T16:12:00+08:00"
+        },
+        "deadline": {
+          "method": "description-text",
+          "quote": "截止日期2027年08月28日"
+        }
+      },
+      "detailFetchedAt": "2026-10-30T03:26:47.001Z",
+      "verification": "structured-detail",
+      "status": "open-unconfirmed",
+      "assessable": true,
+      "missingFields": [
+        "experience",
+        "salaryMin"
+      ],
+      "detailMethod": "structured",
+      "firstSeenAt": "2026-10-28T01:52:09.635Z",
+      "lastSeenAt": "2026-10-30T03:26:56.179Z",
+      "retained": true,
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
+      "recheckPending": false
     }
   ],
   "leads": [
+    {
+      "id": "1f3437463620d9e678",
+      "title": "【双旗科技招聘】_双旗科技招聘招聘-猎聘",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "产品运营",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "双旗科技招聘专场进行时 · 10万起 · 全国 学历不限 经验不限 · 汇聚众多行业名企 · 领导好 发展空间大 五险一金 · 本期新增1452个职位 · 供应链客户经理高科技 · 【 济南 】 · 8-10k · 经验不限 本科",
+      "source": "www.liepin.com",
+      "sourceLabel": "猎聘",
+      "sourceType": "招聘平台",
+      "url": "https://www.liepin.com/s/55b3935e97ef9584595227f32dadb7f0/",
+      "discoveredAt": "2026-10-31T03:10:06.428Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-31T03:10:06.428Z"
+    },
+    {
+      "id": "f81b730df07b262122",
+      "title": "【招聘信息_人才网招聘信息】-猎聘",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "产品运营",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "期货客户经理招聘楼面管理招聘AI产品运营招聘咨询顾问招聘SEM招聘汽车产品规划招聘建筑结构设计招聘暖通工程师招聘ERP技术开发招聘消防中控员招聘工会干事招聘能源项目管理招聘测试经理/主管招聘核力/火力工程师招聘财务分析员招聘C++招聘测试开发招聘搬运工招聘电商运营招聘知识产权代理招聘环境评价工程师招聘市场调研与分析招聘电子/电器工程师招聘化工工艺工程师招聘行程管理/计调招聘可持续发展岗(ESG)招聘投资者关系招聘日语翻译招聘液压工程师招聘招生/课程顾问招聘",
+      "source": "campus.liepin.com",
+      "sourceLabel": "猎聘",
+      "sourceType": "招聘平台",
+      "url": "https://campus.liepin.com/sojob",
+      "discoveredAt": "2026-10-31T03:10:06.428Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-10-31T03:10:06.428Z"
+    },
     {
       "id": "d41c139a2a94a87a77",
       "title": "Key Recruitment Limited is recruiting for technican at Mong Kok-offerToday",
@@ -511,7 +583,8 @@
         "pageKind": "insufficient-structured-fields"
       },
       "detailAttemptedAt": "2026-10-30T03:26:45.047Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "retained": true
     }
   ],
   "excluded": [
@@ -612,37 +685,43 @@
       "excludedAt": "2026-10-30T03:16:54.361Z"
     },
     {
-      "id": "8f46dd3ffe4a23c8bd",
-      "title": "用户运营",
-      "url": "https://www.liepin.com/job/1979052317.shtml",
-      "reason": "包含排除关键词：销售"
+      "id": "f888a81e7d51228d0a",
+      "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
+      "url": "https://www.liepin.com/company-jobs/8458871/",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "b384d091eb48b8378d",
+      "title": "【成都亚马逊运营HRBP招聘网_2026年成都亚马逊运营HRBP招聘信息】-成都猎聘",
+      "url": "https://www.liepin.com/city-cd/zpymxyyhrbpw48v/",
+      "reason": "搜索结果或岗位汇总页"
     }
   ],
   "searchPreferences": {
-    "role": "数据分析、大模型、AI、产品、算法、开发、运营、金融、快消",
+    "role": "产品运营",
     "sourceMode": "standard",
     "region": "全部",
-    "city": "上海、杭州、深圳、香港",
+    "city": "",
     "category": "全部",
-    "exclude": "夜班、销售",
-    "employment": "不限",
-    "experienceLevel": "应届生/在校生",
+    "exclude": "",
+    "employment": "全职",
+    "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-10-30T03:25:17.333Z",
+  "searchUpdatedAt": "2026-10-31T03:10:06.428Z",
   "warnings": [],
   "stats": {
-    "discovered": 16,
-    "detailAttempts": 6,
-    "detailSuccess": 2,
-    "pending": 1,
-    "excluded": 13,
-    "activePool": 2,
-    "historyRetained": 0,
+    "discovered": 17,
+    "detailAttempts": 3,
+    "detailSuccess": 1,
+    "pending": 3,
+    "excluded": 14,
+    "activePool": 3,
+    "historyRetained": 2,
     "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
-    "companies": 2
+    "companies": 3
   },
   "notice": "详情字段取自公开招聘页或 JobPosting 元数据，每个已提取要求附有来源证据；仍需在投递前核实在招状态、工作许可和所有门槛。未提取到的信息不会推测。"
 }
