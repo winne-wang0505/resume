@@ -25,16 +25,16 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 23,
+      "attempts": 26,
       "successes": 10,
-      "consecutiveFailures": 0,
+      "consecutiveFailures": 3,
       "failures": {
         "fields": 10,
-        "network": 3
+        "network": 6
       },
-      "lastAttemptAt": "2026-11-02T03:16:10.131Z",
-      "lastFailureKind": "fields",
-      "cooldownUntil": null,
+      "lastAttemptAt": "2026-11-03T04:29:48.548Z",
+      "lastFailureKind": "network",
+      "cooldownUntil": "2026-11-03T04:59:48.548Z",
       "lastSuccessAt": "2026-11-02T03:16:10.131Z"
     },
     "apple": {
@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-02",
+    "day": "2026-11-03",
     "requests": 2,
     "limit": 24
   },
@@ -188,6 +188,17 @@
     "queryLog": [
       {
         "role": "产品运营",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "猎聘"
+        ],
+        "results": 16,
+        "unseenResults": 16,
+        "newLinks": 4
+      },
+      {
+        "role": "产品运营",
         "region": "香港",
         "page": 1,
         "sources": [
@@ -196,23 +207,12 @@
         "results": 11,
         "unseenResults": 11,
         "newLinks": 0
-      },
-      {
-        "role": "产品运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "猎聘"
-        ],
-        "results": 17,
-        "unseenResults": 17,
-        "newLinks": 5
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-02T03:16:10.131Z",
+  "updatedAt": "2026-11-03T04:29:48.548Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -308,7 +308,10 @@
       "detailMethod": "structured",
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
-      "retained": false
+      "retained": true,
+      "detailAttemptedAt": "2026-11-03T04:29:48.548Z",
+      "retentionReason": "来源访问超时",
+      "recheckPending": true
     },
     {
       "id": "2294450a8be239cbd8",
@@ -387,8 +390,8 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
       "retained": true,
-      "retentionReason": "历史岗位已重新读取公告",
-      "recheckPending": false
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
+      "recheckPending": true
     }
   ],
   "leads": [
@@ -406,16 +409,11 @@
       "sourceLabel": "猎聘",
       "sourceType": "招聘平台",
       "url": "https://www.liepin.com/s/55b3935e97ef9584595227f32dadb7f0/",
-      "discoveredAt": "2026-11-02T03:16:10.131Z",
+      "discoveredAt": "2026-11-03T04:29:48.548Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "extractionNotes": {
-        "title": "",
-        "headings": [],
-        "pageKind": "insufficient-structured-fields"
-      },
-      "detailAttemptedAt": "2026-11-02T03:16:10.131Z"
+      "detailFailure": "来源访问超时",
+      "detailAttemptedAt": "2026-11-03T04:29:48.548Z"
     },
     {
       "id": "f81b730df07b262122",
@@ -431,16 +429,11 @@
       "sourceLabel": "猎聘",
       "sourceType": "招聘平台",
       "url": "https://campus.liepin.com/sojob",
-      "discoveredAt": "2026-11-02T03:16:10.131Z",
+      "discoveredAt": "2026-11-03T04:29:48.548Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "extractionNotes": {
-        "title": "",
-        "headings": [],
-        "pageKind": "insufficient-structured-fields"
-      },
-      "detailAttemptedAt": "2026-11-02T03:16:10.131Z"
+      "detailFailure": "来源访问超时",
+      "detailAttemptedAt": "2026-11-03T04:29:48.548Z"
     },
     {
       "id": "d41c139a2a94a87a77",
@@ -581,12 +574,6 @@
       "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
       "url": "https://www.liepin.com/company-jobs/8458871/",
       "reason": "搜索结果或岗位汇总页"
-    },
-    {
-      "id": "b384d091eb48b8378d",
-      "title": "【成都亚马逊运营HRBP招聘网_2026年成都亚马逊运营HRBP招聘信息】-成都猎聘",
-      "url": "https://www.liepin.com/city-cd/zpymxyyhrbpw48v/",
-      "reason": "搜索结果或岗位汇总页"
     }
   ],
   "searchPreferences": {
@@ -600,17 +587,17 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-02T03:16:10.131Z",
+  "searchUpdatedAt": "2026-11-03T04:29:48.548Z",
   "warnings": [],
   "stats": {
-    "discovered": 18,
+    "discovered": 17,
     "detailAttempts": 3,
-    "detailSuccess": 1,
+    "detailSuccess": 0,
     "pending": 3,
-    "excluded": 15,
+    "excluded": 14,
     "activePool": 2,
-    "historyRetained": 1,
-    "historyRechecked": 1,
+    "historyRetained": 2,
+    "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
