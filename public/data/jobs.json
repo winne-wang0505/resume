@@ -25,17 +25,17 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 26,
-      "successes": 10,
-      "consecutiveFailures": 3,
+      "attempts": 29,
+      "successes": 11,
+      "consecutiveFailures": 0,
       "failures": {
-        "fields": 10,
+        "fields": 12,
         "network": 6
       },
-      "lastAttemptAt": "2026-11-03T04:29:48.548Z",
-      "lastFailureKind": "network",
-      "cooldownUntil": "2026-11-03T04:59:48.548Z",
-      "lastSuccessAt": "2026-11-02T03:16:10.131Z"
+      "lastAttemptAt": "2026-11-04T03:49:15.613Z",
+      "lastFailureKind": "fields",
+      "cooldownUntil": null,
+      "lastSuccessAt": "2026-11-04T03:49:15.613Z"
     },
     "apple": {
       "name": "苹果招聘",
@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-03",
+    "day": "2026-11-04",
     "requests": 2,
     "limit": 24
   },
@@ -188,31 +188,31 @@
     "queryLog": [
       {
         "role": "产品运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "猎聘"
-        ],
-        "results": 16,
-        "unseenResults": 16,
-        "newLinks": 4
-      },
-      {
-        "role": "产品运营",
         "region": "香港",
         "page": 1,
         "sources": [
           "OfferToday"
         ],
-        "results": 11,
-        "unseenResults": 11,
+        "results": 12,
+        "unseenResults": 12,
         "newLinks": 0
+      },
+      {
+        "role": "产品运营",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "猎聘"
+        ],
+        "results": 13,
+        "unseenResults": 13,
+        "newLinks": 3
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-03T04:29:48.548Z",
+  "updatedAt": "2026-11-04T03:49:15.613Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -310,7 +310,7 @@
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
       "detailAttemptedAt": "2026-11-03T04:29:48.548Z",
-      "retentionReason": "来源访问超时",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": true
     },
     {
@@ -378,7 +378,7 @@
           "quote": "截止日期2027年08月28日"
         }
       },
-      "detailFetchedAt": "2026-11-02T03:16:14.948Z",
+      "detailFetchedAt": "2026-11-04T03:49:19.573Z",
       "verification": "structured-detail",
       "status": "open-unconfirmed",
       "assessable": true,
@@ -390,8 +390,8 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
       "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": true
+      "retentionReason": "历史岗位已重新读取公告",
+      "recheckPending": false
     }
   ],
   "leads": [
@@ -409,11 +409,16 @@
       "sourceLabel": "猎聘",
       "sourceType": "招聘平台",
       "url": "https://www.liepin.com/s/55b3935e97ef9584595227f32dadb7f0/",
-      "discoveredAt": "2026-11-03T04:29:48.548Z",
+      "discoveredAt": "2026-11-04T03:49:15.613Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源访问超时",
-      "detailAttemptedAt": "2026-11-03T04:29:48.548Z"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-11-04T03:49:15.613Z"
     },
     {
       "id": "f81b730df07b262122",
@@ -429,11 +434,16 @@
       "sourceLabel": "猎聘",
       "sourceType": "招聘平台",
       "url": "https://campus.liepin.com/sojob",
-      "discoveredAt": "2026-11-03T04:29:48.548Z",
+      "discoveredAt": "2026-11-04T03:49:15.613Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "来源访问超时",
-      "detailAttemptedAt": "2026-11-03T04:29:48.548Z"
+      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
+      "extractionNotes": {
+        "title": "",
+        "headings": [],
+        "pageKind": "insufficient-structured-fields"
+      },
+      "detailAttemptedAt": "2026-11-04T03:49:15.613Z"
     },
     {
       "id": "d41c139a2a94a87a77",
@@ -587,17 +597,17 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-03T04:29:48.548Z",
+  "searchUpdatedAt": "2026-11-04T03:49:15.613Z",
   "warnings": [],
   "stats": {
-    "discovered": 17,
-    "detailAttempts": 3,
+    "discovered": 16,
+    "detailAttempts": 2,
     "detailSuccess": 0,
     "pending": 3,
     "excluded": 14,
     "activePool": 2,
     "historyRetained": 2,
-    "historyRechecked": 0,
+    "historyRechecked": 1,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
