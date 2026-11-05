@@ -25,16 +25,16 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 29,
+      "attempts": 32,
       "successes": 11,
-      "consecutiveFailures": 0,
+      "consecutiveFailures": 3,
       "failures": {
         "fields": 12,
-        "network": 6
+        "network": 9
       },
-      "lastAttemptAt": "2026-11-04T03:49:15.613Z",
-      "lastFailureKind": "fields",
-      "cooldownUntil": null,
+      "lastAttemptAt": "2026-11-05T04:07:31.687Z",
+      "lastFailureKind": "network",
+      "cooldownUntil": "2026-11-05T04:37:31.687Z",
       "lastSuccessAt": "2026-11-04T03:49:15.613Z"
     },
     "apple": {
@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-04",
+    "day": "2026-11-05",
     "requests": 2,
     "limit": 24
   },
@@ -188,31 +188,31 @@
     "queryLog": [
       {
         "role": "产品运营",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 12,
-        "unseenResults": 12,
-        "newLinks": 0
-      },
-      {
-        "role": "产品运营",
         "region": "内地",
         "page": 1,
         "sources": [
           "猎聘"
         ],
-        "results": 13,
-        "unseenResults": 13,
+        "results": 14,
+        "unseenResults": 14,
         "newLinks": 3
+      },
+      {
+        "role": "产品运营",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "OfferToday"
+        ],
+        "results": 15,
+        "unseenResults": 15,
+        "newLinks": 0
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-04T03:49:15.613Z",
+  "updatedAt": "2026-11-05T04:07:31.687Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,8 +309,8 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "detailAttemptedAt": "2026-11-03T04:29:48.548Z",
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
+      "detailAttemptedAt": "2026-11-05T04:07:31.687Z",
+      "retentionReason": "来源访问超时",
       "recheckPending": true
     },
     {
@@ -390,8 +390,8 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
       "retained": true,
-      "retentionReason": "历史岗位已重新读取公告",
-      "recheckPending": false
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
+      "recheckPending": true
     }
   ],
   "leads": [
@@ -409,16 +409,11 @@
       "sourceLabel": "猎聘",
       "sourceType": "招聘平台",
       "url": "https://www.liepin.com/s/55b3935e97ef9584595227f32dadb7f0/",
-      "discoveredAt": "2026-11-04T03:49:15.613Z",
+      "discoveredAt": "2026-11-05T04:07:31.687Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "extractionNotes": {
-        "title": "",
-        "headings": [],
-        "pageKind": "insufficient-structured-fields"
-      },
-      "detailAttemptedAt": "2026-11-04T03:49:15.613Z"
+      "detailFailure": "来源访问超时",
+      "detailAttemptedAt": "2026-11-05T04:07:31.687Z"
     },
     {
       "id": "f81b730df07b262122",
@@ -434,16 +429,11 @@
       "sourceLabel": "猎聘",
       "sourceType": "招聘平台",
       "url": "https://campus.liepin.com/sojob",
-      "discoveredAt": "2026-11-04T03:49:15.613Z",
+      "discoveredAt": "2026-11-05T04:07:31.687Z",
       "verification": "search-result",
       "demo": false,
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "extractionNotes": {
-        "title": "",
-        "headings": [],
-        "pageKind": "insufficient-structured-fields"
-      },
-      "detailAttemptedAt": "2026-11-04T03:49:15.613Z"
+      "detailFailure": "来源访问超时",
+      "detailAttemptedAt": "2026-11-05T04:07:31.687Z"
     },
     {
       "id": "d41c139a2a94a87a77",
@@ -597,7 +587,7 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-04T03:49:15.613Z",
+  "searchUpdatedAt": "2026-11-05T04:07:31.687Z",
   "warnings": [],
   "stats": {
     "discovered": 16,
