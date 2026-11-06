@@ -25,16 +25,16 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 32,
+      "attempts": 33,
       "successes": 11,
-      "consecutiveFailures": 3,
+      "consecutiveFailures": 4,
       "failures": {
         "fields": 12,
-        "network": 9
+        "network": 10
       },
-      "lastAttemptAt": "2026-11-05T04:07:31.687Z",
+      "lastAttemptAt": "2026-11-06T04:05:07.479Z",
       "lastFailureKind": "network",
-      "cooldownUntil": "2026-11-05T04:37:31.687Z",
+      "cooldownUntil": "2026-11-06T04:35:07.479Z",
       "lastSuccessAt": "2026-11-04T03:49:15.613Z"
     },
     "apple": {
@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-05",
+    "day": "2026-11-06",
     "requests": 2,
     "limit": 24
   },
@@ -188,31 +188,31 @@
     "queryLog": [
       {
         "role": "产品运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "猎聘"
-        ],
-        "results": 14,
-        "unseenResults": 14,
-        "newLinks": 3
-      },
-      {
-        "role": "产品运营",
         "region": "香港",
         "page": 1,
         "sources": [
           "OfferToday"
         ],
-        "results": 15,
-        "unseenResults": 15,
+        "results": 14,
+        "unseenResults": 14,
         "newLinks": 0
+      },
+      {
+        "role": "产品运营",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "猎聘"
+        ],
+        "results": 12,
+        "unseenResults": 12,
+        "newLinks": 2
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-05T04:07:31.687Z",
+  "updatedAt": "2026-11-06T04:05:07.479Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -310,7 +310,7 @@
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
       "detailAttemptedAt": "2026-11-05T04:07:31.687Z",
-      "retentionReason": "来源访问超时",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": true
     },
     {
@@ -409,11 +409,11 @@
       "sourceLabel": "猎聘",
       "sourceType": "招聘平台",
       "url": "https://www.liepin.com/s/55b3935e97ef9584595227f32dadb7f0/",
-      "discoveredAt": "2026-11-05T04:07:31.687Z",
+      "discoveredAt": "2026-11-06T04:05:07.479Z",
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源访问超时",
-      "detailAttemptedAt": "2026-11-05T04:07:31.687Z"
+      "detailAttemptedAt": "2026-11-06T04:05:07.479Z"
     },
     {
       "id": "f81b730df07b262122",
@@ -433,7 +433,8 @@
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源访问超时",
-      "detailAttemptedAt": "2026-11-05T04:07:31.687Z"
+      "detailAttemptedAt": "2026-11-05T04:07:31.687Z",
+      "retained": true
     },
     {
       "id": "d41c139a2a94a87a77",
@@ -474,105 +475,9 @@
       "excludedAt": "2026-11-01T03:05:18.744Z"
     },
     {
-      "id": "7a2b50f7ea3e7f61ed",
-      "title": "【上海 交互设计师（AI教育）招聘】-LingoAce上海招聘信息-猎聘",
-      "url": "https://www.liepin.com/job/1979157659.shtml",
-      "reason": "岗位已关闭或下架",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:26:45.047Z"
-    },
-    {
-      "id": "d3a966992ee76959d3",
-      "title": "【上海 AI算法实习生招聘】-UAES上海招聘信息-猎聘",
-      "url": "https://www.liepin.com/job/1983411337.shtml",
-      "reason": "岗位已关闭或下架",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:26:45.047Z"
-    },
-    {
-      "id": "2442600c4058b49e45",
-      "title": "Area Sales Manager at Unilever",
-      "url": "https://careers.unilever.com/en/job/phnom-penh/area-sales-manager/34155/101749518832",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "2b3215793078e78619",
-      "title": "Unilever Future Leaders Programme – Marketing & CD – France at Unilever",
-      "url": "https://careers.unilever.com/en/job/france/unilever-future-leaders-programme-marketing-and-cd-france/34155/98236495056",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "35b179f4d8ed117e3e",
-      "title": "Unilever Industrial Placement Programme - Sustainability UK at Unilever",
-      "url": "https://careers.unilever.com/en/job/united-kingdom/unilever-industrial-placement-programme-sustainability-uk/34155/101856332240",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "fea22362557f1730f2",
-      "title": "UFRESH Indonesia 2026 (November Intake) at Unilever",
-      "url": "https://careers.unilever.com/en/job/indonesia/ufresh-indonesia-2026-november-intake/34155/100474813952",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "3c65c323aa130a2669",
-      "title": "Senior SAP ABAP Developer - Job Detail | Careers Marketplace - Siemens",
-      "url": "https://jobs.siemens.com/de_DE/externaljobs/JobDetail/503261",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "50e19d74b3d7d188ee",
-      "title": "Stellenanzeige Marketing Intern (d/f/m) bei Unilever",
-      "url": "https://careers.unilever.com/de/stellenbeschreibung/warschau/marketing-intern-d-f-m/34155/95005403984",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "98aa791359e24b07ed",
-      "title": "SAP BTP CAP with AI Developer - Job Detail | Careers Marketplace - Siemens",
-      "url": "https://jobs.siemens.com/de_DE/externaljobs/JobDetail/501114",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "cf88c94b5becf4dbd7",
-      "title": "Software Developer Internship: Silicon Monitoring Solutions - Job Detail | Careers Marketplace - Siemens",
-      "url": "https://jobs.siemens.com/en_US/externaljobs/JobDetail/499638",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "dfac70d92f7c7ea57f",
-      "title": "Finance Analyst - Job Detail | Careers Marketplace - Siemens",
-      "url": "https://jobs.siemens.com/ja_JP/externaljobs/JobDetail/498072?gh_src=Discover+Technata+job+board",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "e2f4975ad771f4495c",
-      "title": "Degree Apprentice - Project Manager (Level 6) - Job Detail | Careers Marketplace - Siemens",
-      "url": "https://jobs.siemens.com/ja_JP/externaljobs/JobDetail/485826",
-      "reason": "原岗位链接已不可用（404/410）",
-      "unavailable": true,
-      "excludedAt": "2026-10-30T03:16:54.361Z"
-    },
-    {
-      "id": "f888a81e7d51228d0a",
+      "id": "08104b860512c3b4b9",
       "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
-      "url": "https://www.liepin.com/company-jobs/8458871/",
+      "url": "https://www.liepin.com/company-jobs/13657489/",
       "reason": "搜索结果或岗位汇总页"
     }
   ],
@@ -587,17 +492,17 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-05T04:07:31.687Z",
+  "searchUpdatedAt": "2026-11-06T04:05:07.479Z",
   "warnings": [],
   "stats": {
-    "discovered": 16,
-    "detailAttempts": 2,
+    "discovered": 3,
+    "detailAttempts": 1,
     "detailSuccess": 0,
     "pending": 3,
-    "excluded": 14,
+    "excluded": 2,
     "activePool": 2,
     "historyRetained": 2,
-    "historyRechecked": 1,
+    "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
