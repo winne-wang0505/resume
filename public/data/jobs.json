@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-12",
+    "day": "2026-11-13",
     "requests": 2,
     "limit": 24
   },
@@ -188,6 +188,17 @@
     "queryLog": [
       {
         "role": "产品运营",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "猎聘"
+        ],
+        "results": 11,
+        "unseenResults": 11,
+        "newLinks": 1
+      },
+      {
+        "role": "产品运营",
         "region": "香港",
         "page": 1,
         "sources": [
@@ -196,23 +207,12 @@
         "results": 14,
         "unseenResults": 14,
         "newLinks": 0
-      },
-      {
-        "role": "产品运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "猎聘"
-        ],
-        "results": 9,
-        "unseenResults": 9,
-        "newLinks": 1
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-12T04:49:16.150Z",
+  "updatedAt": "2026-11-13T03:59:51.068Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,7 +309,7 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "retentionReason": "历史岗位已重新读取公告",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": false
     },
     {
@@ -389,7 +389,7 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
       "retained": true,
-      "retentionReason": "历史岗位已重新读取公告",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": false
     }
   ],
@@ -435,34 +435,6 @@
       "detailFailure": "来源访问超时",
       "detailAttemptedAt": "2026-11-05T04:07:31.687Z",
       "retained": true
-    },
-    {
-      "id": "d41c139a2a94a87a77",
-      "title": "Key Recruitment Limited is recruiting for technican at Mong Kok-offerToday",
-      "company": null,
-      "region": "香港",
-      "searchGroup": "AI",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "Join Key Recruitment Limited as a Technican with competitive salary 18K-27K. Enjoy year-end bonus, family medical plan, attendance bonus, and more. No experience or education restrictions. Apply now!",
-      "source": "offertoday.com",
-      "sourceLabel": "OfferToday",
-      "sourceType": "招聘平台",
-      "url": "https://offertoday.com/en/job/TlfFUrHrNBN4sA-OazOiFg==",
-      "discoveredAt": "2026-10-30T03:25:17.333Z",
-      "verification": "search-result",
-      "demo": false,
-      "extractionNotes": {
-        "title": "",
-        "headings": [
-          "OfferToday"
-        ],
-        "pageKind": "insufficient-structured-fields"
-      },
-      "detailAttemptedAt": "2026-10-30T03:26:45.047Z",
-      "detailFailure": "未取得单一职位的公司、职责及要求；可能是动态页面或汇总页",
-      "retained": true
     }
   ],
   "excluded": [
@@ -484,17 +456,17 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-12T04:49:16.150Z",
+  "searchUpdatedAt": "2026-11-13T03:59:51.068Z",
   "warnings": [],
   "stats": {
     "discovered": 1,
     "detailAttempts": 0,
     "detailSuccess": 0,
-    "pending": 3,
+    "pending": 2,
     "excluded": 1,
     "activePool": 2,
     "historyRetained": 2,
-    "historyRechecked": 2,
+    "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
