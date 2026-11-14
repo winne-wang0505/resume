@@ -25,14 +25,14 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 41,
+      "attempts": 43,
       "successes": 19,
-      "consecutiveFailures": 0,
+      "consecutiveFailures": 2,
       "failures": {
         "fields": 12,
-        "network": 10
+        "network": 12
       },
-      "lastAttemptAt": "2026-11-12T04:49:16.150Z",
+      "lastAttemptAt": "2026-11-14T03:58:07.687Z",
       "lastFailureKind": "network",
       "cooldownUntil": null,
       "lastSuccessAt": "2026-11-12T04:49:16.150Z"
@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-13",
+    "day": "2026-11-14",
     "requests": 2,
     "limit": 24
   },
@@ -188,6 +188,17 @@
     "queryLog": [
       {
         "role": "产品运营",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "OfferToday"
+        ],
+        "results": 15,
+        "unseenResults": 15,
+        "newLinks": 0
+      },
+      {
+        "role": "产品运营",
         "region": "内地",
         "page": 1,
         "sources": [
@@ -196,23 +207,12 @@
         "results": 11,
         "unseenResults": 11,
         "newLinks": 1
-      },
-      {
-        "role": "产品运营",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 14,
-        "unseenResults": 14,
-        "newLinks": 0
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-13T03:59:51.068Z",
+  "updatedAt": "2026-11-14T03:58:07.687Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,8 +309,9 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": false
+      "retentionReason": "来源访问超时",
+      "recheckPending": true,
+      "detailAttemptedAt": "2026-11-14T03:58:07.687Z"
     },
     {
       "id": "2294450a8be239cbd8",
@@ -389,8 +390,9 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
       "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": false
+      "retentionReason": "来源访问超时",
+      "recheckPending": true,
+      "detailAttemptedAt": "2026-11-14T03:58:07.687Z"
     }
   ],
   "leads": [
@@ -456,7 +458,7 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-13T03:59:51.068Z",
+  "searchUpdatedAt": "2026-11-14T03:58:07.687Z",
   "warnings": [],
   "stats": {
     "discovered": 1,
@@ -466,7 +468,7 @@
     "excluded": 1,
     "activePool": 2,
     "historyRetained": 2,
-    "historyRechecked": 0,
+    "historyRechecked": 2,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
