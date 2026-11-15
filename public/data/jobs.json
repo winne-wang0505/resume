@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-14",
+    "day": "2026-11-15",
     "requests": 2,
     "limit": 24
   },
@@ -188,31 +188,31 @@
     "queryLog": [
       {
         "role": "产品运营",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 15,
-        "unseenResults": 15,
-        "newLinks": 0
-      },
-      {
-        "role": "产品运营",
         "region": "内地",
         "page": 1,
         "sources": [
           "猎聘"
         ],
-        "results": 11,
-        "unseenResults": 11,
+        "results": 10,
+        "unseenResults": 10,
         "newLinks": 1
+      },
+      {
+        "role": "产品运营",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "OfferToday"
+        ],
+        "results": 14,
+        "unseenResults": 14,
+        "newLinks": 0
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-14T03:58:07.687Z",
+  "updatedAt": "2026-11-15T03:42:48.997Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,7 +309,7 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "retentionReason": "来源访问超时",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": true,
       "detailAttemptedAt": "2026-11-14T03:58:07.687Z"
     },
@@ -390,7 +390,7 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
       "retained": true,
-      "retentionReason": "来源访问超时",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": true,
       "detailAttemptedAt": "2026-11-14T03:58:07.687Z"
     }
@@ -441,10 +441,10 @@
   ],
   "excluded": [
     {
-      "id": "33faf3cbf7a41bd35c",
+      "id": "08104b860512c3b4b9",
       "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
-      "url": "https://www.liepin.com/",
-      "reason": "招聘平台首页"
+      "url": "https://www.liepin.com/company-jobs/13657489/",
+      "reason": "搜索结果或岗位汇总页"
     }
   ],
   "searchPreferences": {
@@ -458,7 +458,7 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-14T03:58:07.687Z",
+  "searchUpdatedAt": "2026-11-15T03:42:48.997Z",
   "warnings": [],
   "stats": {
     "discovered": 1,
@@ -468,7 +468,7 @@
     "excluded": 1,
     "activePool": 2,
     "historyRetained": 2,
-    "historyRechecked": 2,
+    "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
