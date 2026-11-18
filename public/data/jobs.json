@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-17",
+    "day": "2026-11-18",
     "requests": 2,
     "limit": 24
   },
@@ -188,31 +188,31 @@
     "queryLog": [
       {
         "role": "产品运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "猎聘"
-        ],
-        "results": 4,
-        "unseenResults": 4,
-        "newLinks": 1
-      },
-      {
-        "role": "产品运营",
         "region": "香港",
         "page": 1,
         "sources": [
           "OfferToday"
         ],
-        "results": 14,
-        "unseenResults": 14,
+        "results": 16,
+        "unseenResults": 16,
         "newLinks": 0
+      },
+      {
+        "role": "产品运营",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "猎聘"
+        ],
+        "results": 5,
+        "unseenResults": 5,
+        "newLinks": 1
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-17T05:38:45.047Z",
+  "updatedAt": "2026-11-18T05:02:15.196Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,7 +309,7 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "retentionReason": "历史岗位已重新读取公告",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": false
     },
     {
@@ -389,7 +389,7 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
       "retained": true,
-      "retentionReason": "历史岗位已重新读取公告",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": false
     }
   ],
@@ -439,10 +439,10 @@
   ],
   "excluded": [
     {
-      "id": "08104b860512c3b4b9",
+      "id": "33faf3cbf7a41bd35c",
       "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
-      "url": "https://www.liepin.com/company-jobs/13657489/",
-      "reason": "搜索结果或岗位汇总页"
+      "url": "https://www.liepin.com/",
+      "reason": "招聘平台首页"
     }
   ],
   "searchPreferences": {
@@ -456,7 +456,7 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-17T05:38:45.047Z",
+  "searchUpdatedAt": "2026-11-18T05:02:15.196Z",
   "warnings": [],
   "stats": {
     "discovered": 1,
@@ -466,7 +466,7 @@
     "excluded": 1,
     "activePool": 2,
     "historyRetained": 2,
-    "historyRechecked": 2,
+    "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
