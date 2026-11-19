@@ -25,16 +25,16 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 45,
+      "attempts": 48,
       "successes": 21,
-      "consecutiveFailures": 0,
+      "consecutiveFailures": 3,
       "failures": {
         "fields": 12,
-        "network": 12
+        "network": 15
       },
-      "lastAttemptAt": "2026-11-17T05:38:45.047Z",
+      "lastAttemptAt": "2026-11-19T04:56:55.525Z",
       "lastFailureKind": "network",
-      "cooldownUntil": null,
+      "cooldownUntil": "2026-11-19T05:26:55.525Z",
       "lastSuccessAt": "2026-11-17T05:38:45.047Z"
     },
     "apple": {
@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-18",
+    "day": "2026-11-19",
     "requests": 2,
     "limit": 24
   },
@@ -188,6 +188,17 @@
     "queryLog": [
       {
         "role": "产品运营",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "猎聘"
+        ],
+        "results": 8,
+        "unseenResults": 8,
+        "newLinks": 4
+      },
+      {
+        "role": "产品运营",
         "region": "香港",
         "page": 1,
         "sources": [
@@ -196,23 +207,12 @@
         "results": 16,
         "unseenResults": 16,
         "newLinks": 0
-      },
-      {
-        "role": "产品运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "猎聘"
-        ],
-        "results": 5,
-        "unseenResults": 5,
-        "newLinks": 1
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-18T05:02:15.196Z",
+  "updatedAt": "2026-11-19T04:56:55.525Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,8 +309,9 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": false
+      "retentionReason": "来源访问超时",
+      "recheckPending": true,
+      "detailAttemptedAt": "2026-11-19T04:56:55.525Z"
     },
     {
       "id": "2294450a8be239cbd8",
@@ -389,11 +390,32 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
       "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": false
+      "retentionReason": "来源访问超时",
+      "recheckPending": true,
+      "detailAttemptedAt": "2026-11-19T04:56:55.525Z"
     }
   ],
   "leads": [
+    {
+      "id": "5a634e54992ca23aae",
+      "title": "艾默生自动化流体控制(北京)有限公司上海分公司招聘",
+      "company": null,
+      "region": "内地",
+      "searchGroup": "产品运营",
+      "category": "待核实",
+      "city": null,
+      "skills": [],
+      "description": "快消品产品经理旅游产品经理教育产品开发保险产品开发/项目策划金融产品经理汽车产品规划机械产品规划其他产品职位 ... 数据标注/AI训练师直播运营产品运营直播场控/助播用户运营短视频运营数据运营内容审核AI产品运营内容运营活动运营游戏运营策略运营新媒体运营社区/社群运营海外运营网站编辑网站运营运营专员运营经理/主管运营总监线下拓展运营网站营运管理网店运营网站策划",
+      "source": "www.liepin.com",
+      "sourceLabel": "猎聘",
+      "sourceType": "招聘平台",
+      "url": "https://www.liepin.com/company/8037527/",
+      "discoveredAt": "2026-11-19T04:56:55.525Z",
+      "verification": "search-result",
+      "demo": false,
+      "detailFailure": "来源访问超时",
+      "detailAttemptedAt": "2026-11-19T04:56:55.525Z"
+    },
     {
       "id": "1f3437463620d9e678",
       "title": "【双旗科技招聘】_双旗科技招聘招聘-猎聘",
@@ -414,34 +436,25 @@
       "detailFailure": "来源访问超时",
       "detailAttemptedAt": "2026-11-06T04:05:07.479Z",
       "retained": true
-    },
-    {
-      "id": "f81b730df07b262122",
-      "title": "【招聘信息_人才网招聘信息】-猎聘",
-      "company": null,
-      "region": "内地",
-      "searchGroup": "产品运营",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "期货客户经理招聘楼面管理招聘AI产品运营招聘咨询顾问招聘SEM招聘汽车产品规划招聘建筑结构设计招聘暖通工程师招聘ERP技术开发招聘消防中控员招聘工会干事招聘能源项目管理招聘测试经理/主管招聘核力/火力工程师招聘财务分析员招聘C++招聘测试开发招聘搬运工招聘电商运营招聘知识产权代理招聘环境评价工程师招聘市场调研与分析招聘电子/电器工程师招聘化工工艺工程师招聘行程管理/计调招聘可持续发展岗(ESG)招聘投资者关系招聘日语翻译招聘液压工程师招聘招生/课程顾问招聘",
-      "source": "campus.liepin.com",
-      "sourceLabel": "猎聘",
-      "sourceType": "招聘平台",
-      "url": "https://campus.liepin.com/sojob",
-      "discoveredAt": "2026-11-05T04:07:31.687Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "来源访问超时",
-      "detailAttemptedAt": "2026-11-05T04:07:31.687Z",
-      "retained": true
     }
   ],
   "excluded": [
     {
-      "id": "33faf3cbf7a41bd35c",
+      "id": "08104b860512c3b4b9",
       "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
-      "url": "https://www.liepin.com/",
+      "url": "https://www.liepin.com/company-jobs/13657489/",
+      "reason": "搜索结果或岗位汇总页"
+    },
+    {
+      "id": "38945a2d0bbebf1b25",
+      "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
+      "url": "https://a.qa.liepin.com/",
+      "reason": "招聘平台首页"
+    },
+    {
+      "id": "203c4e561b72c35a0a",
+      "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
+      "url": "https://www.qa.liepin.com/",
       "reason": "招聘平台首页"
     }
   ],
@@ -456,17 +469,17 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-18T05:02:15.196Z",
+  "searchUpdatedAt": "2026-11-19T04:56:55.525Z",
   "warnings": [],
   "stats": {
-    "discovered": 1,
-    "detailAttempts": 0,
+    "discovered": 4,
+    "detailAttempts": 1,
     "detailSuccess": 0,
     "pending": 2,
-    "excluded": 1,
+    "excluded": 3,
     "activePool": 2,
     "historyRetained": 2,
-    "historyRechecked": 0,
+    "historyRechecked": 2,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
