@@ -25,16 +25,16 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 48,
+      "attempts": 49,
       "successes": 21,
-      "consecutiveFailures": 3,
+      "consecutiveFailures": 4,
       "failures": {
         "fields": 12,
-        "network": 15
+        "network": 16
       },
-      "lastAttemptAt": "2026-11-19T04:56:55.525Z",
+      "lastAttemptAt": "2026-11-20T04:47:13.437Z",
       "lastFailureKind": "network",
-      "cooldownUntil": "2026-11-19T05:26:55.525Z",
+      "cooldownUntil": "2026-11-20T05:17:13.437Z",
       "lastSuccessAt": "2026-11-17T05:38:45.047Z"
     },
     "apple": {
@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-19",
+    "day": "2026-11-20",
     "requests": 2,
     "limit": 24
   },
@@ -188,6 +188,17 @@
     "queryLog": [
       {
         "role": "产品运营",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "OfferToday"
+        ],
+        "results": 12,
+        "unseenResults": 12,
+        "newLinks": 0
+      },
+      {
+        "role": "产品运营",
         "region": "内地",
         "page": 1,
         "sources": [
@@ -196,23 +207,12 @@
         "results": 8,
         "unseenResults": 8,
         "newLinks": 4
-      },
-      {
-        "role": "产品运营",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 16,
-        "unseenResults": 16,
-        "newLinks": 0
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-19T04:56:55.525Z",
+  "updatedAt": "2026-11-20T04:47:13.437Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,7 +309,7 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "retentionReason": "来源访问超时",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": true,
       "detailAttemptedAt": "2026-11-19T04:56:55.525Z"
     },
@@ -390,7 +390,7 @@
       "firstSeenAt": "2026-10-28T01:52:09.635Z",
       "lastSeenAt": "2026-10-30T03:26:56.179Z",
       "retained": true,
-      "retentionReason": "来源访问超时",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": true,
       "detailAttemptedAt": "2026-11-19T04:56:55.525Z"
     }
@@ -410,32 +410,11 @@
       "sourceLabel": "猎聘",
       "sourceType": "招聘平台",
       "url": "https://www.liepin.com/company/8037527/",
-      "discoveredAt": "2026-11-19T04:56:55.525Z",
+      "discoveredAt": "2026-11-20T04:47:13.437Z",
       "verification": "search-result",
       "demo": false,
       "detailFailure": "来源访问超时",
-      "detailAttemptedAt": "2026-11-19T04:56:55.525Z"
-    },
-    {
-      "id": "1f3437463620d9e678",
-      "title": "【双旗科技招聘】_双旗科技招聘招聘-猎聘",
-      "company": null,
-      "region": "内地",
-      "searchGroup": "产品运营",
-      "category": "待核实",
-      "city": null,
-      "skills": [],
-      "description": "双旗科技招聘专场进行时 · 10万起 · 全国 学历不限 经验不限 · 汇聚众多行业名企 · 领导好 发展空间大 五险一金 · 本期新增1452个职位 · 供应链客户经理高科技 · 【 济南 】 · 8-10k · 经验不限 本科",
-      "source": "www.liepin.com",
-      "sourceLabel": "猎聘",
-      "sourceType": "招聘平台",
-      "url": "https://www.liepin.com/s/55b3935e97ef9584595227f32dadb7f0/",
-      "discoveredAt": "2026-11-06T04:05:07.479Z",
-      "verification": "search-result",
-      "demo": false,
-      "detailFailure": "来源访问超时",
-      "detailAttemptedAt": "2026-11-06T04:05:07.479Z",
-      "retained": true
+      "detailAttemptedAt": "2026-11-20T04:47:13.437Z"
     }
   ],
   "excluded": [
@@ -469,17 +448,17 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-19T04:56:55.525Z",
+  "searchUpdatedAt": "2026-11-20T04:47:13.437Z",
   "warnings": [],
   "stats": {
     "discovered": 4,
     "detailAttempts": 1,
     "detailSuccess": 0,
-    "pending": 2,
+    "pending": 1,
     "excluded": 3,
     "activePool": 2,
     "historyRetained": 2,
-    "historyRechecked": 2,
+    "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 2
