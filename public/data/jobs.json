@@ -25,15 +25,15 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 52,
+      "attempts": 53,
       "successes": 23,
-      "consecutiveFailures": 0,
+      "consecutiveFailures": 1,
       "failures": {
         "fields": 13,
-        "network": 16
+        "network": 17
       },
-      "lastAttemptAt": "2026-11-23T04:38:37.618Z",
-      "lastFailureKind": "fields",
+      "lastAttemptAt": "2026-11-24T07:30:34.851Z",
+      "lastFailureKind": "network",
       "cooldownUntil": null,
       "lastSuccessAt": "2026-11-23T04:38:37.618Z"
     },
@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-23",
+    "day": "2026-11-24",
     "requests": 2,
     "limit": 24
   },
@@ -188,17 +188,6 @@
     "queryLog": [
       {
         "role": "产品运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "猎聘"
-        ],
-        "results": 10,
-        "unseenResults": 10,
-        "newLinks": 1
-      },
-      {
-        "role": "产品运营",
         "region": "香港",
         "page": 1,
         "sources": [
@@ -207,12 +196,23 @@
         "results": 17,
         "unseenResults": 17,
         "newLinks": 0
+      },
+      {
+        "role": "产品运营",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "猎聘"
+        ],
+        "results": 11,
+        "unseenResults": 11,
+        "newLinks": 1
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-23T04:38:37.618Z",
+  "updatedAt": "2026-11-24T07:30:34.851Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,8 +309,9 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "retentionReason": "历史岗位已重新读取公告",
-      "recheckPending": false
+      "retentionReason": "来源访问超时",
+      "recheckPending": true,
+      "detailAttemptedAt": "2026-11-24T07:30:34.851Z"
     }
   ],
   "leads": [
@@ -346,10 +347,10 @@
       "excludedAt": "2026-11-21T04:43:09.272Z"
     },
     {
-      "id": "33faf3cbf7a41bd35c",
+      "id": "08104b860512c3b4b9",
       "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
-      "url": "https://www.liepin.com/",
-      "reason": "招聘平台首页"
+      "url": "https://www.liepin.com/company-jobs/13657489/",
+      "reason": "搜索结果或岗位汇总页"
     }
   ],
   "searchPreferences": {
@@ -363,7 +364,7 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-23T04:38:37.618Z",
+  "searchUpdatedAt": "2026-11-24T07:30:34.851Z",
   "warnings": [],
   "stats": {
     "discovered": 2,
