@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-24",
+    "day": "2026-11-25",
     "requests": 2,
     "limit": 24
   },
@@ -188,31 +188,31 @@
     "queryLog": [
       {
         "role": "产品运营",
-        "region": "香港",
-        "page": 1,
-        "sources": [
-          "OfferToday"
-        ],
-        "results": 17,
-        "unseenResults": 17,
-        "newLinks": 0
-      },
-      {
-        "role": "产品运营",
         "region": "内地",
         "page": 1,
         "sources": [
           "猎聘"
         ],
-        "results": 11,
-        "unseenResults": 11,
+        "results": 13,
+        "unseenResults": 13,
         "newLinks": 1
+      },
+      {
+        "role": "产品运营",
+        "region": "香港",
+        "page": 1,
+        "sources": [
+          "OfferToday"
+        ],
+        "results": 18,
+        "unseenResults": 18,
+        "newLinks": 0
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-24T07:30:34.851Z",
+  "updatedAt": "2026-11-25T05:59:51.176Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,7 +309,7 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "retentionReason": "来源访问超时",
+      "retentionReason": "本轮未检索到，保留最近已读取的详情",
       "recheckPending": true,
       "detailAttemptedAt": "2026-11-24T07:30:34.851Z"
     }
@@ -364,7 +364,7 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-24T07:30:34.851Z",
+  "searchUpdatedAt": "2026-11-25T05:59:51.176Z",
   "warnings": [],
   "stats": {
     "discovered": 2,
@@ -374,7 +374,7 @@
     "excluded": 2,
     "activePool": 1,
     "historyRetained": 1,
-    "historyRechecked": 1,
+    "historyRechecked": 0,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 1
