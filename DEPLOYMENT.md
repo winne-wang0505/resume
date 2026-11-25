@@ -47,3 +47,7 @@
 `JOB_SOURCE_MODE` 默认 standard（猎聘／OfferToday）；preferred 为 BOSS／OfferToday，BOSS 未接入授权数据前不会自动读取。App 同样可自行选择来源。无需新密钥，来源受限时不会扩大到全部平台。
 
 本轮先以 `node scripts/clean-index.mjs` 对旧公开索引做元数据清理，不发起搜索，也不修改原读取时间。新版本启动后，个人 API 读取及浏览器加载也会剔除已知失效记录。常驻 Render 服务会在 GitHub 更新后按现有部署设置发布新代码；每日额度保持原值。
+
+## 预算可靠性版本 2
+
+沿用现有持久磁盘，Dockerfile 新增 util-linux/flock。`/api/status` 应包含 `budgetPolicyVersion: 2`；若 App 提示后台版本较旧，请在 Render 部署 latest commit。不要删除/重置旧状态文件，旧额度会保留并增加幂等任务记录。更换或恢复持久磁盘前先保留备份并核对供应商已消耗额度。仍推荐单实例；文件锁不等于支持不同磁盘的分布式副本。详见 [预算与恢复说明](docs/BUDGET_RELIABILITY.md)。

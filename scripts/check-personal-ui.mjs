@@ -15,7 +15,12 @@ export async function checkPersonalUI(browser, url, fixtureJob) {
         method = req.method();
       if (path === "/api/status")
         return route.fulfill({
-          json: { search: true, personal: true, sourcePolicyVersion: 1 },
+          json: {
+            search: true,
+            personal: true,
+            sourcePolicyVersion: 1,
+            budgetPolicyVersion: 2,
+          },
         });
       if (path === "/api/session") {
         const token = String(++sequence).repeat(64);
@@ -46,22 +51,39 @@ export async function checkPersonalUI(browser, url, fixtureJob) {
       }
       if (method === "PUT") user.enabled = body.enabled;
       if (path === "/api/search") {
-        user.index = {
-          jobs: [
-            {
-              ...fixtureJob,
-              url: "https://www.liepin.com/job/123456.shtml",
-              id: "personal-" + user.preferences.role,
-              title: user.preferences.role + "专属岗位",
-            },
-          ],
-          leads: [],
-          excluded: [],
-          updatedAt: new Date().toISOString(),
-          searchPreferences: user.preferences,
-        };
-        user.lastRunAt = new Date().toISOString();
-        user.quota.userUsed++;
+        assert.ok(
+          typeof body.requestId === "string" && body.requestId.length >= 16,
+        );
+        user.requestIds ||= [];
+        user.requestIds.push(body.requestId);
+        user.responses ||= {};
+        if (user.responses[body.requestId])
+          user.index = user.responses[body.requestId];
+        else {
+          user.providerCalls = (user.providerCalls || 0) + 1;
+          user.index = {
+            jobs: [
+              {
+                ...fixtureJob,
+                url: "https://www.liepin.com/job/123456.shtml",
+                id: "personal-" + user.preferences.role,
+                title: user.preferences.role + "专属岗位",
+              },
+            ],
+            leads: [],
+            excluded: [],
+            updatedAt: new Date().toISOString(),
+            searchPreferences: user.preferences,
+          };
+          user.responses[body.requestId] = user.index;
+          user.lastRunAt = new Date().toISOString();
+          user.quota.userUsed++;
+        }
+        if (user.loseResponseOnce) {
+          user.loseResponseOnce = false;
+          await route.abort("failed");
+          return;
+        }
       }
       return route.fulfill({ json: user });
     });
@@ -129,6 +151,32 @@ export async function checkPersonalUI(browser, url, fixtureJob) {
       ["数据分析", "产品运营"],
     );
     const firstPage = contexts[0].pages()[0];
+    const firstUser = [...users.values()][0];
+    firstUser.loseResponseOnce = true;
+    await firstPage.locator('[data-view="discover"]').click();
+    await firstPage.locator("#refresh").click();
+    await firstPage.waitForFunction(
+      () => !document.querySelector("#refresh").disabled,
+    );
+    const pendingId = await firstPage.evaluate(
+      () =>
+        JSON.parse(localStorage.getItem("career.connection")).pendingSearch.id,
+    );
+    assert.equal(firstUser.providerCalls, 2);
+    await firstPage.reload();
+    await firstPage.waitForFunction(() =>
+      document
+        .querySelector("#dataStatus")
+        .textContent.includes("我的个人日报"),
+    );
+    await firstPage.locator("#refresh").click();
+    await firstPage.waitForFunction(
+      () =>
+        !JSON.parse(localStorage.getItem("career.connection")).pendingSearch,
+    );
+    assert.equal(firstUser.requestIds.at(-1), pendingId);
+    assert.equal(firstUser.providerCalls, 2);
+    await firstPage.locator('[data-view="preferences"]').click();
     await firstPage.locator('#prefsForm [name="searchConsent"]').uncheck();
     await firstPage.locator('#prefsForm button[type="submit"]').click();
     await firstPage.waitForFunction(

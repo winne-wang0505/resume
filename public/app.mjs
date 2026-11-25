@@ -96,6 +96,8 @@ async function personalRequest(path, method = "GET", body) {
   if (!response.ok)
     throw Object.assign(Error(data.error || "个人日报服务暂不可用"), {
       status: response.status,
+      code: data.code,
+      quota: data.quota,
     });
   return data;
 }
@@ -109,7 +111,7 @@ async function ensureSession() {
 }
 function personalView(data) {
   $("#personalStatus").textContent =
-    `个人服务已连接 · 每日检索${data.enabled ? "已启用" : "未启用"} · 今日个人请求 ${data.quota.userUsed}/${data.quota.userLimit}，服务剩余 ${data.quota.globalRemaining} 次。${data.expiresAt ? "设备会话有效至 " + updatedLabel(data.expiresAt) + "（保存需求可续期）。" : ""}${data.lastRunAt ? "日报时间：" + updatedLabel(data.lastRunAt) + "。" : "尚未生成个人日报。"}${data.error || ""}`;
+    `个人服务已连接 · 每日检索${data.enabled ? "已启用" : "未启用"} · 今日个人请求 ${data.quota.userUsed}/${data.quota.userLimit}，服务剩余 ${data.quota.globalRemaining} 次。${data.expiresAt ? "设备会话有效至 " + updatedLabel(data.expiresAt) + "（保存需求可续期）。" : ""}${data.lastRunAt ? "日报时间：" + updatedLabel(data.lastRunAt) + "。" : "尚未生成个人日报。"}${data.error || ""}${data.nextRetryAt ? " 自动任务最早重试：" + updatedLabel(data.nextRetryAt) : ""}`;
   if (data.index) {
     store("personalIndex", data.index);
     setData({ ...data.index, personal: true });
@@ -119,7 +121,7 @@ async function detectPersonal() {
   const status = await personalRequest("status");
   if (!status.personal || !status.search)
     throw Error("个人搜索服务尚未配置完成");
-  if (status.sourcePolicyVersion !== 1) {
+  if (status.sourcePolicyVersion !== 1 || status.budgetPolicyVersion !== 2) {
     $("#personalStatus").textContent =
       "个人后台版本较旧：请在 Render 服务中选择 Manual Deploy → Deploy latest commit，更新后重新连接。为避免继续广泛检索，暂不调用旧后台。";
     throw Error("个人后台需更新精选来源与失效过滤版本");
@@ -664,12 +666,45 @@ $("#refresh").onclick = async () => {
   b.textContent = "正在检索…";
   try {
     await ensureSession();
+    const preferences = {
+      ...prefs,
+      skills: profile.skills,
+      major: profile.major,
+    };
+    const signature = JSON.stringify(preferences);
+    if (
+      !connection.pendingSearch ||
+      connection.pendingSearch.signature !== signature ||
+      Date.now() - connection.pendingSearch.createdAt >= 24 * 3600000
+    ) {
+      connection.pendingSearch = {
+        id: crypto.randomUUID(),
+        signature,
+        createdAt: Date.now(),
+      };
+      if (!store("connection", connection))
+        throw Error("无法保存检索标识，请启用本机存储后重试");
+    }
     const data = await personalRequest("search", "POST", {
-      preferences: { ...prefs, skills: profile.skills, major: profile.major },
+      preferences,
+      requestId: connection.pendingSearch.id,
     });
+    delete connection.pendingSearch;
+    store("connection", connection);
     personalView(data);
     toast(`已处理 ${jobs.length} 条来源，具体岗位与待核实线索已分开`);
   } catch (e) {
+    if (
+      ["SEARCH_FAILED", "SEARCH_INTERRUPTED", "IDEMPOTENCY_CONFLICT"].includes(
+        e.code,
+      )
+    ) {
+      delete connection.pendingSearch;
+      store("connection", connection);
+    }
+    if (e.quota)
+      $("#personalStatus").textContent =
+        `${e.message} · 今日个人请求/保守预留 ${e.quota.userUsed}/${e.quota.userLimit}，服务剩余 ${e.quota.globalRemaining} 次；已有日报保留。`;
     toast(e.message);
   } finally {
     b.disabled = false;

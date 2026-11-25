@@ -1,4 +1,5 @@
 FROM node:22-bookworm-slim
+RUN apt-get update && apt-get install -y --no-install-recommends util-linux && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 ENV NODE_ENV=production HOST=0.0.0.0 PORT=3000
 COPY package.json package-lock.json ./

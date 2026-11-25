@@ -74,6 +74,7 @@ export const server = http.createServer(async (req, res) => {
         return json(res, 200, {
           personal: true,
           sourcePolicyVersion: 1,
+          budgetPolicyVersion: 2,
           search: !!process.env.BRAVE_SEARCH_API_KEY,
         });
       if (
@@ -115,6 +116,8 @@ export const server = http.createServer(async (req, res) => {
         );
       } catch (e) {
         return json(res, e.status || (e instanceof SyntaxError ? 400 : 500), {
+          ...(e.code ? { code: e.code } : {}),
+          ...(e.quota ? { quota: e.quota } : {}),
           error:
             e.status || e instanceof SyntaxError
               ? e.message
