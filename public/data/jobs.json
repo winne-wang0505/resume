@@ -25,14 +25,14 @@
     },
     "liepin": {
       "name": "猎聘",
-      "attempts": 54,
+      "attempts": 55,
       "successes": 24,
-      "consecutiveFailures": 0,
+      "consecutiveFailures": 1,
       "failures": {
         "fields": 13,
-        "network": 17
+        "network": 18
       },
-      "lastAttemptAt": "2026-11-26T05:52:52.559Z",
+      "lastAttemptAt": "2026-11-28T05:26:56.859Z",
       "lastFailureKind": "network",
       "cooldownUntil": null,
       "lastSuccessAt": "2026-11-26T05:52:52.559Z"
@@ -171,7 +171,7 @@
     }
   },
   "searchUsage": {
-    "day": "2026-11-27",
+    "day": "2026-11-28",
     "requests": 2,
     "limit": 24
   },
@@ -188,17 +188,6 @@
     "queryLog": [
       {
         "role": "产品运营",
-        "region": "内地",
-        "page": 1,
-        "sources": [
-          "猎聘"
-        ],
-        "results": 16,
-        "unseenResults": 16,
-        "newLinks": 1
-      },
-      {
-        "role": "产品运营",
         "region": "香港",
         "page": 1,
         "sources": [
@@ -207,12 +196,23 @@
         "results": 20,
         "unseenResults": 20,
         "newLinks": 0
+      },
+      {
+        "role": "产品运营",
+        "region": "内地",
+        "page": 1,
+        "sources": [
+          "猎聘"
+        ],
+        "results": 17,
+        "unseenResults": 17,
+        "newLinks": 1
       }
     ],
     "discoveryPages": 0,
     "discoveredChildren": 0
   },
-  "updatedAt": "2026-11-27T05:46:26.644Z",
+  "updatedAt": "2026-11-28T05:26:56.859Z",
   "mode": "enriched",
   "jobs": [
     {
@@ -309,8 +309,9 @@
       "firstSeenAt": "2026-10-31T03:10:06.428Z",
       "lastSeenAt": "2026-11-02T03:16:10.131Z",
       "retained": true,
-      "retentionReason": "本轮未检索到，保留最近已读取的详情",
-      "recheckPending": false
+      "retentionReason": "来源访问超时",
+      "recheckPending": true,
+      "detailAttemptedAt": "2026-11-28T05:26:56.859Z"
     }
   ],
   "leads": [
@@ -338,14 +339,6 @@
   ],
   "excluded": [
     {
-      "id": "2294450a8be239cbd8",
-      "title": "大模型 Agent 开发工程师实习生",
-      "url": "https://www.liepin.com/job/1985237551.shtml",
-      "reason": "岗位已关闭或下架",
-      "unavailable": true,
-      "excludedAt": "2026-11-21T04:43:09.272Z"
-    },
-    {
       "id": "08104b860512c3b4b9",
       "title": "【猎聘】-招聘_找工作_求职_企业招人平台",
       "url": "https://www.liepin.com/company-jobs/13657489/",
@@ -363,17 +356,17 @@
     "experienceLevel": "",
     "legacyInput": true
   },
-  "searchUpdatedAt": "2026-11-27T05:46:26.644Z",
+  "searchUpdatedAt": "2026-11-28T05:26:56.859Z",
   "warnings": [],
   "stats": {
-    "discovered": 2,
+    "discovered": 1,
     "detailAttempts": 0,
     "detailSuccess": 0,
     "pending": 1,
-    "excluded": 2,
+    "excluded": 1,
     "activePool": 1,
     "historyRetained": 1,
-    "historyRechecked": 0,
+    "historyRechecked": 1,
     "historyArchived": 0,
     "duplicatesRemoved": 0,
     "companies": 1
